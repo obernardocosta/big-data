@@ -34,6 +34,37 @@ Enquanto a turma chega:
 
 ---
 
+## O que você vai levar da Aula 5
+
+Ao final, você será capaz de:
+
+- Explicar o que é o **EMR** e por que **desacoplar** computação (cluster) de
+  armazenamento (S3).
+- Escolher entre cluster **transient** e **long running**.
+- Identificar os papéis de **Master / Core / Task Node** e usar **Spot**.
+- Subir um cluster e rodar um ETL em Spark (Lab 06).
+
+---
+
+## Roteiro de hoje (Semana 2 · quinta · 18h30–22h · ~3h30)
+
+Janela noturna + lab com custo: **gestão de tempo é crítica** aqui.
+
+| Tempo | Bloco |
+|---|---|
+| 0:00–0:30 | Chegada: dúvidas da Aula 4 + conferir dry-run reforçado |
+| 0:30–1:05 | EMR: o que é, S3 vs EBS, tipos de cluster |
+| 1:05–1:35 | Tipos de nó, acesso (SSH/Notebooks), boas práticas |
+| 1:35–1:50 | **Intervalo** |
+| 1:50–3:10 | **Lab 06** — EMR (atenção ao custo e ao plano B) |
+| 3:10–3:30 | Fechamento + o que vem na Aula 6 (Data Lake) |
+
+> **Se o cluster não subir rápido, vá para o plano B (demonstração).** A janela
+> é curta e o lab é o historicamente problemático — não queime a aula tentando
+> provisionar.
+
+---
+
 ## O que é o Amazon EMR
 
 **Elastic MapReduce** — cluster **Hadoop gerenciado** pela AWS.
@@ -200,15 +231,15 @@ Rode o dry-run REFORÇADO na véspera e tenha plano B (trocar região / demonstr
 
 ---
 
-## Fechamento
+## O que você leva da Aula 5
 
 - **EMR** = Hadoop/Spark gerenciado; desacople **computação (cluster)** de
   **armazenamento (S3)**.
 - **Transient** para lote econômico; **Long Running** para interativo.
 - Boas práticas repetem a lição do curso: **particionar, formato colunar,
   compressão** — custo e performance andam juntos.
-- Na última aula, tudo isso vira um **Data Lake** em camadas.
 
-### Dúvidas?
+### Próxima aula (sábado, 8h): **Data Lake** — tudo o que vimos vira uma
+### arquitetura em camadas (fechamento do curso).
 
-<!-- Fim da Aula 5. Próxima: Data Lake (fechamento do curso). -->
+<!-- Retome os objetivos do início. Fim da Aula 5. -->

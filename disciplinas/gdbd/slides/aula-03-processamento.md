@@ -45,6 +45,35 @@ estavam no formato certo. Mas dado cru raramente chega pronto:
 
 ---
 
+## O que você vai levar da Aula 3
+
+Ao final, você será capaz de:
+
+- Escolher entre **Lambda, Fargate, Glue e EMR** para processar dados.
+- Relacionar **Apache Spark → AWS Glue Job** (Spark serverless) e a cobrança por **DPU**.
+- Transformar CSV cru em **Parquet** e provar que a consulta fica mais barata.
+- Saber **quando não** usar Spark (tarefa curta → Lambda).
+
+---
+
+## Roteiro de hoje (sábado · 8h–13h · ~5h)
+
+Aula longa, mais voltada a **prática**. Janela boa para conduzir o lab com calma.
+
+| Tempo | Bloco |
+|---|---|
+| 0:00–0:30 | Chegada: dúvidas / terminar Labs 03–04 |
+| 0:30–1:15 | O problema do ETL + opções de processamento na AWS |
+| 1:15–1:55 | Apache Spark → AWS Glue Job; DPU e preço |
+| 1:55–2:10 | **Intervalo** |
+| 2:10–3:40 | **Lab 05** — Spark serverless (Glue Job) com calma |
+| 3:40–4:10 | Quando **não** usar Spark (Lambda); discussão |
+| 4:10–5:00 | Exploração guiada / dúvidas / fechamento |
+
+<!-- Sábado tem 5h: aproveite para aprofundar o lab e discutir trade-offs. -->
+
+---
+
 ## Estudo de caso
 
 Temos os jogos da Premier League (18/19) em CSV, com dezenas de colunas. O
@@ -220,7 +249,7 @@ Aula 2. Rode o dry-run.sh do lab ANTES da aula.
 
 ---
 
-## Fechamento
+## O que você leva da Aula 3
 
 - **Open source → AWS:** Apache Spark → **AWS Glue Job** (Spark serverless).
 - Cobrança por **DPU-hora**: ETL distribuído por centavos, sem cluster parado.
@@ -228,6 +257,7 @@ Aula 2. Rode o dry-run.sh do lab ANTES da aula.
   para pedaços curtos (Nielsen: 55 TB/dia sem Spark).
 - Transformar para **Parquet** fecha o ciclo com a Aula 2: consulta mais barata.
 
-### Dúvidas?
+### Próxima aula (Semana 2, terça): **orquestração** — quem dispara esse
+### pipeline, na ordem certa, tratando falhas.
 
-<!-- Fim da Aula 3. Próxima: orquestração (Airflow / Step Functions). -->
+<!-- Retome os objetivos do início. Fim da Aula 3. -->

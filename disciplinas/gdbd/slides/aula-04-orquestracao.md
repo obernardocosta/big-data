@@ -45,6 +45,32 @@ extrair → transformar (Glue) → catalogar (Crawler) → consultar (Athena)
 
 ---
 
+## O que você vai levar da Aula 4
+
+Ao final, você será capaz de:
+
+- Explicar o que é **orquestração** e modelar um pipeline como **DAG**.
+- Relacionar **Apache Airflow → MWAA** e conhecer o **AWS Step Functions**.
+- Escolher entre **MWAA** e **Step Functions** conforme o contexto.
+
+---
+
+## Roteiro de hoje (Semana 2 · terça · 18h30–22h · ~3h30)
+
+Aula **conceitual** (sem lab) — espaço para discussão e exemplos.
+
+| Tempo | Bloco |
+|---|---|
+| 0:00–0:30 | Chegada: dúvidas da Aula 3 / limpeza do Lab 05 |
+| 0:30–1:10 | O problema: pipelines, dependências e falhas |
+| 1:10–1:45 | DAG + Apache Airflow (open source) |
+| 1:45–2:00 | **Intervalo** |
+| 2:00–2:45 | AWS: MWAA e Step Functions |
+| 2:45–3:20 | MWAA × Step Functions: quando usar cada um |
+| 3:20–3:30 | Fechamento + o que vem na Aula 5 (EMR) |
+
+---
+
 ## O problema central
 
 - O passo B só pode rodar **depois** que o A terminou com sucesso.
@@ -175,14 +201,14 @@ layout: center
 
 ---
 
-## Fechamento
+## O que você leva da Aula 4
 
 - **Open source → AWS:** Apache Airflow → **MWAA** (o mesmo Airflow gerenciado)
   ou **Step Functions** (serverless, nativo da AWS).
 - Pipeline como **DAG**: dependências explícitas, ordem garantida, falhas tratadas.
 - Escolha pelo contexto: migração de Airflow → MWAA; nascer na AWS → Step Functions.
-- Na próxima aula, o **EMR** entra como motor pesado desses pipelines.
 
-### Dúvidas?
+### Próxima aula (quinta): **Amazon EMR** — o motor pesado (Hadoop/Spark
+### gerenciado). Atenção: lab com custo (~US$ 1) e dry-run reforçado.
 
-<!-- Fim da Aula 4. Próxima: Amazon EMR (Hadoop/Spark gerenciado). -->
+<!-- Retome os objetivos do início. Fim da Aula 4. -->

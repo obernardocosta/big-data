@@ -46,6 +46,35 @@ layout: center
 
 ---
 
+## O que você vai levar da Aula 1
+
+Ao final de hoje, você será capaz de:
+
+- Explicar **por que** análises precisam de um **catálogo**, não de arquivos soltos.
+- Relacionar **Hive Metastore → AWS Glue Data Catalog** (open source → gerenciado).
+- Criar uma **tabela catalogada** à mão e ver **schema evolution** (Lab 01).
+- Automatizar a catalogação com o **Glue Crawler** (Lab 02).
+
+---
+
+## Roteiro de hoje (terça · 18h30–22h · ~3h30)
+
+| Tempo | Bloco |
+|---|---|
+| 0:00–0:15 | Abertura, combinados e **pontualidade** |
+| 0:15–0:45 | Estudo de caso: o problema de "arquivos soltos" |
+| 0:45–1:20 | Catálogo de dados; Hive Metastore → Glue Data Catalog |
+| 1:20–1:45 | O serviço gerenciado: integrações e preço |
+| 1:45–2:00 | **Intervalo** |
+| 2:00–2:25 | **Lab 01** — tabela catalogada (schema evolution) |
+| 2:25–2:40 | "Catalogar à mão não escala" → Crawler |
+| 2:40–3:15 | **Lab 02** — Glue Crawler |
+| 3:15–3:30 | Fechamento + o que vem na Aula 2 |
+
+<!-- Esta é a 1ª aula: avise que começa 18h30 em ponto (tolerância 10 min). -->
+
+---
+
 ## Avaliação
 
 - Presença em sala
@@ -281,6 +310,14 @@ Tabela de preços: https://aws.amazon.com/glue/pricing/
 ### Dúvidas até aqui?
 
 ---
+layout: center
+---
+
+## Intervalo — 15 min
+
+<!-- Na volta: mão na massa nos Labs 01 e 02. -->
+
+---
 layout: section
 ---
 
@@ -349,9 +386,15 @@ Tabela de preços: https://aws.amazon.com/glue/pricing/
 Instruções versionadas: `labs/lab-02-glue-crawler/`
 
 ---
-layout: center
----
 
-## Intervalo — 15 min
+## O que você leva da Aula 1
 
-<!-- Fim da Aula 1. -->
+- Um **catálogo** dá a visão estável de **tabelas** sobre arquivos no S3.
+- **Hive Metastore → Glue Data Catalog**: o mesmo papel, agora gerenciado.
+- Você catalogou **à mão** (Lab 01) e viu por que isso **não escala**.
+- O **Crawler** automatiza a catalogação (Lab 02).
+
+### Próxima aula (quinta): **consultar** esse catálogo com SQL (Athena) e
+### **particionar** para pagar menos.
+
+<!-- Retome os objetivos do início e confirme um a um. Fim da Aula 1. -->

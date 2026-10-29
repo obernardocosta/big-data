@@ -47,6 +47,32 @@ Mas catalogar é só metade do caminho. Falta a pergunta óbvia:
 
 ---
 
+## O que você vai levar da Aula 2
+
+Ao final, você será capaz de:
+
+- Relacionar **PrestoDB → Amazon Athena** (consulta SQL distribuída serverless).
+- Rodar SQL sobre o catálogo e **ler o "Data scanned"** (o que você paga).
+- Explicar **particionamento** e provar que ele **reduz scan, custo e tempo**.
+- Decidir entre **Athena** e **Presto no EMR**.
+
+---
+
+## Roteiro de hoje (quinta · 18h30–22h · ~3h30)
+
+| Tempo | Bloco |
+|---|---|
+| 0:00–0:30 | Chegada: dúvidas da Aula 1 / terminar Labs 01–02 |
+| 0:30–1:00 | Estudo de caso + PrestoDB (open source) |
+| 1:00–1:30 | Amazon Athena: serverless, catálogo, preço por TB |
+| 1:30–1:55 | **Lab 03** — queries no Athena (início) |
+| 1:55–2:10 | **Intervalo** |
+| 2:10–2:45 | Particionamento: por que corta custo e tempo |
+| 2:45–3:20 | **Lab 04** — particionamento |
+| 3:20–3:30 | Fechamento + o que vem na Aula 3 |
+
+---
+
 ## Estudo de caso
 
 Somos uma empresa de marketing esportivo. Com a tabela catalogada, o negócio
@@ -334,13 +360,14 @@ Instruções versionadas: `labs/lab-04-particionamento/`
 
 ---
 
-## Fechamento
+## O que você leva da Aula 2
 
 - **Open source → AWS:** PrestoDB → **Amazon Athena** (mesmo motor, serverless).
 - O Athena reusa o **Glue Data Catalog** da Aula 1: catálogo e consulta se encaixam.
 - **Particionamento** ataca direto o custo por TB escaneado: menos scan, menos
   custo, mais velocidade.
 
-### Dúvidas?
+### Próxima aula (sábado, 8h): **processar/transformar** os dados com
+### AWS Glue Job (Spark serverless).
 
-<!-- Fim da Aula 2. Próxima: processamento (AWS Glue / Spark serverless). -->
+<!-- Retome os objetivos do início. Fim da Aula 2. -->

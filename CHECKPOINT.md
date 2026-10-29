@@ -142,14 +142,16 @@ Material real dos PDFs em `_fonte/pdn_*.txt`. **Seminário removido** a pedido.
   - Cada lab: README, passo-a-passo, dry-run read-only (validados), troubleshooting.
 - `routeAlias` atualizado; `slidev build` da PDN passa (exit 0).
 
-### Refino pedagógico (em andamento)
-- PDN: feito (3 aulas reescritas no padrão objetivos→roteiro→teoria→prática→fecho).
-- [ ] GDBD: aplicar o mesmo padrão pedagógico às 6 aulas (próximo).
+### Refino pedagógico (GDBD + PDN) ✅ (2026-10-29)
+- PDN: 3 aulas no padrão objetivos→roteiro cronometrado→teoria→prática→"o que você leva".
+- GDBD: as 6 aulas refinadas no mesmo padrão — cada uma abre com **objetivos de
+  aprendizagem** e um **roteiro com timeboxes** no horário real (terça/quinta
+  18h30–22h ~3h30; sábado 8h–13h ~5h), e fecha com **"o que você leva"** +
+  gancho para a próxima aula. Conteúdo técnico preservado; `slidev build` passa.
 
-### Ideias registradas para depois
-- [ ] No sumário (site/index.html): sob cada aula, links menores para os
-  labs/práticas daquela aula (decidir se linka slide da prática ou publica os
-  labs como páginas).
+### Ideias registradas para depois (na ordem combinada)
+- [ ] (2) No sumário: sob cada aula, links menores para os labs/práticas.
+- [ ] (3) Nos slides: um jeito de **voltar para a página inicial** (sumário).
 
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.

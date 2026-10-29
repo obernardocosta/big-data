@@ -32,6 +32,33 @@ Enquanto a turma chega:
 
 ---
 
+## O que você vai levar da Aula 6
+
+Ao final (e do curso), você será capaz de:
+
+- Definir um **Data Lake** e por que ele substitui o DW tradicional em Big Data.
+- Mapear **cada boa prática** de Data Lake para um **serviço AWS** visto no curso.
+- Desenhar a arquitetura em **3 camadas** (Raw → Clean → Specialized).
+- Construir um Data Lake ponta a ponta (Lab 07 — final).
+
+---
+
+## Roteiro de hoje (Semana 2 · sábado · 8h–13h · ~5h)
+
+Aula final, janela longa: teoria + **lab de fechamento** com calma.
+
+| Tempo | Bloco |
+|---|---|
+| 0:00–0:30 | Chegada: dúvidas / limpeza do Lab 06 |
+| 0:30–1:15 | O que é Data Lake; tradicional × Data Lake |
+| 1:15–2:00 | Boas práticas → serviços AWS; arquitetura em camadas |
+| 2:00–2:15 | **Intervalo** |
+| 2:15–4:15 | **Lab 07** — Data Lake de 3 camadas (lab final) |
+| 4:15–4:45 | Limpeza + revisão do mapa do curso |
+| 4:45–5:00 | Encerramento e próximos passos |
+
+---
+
 ## O que é um Data Lake
 
 - **Repositório centralizado** de dados — estruturados **e** não-estruturados.
