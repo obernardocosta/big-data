@@ -1,0 +1,14 @@
+# Dependências
+node_modules/
+
+# Artefatos de build do Slidev
+dist/
+**/.slidev/
+disciplinas/*/slides/node_modules/
+disciplinas/*/export/*.pdf
+
+# PDFs originais pesados (mantemos só o texto extraído em _fonte/)
+_fonte/*.pdf
+
+# Sistema
+.DS_Store

@@ -1,0 +1,1083 @@
+===== SLIDE 1 =====
+Gerenciamento de Dados para
+Big Data - Aula 1
+Bernardo 
+Costa
+
+===== SLIDE 2 =====
+Bernardo Costa 
+bernardoantunescosta@gmail.com
+linkedin.com/in/obernardocosta
+Let's talk!
+
+===== SLIDE 3 =====
+Apresentações 
+● Qual o seu nome?
+● De onde você é?
+● Com o que você trabalha hoje?
+● Qual seu objetivo aqui nessa disciplina?
+● Conta uma curiosidade!
+
+===== SLIDE 4 =====
+e-core .com
+INTRODUÇÃO AO CURSO
+
+===== SLIDE 5 =====
+Objetivos do Curso 
+● Introdução à Serviços de Big Data da AWS
+● Deep Dive em Cluster Hadoop na AWS (EMR)
+● Data Lake na AWS
+● Laboratórios
+
+===== SLIDE 6 =====
+Avaliação
+● Presença em sala
+● Participação durante laboratórios práticos 
+● Quiz
+
+===== SLIDE 7 =====
+Avaliação 
+● Presença em sala
+● Participação durante laboratórios práticos 
+● Quiz
+
+===== SLIDE 8 =====
+Planejamento
+
+===== SLIDE 9 =====
+Referências 
+● Big Data Analytics Options on AWS
+● Data Engineering with AWS: Learn how to design and build cloud-based 
+data transformation pipelines using AWS
+● Designing Data-Intensive Applications: The Big Ideas Behind Reliable, 
+Scalable, and Maintainable Systems
+● Learn Amazon SageMaker
+● Storage Best Practices for Data and Analytics Applications: 
+● Data Analytics Lens
+● AWS Certiﬁed Data Analytics Study Guide
+● Spark: The Deﬁnitive Guide
+
+===== SLIDE 10 =====
+e-core .com
+Módulo 1
+Introdução à Serviços de Big Data na AWS
+e-core .com
+
+===== SLIDE 11 =====
+Estudo de caso
+● Estamos trabalhando produto Cloud Native
+● Ao passar do tempo, o produto precisa iniciar as iniciativas de dados, para:
+○ Apoiar na decisão baseada em dados
+○ Análises de desempenho comercial
+○ Análises de mercado
+○ Integração com outros produtos parceiros
+● Existem diversas fontes possíveis
+○ Tamanho diferente
+○ Formato diferente
+○ Data Schema Diferentes
+
+===== SLIDE 12 =====
+Estudo de caso
+● Como analisar dados de fontes heterogêneas de forma escalável?
+
+===== SLIDE 13 =====
+Arquitetura inicial
+● Como analisar dados de fontes heterogêneas de forma escalável?
+
+===== SLIDE 14 =====
+Arquitetura inicial
+● Extraction realiza a extração das 
+fontes e envia os arquivos no 
+formato que cada fonte 
+disponibiliza o dado
+● Consumidores as utilizam com:
+○ Data Visualization
+○ Data Warehouse
+○ Programming Language
+○ Distributed Programming Language
+
+===== SLIDE 15 =====
+● Como ﬁca o esquema de dados 
+nessa abordagem?
+● Como controlar as versões do 
+esquema de dados?
+● É possível garantir que todos os 
+sistemas consigam acessar todos 
+os arquivos?
+○ xml, json, xls, csv, parquet, avro, orc, etc.
+● O que fazer quando os schemas 
+mudarem?
+Perguntas
+
+===== SLIDE 16 =====
+● Como juntar dados assim?
+● É possível saber quais dados o 
+projeto já tem?
+Perguntas
+
+===== SLIDE 17 =====
+● Catálogo de Dados provê:
+○ Virtualization
+○ Discoverability
+○ Schema Evolution
+○ Performance
+A resposta: Catálogo de Dados
+
+===== SLIDE 18 =====
+● Virtualization
+○ Análises em SQL são interessadas em Tabelas, não em arquivos, padrões de acesso, etc.
+○ O Catálogo deve ﬁcar estável com a visão das Tabelas, mesmo que os componentes de análise mudem
+● Discoverability
+○ Ajuda a descobrir quais conjuntos de dados estão disponíveis para consulta
+○ Informação sobre os dados, como dono, frequência de atualização, etc.
+● Schema Evolution
+○ Registros podem mudar com o tempo, alterando seu esquema de dados
+○ Provê a descrição do esquema dos arquivos e os salva ao longo do tempo
+○ Acessar os arquivos no esquema de dados corretos
+○ Monitorar a validade do esquema e possíveis mudanças
+● Performance
+○ Mapeia os arquivos de cada tabela em partições
+○ Aumenta performance evitando trazer pra memória arquivos desnecessários para consulta
+A resposta: Catálogo de Dados
+
+===== SLIDE 19 =====
+● Hive Metastore
+● Fundado em 2010
+● Componentes
+○ Query Engine — Executar o SQL
+○ Metastore — Catálogo no HDFS
+Catálogo de Dados no Mundo Open Source
+
+===== SLIDE 20 =====
+● Inclusão do Hive Metastore
+● Consumidores precisam perguntar 
+para o Hive Metastore como 
+acessar os dados
+Atualização da Arquitetura
+
+===== SLIDE 21 =====
+e-core .com
+Trazendo para o mundo Open Source
+
+===== SLIDE 22 =====
+Open Source
+
+===== SLIDE 23 =====
+● Open Source
+○ Apoio da Comunidade
+● Liberdade de implementação
+○ No Cloud vendor lock-in
+● Liberdade de Customização
+● Dezenas de ferramentas disponíveis
+Prós e Contras: Prós
+
+===== SLIDE 24 =====
+● Diﬁculdade de implementação
+● Diﬁculdade de suporte
+● Monitoramento a nível de infra
+○ Baixo nível
+● TCO alto
+Prós e Contras: Contras
+
+===== SLIDE 25 =====
+Total Cost Ownership - (TCO)
+
+===== SLIDE 26 =====
+e-core .com
+Trazendo para ambiente AWS
+e-core .com
+
+===== SLIDE 27 =====
+Trazendo para AWS
+
+===== SLIDE 28 =====
+Trazendo para AWS
+
+===== SLIDE 29 =====
+Trazendo para AWS
+
+===== SLIDE 30 =====
+Trazendo para AWS
+
+===== SLIDE 31 =====
+Trazendo para AWS
+
+===== SLIDE 32 =====
+Trazendo para AWS
+
+===== SLIDE 33 =====
+Trazendo para AWS
+
+===== SLIDE 34 =====
+Mapeamento mental na AWS
+● Armazenamento de Objetos
+○ Amazon S3
+● Spark Serverless
+○ AWS Glue
+● Processamento Serverless
+○ AWS Lambda
+● Data Warehouse
+○ Amazon Redshift
+● Visualização de dados
+○ Amazon Quicksight
+● Catálogo de dados
+○ AWS Glue Data Catalog
+
+===== SLIDE 35 =====
+e-core .com
+Hive Metastore -> AWS Glue Data Catalog
+
+===== SLIDE 36 =====
+AWS Glue Data Catalog
+● Serviço gerenciado equivalente ao Hive Metastore.
+● Integração com diversos serviços da AWS:
+○ Amazon Athena
+○ Amazon EMR
+○ AWS Glue
+
+===== SLIDE 37 =====
+Preço conforme a utilização
+● Não é necessário contrato de longo prazo
+● Pagamos apenas o que utilizamos
+● Se aumentarmos a utilização, teremos os recursos disponíveis e pagaremos 
+por isso
+
+===== SLIDE 38 =====
+https://aws.amazon.com/glue/pricing/
+
+===== SLIDE 39 =====
+Exemplo real de custo
+
+===== SLIDE 40 =====
+Exemplo real de custo
+
+===== SLIDE 41 =====
+Exemplo real de custo
+
+===== SLIDE 42 =====
+Exemplo real de custo
+
+===== SLIDE 43 =====
+Exemplo real de custo
+
+===== SLIDE 44 =====
+Exemplo real de custo
+
+===== SLIDE 45 =====
+Exemplo real de custo
+
+===== SLIDE 46 =====
+O que vimos até aqui:
+● Equivalência lógica de serviços Open Source com AWS
+● O que é um Catálogo de Dados
+● Qual é o serviço de catálogo de dados na AWS
+● Dúvidas até aqui?
+
+===== SLIDE 47 =====
+Prática: AWS Glue Data Catalog
+● Problema:
+○ Estamos trabalhando em uma empresa de marketing esportivo, fazendo uma análise de 
+dados sobre o melhor jogador do mundo FIFA. Para isso, precisamos ser capazes se inserir 
+informações incrementais sobre os melhores jogadores do mundo em uma tabela, registrada 
+no catálogo de dados, para ter acesso posterior a ferramentas de análise e de processamento 
+de dados:
+● Resultado esperado:
+○ Conseguir ter uma tabela catalogada e com versões no catálogo de dados da AWS
+● Tempo
+○ 15 min
+● Instruções
+○ https://drive.google.com/drive/folders/1V-NsjLXwgHC1R01s5xQUQ9e8Bo4ACwFu?usp=shar
+e_link
+
+===== SLIDE 48 =====
+Considerações
+● O que acontece se mapearmos uma tabela de dezenas de campos?
+● O que acontece se tivermos centenas de tabelas?
+● E se por dia forem inseridas 20 tabelas, qual o esforço disso?
+● Veja o exemplo da tabela que vamos catalogar
+
+===== SLIDE 49 =====
+Considerações
+
+===== SLIDE 50 =====
+AWS Glue Crawler
+
+===== SLIDE 51 =====
+AWs Glue Crawler
+● Criação de tabelas automática
+● Atualização automática de tabelas
+● Modelo Serverless de cobrança
+○ Cobra apenas pelo uso
+
+===== SLIDE 52 =====
+AWs Glue Crawler
+
+===== SLIDE 53 =====
+AWs Glue Crawler
+
+===== SLIDE 54 =====
+AWs Glue Crawler
+
+===== SLIDE 55 =====
+AWs Glue Crawler
+
+===== SLIDE 56 =====
+https://aws.amazon.com/glue/pricing/
+
+===== SLIDE 57 =====
+Exemplo real de custo
+
+===== SLIDE 58 =====
+https://aws.amazon.com/glue/pricing/
+
+===== SLIDE 59 =====
+Prática: AWS Glue Crawler
+● Problema:
+○ Criação de automação para criar e atualizar tabelas automaticamente
+● Resultado esperado:
+○ Conseguir ter uma tabela criada automaticamente pelo AWS Glue Crawler
+● Tempo
+○ 30 min
+● Instruções
+○ https://docs.google.com/document/d/1C5jdjv_DtjFk8ydaHQYNEViL950Y_VOg1TDvIhHBiWA/
+edit?usp=sharing
+
+===== SLIDE 60 =====
+e-core .com
+Intervalo 15 min
+
+===== SLIDE 61 =====
+Gerenciamento de Dados para
+Big Data - Aula 2
+Bernardo 
+Costa
+
+===== SLIDE 62 =====
+Estudo de caso
+● Temos tabelas mapeadas no AWS Glue Data Catalog
+● O time de análise de dados gostaria:
+○ Realizar consultas usando SQL nos arquivos
+○ Aumentar a performance das consultas
+
+===== SLIDE 63 =====
+● Qual serviço que faz isso no ambiente Hadoop?
+Hadoop na AWS
+
+===== SLIDE 64 =====
+● Qual serviço que faz isso no ambiente Hadoop?
+Hadoop na AWS
+
+===== SLIDE 65 =====
+e-core .com
+"Presto is a distributed system that runs on a 
+cluster of machines. It enables analytics on large 
+amounts of data. With Presto, access and query 
+data in place on many data different data sources 
+using ANSI SQL"
+
+===== SLIDE 66 =====
+● Presto é um sistema distribuído que roda em um cluster de máquinas
+○ máquinas "baratas" trabalhando juntas.
+● Permite realizar análise em grandes volumes de dados
+○ Distribuída.
+● Acesso e consulta de dados usando SQL ANSI
+○ Não precisa aprender uma linguagem nova
+PrestoDB
+
+===== SLIDE 67 =====
+Arquitetura do PrestoDB
+
+===== SLIDE 68 =====
+Presto Coordinator
+● Responsável pelo planejamento das 
+consultas
+●  Comunicação via REST API
+● Conﬁguração
+○ 1 Coordinator
+○ 1 ou mais Workers
+● Em produção:
+○ Coordinator em máquina dedicada
+● Responsável por retornar para o 
+Client.
+
+===== SLIDE 69 =====
+Presto Worker
+● Processar as consultas 
+indicadas pelo Coordinator
+● Recuperam os dados das fontes
+● Conseguem fazer troca de dados 
+entre eles próprios
+●  Os Workers procuram o 
+Coordinator
+○ Colocam-se à disposição para 
+execução das consultas.
+
+===== SLIDE 70 =====
+Presto Worker
+● Processar as consultas 
+indicadas pelo Coordinator
+● Recuperam os dados das fontes
+● Conseguem fazer troca de dados 
+entre eles próprios
+●  Os Workers procuram o 
+Coordinator
+○ Colocam-se à disposição para 
+execução das consultas.
+
+===== SLIDE 71 =====
+● Subir instâncias EC2
+○ Conﬁguração do ambiente
+○ Custo de AWS baixo
+○ Custo de implementação e monitoramento alto
+● Não é utilizado!
+Implementação na AWS - Opção 1
+
+===== SLIDE 72 =====
+● Usar o Presto dentro do Amazon EMR
+○ Conﬁguração do ambiente
+○ Custo de AWS médio
+○ Custo de implementação e monitoramento médio
+● Algumas empresas utilizam!
+Implementação na AWS - Opção 2
+
+===== SLIDE 73 =====
+Implementação na AWS - Opção 3
+
+===== SLIDE 74 =====
+● Amazon Athena
+○ Custo de AWS apenas pelo que usar
+○ Custo de implementação e monitoramento baixo
+○ Custo $5/TB escaneado
+● Mais utilizado!
+Implementação na AWS - Opção 3
+
+===== SLIDE 75 =====
+Serviço de consulta distribuída em SQL
+
+===== SLIDE 76 =====
+Serviço de consulta distribuída em SQL
+
+===== SLIDE 77 =====
+Amazon Athena
+
+===== SLIDE 78 =====
+Amazon Athena
+
+===== SLIDE 79 =====
+Amazon Athena
+> Bucket de Dados
+> Bucket de Query Results
+
+===== SLIDE 80 =====
+Presto no Cluster EMR
+Prós Contras
+Custo fixo Custo fixo, mesmo se não usar
+Versão mais atualizada Custo de infraestrutura
+Menor vendor lock-in Custo de manutenção da infraestrutura
+Consultas>30min Demora mais para colocar no ar
+Open source Preocupação com escalabilidade
+Reaproveitamento de Cluster Preocupação com resiliência
+
+===== SLIDE 81 =====
+Prós Contras
+Pay as you go Custo pode descontrolar
+Não tem preocupação com infraestrutura vendor lock-in
+Não tem custo com infraestrutura Consultas<30min
+Rápido de configurar 
+Não tem preocupação com escalabilidade 
+Não tem preocupação com resiliência 
+Dados em estrutura open source 
+Amazon Athena
+
+===== SLIDE 82 =====
+Prática: Rodando Queries no AWS
+● Problema:
+○ Quais os 10 jogadores que mais ganharam o prêmio de melhor jogador do mundo FIFA?
+○ Qual país tem mais jogadores que ganharam o prêmio de melhor jogador do mundo FIFA?
+■ Quantos prêmios cada país tem?
+○ Qual equipe marcou mais gols na Premier League (18/19)?
+○ Qual equipe teve a pior defesa na Premier League (18/19)?
+○ Qual jogo da Premier League (18/19) teve maior goleada?
+■ Diferença de gols feitos e recebidos
+● Resultado esperado:
+○ Conseguir executar as consultas SQL nos arquivos
+ do primeiro lab no Amazon Athena
+● Tempo: 1h
+● Instruções
+○ https://docs.google.com/document/d/1GOjAQRLYruvopj119_my1yZYDSN50cmwO86PzywRc
+58/edit?usp=sharing
+
+===== SLIDE 83 =====
+e-core .com
+PrestoDB -> Amazon Athena
+
+===== SLIDE 84 =====
+e-core .com
+Intervalo 15 min
+
+===== SLIDE 85 =====
+De Particionamento para Tabela
+
+===== SLIDE 86 =====
+Tabela Particionada
+
+===== SLIDE 87 =====
+Particionamento no S3
+
+===== SLIDE 88 =====
+Particionamento no S3
+● Consultando apenas Janeiro
+
+===== SLIDE 89 =====
+Particionamento no S3
+● Consultando apenas o primeiro 
+dia de Janeiro
+
+===== SLIDE 90 =====
+● Coloque arquivos no bucket no s3 nesse formato
+○ s3://***/tabela/year=2022/month=07/day=01/ﬁle.csv
+○ s3://***/tabela/year=2022/month=08/day=01/ﬁle.csv
+● Crie um crawler para apontar para essa tabela
+○ Crawler deve apontar para: s3://***/tabela/
+● Realize consultas no athena ﬁltrando as colunas de partição:
+○ [year, month e day] para conferir a otimização do scan
+Implementando no Amazon S3
+
+===== SLIDE 91 =====
+Dados:  Usaremos dados do The Best FIFA (ou qualquer outro conjunto de dados de sua preferência).
+Passo a Passo:
+1. Crie um novo bucket no Amazon S3 para este exercício.
+2. Estruture as pastas conforme o slide anterior (o particionamento deve ir até o nível do ano).
+3. Adicione arquivos corretamente organizados nas respectivas partições. A separação dos dados deve ser 
+feita manualmente.
+4. Conﬁgure um AWS Glue Crawler para mapear essa tabela.
+5. Veriﬁque se o Crawler conseguiu criar a tabela com as partições.
+Consulta: Com a tabela criada, realize consultas no Amazon Athena.
+Resultado Esperado:
+As consultas que utilizarem a partição no ﬁltro (WHERE) devem escanear menos dados.
+Tempo Estimado:
+Até 45 minutos.
+Prática: Particionando
+
+===== SLIDE 92 =====
+Gerenciamento de Dados para
+Big Data - Aula 3
+Bernardo 
+Costa
+
+===== SLIDE 93 =====
+Processamento de Dados na AWS
+● AWS Lambda
+○ Python
+● AWS ECS Fargate ou AWS ECS EC2
+○ Python
+● AWS Glue
+○ Spark
+● Amazon EMR
+○ Spark
+
+===== SLIDE 94 =====
+● Spark Serverless na AWS
+● Como se fosse um AWS Lambda para Spark
+● Pay as you go
+● Unidade de uso: DPU
+○ 4 vCPU e 16 GB
+○ 8 vCPU e 32 GB
+● Atenção:
+○ Mínimo: 2 DPU
+○ Máximo: 100 DPU
+○ Padrão: 5 DPU
+AWS Glue
+
+===== SLIDE 95 =====
+● Escrever Jobs Spark 
+● Jobs gerador por interface visual (low-code)
+AWS Glue
+
+===== SLIDE 96 =====
+AWS Glue
+
+===== SLIDE 97 =====
+Preço do AWS Glue
+
+===== SLIDE 98 =====
+Preço do AWS Glue
+● Ex: Job de 15 minutos usando 6 DPUs
+○ 6 DPUs = 24 vcpu e 92 GB
+○ 6 DPUs * 1/4 horas * $0.44 = $0.66
+
+===== SLIDE 99 =====
+e-core .com
+O AWS Glue com Spark é ideal para todo 
+processamento de dados na AWS?
+
+===== SLIDE 100 =====
+e-core .com
+
+===== SLIDE 101 =====
+e-core .com
+Nielsen: Processing 55TB of Data Per Day with AWS Lambda
+
+===== SLIDE 102 =====
+Processamento de Dados na AWS
+
+===== SLIDE 103 =====
+Processamento de Dados na AWS
+
+===== SLIDE 104 =====
+Prática: Spark Serverless na AWS
+● Problema:
+○ Vamos transformar os dados da Premier League (18/19) para ter um arquivo apenas com as 
+colunas: Date, HomeTeam, AwayTeam, FTHG, FTAG.
+■ Transforme colunas para ter obter colunas mais reﬁnadas 
+■ Formato de saída deve ser o parquet com gzip
+○ Responda
+■ Quantos jogos tivemos por ano?
+■ Qual mês teve mais jogos? E menos?
+● Resultado esperado:
+○ Conseguir executar as consultas no Athena no arquivo transformado
+● Tempo
+○ 1h
+● Instruções
+○ https://docs.google.com/document/d/1cMBOQY51Aag2xE6K7r8AAFsh73g9BrHEqERvtm8jjA
+s/edit?usp=sharing
+
+===== SLIDE 105 =====
+e-core .com
+Spark Serverless -> AWS Glue Job
+
+===== SLIDE 106 =====
+Gerenciamento de Dados para
+Big Data - Aula 4
+Bernardo 
+Costa
+
+===== SLIDE 107 =====
+Serviços de Orquestração
+● O que é Orquestração?
+
+===== SLIDE 108 =====
+Serviços de Orquestração
+● O que é Orquestração?
+○ como o gerenciamento/coordenação automatizada de processos
+
+===== SLIDE 109 =====
+Serviços de Orquestração
+● O que é Orquestração?
+○ como o gerenciamento/coordenação automatizada de processos
+○ Exemplo de DAG do Apache Airflow
+
+===== SLIDE 110 =====
+DAG
+● O que é um DAG?
+○   Directed Acyclic Graph ou Grafo Acíclico Dirigido
+
+===== SLIDE 111 =====
+● Fluxo complexo de deploy
+● Pipeline de atividades de Machine Learning
+● Pipeline de ETL
+Exemplo de uso
+
+===== SLIDE 112 =====
+Apache Airﬂow
+
+===== SLIDE 113 =====
+Apache Airﬂow Arquitetura
+
+===== SLIDE 114 =====
+● Scheduler,
+○ scheduled workﬂows
+○ submitting Tasks
+● Executor
+○ Manipula as tarefas que estão em 
+execução
+○ Obs: default model
+● Workers
+○ Executam as tasks
+● Webserver
+○ Interface Web para usuário
+● DAG Directory 
+○ Salvas os DAGS 
+● Metadata Database
+○ Armazena os estados
+Apache Airﬂow Arquitetura
+
+===== SLIDE 115 =====
+Apache Airﬂow: interface gráﬁca
+
+===== SLIDE 116 =====
+Apache Airﬂow: código
+
+===== SLIDE 117 =====
+Apache Airﬂow: código
+https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html
+
+===== SLIDE 118 =====
+● Amazon Managed Workﬂows for Apache Airﬂow (MWAA)
+○ Funciona parecido com o Amazon RDS para um banco
+● Ideal para migrações de Airﬂows para AWS
+● Cobrança por hora (parecido com RDS)
+○ Ver link: https://aws.amazon.com/managed-workﬂows-for-apache-airﬂow/pricing/
+Orquestradores na AWS
+
+===== SLIDE 119 =====
+● AWS Step Function
+● Pay as you go
+● Escalável
+● Interface visual (Low Code)
+● Integrado com os produtos da AWS
+Opção Serverless da AWS
+
+===== SLIDE 120 =====
+Opção Serverless da AWS
+
+===== SLIDE 121 =====
+e-core .com
+Orquestrador Serverless -> AWS Step Function
+
+===== SLIDE 122 =====
+e-core .com
+Apache Airﬂow ou AWS Step Function?
+
+===== SLIDE 123 =====
+Gerenciamento de Dados para
+Big Data - Aula 04
+Bernardo 
+Costa
+
+===== SLIDE 124 =====
+● Amazon Elastic MapReduce
+● Cluster Hadoop gerenciado pela AWS
+● Pode usar o Amazon S3 como armazenamento de longa duração
+○ Mais lento
+○ Permite "terminar" o cluster sem perder os dados
+● Amazon Elastic Block Store (Amazon EBS) com SSD para tarefas
+○ Mais rápido
+○ Menor Latência
+O que é o Amazon EMR
+
+===== SLIDE 125 =====
+Amazon S3 vs Amazon EBS
+Amazon S3
+Amazon EBS
+
+===== SLIDE 126 =====
+● Long Running
+● Transient
+Tipos de Cluster
+
+===== SLIDE 127 =====
+● Um jobs é submetido, termina e o cluster continua rodando
+● Continua aceitando novos jobs enquanto está rodando
+● É necessários uma ação para desligar
+Long Running EMR Cluster
+
+===== SLIDE 128 =====
+● Trabalhos interativos
+● Necessário interagir com aplicações de Big Data
+● Jobs muito grandes ou muito frequentes
+○ Não vale a pena encerrar e subir um novo cluster
+● Normalmente utilizado para desenvolvimento interativo
+Long Running EMR Cluster - Ideal para:
+
+===== SLIDE 129 =====
+● Master Node
+○ Gerencia o cluster
+○ NamedNode e Jobtracker (Hadoop)
+● Core Node
+○ Máquinas de trabalho completas
+○ Data Node (HDFS)
+○ TaskTracker (Hadoop)
+● Task Node
+○ TaskTracker (Hadoop)
+○ Não tem HDFS
+Tipos de Máquinas
+
+===== SLIDE 130 =====
+Tipos de Máquinas
+
+===== SLIDE 131 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 132 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 133 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 134 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 135 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 136 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 137 =====
+Criando um Long Running EMR Cluster
+
+===== SLIDE 138 =====
+●  Termina quando o job termina
+○ ou quando ocorrem erros
+● Economia pois só cobra durante execução
+● Escalável por jobs
+○ Flexível
+● Isolamento de ambientes
+Transient EMR Cluster
+
+===== SLIDE 139 =====
+Transient EMR Cluster - Arquitetura
+
+===== SLIDE 140 =====
+● AWS Lambda roda e executa o run_job_ﬂow
+● run_job_ﬂow sobe um novo cluster e coloca jobs (steps) para executar
+● Quando os jobs (todos os steps) encerram, o cluster também é encerrado
+Transient EMR Cluster
+
+===== SLIDE 141 =====
+e-core .com
+Acessando o Cluster
+
+===== SLIDE 142 =====
+e-core .com
+Acessando o Cluster -> SSH
+
+===== SLIDE 143 =====
+●  Secure Shell
+● Porta 22
+● Normalmente autenticado por uma chave ou usuário e senha
+● Serve para execução de Comandos remotos
+SSH
+
+===== SLIDE 144 =====
+SSH na rede da AWS
+
+===== SLIDE 145 =====
+Regra no Security Group
+
+===== SLIDE 146 =====
+Acessando por SSH
+
+===== SLIDE 147 =====
+Acessando por SSH (Mac / Linux)
+
+===== SLIDE 148 =====
+Acessando por SSH (Windows)
+
+===== SLIDE 149 =====
+Acessando por SSH
+
+===== SLIDE 150 =====
+Usando EMR Notebooks
+
+===== SLIDE 151 =====
+Usando EMR Notebooks
+
+===== SLIDE 152 =====
+e-core .com
+Boas práticas com Amazon EMR
+
+===== SLIDE 153 =====
+● Padrão EMR File System (EMRFS)
+● Suportado por frameworks de Big Data
+○ Spark, Hive, Presto, etc.
+● Desacoplamento de Computação e Storage 
+○ Mais escalável
+○ Cluster transientes
+● Vantagens do Amazon S3
+○ 99.999999999% de durabilidade (eleven 9s)
+○ Baixo custo
+○ Replicação
+Amazon S3 para dados persistentes
+
+===== SLIDE 154 =====
+● Particionar melhora a leitura e reduz custo
+○ Menos dados escaneados
+● Tamanho dos arquivos
+○ Evite arquivos muito pequenos
+○ Média de 128 MB para o Spark está bom
+○ Consulte a recomendação do framework utilizado
+● Compressão
+○ Minimizar transferência de dados S3->EMR->S3
+● Formato
+○ Colunar, como parquet, para análise
+● S3 VPC Gateway Endpoint
+○ Evitar tráfego de dados na internet
+Boas Práticas de particionamento
+
+===== SLIDE 155 =====
+Velocidade de Leitura - #Arquivos
+
+===== SLIDE 156 =====
+Velocidade de Leitura - Formato
+
+===== SLIDE 157 =====
+Escolha de Hardware
+
+===== SLIDE 158 =====
+● Permite usufruir da Cloud
+● Aumenta capacidade do cluster conforme o uso
+● Gera Economia
+● Evita erros
+○ Por quê?
+Auto Scaling Clusters
+
+===== SLIDE 159 =====
+● ▣ Transient
+● ▣ Long Running
+Transient ou Long Running
+
+===== SLIDE 160 =====
+Casos de uso:Transient x Long Running
+▣ Transient ▣ Long Running
+Grandes Transformações Notebooks
+ETL para DW e DL Ad-hoc jobs
+Machine Learning Jobs Streaming
+
+===== SLIDE 161 =====
+Casos de uso: Tipos de Máquina
+
+===== SLIDE 162 =====
+● Procure usar a última versão do EMR
+○ Performance, bugs, segurança, troca de versões mais fáceis
+● Procure usar Spot Instances
+○ Economia de 70-90%
+Boas práticas gerais
+
+===== SLIDE 163 =====
+● OBS: É necessário estar usando um usuário do tipo IAM para os LAB
+○ Usuário root não funciona no passo de conectar no EMR Notebooks
+● Setup
+○ Pular AWS Event
+● Cluster Creation
+● Spark-based ETL
+○ Pular EMR Steps
+● EXTRA: Orchestrating Amazon EMR with AWS Step Function
+○ Solicitar template da step function e do input antes de começar
+■ DESAFIO: conseguir fazer o step function funcionar sem solicitar o
+ template e input
+● Custo aproximado: 1 dólar
+●  Instruções
+○ Link original: https://catalog.us-east-1.prod.workshops.aws/workshops/c86bd131-f6bf-4e8f-b798-58fd450d3c44/en-US
+Lab
+
+===== SLIDE 164 =====
+Gerenciamento de Dados para
+Big Data - Aula 07
+Bernardo 
+Costa
+
+===== SLIDE 165 =====
+e-core .com
+Teoria de Data Lake
+
+===== SLIDE 166 =====
+● Repositório centralizado de dados
+○ Dados estruturados e não-estruturados
+● Armazena dados "as-is"
+● Permite análise nos arquivos
+O que é um Data Lake?
+
+===== SLIDE 167 =====
+● Desacoplamento de Armazenamento e Computação
+○ Como?
+● Torna possível analisar em dados variados:
+○ variados em formato
+○ variados em tamanho
+○ variados nas fontes de dados
+● Reduz complexidade dos ETL
+● Extensível para outros Bancos
+○ Fácil aplicação de novas tecnologias
+Vantagens de um Data Lake
+
+===== SLIDE 168 =====
+● Fontes de dados relacionais
+● Esquema de dados deﬁnido previamente
+● Alto CAPEX
+○ "CAPital EXpenditure, que pode ser deﬁnida como Despesas de 
+Capital ou Investimentos em Bens de Capitais. Esse tipo de 
+custo existe para manter ou até expandir o escopo das 
+operações de uma empresa". Suno Research
+○ Tradução: gasto em compra de máquinas antes de começar
+● Vários banquinhos para um bancão
+Como as abordagens tradicionais eram feitas
+
+===== SLIDE 169 =====
+● Dados em um único local
+● Única fonte de conﬁança
+● Dados Relacionais e não relacionais
+● Baixo custo (desacoplamento)
+● Esquema na leitura
+● Especialização da Engine de Consulta
+Abordagem com Data Lake
+
+===== SLIDE 170 =====
+e-core .com
+Boas práticas de
+implementação de Data Lake
+
+===== SLIDE 171 =====
+1. Armazenar dados em um serviço barato por GB
+2. Salvar sempre os dados originais
+3. Catalogar os dados assim que eles ﬁzerem sentido
+4. Reprocessamento é feito na camada anterior possível
+5. Uso de engine especíﬁca na ponta da linha
+6. Uso apenas da capacidade exigida
+7. Utilizar serviço de consulta capaz de ler dados armazenados
+8. Uso de formato especíﬁco para cada tipo de análise (e compactação)
+Boas práticas
+
+===== SLIDE 172 =====
+1. Armazenar dados em um serviço barato por GB
+a. Amazon S3
+2. Salvar sempre os dados originais
+a. Amazon S3
+3. Catalogar os dados assim que eles ﬁzerem sentido
+a. AWS Glue Data Catalog
+4. Reprocessamento é feito na camada anterior possível
+a. AWS Step Function
+5. Uso de engine especíﬁca na ponta da linha
+a. Amazon Athena, Amazon Redshift, Amazon Dynamodb, Amazon Neptune, etc.
+6. Uso apenas da capacidade exigida
+a. AWS Lambda, AWS Fargate, Amazon EMR, etc.
+7. Utilizar serviço de consulta capaz de ler dados armazenados
+a. Amazon Athena, Amazon Redshift, Presto dentro do Amazon EMR
+8. Uso de formato especíﬁco para cada tipo de análise (e compactação)
+a. Amazon S3 (parquet, csv, json, orc, avro, etc.)
+Quais Serviços da AWS satisfazem esses pontos?
+
+===== SLIDE 173 =====
+e-core .com
+Implementação de Data Lake básico
+
+===== SLIDE 174 =====
+1. Dados originais
+a. Fonte única de conﬁança
+2. Dados transformados, limpos
+a. Formato único da organização
+3. Dados especializados para consumo
+a. Preparação para consumidor ﬁnal
+3 Camadas
+
+===== SLIDE 175 =====
+3 Camadas
+
+===== SLIDE 176 =====
+Exemplo de empresa do setor Financeiro
+https://www.e-core.com/lt-pt/cases/concil-migra-para-cloud-aws
+
+===== SLIDE 177 =====
+Mais de 3 Camadas?
+
+===== SLIDE 178 =====
+Mais de 3 Camadas?
+
+===== SLIDE 179 =====
+● Construindo Data Lake para Premier League (1201)
+● https://docs.google.com/document/d/1Zl48kRFY1qu4v0RnSuO2cw_xAJCfrBIHBJ
+S4LOSHgJk/edit?usp=sharing
+○ Nome das colunas: 
+https://rstudio-pubs-static.s3.amazonaws.com/338127_f85723bf6d9b4637a
+4c5e1ff8f838432.html
+Lab Final - Data Lake 3 camadas

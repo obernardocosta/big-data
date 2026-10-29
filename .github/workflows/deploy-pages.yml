@@ -1,0 +1,79 @@
+name: Publicar slides no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissões mínimas para publicar no Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Uma publicação por vez; não cancela uma em andamento
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      # O site fica em <usuario>.github.io/<repo>/. O base de cada deck precisa
+      # incluir o nome do repositório. Ex.: /big-data/gdbd/.
+      - name: Calcular base path do Pages
+        id: base
+        run: echo "repo=${GITHUB_REPOSITORY#*/}" >> "$GITHUB_OUTPUT"
+
+      - name: Build GDBD
+        run: >-
+          npx slidev build disciplinas/gdbd/slides/index.md
+          --base "/${{ steps.base.outputs.repo }}/gdbd/"
+          --out "$GITHUB_WORKSPACE/_site/gdbd"
+
+      # A disciplina PDN ainda não existe. Quando existir, este passo passa a
+      # buildar automaticamente (o 'if' checa a presença do index.md).
+      - name: Build PDN (se existir)
+        run: |
+          if [ -f disciplinas/pdn/slides/index.md ]; then
+            npx slidev build disciplinas/pdn/slides/index.md \
+              --base "/${{ steps.base.outputs.repo }}/pdn/" \
+              --out "$GITHUB_WORKSPACE/_site/pdn"
+          else
+            echo "disciplinas/pdn/slides/index.md não existe ainda — pulando PDN."
+          fi
+
+      - name: Adicionar página inicial
+        run: cp site/index.html "$GITHUB_WORKSPACE/_site/index.html"
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload do artefato
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

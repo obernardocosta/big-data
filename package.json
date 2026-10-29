@@ -1,0 +1,23 @@
+{
+  "name": "e-core-big-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Material versionado das disciplinas de Big Data (GDBD e PDN) em Slidev",
+  "type": "module",
+  "scripts": {
+    "gdbd:dev": "slidev disciplinas/gdbd/slides/index.md --open",
+    "gdbd:build": "slidev build disciplinas/gdbd/slides/index.md --base /gdbd/ --out ../../../dist/gdbd",
+    "gdbd:export": "slidev export disciplinas/gdbd/slides/index.md --output disciplinas/gdbd/export/gdbd.pdf",
+    "pdn:dev": "slidev disciplinas/pdn/slides/index.md --open",
+    "pdn:build": "slidev build disciplinas/pdn/slides/index.md --base /pdn/ --out ../../../dist/pdn",
+    "pdn:export": "slidev export disciplinas/pdn/slides/index.md --output disciplinas/pdn/export/pdn.pdf",
+    "build:all": "npm run gdbd:build && npm run pdn:build",
+    "notas": "node tools/notas/calcular-notas.mjs"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "playwright-chromium": "^1.48.0"
+  }
+}
