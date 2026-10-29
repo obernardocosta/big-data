@@ -79,14 +79,18 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 3. [x] `disciplinas/gdbd/agenda/plano-de-aula.md`.
 4. [x] `README.md` na raiz.
 
-### Migração das aulas (em andamento)
+### Migração das aulas — GDBD COMPLETA ✅
 - [x] **Aula 2** — Athena/Presto + particionamento (Labs 03 e 04).
 - [x] **Aula 3** — Processamento: AWS Glue Job / Spark serverless (Lab 05).
-- [ ] **Aulas 4–7** (slides 106–179): orquestração (Airflow/Step Functions),
-  EMR, Data Lake.
-  - Criar os demais labs: EMR workshop (lab caro ~US$1 — candidato nº1 a
-    dry-run reforçado), Data Lake.
-  - Lembrar: o lab de EMR/GPU foi o que falhou na turma passada. Avaliar troca.
+- [x] **Aula 4** — Orquestração: Airflow → MWAA / Step Functions (conceitual).
+- [x] **Aula 5** — Amazon EMR (Lab 06, custo ~US$ 1, dry-run reforçado).
+- [x] **Aula 6** — Data Lake 3 camadas (Lab 07, lab final).
+- GDBD: 6 aulas, 7 labs. `slidev build` passa (exit 0).
+
+### Disciplina PDN (em andamento)
+- [ ] Criar `disciplinas/pdn/` com a mesma estrutura (slides + labs + agenda).
+  - Sem o PDF original do PDN extraído em `_fonte/`; estruturar a partir do
+    conhecimento do domínio e do padrão da GDBD, para o instrutor refinar.
 
 ### Depois de validar com você
 6. [ ] Criar a disciplina PDN (`disciplinas/pdn/`) com a mesma estrutura.

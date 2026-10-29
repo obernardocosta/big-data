@@ -49,21 +49,20 @@ Duração de referência: ~2h. Sem o bloco de 30 min (é a primeira aula).
 Pontos de parada seguro: Lab 01 após criar e ver a tabela (passo 4); Lab 02
 assim que o Crawler criar a tabela (passo 5). O resto vira demonstração.
 
-## Aulas 2–7 (a planejar)
+## Aulas 2–6 (migradas)
 
-A estrutura abaixo é um esqueleto; cada aula será detalhada ao migrar os slides
-correspondentes (slides 61–179 do material original). **A partir da Aula 2,
-reserve os primeiros 30 min** para dúvidas / término da atividade anterior.
+A partir da Aula 2, **reserve os primeiros 30 min** para dúvidas / término da
+atividade anterior, enquanto os alunos chegam.
 
-| Aula | Tópico previsto |
-|---|---|
-| 2 | Athena / Presto — consultar o catálogo com SQL |
-| 3 | Particionamento e formatos colunares (performance e custo) |
-| 4 | Glue Job / Spark serverless — ETL |
-| 5 | Orquestração (Airflow → Step Functions) |
-| 6 | EMR — Hadoop/Spark gerenciado (lab com custo ~US$ 1; dry-run reforçado) |
-| 7 | Data Lake — amarrando tudo |
+| Aula | Tópico | Labs |
+|---|---|---|
+| 2 | Athena / Presto — consultar o catálogo com SQL + particionamento | 03, 04 |
+| 3 | Processamento — AWS Glue Job / Spark serverless | 05 (custo) |
+| 4 | Orquestração — Airflow → MWAA / Step Functions | — (conceitual) |
+| 5 | Amazon EMR — Hadoop/Spark gerenciado | 06 (custo ~US$ 1) |
+| 6 | Data Lake — amarrando tudo (3 camadas) | 07 (lab final) |
 
-> Nota de preparação: o lab de EMR/GPU foi o que falhou numa turma anterior
-> (indisponibilidade de instâncias na região). Para a Aula 6, rode o `dry-run.sh`
-> com antecedência e tenha o plano B (troca de região / demonstração) pronto.
+> Nota de preparação: o **Lab 06 (EMR)** foi o que falhou numa turma anterior
+> (indisponibilidade de instâncias na região). Ele tem um `dry-run.sh`
+> **reforçado** que checa capacidade/quota de EC2; rode-o na véspera e tenha o
+> plano B (trocar tipo/região ou demonstrar) pronto.

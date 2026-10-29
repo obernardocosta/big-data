@@ -39,3 +39,15 @@ src: ./aula-02-athena.md
 ---
 src: ./aula-03-processamento.md
 ---
+
+---
+src: ./aula-04-orquestracao.md
+---
+
+---
+src: ./aula-05-emr.md
+---
+
+---
+src: ./aula-06-data-lake.md
+---
