@@ -87,15 +87,23 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 - [x] **Aula 6** — Data Lake 3 camadas (Lab 07, lab final).
 - GDBD: 6 aulas, 7 labs. `slidev build` passa (exit 0).
 
-### Disciplina PDN (em andamento)
-- [ ] Criar `disciplinas/pdn/` com a mesma estrutura (slides + labs + agenda).
-  - Sem o PDF original do PDN extraído em `_fonte/`; estruturar a partir do
-    conhecimento do domínio e do padrão da GDBD, para o instrutor refinar.
+### Disciplina PDN — fatia vertical inicial ✅
+- [x] `disciplinas/pdn/` criada com a estrutura da GDBD:
+  - Slides: `index.md` + `aula-01-streaming.md` (Kafka → Kinesis/Firehose).
+  - Lab: `lab-01-kinesis-firehose/` (4 arquivos; dry-run read-only validado).
+  - `agenda/plano-de-aula.md` e `avaliacao/` (README + CSV de exemplo).
+- `slidev build` da PDN passa; `npm run build:all` gera `dist/gdbd` e `dist/pdn`.
+- **Pendente de material real**: a PDN não tem PDF original em `_fonte/`. A
+  Aula 1 foi estruturada pelo domínio + padrão da GDBD, para o instrutor refinar
+  e então migrar as demais aulas (esqueleto no plano-de-aula da PDN).
+
+### Próximos passos sugeridos
+- [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
+- [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.
 
 ### Depois de validar com você
-6. [ ] Criar a disciplina PDN (`disciplinas/pdn/`) com a mesma estrutura.
-   - Fonte: exportar o PDF do PDN para `_fonte/` como foi feito com o GDBD.
-7. [ ] Skill `criar-avaliacao` (opcional, formaliza o fluxo de notas).
+6. [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.
+7. [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+ da PDN.
 
 ### Publicação (GitHub + Pages) — CONCLUÍDO ✅ (2026-10-29)
 8. [x] `git init` + commit inicial + repo remoto `obernardocosta/big-data`
