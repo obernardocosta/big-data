@@ -59,6 +59,34 @@ jobs:
       - name: Adicionar página inicial
         run: cp site/index.html "$GITHUB_WORKSPACE/_site/index.html"
 
+      # Deep links por aula no Pages: o GitHub só faz fallback de SPA no 404.html
+      # da RAIZ, não em subpastas. Para que /<repo>/<deck>/aula-N abra direto no
+      # capítulo, geramos um arquivo físico por alias que é uma cópia do 404.html
+      # do próprio deck (ou seja, a SPA com o base correto). Ao carregar, a SPA
+      # resolve o routeAlias e vai para o slide. Os aliases são lidos dos .md.
+      - name: Gerar páginas de deep link por aula
+        run: |
+          set -e
+          make_alias_pages() {
+            deck="$1"          # ex.: gdbd
+            srcdir="disciplinas/$deck/slides"
+            outdir="$GITHUB_WORKSPACE/_site/$deck"
+            [ -d "$outdir" ] || return 0
+            [ -f "$outdir/404.html" ] || return 0
+            # extrai os valores de routeAlias dos arquivos de slide
+            grep -rhoE 'routeAlias:[[:space:]]*[A-Za-z0-9_-]+' "$srcdir" \
+              | sed -E 's/.*routeAlias:[[:space:]]*//' | sort -u \
+              | while read -r alias; do
+                  [ -n "$alias" ] || continue
+                  mkdir -p "$outdir/$alias"
+                  cp "$outdir/404.html" "$outdir/$alias/index.html"
+                  echo "  + $deck/$alias"
+                done
+          }
+          echo "Gerando deep links:"
+          make_alias_pages gdbd
+          make_alias_pages pdn
+
       - name: Configurar Pages
         uses: actions/configure-pages@v5
 

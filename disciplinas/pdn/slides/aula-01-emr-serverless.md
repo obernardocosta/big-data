@@ -9,7 +9,7 @@ A evolução serverless do processamento Spark
 
 <!--
 Aula 1 da PDN. Origem: pdn_2025_aula1 / pdn_2025_parte1 (slides 2-10).
-Aula de 18h-22h (terça/quinta): teoria + prática mescladas.
+Aula de 18h30-22h (terça): teoria + prática mescladas.
 Pré-requisito mental: EMR tradicional (visto na GDBD, Aula 5).
 
 PONTUALIDADE: primeira aula da PDN — avise que começa no horário (tolerância

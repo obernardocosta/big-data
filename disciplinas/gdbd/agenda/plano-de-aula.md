@@ -6,32 +6,38 @@ um *timebox* e todo lab tem um ponto de parada seguro.
 
 ## Grade horária real
 
-**6 aulas:**
+**6 aulas**, seguindo a **sequência da semana** (terça → quinta → sábado), ao
+longo de **2 semanas**:
 
-- **4 aulas de 18h–22h** (terça/quinta, ~4h cada) — teoria **mesclada** com
-  prática: expõe o conceito e já inicia o lab correspondente na mesma janela.
-- **2 aulas de 8h–13h** (sábado, ~5h) — **mais voltadas a laboratórios**: a
-  janela longa sustenta os labs mais pesados sem corre-corre.
+- **Terça e quinta: 18h30–22h** (~3h30) — teoria **mesclada** com prática.
+- **Sábado: 8h–13h** (~5h) — janela longa, **mais voltada a laboratórios**.
 
 | Aula | Dia / horário | Foco | Tema | Labs |
 |---|---|---|---|---|
-| 1 | Terça/quinta · 18–22h | Teoria + prática | Catálogo (Glue Data Catalog) | 01, 02 |
-| 2 | Terça/quinta · 18–22h | Teoria + prática | Athena/Presto + particionamento | 03, 04 |
-| 3 | Terça/quinta · 18–22h | Teoria + prática | Processamento (Glue Job/Spark) | 05 |
-| 4 | Terça/quinta · 18–22h | Teoria + prática | Orquestração (Airflow/Step Functions) | — |
-| 5 | **Sábado · 8–13h** | **Labs** | Amazon EMR | 06 (~US$ 1) |
-| 6 | **Sábado · 8–13h** | **Labs** | Data Lake (3 camadas) | 07 (final) |
+| 1 | Semana 1 · **terça** 18h30–22h | Teoria + prática | Catálogo (Glue Data Catalog) | 01, 02 |
+| 2 | Semana 1 · **quinta** 18h30–22h | Teoria + prática | Athena/Presto + particionamento | 03, 04 |
+| 3 | Semana 1 · **sábado** 8–13h | **Labs** | Processamento (Glue Job/Spark) | 05 |
+| 4 | Semana 2 · **terça** 18h30–22h | Teoria + prática | Orquestração (Airflow/Step Functions) | — |
+| 5 | Semana 2 · **quinta** 18h30–22h | Teoria + prática | Amazon EMR | 06 (~US$ 1) |
+| 6 | Semana 2 · **sábado** 8–13h | **Labs** | Data Lake (3 camadas) | 07 (final) |
 
-> A ordem de dias pode variar conforme o calendário da turma; o importante é
-> que os labs mais pesados (**EMR** e **Data Lake**) caiam nas janelas de
-> **sábado**, que têm mais tempo contínuo.
+> As aulas acompanham o calendário normal da semana: **terça, quinta e sábado**,
+> repetindo na semana seguinte. Os sábados (Aulas 3 e 6) são as janelas longas,
+> boas para lab. Ajuste as datas ao calendário real da turma mantendo essa
+> cadência.
 
 ## Dinâmica por tipo de aula
 
-- **Terça/quinta (4h, menores):** blocos curtos de teoria + prática intercalados;
-  os labs curtos (01–05) cabem na própria aula. Mantém ritmo na janela menor.
-- **Sábado (5h, labs):** janela longa para os labs pesados (EMR e Data Lake),
-  com espaço para troubleshooting ao vivo e para o ponto de parada seguro.
+- **Terça/quinta (3h30):** blocos curtos de teoria + prática intercalados; os labs
+  dessas aulas (01–02, 03–04, 06) cabem na janela, com ponto de parada seguro.
+- **Sábado (5h):** janela longa para conduzir com calma — Aula 3 (Glue/Spark) e
+  Aula 6 (Data Lake), com espaço para troubleshooting ao vivo.
+
+> **Atenção — Lab 06 (EMR) cai numa quinta (3h30), não no sábado.** Como é o lab
+> mais pesado e historicamente problemático (~US$ 1, instâncias que podem não
+> subir), rode o `dry-run.sh` **reforçado** na véspera e seja rígido com o ponto
+> de parada seguro; se o cluster não subir rápido, vá direto para o plano B
+> (demonstração), já que a janela de 3h30 é mais curta.
 
 ## Regras de condução (valem para todas as aulas)
 
@@ -59,21 +65,21 @@ Cada tópico segue a narrativa didática do curso:
 6. Prática (lab)
 7. Fechamento: "open source → serviço AWS" e dúvidas
 
-## Aula 1 — Catálogo de Dados (terça/quinta, 18h–22h)
+## Aula 1 — Catálogo de Dados (Semana 1 · terça, 18h30–22h)
 
-Primeira aula: sem o bloco de 30 min. Janela de ~4h, teoria + prática.
+Primeira aula: sem o bloco de 30 min. Janela de ~3h30, teoria + prática.
 
 | Tempo | Bloco |
 |---|---|
 | 0:00–0:15 | Abertura: apresentação, combinados, **aviso de pontualidade** |
-| 0:15–0:50 | Estudo de caso + o problema de "arquivos soltos vs tabelas" |
-| 0:50–1:30 | Open source: Hive Metastore → AWS: Glue Data Catalog |
-| 1:30–2:00 | O serviço: bancos, tabelas, esquema, cobrança; prós e contras |
-| 2:00–2:15 | Intervalo |
-| 2:15–2:40 | **Lab 01 — Glue Data Catalog** (timebox 15 min + apoio) |
-| 2:40–2:55 | Gancho: "catalogar à mão não escala" → Crawler |
-| 2:55–3:40 | **Lab 02 — Glue Crawler** (timebox 30 min + apoio) |
-| 3:40–4:00 | Fechamento: open source → AWS; dúvidas; o que vem na Aula 2 |
+| 0:15–0:45 | Estudo de caso + o problema de "arquivos soltos vs tabelas" |
+| 0:45–1:20 | Open source: Hive Metastore → AWS: Glue Data Catalog |
+| 1:20–1:45 | O serviço: bancos, tabelas, esquema, cobrança; prós e contras |
+| 1:45–2:00 | Intervalo |
+| 2:00–2:25 | **Lab 01 — Glue Data Catalog** (timebox 15 min + apoio) |
+| 2:25–2:40 | Gancho: "catalogar à mão não escala" → Crawler |
+| 2:40–3:15 | **Lab 02 — Glue Crawler** (timebox 30 min + apoio) |
+| 3:15–3:30 | Fechamento: open source → AWS; dúvidas; o que vem na Aula 2 |
 
 Pontos de parada seguro: Lab 01 após criar e ver a tabela (passo 4); Lab 02
 assim que o Crawler criar a tabela (passo 5). O resto vira demonstração.
@@ -85,16 +91,17 @@ atividade anterior, enquanto os alunos chegam.
 
 | Aula | Dia · horário | Tópico | Labs |
 |---|---|---|---|
-| 2 | Terça/quinta · 18–22h | Athena/Presto + particionamento | 03, 04 |
-| 3 | Terça/quinta · 18–22h | Processamento — Glue Job / Spark serverless | 05 (custo) |
-| 4 | Terça/quinta · 18–22h | Orquestração — Airflow → MWAA / Step Functions | — (conceitual) |
-| 5 | **Sábado · 8–13h** | Amazon EMR — Hadoop/Spark gerenciado | 06 (custo ~US$ 1) |
-| 6 | **Sábado · 8–13h** | Data Lake — amarrando tudo (3 camadas) | 07 (lab final) |
+| 2 | Sem. 1 · quinta 18h30–22h | Athena/Presto + particionamento | 03, 04 |
+| 3 | Sem. 1 · **sábado 8–13h** | Processamento — Glue Job / Spark serverless | 05 (custo) |
+| 4 | Sem. 2 · terça 18h30–22h | Orquestração — Airflow → MWAA / Step Functions | — (conceitual) |
+| 5 | Sem. 2 · quinta 18h30–22h | Amazon EMR — Hadoop/Spark gerenciado | 06 (custo ~US$ 1) |
+| 6 | Sem. 2 · **sábado 8–13h** | Data Lake — amarrando tudo (3 camadas) | 07 (lab final) |
 
-Nas aulas de **terça/quinta** (4h), intercale teoria e os labs curtos. Nas de
-**sábado** (5h), use a janela longa para conduzir os labs pesados por inteiro.
+Nas aulas de **terça/quinta** (3h30), intercale teoria e os labs. Nas de
+**sábado** (5h, Aulas 3 e 6), use a janela longa para conduzir o lab por inteiro.
 
 > Nota de preparação: o **Lab 06 (EMR)** foi o que falhou numa turma anterior
-> (indisponibilidade de instâncias na região). Ele tem um `dry-run.sh`
-> **reforçado** que checa capacidade/quota de EC2; rode-o na véspera e tenha o
-> plano B (trocar tipo/região ou demonstrar) pronto.
+> (indisponibilidade de instâncias na região) e cai numa **quinta (3h30)**. Ele tem
+> um `dry-run.sh` **reforçado** que checa capacidade/quota de EC2; rode-o na
+> véspera e tenha o plano B (trocar tipo/região ou demonstrar) pronto — a janela
+> noturna é mais curta, então não insista se o cluster não subir.

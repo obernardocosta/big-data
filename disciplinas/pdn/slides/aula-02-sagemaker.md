@@ -9,7 +9,7 @@ Amazon SageMaker e pipelines de ML
 
 <!--
 Aula 2 da PDN. Origem: pdn_2025_parte1 (slides 11-57) e pdn_2025_aula2.
-Aula de 18h-22h (terça/quinta): teoria + prática mescladas.
+Aula de 18h30-22h (quinta): teoria + prática mescladas.
 
 PONTUALIDADE: primeiros 30 min para dúvidas da Aula 1 / seminário, enquanto
 os alunos chegam. Ver plano-de-aula.md.

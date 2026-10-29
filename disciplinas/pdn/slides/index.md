@@ -27,7 +27,7 @@ EMR Serverless, Machine Learning na AWS (SageMaker) e arquitetura de custos
 Deck principal da PDN. Cada aula é um arquivo importado via `src` abaixo.
 Origem: PDFs das turmas 2024.02 e 2025.01 (extraídos em _fonte/pdn_*.txt).
 
-Grade: 3 aulas — 2 de 18h-22h (terça/quinta, teoria+prática mesclada) e
+Grade: 3 aulas — 2 de 18h30-22h (terça/quinta, teoria+prática mesclada) e
 1 de 8h-13h (sábado, foco em labs). Ver agenda/plano-de-aula.md.
 -->
 
