@@ -16,21 +16,41 @@ export ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
 export RUNTIME_ROLE="EMRServerlessJobRole"
 ```
 
-## 1. Pré-requisitos: bucket e dados/script
+## 1. Pré-requisitos: bucket, dados reais e script
 
 **Porquê:** o EMR Serverless lê entrada e script do S3 e grava a saída no S3 — o
-armazenamento é desacoplado da computação.
+armazenamento é desacoplado da computação. Os dados vêm de uma **fonte pública e
+atual** (openfootball, sem API key), não de um CSV estático.
 
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
+# baixa jogos reais da Premier League 2024/25 (dominio publico, sem chave)
+curl -s -o jogos.json \
+  https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json
+aws s3 cp jogos.json "s3://$BUCKET/raw/jogos.json"
+
 cat > job.py <<'PY'
 import sys
-from pyspark.sql import SparkSession
-spark = SparkSession.builder.appName("pdn-emrs").getOrCreate()
-df = spark.range(1, 1000).withColumnRenamed("id", "n")
-df.groupBy((df.n % 3).alias("resto")).count().write.mode("overwrite").parquet(sys.argv[1])
-spark.stop()
+from pyspark.sql import SparkSession, functions as F
+
+spark = SparkSession.builder.appName("pdn-emrs-futebol").getOrCreate()
+
+# o JSON do openfootball tem {"name":..., "matches":[...]}; multiLine=True
+df = spark.read.option("multiLine", True).json(sys.argv[1]).selectExpr("explode(matches) as m")
+jogos = df.select(
+    F.col("m.team1").alias("mandante"),
+    F.col("m.team2").alias("visitante"),
+    F.col("m.score.ft")[0].alias("gols_mandante"),
+    F.col("m.score.ft")[1].alias("gols_visitante"),
+)
+
+# gols marcados em casa por time (agregacao simples de exemplo)
+gols_casa = (jogos.groupBy("mandante")
+             .agg(F.sum("gols_mandante").alias("gols_em_casa"))
+             .orderBy(F.desc("gols_em_casa")))
+
+gols_casa.write.mode("overwrite").option("compression", "gzip").parquet(sys.argv[2])
 PY
 aws s3 cp job.py "s3://$BUCKET/scripts/job.py"
 ```
@@ -75,7 +95,7 @@ echo "Application: $APP_ID"
 RUN_ID=$(aws emr-serverless start-job-run \
   --application-id "$APP_ID" \
   --execution-role-arn "arn:aws:iam::$ACCOUNT_ID:role/$RUNTIME_ROLE" \
-  --job-driver "{\"sparkSubmit\":{\"entryPoint\":\"s3://$BUCKET/scripts/job.py\",\"entryPointArguments\":[\"s3://$BUCKET/out/\"]}}" \
+  --job-driver "{\"sparkSubmit\":{\"entryPoint\":\"s3://$BUCKET/scripts/job.py\",\"entryPointArguments\":[\"s3://$BUCKET/raw/jogos.json\",\"s3://$BUCKET/out/\"]}}" \
   --region "$REGION" --query 'jobRunId' --output text)
 
 # acompanhe o estado (PENDING -> RUNNING -> SUCCESS)

@@ -122,6 +122,35 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 - Verificado AO VIVO: `/big-data/{gdbd,pdn}/aula-N/` → HTTP 200 servindo a SPA
   correta. Sumário em https://obernardocosta.github.io/big-data/.
 
+### Disciplina PDN — REPLANEJADA com o instrutor ✅ (2026-10-29)
+Fio condutor: alunos chegam sabendo Spark/Spark Streaming → PDN mostra isso na
+nuvem (EMR Serverless), **streaming gerenciado (protagonista)** e ML (SageMaker).
+Material real dos PDFs em `_fonte/pdn_*.txt`. **Seminário removido** a pedido.
+- Grade real: ter(A1) · qui(A2) · sáb(A3); noturnas **18h30–22h**, sábado 8h–13h.
+- Slides (refino pedagógico: objetivos + roteiro cronometrado + "o que você leva"):
+  - `aula-01-emr-serverless.md` — EMR Serverless (RuntimeRole, preço/TCO).
+  - `aula-02-streaming.md` — **Streaming na AWS** (Kinesis + Firehose) + custo
+    (DynamoDB vs S3 vs Firehose). Flink só citado.
+  - `aula-03-sagemaker.md` — SageMaker (Batch vs Endpoint) + dia de labs.
+- Labs construídos **do zero**, dados **públicos e atuais** (openfootball
+  Premier League 2024/25, JSON sem API key):
+  - `lab-01-emr-serverless` — PySpark batch sobre jogos reais.
+  - `lab-02-streaming` — produtor → Kinesis → Firehose → S3 **e** Spark
+    Structured Streaming lendo o S3 em micro-batches (opção (b): file source,
+    sem conector Kinesis — mais robusto em aula; conector Kinesis fica como extra).
+  - `lab-03-sagemaker` — treino + deploy (Batch recomendado; Endpoint = risco de custo).
+  - Cada lab: README, passo-a-passo, dry-run read-only (validados), troubleshooting.
+- `routeAlias` atualizado; `slidev build` da PDN passa (exit 0).
+
+### Refino pedagógico (em andamento)
+- PDN: feito (3 aulas reescritas no padrão objetivos→roteiro→teoria→prática→fecho).
+- [ ] GDBD: aplicar o mesmo padrão pedagógico às 6 aulas (próximo).
+
+### Ideias registradas para depois
+- [ ] No sumário (site/index.html): sob cada aula, links menores para os
+  labs/práticas daquela aula (decidir se linka slide da prática ou publica os
+  labs como páginas).
+
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
 - [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.

@@ -15,6 +15,18 @@ natural depois do EMR tradicional da GDBD.
 - Empacotar e enviar **dependências Python** para o job.
 - (Extra) Rodar uma **Hive query** no EMR Serverless.
 
+## Dados do lab
+
+Usamos dados **públicos e atuais** da Premier League (temporada 2024/25) do
+projeto open source **openfootball** (domínio público, sem API key):
+
+```
+https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json
+```
+
+O job PySpark lê esse JSON de jogos reais e calcula agregados (ex.: gols por
+time). Nada de CSV estático velho — o dado é baixado na hora da fonte aberta.
+
 ## Pré-requisitos
 
 | Item | Valor |
