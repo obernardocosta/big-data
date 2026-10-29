@@ -21,17 +21,18 @@ const home = base.replace(/\/$/, '').split('/').slice(0, -1).join('/') + '/'
 <style scoped>
 .voltar-inicio {
   position: fixed;
-  left: 0.6rem;
-  bottom: 0.5rem;
-  z-index: 50;
+  top: 0.5rem;
+  right: 0.6rem;
+  z-index: 1000;
   font-size: 0.72rem;
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
   color: #64748b;
   text-decoration: none;
   border: 1px solid rgba(100, 116, 139, 0.35);
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba(15, 23, 42, 0.45);
   opacity: 0.5;
+  pointer-events: auto;
   transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 .voltar-inicio:hover {
