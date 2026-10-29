@@ -40,16 +40,16 @@ uma vez só).
 export OUTPUT="s3://$RESULTS_BUCKET/"
 ```
 
-## 4. Primeira consulta — top 10 jogadores
+## 4. Primeira consulta — times que mais marcam em casa
 
 **Porquê:** este é o ponto do lab — SQL distribuído sobre arquivos no S3, sem
-servidor. Ajuste o nome da tabela/colunas ao que o seu catálogo tem.
+servidor. A tabela `jogos` foi catalogada no Lab 01/02 (dados reais 2024/25).
 
 ```bash
 QID=$(aws athena start-query-execution \
-  --query-string "SELECT jogador, SUM(premios) AS total
-                  FROM $DB.melhores_jogadores
-                  GROUP BY jogador ORDER BY total DESC LIMIT 10;" \
+  --query-string "SELECT mandante, SUM(gols_mandante) AS gols_casa
+                  FROM $DB.jogos
+                  GROUP BY mandante ORDER BY gols_casa DESC LIMIT 10;" \
   --query-execution-context "Database=$DB" \
   --result-configuration "OutputLocation=$OUTPUT" \
   --region "$REGION" --query 'QueryExecutionId' --output text)
@@ -79,21 +79,20 @@ partição.
 `--query-string` das consultas acima por:
 
 ```sql
--- País com mais ganhadores e total de prêmios
-SELECT pais, COUNT(*) AS ganhadores, SUM(premios) AS premios
-FROM futebol.melhores_jogadores
-GROUP BY pais ORDER BY premios DESC;
+-- Total de gols por rodada (precisa da coluna 'rodada' do Lab 02)
+SELECT rodada, SUM(gols_mandante + gols_visitante) AS gols
+FROM futebol.jogos
+GROUP BY rodada ORDER BY gols DESC;
 
--- (Premier League 18/19, se a tabela estiver catalogada)
--- Time que mais marcou gols em casa
-SELECT hometeam AS time, SUM(fthg) AS gols_casa
-FROM futebol.premier_1819
-GROUP BY hometeam ORDER BY gols_casa DESC LIMIT 1;
-
--- Maior goleada da temporada
-SELECT date, hometeam, awayteam, ABS(fthg - ftag) AS diferenca
-FROM futebol.premier_1819
+-- Maior goleada da temporada (diferença de gols)
+SELECT data, mandante, visitante, ABS(gols_mandante - gols_visitante) AS diferenca
+FROM futebol.jogos
 ORDER BY diferenca DESC LIMIT 1;
+
+-- Jogos com mais gols no total
+SELECT data, mandante, visitante, (gols_mandante + gols_visitante) AS total_gols
+FROM futebol.jogos
+ORDER BY total_gols DESC LIMIT 5;
 ```
 
 ## Dica: console web

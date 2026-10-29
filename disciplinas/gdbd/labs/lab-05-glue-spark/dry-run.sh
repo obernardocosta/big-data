@@ -90,6 +90,19 @@ else
   bad "Sem permissao para Athena (athena:ListWorkGroups)."
 fi
 
+# Dados reais (openfootball) + python3 para gerar o CSV
+echo "[extra] Dados reais (openfootball) + python3"
+if command -v python3 >/dev/null 2>&1; then
+  pass "python3 encontrado."
+else
+  bad "python3 nao encontrado (usado para gerar o CSV a partir do JSON)."
+fi
+if curl -fs -o /dev/null "https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json" 2>/dev/null; then
+  pass "Fonte de dados acessivel (openfootball)."
+else
+  info "Fonte nao acessivel agora (rede?). Tenha um JSON/CSV local de backup."
+fi
+
 echo
 echo "== Resultado: $ok ok, $fail com problema =="
 if [ "$fail" -gt 0 ]; then

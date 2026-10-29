@@ -15,6 +15,12 @@ catálogo, transformação, particionamento e consulta.
 - Por que **schema on read** e o **desacoplamento storage/computação** tornam
   isso barato e flexível.
 
+## Dados do lab
+
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, sem API key)
+alimentam a camada **Raw**; as camadas Clean e Specialized são derivadas delas no
+próprio lab.
+
 ## Pré-requisitos
 
 | Item | Valor |

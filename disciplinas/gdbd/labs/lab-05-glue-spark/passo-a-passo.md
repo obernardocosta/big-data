@@ -22,12 +22,18 @@ S3. Separamos entrada (`raw/`), saída (`parquet/`) e código (`scripts/`).
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
-# CSV cru de exemplo (use o dataset real da Premier League 18/19 se tiver)
-cat > premier.csv <<'CSV'
-Date,HomeTeam,AwayTeam,FTHG,FTAG,Referee,HS,AS
-10/08/2018,Man United,Leicester,2,1,A Marriner,8,13
-11/08/2018,Bournemouth,Cardiff,2,0,K Friend,12,10
-CSV
+# CSV cru REAL: jogos da Premier League 2024/25 (openfootball, sem API key)
+curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
+  | python3 -c "
+import json,sys,csv
+dados=json.load(sys.stdin); w=csv.writer(sys.stdout)
+w.writerow(['Date','HomeTeam','AwayTeam','FTHG','FTAG'])
+for m in dados['matches']:
+    ft=(m.get('score') or {}).get('ft') or [None,None]
+    w.writerow([m.get('date'),m.get('team1'),m.get('team2'),ft[0],ft[1]])
+" > premier.csv
+
+head -3 premier.csv
 aws s3 cp premier.csv "s3://$BUCKET/raw/premier.csv"
 ```
 

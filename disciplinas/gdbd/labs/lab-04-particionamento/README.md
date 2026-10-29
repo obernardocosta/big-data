@@ -16,6 +16,12 @@ filtro de partição.
 - Como filtrar por partição no `WHERE` para **reduzir o scan** (custo e tempo).
 - A ligação direta entre layout dos dados e a conta no fim do mês.
 
+## Dados do lab
+
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, sem API key),
+**particionados por `year`/`month`** a partir da data real de cada jogo. O passo
+a passo gera a árvore de partições a partir do JSON.
+
 ## Pré-requisitos
 
 | Item | Valor |

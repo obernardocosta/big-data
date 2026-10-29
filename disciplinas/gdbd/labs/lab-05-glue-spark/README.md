@@ -15,6 +15,12 @@ Athena fica mais rápida e mais barata (menos "Data scanned").
 - Por que converter para **Parquet colunar** reduz custo e tempo de consulta.
 - Quando **não** usar Spark (tarefas curtas → Lambda), discutido no slide.
 
+## Dados do lab
+
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, domínio
+público, sem API key). O passo a passo baixa o JSON e gera o CSV cru que o Glue
+Job transforma em Parquet.
+
 ## Pré-requisitos
 
 | Item | Valor |

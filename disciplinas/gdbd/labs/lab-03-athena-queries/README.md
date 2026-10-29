@@ -15,6 +15,11 @@ arquivos no S3, usando o catálogo que já temos. Neste lab você finalmente
 - Como o modelo de cobrança (**US$ 5 por TB escaneado**) liga consulta a custo.
 - A ler o campo **"Data scanned"** — gancho direto para o Lab 04 (particionamento).
 
+## Dados do lab
+
+Consulta a tabela `jogos` catalogada nos Labs 01/02 — dados **reais** da Premier
+League 2024/25 (openfootball). Sem dados inventados.
+
 ## Pré-requisitos
 
 | Item | Valor |
@@ -39,7 +44,7 @@ poucos KB, então cada consulta custa frações de centavo. Ainda assim, faça a
 ## Resultado esperado
 
 Executar consultas SQL no Athena sobre a tabela catalogada e obter as respostas
-de negócio (top 10 jogadores, país com mais prêmios, etc.), observando o
+de negócio (times que mais marcam, maior goleada, gols por rodada), observando o
 **volume de dados escaneado** em cada consulta.
 
 ## Ponto de parada seguro

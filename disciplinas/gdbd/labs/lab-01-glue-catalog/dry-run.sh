@@ -22,7 +22,7 @@ info() { printf '  \033[36mℹ️  %s\033[0m\n' "$1"; }
 echo "== Dry-run Lab 01 (Glue Data Catalog) | regiao alvo: $REGION =="
 
 # 1. AWS CLI instalada
-echo "[1/5] AWS CLI"
+echo "[1/6] AWS CLI"
 if command -v aws >/dev/null 2>&1; then
   pass "AWS CLI encontrada ($(aws --version 2>&1 | head -n1))"
 else
@@ -30,7 +30,7 @@ else
 fi
 
 # 2. Credencial valida
-echo "[2/5] Credencial"
+echo "[2/6] Credencial"
 CALLER_JSON="$(aws sts get-caller-identity --output json 2>/dev/null)"
 if [ -n "$CALLER_JSON" ]; then
   ARN="$(printf '%s' "$CALLER_JSON" | grep -o '"Arn"[^,]*' | cut -d'"' -f4)"
@@ -41,7 +41,7 @@ else
 fi
 
 # 3. Usuario IAM (nao root)
-echo "[3/5] Tipo de usuario (deve ser IAM, nao root)"
+echo "[3/6] Tipo de usuario (deve ser IAM, nao root)"
 if [ -n "${ARN:-}" ]; then
   if printf '%s' "$ARN" | grep -q ':root'; then
     bad "Voce esta como ROOT. Use um usuario IAM para o lab."
@@ -53,7 +53,7 @@ else
 fi
 
 # 4. Regiao
-echo "[4/5] Regiao configurada"
+echo "[4/6] Regiao configurada"
 CUR_REGION="$(aws configure get region 2>/dev/null)"
 if [ "$CUR_REGION" = "$REGION" ]; then
   pass "Regiao configurada = $REGION"
@@ -64,7 +64,7 @@ else
 fi
 
 # 5. Permissoes read-only em Glue e S3
-echo "[5/5] Permissoes (read-only)"
+echo "[5/6] Permissoes (read-only)"
 if aws glue get-databases --region "$REGION" >/dev/null 2>&1; then
   pass "glue:GetDatabases permitido."
 else
@@ -74,6 +74,20 @@ if aws s3 ls >/dev/null 2>&1; then
   pass "s3:ListAllMyBuckets permitido."
 else
   bad "Sem permissao para listar buckets S3."
+fi
+
+# 6. Fonte de dados publica + python3 (para gerar o CSV real)
+echo "[6/6] Dados reais (openfootball) + python3"
+if command -v python3 >/dev/null 2>&1; then
+  pass "python3 encontrado ($(python3 --version 2>&1))."
+else
+  bad "python3 nao encontrado (usado para gerar o CSV a partir do JSON)."
+fi
+URL="https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json"
+if curl -fs -o /dev/null "$URL" 2>/dev/null; then
+  pass "Fonte de dados acessivel (openfootball)."
+else
+  info "Nao consegui acessar a fonte agora (rede?). Tenha um JSON local de backup."
 fi
 
 echo

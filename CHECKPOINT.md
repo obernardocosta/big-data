@@ -180,6 +180,18 @@ EMR Serverless é curta); Aula 2 fecha a **ingestão** do Lab B. No sábado sobr
 **uma** frente nova (SageMaker) + o Spark do Lab B; chegada = buffer; 20–25 min
 reais de limpeza. Slides e plano-de-aula alinhados; `slidev build` passa.
 
+### Revisão dos labs da GDBD (mesmo rigor da PDN) ✅ (2026-10-29)
+Os 7 labs da GDBD passaram a usar **dados reais e atuais** (openfootball Premier
+League 2024/25, JSON sem API key) em vez de CSVs inventados inline:
+- Lab 01/02: CSV real gerado do JSON (`jogos`); schema evolution/crawler sobre
+  dados reais.
+- Lab 03: queries reescritas para a tabela `jogos` (gols em casa, goleada, rodada).
+- Lab 04: particionamento **por `year`/`month`** derivado da data real dos jogos.
+- Lab 05/06/07: CSV cru real alimenta os jobs Spark / camadas do Data Lake.
+- READMEs ganharam seção "Dados do lab"; dry-runs checam **python3 + fonte
+  acessível**. Geradores testados contra a fonte viva (380 jogos; partições
+  2024-08…2025-05). Slides de Aula 1 e 2 alinhados ao dataset real. `build` passa.
+
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
 - [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.

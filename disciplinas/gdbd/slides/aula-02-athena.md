@@ -84,10 +84,10 @@ Ao final, você será capaz de:
 Somos uma empresa de marketing esportivo. Com a tabela catalogada, o negócio
 quer **respostas**, não arquivos:
 
-- Quais os 10 jogadores que mais ganharam o prêmio de melhor do mundo (FIFA)?
-- Qual país tem mais ganhadores? Quantos prêmios cada um tem?
-- Qual equipe marcou mais gols na Premier League (18/19)?
-- Qual time teve a pior defesa? Qual jogo teve a maior goleada?
+- Quais os times que mais marcam **gols em casa** na Premier League 2024/25?
+- Qual foi a **maior goleada** da temporada?
+- Quantos **gols por rodada**?
+- Quais jogos tiveram **mais gols no total**?
 
 Queremos responder isso com **SQL**, sem subir servidor nenhum.
 
@@ -259,11 +259,11 @@ routeAlias: lab-3
 ## Prática: queries no Athena
 
 **Problema:** responder as perguntas de negócio sobre os dados catalogados no
-Lab 01/02, usando SQL no Athena:
+Lab 01/02 (jogos reais 2024/25), usando SQL no Athena:
 
-- Top 10 jogadores com mais prêmios da FIFA.
-- País com mais ganhadores (e quantos prêmios cada um).
-- Premier League 18/19: mais gols, pior defesa, maior goleada.
+- Times que mais marcam em casa.
+- Maior goleada da temporada.
+- Gols por rodada; jogos com mais gols.
 
 **Resultado esperado:** executar as consultas SQL sobre os arquivos do catálogo.
 

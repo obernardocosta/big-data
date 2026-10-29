@@ -20,20 +20,31 @@ dos dados nas partições é feita por nós (manual neste lab).
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
-cat > parte1.csv <<'CSV'
-jogador,premios
-Messi,8
-Modric,1
-CSV
+# Jogos reais (openfootball 2024/25) particionados por ano/mês a partir da DATA
+# real de cada partida. Um Python curto lê o JSON e grava um CSV por partição.
+curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
+  | python3 -c "
+import json,sys,csv,os,collections
+dados=json.load(sys.stdin)
+buckets=collections.defaultdict(list)
+for m in dados['matches']:
+    d=(m.get('date') or '')[:10]          # YYYY-MM-DD
+    if len(d)<7: continue
+    y,mo=d[:4],d[5:7]
+    ft=(m.get('score') or {}).get('ft') or [None,None]
+    buckets[(y,mo)].append([d,m.get('team1'),m.get('team2'),ft[0],ft[1]])
+for (y,mo),linhas in buckets.items():
+    path=f'part/year={y}/month={mo}'
+    os.makedirs(path,exist_ok=True)
+    with open(f'{path}/jogos.csv','w',newline='') as f:
+        w=csv.writer(f); w.writerow(['data','mandante','visitante','gols_mandante','gols_visitante'])
+        w.writerows(linhas)
+print('particoes criadas:'); 
+"
+find part -name '*.csv' | head
 
-cat > parte2.csv <<'CSV'
-jogador,premios
-Cristiano Ronaldo,5
-CSV
-
-# estrutura ate o nivel de ano/mes/dia
-aws s3 cp parte1.csv "s3://$BUCKET/tabela/year=2022/month=07/day=01/parte1.csv"
-aws s3 cp parte2.csv "s3://$BUCKET/tabela/year=2022/month=08/day=01/parte2.csv"
+# envia a arvore particionada para o S3 (year=.../month=.../)
+aws s3 cp part/ "s3://$BUCKET/tabela/" --recursive
 ```
 
 ## 2. Reaproveitar a role de serviço do Glue
@@ -65,7 +76,7 @@ aws glue create-crawler \
 
 ## 4. Rodar o Crawler e conferir as colunas de partição
 
-**Porquê:** aqui confirmamos que `year`, `month`, `day` viraram **partitionKeys**
+**Porquê:** aqui confirmamos que `year` e `month` viraram **partitionKeys**
 da tabela — é o que habilita o filtro otimizado no Athena.
 
 ```bash
@@ -79,7 +90,7 @@ aws glue get-tables --database-name "$DB" \
 
 ## 5. Consultar COM filtro de partição e medir o scan
 
-**Porquê:** este é o ponto do lab. Filtrar por `year/month/day` faz o Athena ler
+**Porquê:** este é o ponto do lab. Filtrar por `year/month` faz o Athena ler
 só as pastas correspondentes.
 
 ```bash
@@ -89,7 +100,7 @@ TABELA=$(aws glue get-tables --database-name "$DB" \
   --query 'TableList[0].Name' --output text)
 
 QID=$(aws athena start-query-execution \
-  --query-string "SELECT * FROM $DB.$TABELA WHERE year='2022' AND month='07';" \
+  --query-string "SELECT * FROM $DB.$TABELA WHERE year='2024' AND month='08';" \
   --query-execution-context "Database=$DB" \
   --result-configuration "OutputLocation=$OUTPUT" \
   --region "$REGION" --query 'QueryExecutionId' --output text)

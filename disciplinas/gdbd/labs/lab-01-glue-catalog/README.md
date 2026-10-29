@@ -15,6 +15,18 @@ suas mudanças. Neste lab você cria, à mão, uma tabela catalogada e observa o
 - Como o catálogo **versiona** o esquema quando ele muda (Schema Evolution).
 - Por que a catalogação manual não escala (gancho para o Lab 02, o Crawler).
 
+## Dados do lab
+
+Dados **reais e atuais** da Premier League 2024/25 do projeto público
+**openfootball** (domínio público, sem API key):
+
+```
+https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json
+```
+
+O passo a passo gera um **CSV** a partir desse JSON (jogos reais) — nada de dados
+inventados.
+
 ## Pré-requisitos
 
 | Item | Valor |
@@ -52,9 +64,9 @@ como demonstração do instrutor.
 Para não deixar nada para trás:
 
 ```bash
-aws glue delete-table   --database-name futebol --name melhores_jogadores
+aws glue delete-table    --database-name futebol --name jogos
 aws glue delete-database --name futebol
-aws s3 rm s3://SEU-BUCKET/melhores_jogadores/ --recursive
+aws s3 rm s3://SEU-BUCKET/jogos/ --recursive
 ```
 
 ## O que isso prova

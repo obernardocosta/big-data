@@ -18,6 +18,12 @@ prática: o cluster processa, os dados ficam no S3.
 - **EMRFS**: por que manter os dados no S3 e o cluster efêmero.
 - Boas práticas de particionamento, formato e escala vistas em aula.
 
+## Dados do lab
+
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, sem API key).
+O passo a passo gera o CSV cru a partir do JSON; o cluster EMR roda o ETL Spark
+sobre ele.
+
 ## Pré-requisitos
 
 | Item | Valor |

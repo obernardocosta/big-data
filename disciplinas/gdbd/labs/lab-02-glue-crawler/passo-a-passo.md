@@ -17,14 +17,18 @@ arquivos que encontra. Precisamos de dados para ele descobrir.
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
-cat > jogadores.csv <<'CSV'
-jogador,ano,premios
-Messi,2023,8
-Cristiano Ronaldo,2017,5
-Modric,2018,1
-CSV
+# jogos reais da Premier League 2024/25 (openfootball, sem API key) -> CSV
+curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
+  | python3 -c "
+import json,sys,csv
+dados=json.load(sys.stdin); w=csv.writer(sys.stdout)
+w.writerow(['data','mandante','visitante','gols_mandante','gols_visitante'])
+for m in dados['matches']:
+    ft=(m.get('score') or {}).get('ft') or [None,None]
+    w.writerow([m.get('date'),m.get('team1'),m.get('team2'),ft[0],ft[1]])
+" > jogos.csv
 
-aws s3 cp jogadores.csv "s3://$BUCKET/jogadores/jogadores.csv"
+aws s3 cp jogos.csv "s3://$BUCKET/jogos/jogos.csv"
 ```
 
 ## 2. Criar a IAM Role que o Glue vai assumir
@@ -67,14 +71,14 @@ aws glue create-database --database-input '{"Name":"futebol_auto"}'
 ## 4. Criar o Crawler
 
 **Porquê:** aqui definimos o alvo (o caminho S3) e para onde vão as tabelas.
-Note que apontamos para a **pasta** `jogadores/`, não para o arquivo.
+Note que apontamos para a **pasta** `jogos/`, não para o arquivo.
 
 ```bash
 aws glue create-crawler \
-  --name crawler-jogadores \
+  --name crawler-jogos \
   --role "arn:aws:iam::$ACCOUNT_ID:role/GlueCrawlerLabRole" \
   --database-name futebol_auto \
-  --targets '{"S3Targets":[{"Path":"s3://'"$BUCKET"'/jogadores/"}]}'
+  --targets '{"S3Targets":[{"Path":"s3://'"$BUCKET"'/jogos/"}]}'
 ```
 
 ## 5. Rodar o Crawler e ver a tabela nascer
@@ -83,10 +87,10 @@ aws glue create-crawler \
 coluna nenhuma.
 
 ```bash
-aws glue start-crawler --name crawler-jogadores
+aws glue start-crawler --name crawler-jogos
 
 # acompanhe o estado (RUNNING -> STOPPING -> READY)
-aws glue get-crawler --name crawler-jogadores --query 'Crawler.State'
+aws glue get-crawler --name crawler-jogos --query 'Crawler.State'
 
 # quando READY, veja a tabela criada automaticamente
 aws glue get-tables --database-name futebol_auto \
@@ -99,15 +103,21 @@ aws glue get-tables --database-name futebol_auto \
 arquivo com uma coluna nova e rode de novo.
 
 ```bash
-cat > jogadores2.csv <<'CSV'
-jogador,ano,premios,pais
-Messi,2023,8,Argentina
-CSV
+# novo arquivo na MESMA pasta, com uma coluna a mais (rodada)
+curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
+  | python3 -c "
+import json,sys,csv
+dados=json.load(sys.stdin); w=csv.writer(sys.stdout)
+w.writerow(['data','mandante','visitante','gols_mandante','gols_visitante','rodada'])
+for m in dados['matches'][:20]:
+    ft=(m.get('score') or {}).get('ft') or [None,None]
+    w.writerow([m.get('date'),m.get('team1'),m.get('team2'),ft[0],ft[1],m.get('round')])
+" > jogos_v2.csv
 
-aws s3 cp jogadores2.csv "s3://$BUCKET/jogadores/jogadores2.csv"
+aws s3 cp jogos_v2.csv "s3://$BUCKET/jogos/jogos_v2.csv"
 
-aws glue start-crawler --name crawler-jogadores
-# aguarde READY e inspecione as colunas de novo — a coluna "pais" deve aparecer
+aws glue start-crawler --name crawler-jogos
+# aguarde READY e inspecione as colunas de novo — a coluna "rodada" deve aparecer
 ```
 
 ## Limpeza

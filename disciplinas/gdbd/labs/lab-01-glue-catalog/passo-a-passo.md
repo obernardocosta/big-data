@@ -19,22 +19,26 @@ arquivos no S3. Precisamos de um lugar para eles.
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 ```
 
-## 2. Enviar um arquivo de dados
+## 2. Gerar dados REAIS e enviar ao S3
 
 **Porquê:** a tabela do catálogo vai apontar para um "prefixo" (pasta) no S3.
-Tudo que estiver sob esse prefixo é lido como dados da tabela.
-
-Crie um CSV simples localmente e envie:
+Em vez de inventar dados, usamos jogos **reais e atuais** da Premier League
+2024/25 do projeto público **openfootball** (JSON, sem API key) e geramos um CSV.
 
 ```bash
-cat > melhores_jogadores.csv <<'CSV'
-jogador,ano,premios
-Messi,2023,8
-Cristiano Ronaldo,2017,5
-Modric,2018,1
-CSV
+# baixa os jogos reais e gera um CSV com 4 colunas (sem cabecalho de pais ainda)
+curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
+  | python3 -c "
+import json,sys,csv
+dados=json.load(sys.stdin); w=csv.writer(sys.stdout)
+w.writerow(['data','mandante','visitante','gols_mandante'])
+for m in dados['matches']:
+    ft=(m.get('score') or {}).get('ft') or [None,None]
+    w.writerow([m.get('date'),m.get('team1'),m.get('team2'),ft[0]])
+" > jogos.csv
 
-aws s3 cp melhores_jogadores.csv "s3://$BUCKET/melhores_jogadores/melhores_jogadores.csv"
+head -3 jogos.csv          # confira o conteudo real
+aws s3 cp jogos.csv "s3://$BUCKET/jogos/jogos.csv"
 ```
 
 ## 3. Criar o banco de dados no Glue Data Catalog
@@ -53,14 +57,15 @@ e tipos) sobre os arquivos do S3. É isso que o SQL vai enxergar.
 
 ```bash
 aws glue create-table --database-name futebol --table-input '{
-  "Name": "melhores_jogadores",
+  "Name": "jogos",
   "StorageDescriptor": {
     "Columns": [
-      {"Name": "jogador", "Type": "string"},
-      {"Name": "ano", "Type": "int"},
-      {"Name": "premios", "Type": "int"}
+      {"Name": "data", "Type": "string"},
+      {"Name": "mandante", "Type": "string"},
+      {"Name": "visitante", "Type": "string"},
+      {"Name": "gols_mandante", "Type": "int"}
     ],
-    "Location": "s3://'"$BUCKET"'/melhores_jogadores/",
+    "Location": "s3://'"$BUCKET"'/jogos/",
     "InputFormat": "org.apache.hadoop.mapred.TextInputFormat",
     "OutputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
     "SerdeInfo": {
@@ -76,28 +81,30 @@ aws glue create-table --database-name futebol --table-input '{
 Confira no console (Glue > Data Catalog > Tables) ou via CLI:
 
 ```bash
-aws glue get-table --database-name futebol --name melhores_jogadores \
+aws glue get-table --database-name futebol --name jogos \
   --query 'Table.StorageDescriptor.Columns'
 ```
 
 ## 5. Observar o Schema Evolution
 
 **Porquê:** este é o conceito-chave. Quando a fonte muda (ex.: passamos a
-registrar o país do jogador), o esquema muda — e o catálogo **versiona** isso.
+registrar também os gols do visitante), o esquema muda — e o catálogo
+**versiona** isso.
 
-Adicione uma coluna `pais` atualizando a tabela:
+Adicione a coluna `gols_visitante` atualizando a tabela:
 
 ```bash
 aws glue update-table --database-name futebol --table-input '{
-  "Name": "melhores_jogadores",
+  "Name": "jogos",
   "StorageDescriptor": {
     "Columns": [
-      {"Name": "jogador", "Type": "string"},
-      {"Name": "ano", "Type": "int"},
-      {"Name": "premios", "Type": "int"},
-      {"Name": "pais", "Type": "string"}
+      {"Name": "data", "Type": "string"},
+      {"Name": "mandante", "Type": "string"},
+      {"Name": "visitante", "Type": "string"},
+      {"Name": "gols_mandante", "Type": "int"},
+      {"Name": "gols_visitante", "Type": "int"}
     ],
-    "Location": "s3://'"$BUCKET"'/melhores_jogadores/",
+    "Location": "s3://'"$BUCKET"'/jogos/",
     "InputFormat": "org.apache.hadoop.mapred.TextInputFormat",
     "OutputFormat": "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
     "SerdeInfo": {
@@ -113,7 +120,7 @@ aws glue update-table --database-name futebol --table-input '{
 Veja as versões registradas:
 
 ```bash
-aws glue get-table-versions --database-name futebol --table-name melhores_jogadores \
+aws glue get-table-versions --database-name futebol --table-name jogos \
   --query 'TableVersions[].VersionId'
 ```
 

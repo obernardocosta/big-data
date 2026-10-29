@@ -337,10 +337,10 @@ routeAlias: lab-1
 
 ## Prática: AWS Glue Data Catalog
 
-**Problema:** trabalhamos em uma empresa de marketing esportivo fazendo uma
-análise sobre o melhor jogador do mundo (FIFA). Precisamos inserir informações
-incrementais sobre os melhores jogadores em uma **tabela catalogada**, para uso
-posterior por ferramentas de análise e processamento.
+**Problema:** trabalhamos em uma empresa de marketing esportivo analisando a
+**Premier League**. Precisamos catalogar os **jogos** (dados reais da temporada
+2024/25) em uma **tabela**, para uso posterior por ferramentas de análise, e
+observar o esquema **versionar** quando a fonte ganha uma coluna nova.
 
 **Resultado esperado:** uma tabela catalogada e com versões no Glue Data Catalog.
 

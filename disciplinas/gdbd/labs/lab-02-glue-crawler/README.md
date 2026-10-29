@@ -14,6 +14,12 @@ novas por dia. O **Glue Crawler** resolve isso: ele varre os arquivos no S3,
 - O modelo de cobrança serverless (paga só pela varredura).
 - Por que automação de catálogo é pré-requisito para um Data Lake saudável.
 
+## Dados do lab
+
+Dados **reais e atuais** da Premier League 2024/25 do projeto público
+**openfootball** (domínio público, sem API key). O passo a passo gera o CSV a
+partir do JSON — o Crawler infere o esquema desses jogos reais.
+
 ## Pré-requisitos
 
 | Item | Valor |
@@ -48,7 +54,7 @@ passo 6) pode virar demonstração.
 ## Limpeza
 
 ```bash
-aws glue delete-crawler --name crawler-jogadores
+aws glue delete-crawler --name crawler-jogos
 aws glue delete-table    --database-name futebol_auto --name <NOME_DA_TABELA_CRIADA>
 aws glue delete-database --name futebol_auto
 aws s3 rm s3://SEU-BUCKET/ --recursive
