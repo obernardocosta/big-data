@@ -55,19 +55,35 @@ SageMaker é o maior risco).
 - **Respeite o timebox do lab**; use o ponto de parada seguro se estourar.
 - **Dry-run na véspera** de cada lab. Reforce a **limpeza** (custo real na PDN).
 
+## Balanceamento de tempo (refactor)
+
+A carga da PDN pende para o **sábado (Aula 3)**: além do SageMaker (teoria +
+Lab C), ele fecharia a parte Spark do Lab B. Para não virar "dia de terminar
+tudo", a estratégia é **avançar os labs nas noturnas**, que têm folga:
+
+- **Aula 1 (terça):** teoria de EMR Serverless é curta → **conclua o Lab A hoje**.
+- **Aula 2 (quinta):** feche a **ingestão** do Lab B (eventos no S3) hoje.
+- **Aula 3 (sábado):** foco no **SageMaker**; sobra só **uma** frente a mais (o
+  Spark do Lab B). Os 30 min de chegada são buffer, não conteúdo; reserve
+  20–25 min reais para a **limpeza**.
+
 ## Aula 1 — EMR Serverless (terça · 18h30–22h · ~3h30)
 
 | Tempo | Bloco |
 |---|---|
 | 0:00–0:10 | Abertura e combinados (**aviso de pontualidade**) |
 | 0:10–0:35 | De onde viemos: Spark/EMR da graduação + GDBD → o peso do cluster |
-| 0:35–1:20 | EMR Serverless: Application → Job, **RuntimeRole por job** |
-| 1:20–1:45 | Preço e TCO — quando vale |
-| 1:45–2:00 | **Intervalo** |
-| 2:00–3:20 | **Lab A** — EMR Serverless (pré-requisitos + primeiro job PySpark) |
+| 0:35–1:15 | EMR Serverless: Application → Job, **RuntimeRole por job** |
+| 1:15–1:35 | Preço e TCO — quando vale |
+| 1:35–1:50 | **Intervalo** |
+| 1:50–3:20 | **Lab A** — EMR Serverless (completo: job PySpark + dependências) |
 | 3:20–3:30 | Fechamento + o que vem (streaming na quinta) |
 
-Ponto de parada seguro do Lab A: job submetido e em execução.
+Ponto de parada seguro do Lab A: job PySpark em `SUCCESS`.
+
+> **Gestão de tempo:** a teoria de EMR Serverless é curta — aproveite a folga da
+> noturna para **concluir o Lab A hoje** (incluindo o lab de dependências
+> Python), e não só "submeter o job". Isso tira carga do sábado, que já é cheio.
 
 ## Aula 2 — Streaming na AWS (quinta · 18h30–22h · ~3h30)
 
@@ -83,17 +99,27 @@ Ponto de parada seguro do Lab A: job submetido e em execução.
 
 Ponto de parada seguro do Lab B: eventos chegando no S3 via Firehose.
 
+> **Gestão de tempo:** feche a **ingestão** (produtor → Kinesis → Firehose → S3)
+> hoje. Só a parte **Spark Structured Streaming** fica para o sábado — e é **uma**
+> frente, reaproveitando o EMR Serverless do Lab A (já pronto da Aula 1).
+
 ## Aula 3 — SageMaker + dia de labs (sábado · 8h–13h · ~5h)
 
 | Tempo | Bloco |
 |---|---|
-| 0:00–0:30 | Chegada: dúvidas / terminar Labs A e B |
+| 0:00–0:30 | Chegada: dúvidas / terminar pendências das Aulas 1–2 |
 | 0:30–2:00 | **SageMaker**: notebook → Training Job → deploy (Batch vs Endpoint) |
 | 2:00–2:15 | **Intervalo** |
-| 2:15–3:15 | **Lab C** — SageMaker (treino + deploy) |
-| 3:15–4:30 | **Labs** — fechar Lab A (EMR Serverless) e a parte Spark do Lab B |
-| 4:30–4:50 | **Limpeza** (apagar Endpoint!) e verificação de custo |
-| 4:50–5:00 | Fechamento do curso |
+| 2:15–3:30 | **Lab C** — SageMaker (treino + deploy) com calma |
+| 3:30–4:15 | **Spark Structured Streaming** do Lab B (fecha o streaming) |
+| 4:15–4:40 | **Limpeza** (apagar Endpoint!) e verificação de custo |
+| 4:40–5:00 | Revisão do mapa do curso + fechamento |
+
+> **Gestão de tempo:** se as Aulas 1 e 2 fecharam seus labs (como planejado), o
+> sábado tem **uma** frente nova de lab (SageMaker) + fechar o Spark do Lab B —
+> cabe com folga nas 5h. Os 30 min de chegada são o **buffer** para quem ficou
+> para trás; não conte com eles no conteúdo. **Reserve 20–25 min reais para a
+> limpeza** — o Endpoint do SageMaker e o shard do Kinesis cobram se esquecidos.
 
 > O SageMaker tem a teoria no **começo do sábado** (turma fresca) e o lab logo
 > em seguida. A parte **Spark Structured Streaming** do Lab B (ler o S3 do

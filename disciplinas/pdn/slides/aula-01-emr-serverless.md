@@ -39,12 +39,13 @@ Leia os objetivos em voz alta: ancoram a aula. No fim, retomamos cada um.
 |---|---|
 | 0:00–0:10 | Abertura e combinados |
 | 0:10–0:35 | De onde viemos: o peso do EMR tradicional |
-| 0:35–1:20 | EMR Serverless: Application, Job, RuntimeRole |
-| 1:20–1:45 | Preço e TCO — quando vale |
-| 1:45–2:00 | **Intervalo** |
-| 2:00–3:30 | **Lab 01** — primeiro job PySpark (início guiado) |
+| 0:35–1:15 | EMR Serverless: Application, Job, RuntimeRole |
+| 1:15–1:35 | Preço e TCO — quando vale |
+| 1:35–1:50 | **Intervalo** |
+| 1:50–3:20 | **Lab A** — EMR Serverless completo (job + dependências) |
+| 3:20–3:30 | Fechamento + o que vem (streaming na quinta) |
 
-<!-- Combine o timebox com a turma. Respeitar o relógio é parte da aula. -->
+<!-- Teoria curta de propósito: dá para fechar o Lab A hoje e aliviar o sábado. -->
 
 ---
 layout: center
@@ -152,7 +153,7 @@ layout: section
 
 # Prática
 
-Lab 01 — primeiro job PySpark (início hoje)
+Lab A — EMR Serverless (concluímos hoje)
 
 ---
 
@@ -160,21 +161,23 @@ Lab 01 — primeiro job PySpark (início hoje)
 routeAlias: lab-a
 ---
 
-## Lab 01 — começamos agora, terminamos no sábado
+## Lab A — EMR Serverless (concluímos hoje)
 
-Hoje: **pré-requisitos + primeiro job**. O aprofundamento (dependências Python,
-Hive) fica para a Aula 3 (sábado, dia de labs).
+A teoria foi curta de propósito: temos tempo para **fechar o Lab A hoje** e
+deixar o sábado leve.
 
 - Criar a **Application** e a **RuntimeRole**.
-- Submeter um **job PySpark** e ver o estado chegar a `SUCCESS`.
+- Submeter o **job PySpark** sobre dados reais e ver `SUCCESS`.
+- Fazer também o **lab de dependências Python** (empacotar e usar uma lib).
 
-**Timebox hoje:** ~1h. **Ponto de parada seguro:** job submetido e em execução.
+**Timebox hoje:** ~1h20. **Ponto de parada seguro:** job PySpark em `SUCCESS`
+(o de dependências pode virar casa, mas tente fechar hoje).
 
 Instruções versionadas: `labs/lab-01-emr-serverless/` · rode o `dry-run.sh` antes.
 
 <!--
-Deixe claro o que é "pronto para hoje". Quem não terminar, retoma no sábado nos
-30 min iniciais. Ninguém fica preso aqui.
+A Application criada aqui é reaproveitada no sábado para o Spark do Lab B. Por
+isso vale deixá-la pronta e testada hoje.
 -->
 
 ---
@@ -184,7 +187,8 @@ Deixe claro o que é "pronto para hoje". Quem não terminar, retoma no sábado n
 - EMR Serverless troca **gerenciar cluster** por **submeter jobs**.
 - **RuntimeRole por job** = menor privilégio de verdade.
 - A decisão Serverless vs cluster é de **custo e TCO**, não de moda.
-- Seu primeiro job PySpark já está rodando.
+- Seu Lab A (EMR Serverless) está **completo** — e a Application será reusada no
+  Spark do Lab B, no sábado.
 
 ### Próxima aula (quinta): **Machine Learning na AWS com SageMaker**.
 

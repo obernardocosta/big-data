@@ -172,6 +172,14 @@ excesso das noturnas para os sábados**:
 - Cada aula tem uma **nota de gestão de tempo** específica; plano-de-aula atualizado.
 `slidev build` passa.
 
+### Refactor de tempo da PDN — Opção 1 ✅ (2026-10-29)
+Diagnóstico: a Aula 3 (sábado, 5h) acumulava SageMaker (teoria+Lab C) + fechar
+Lab A + Spark do Lab B — sobrecarregada; Aulas 1 e 2 (noturnas) com folga.
+Refactor: **avançar labs nas noturnas** — Aula 1 **conclui o Lab A** (teoria de
+EMR Serverless é curta); Aula 2 fecha a **ingestão** do Lab B. No sábado sobra
+**uma** frente nova (SageMaker) + o Spark do Lab B; chegada = buffer; 20–25 min
+reais de limpeza. Slides e plano-de-aula alinhados; `slidev build` passa.
+
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
 - [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.

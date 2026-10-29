@@ -31,13 +31,13 @@ CONDUÇÃO: primeiros 30 min para dúvidas / terminar Labs A e B.
 
 | Tempo | Bloco |
 |---|---|
-| 0:00–0:30 | Chegada: dúvidas / terminar Labs A e B |
+| 0:00–0:30 | Chegada: dúvidas / pendências das Aulas 1–2 |
 | 0:30–2:00 | SageMaker: do notebook ao endpoint |
 | 2:00–2:15 | **Intervalo** |
-| 2:15–3:15 | **Lab C** — SageMaker (treino + deploy) |
-| 3:15–4:30 | **Labs**: fechar Lab A e a parte Spark do Lab B |
-| 4:30–4:50 | **Limpeza** (apagar Endpoint!) + conferir custo |
-| 4:50–5:00 | Fechamento do curso |
+| 2:15–3:30 | **Lab C** — SageMaker (treino + deploy) com calma |
+| 3:30–4:15 | **Spark Structured Streaming** do Lab B (fecha o streaming) |
+| 4:15–4:40 | **Limpeza** (apagar Endpoint!) + conferir custo |
+| 4:40–5:00 | Revisão do mapa do curso + fechamento |
 
 ---
 layout: section
@@ -156,14 +156,19 @@ Instruções: `labs/lab-03-sagemaker/`.
 
 ---
 
-## Fechar Lab A e a parte Spark do Lab B
+## Fechar o streaming: Spark do Lab B
 
-- **Lab A:** terminar o job PySpark no EMR Serverless (dependências Python, extra).
+Labs A (EMR Serverless) e B (ingestão Kinesis→Firehose→S3) já foram feitos nas
+Aulas 1 e 2. Falta **uma** frente — a parte Spark do Lab B:
+
 - **Lab B — Spark Structured Streaming:** rodar, **no EMR Serverless do Lab A**,
   o job que lê o `eventos/` do S3 (que o Firehose encheu) em **micro-batches** e
   grava agregados. É o Spark Streaming de vocês, agora sobre dados da nuvem.
 
-Instruções: `labs/lab-01-emr-serverless/` e `labs/lab-02-streaming/` (passo 6).
+> Quem tiver pendência do Lab A (ex.: dependências Python) usa os 30 min de
+> chegada para fechar — não é bloco planejado concorrente.
+
+Instruções: `labs/lab-02-streaming/` (passo 6).
 
 ---
 layout: center
