@@ -49,25 +49,26 @@ extrair → transformar (Glue) → catalogar (Crawler) → consultar (Athena)
 
 Ao final, você será capaz de:
 
-- Explicar o que é **orquestração** e modelar um pipeline como **DAG**.
-- Relacionar **Apache Airflow → MWAA** e conhecer o **AWS Step Functions**.
-- Escolher entre **MWAA** e **Step Functions** conforme o contexto.
+- Explicar **orquestração** e por que **tratar falhas** é o ponto central.
+- Modelar um pipeline como **DAG** (Airflow) e como **máquina de estados** (Step Functions).
+- Ler e escrever uma state machine em **ASL** com **Task, Choice, Parallel, Map**
+  e, principalmente, **Retry/Catch**.
+- Escolher entre **MWAA × Step Functions** e entre **Standard × Express**.
 
 ---
 
 ## Roteiro de hoje (Semana 2 · terça · 18h30–22h · ~3h30)
 
-Aula **conceitual** (sem lab) — espaço para discussão e exemplos.
-
 | Tempo | Bloco |
 |---|---|
 | 0:00–0:30 | Chegada: dúvidas da Aula 3 / limpeza do Lab 05 |
-| 0:30–1:10 | O problema: pipelines, dependências e falhas |
-| 1:10–1:45 | DAG + Apache Airflow (open source) |
-| 1:45–2:00 | **Intervalo** |
-| 2:00–2:45 | AWS: MWAA e Step Functions |
-| 2:45–3:20 | MWAA × Step Functions: quando usar cada um |
-| 3:20–3:30 | Fechamento + o que vem na Aula 5 (EMR) |
+| 0:30–1:00 | O problema: pipelines, dependências e **falhas** |
+| 1:00–1:30 | DAG + Apache Airflow (open source) |
+| 1:30–1:45 | **Intervalo** |
+| 1:45–2:20 | Step Functions: máquina de estados e **ASL** |
+| 2:20–2:50 | Tipos de estado + **Retry/Catch** (o coração da aula) |
+| 2:50–3:20 | **Atividade guiada**: desenhar a state machine do nosso pipeline |
+| 3:20–3:30 | MWAA × Step Functions, Standard × Express, fechamento |
 
 ---
 
@@ -168,23 +169,148 @@ Preço: https://aws.amazon.com/managed-workflows-for-apache-airflow/pricing/
 </div>
 
 ---
+layout: section
+---
 
-## Opção 2 — AWS Step Functions
+# Opção 2 — AWS Step Functions
 
-**Opção serverless da AWS**
+A fundo: como a máquina de estados funciona
 
-- **Pay as you go** — sem ambiente ligado parado.
-- **Escalável** e **integrado** nativamente com os serviços da AWS.
-- Interface **visual (low-code)** para montar o fluxo.
+---
 
-```mermaid {scale: 0.7}
-flowchart LR
-  S((Start)) --> G[Glue Job]
-  G -->|ok| C[Crawler]
-  G -->|falha| N[Notificar]
-  C --> Q[Query Athena]
-  Q --> E((End))
+## De DAG para máquina de estados
+
+O Airflow pensa em **DAG de tarefas**. O Step Functions pensa em **máquina de
+estados**: o fluxo é uma sequência de **states**, cada um faz uma coisa e decide
+o próximo.
+
+```mermaid {scale: 0.6}
+stateDiagram-v2
+  [*] --> Transformar
+  Transformar --> Catalogar: sucesso
+  Transformar --> Notificar: erro (Catch)
+  Catalogar --> Consultar
+  Consultar --> [*]
+  Notificar --> [*]
 ```
+
+- **Serverless**, pay as you go, sem ambiente ligado.
+- Integra **nativamente** com Glue, Lambda, EMR, Athena, SNS… (200+ serviços).
+- Interface **visual** (Workflow Studio) que gera/edita o fluxo.
+
+---
+
+## ASL — a máquina de estados é JSON
+
+O fluxo é descrito em **Amazon States Language** (JSON). Cada chave em `States`
+é um estado; `Next` liga um ao outro; `End` encerra.
+
+```json
+{
+  "Comment": "Pipeline da Premier League",
+  "StartAt": "TransformarGlue",
+  "States": {
+    "TransformarGlue": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": { "JobName": "lab05-transforma-premier" },
+      "Next": "RodarCrawler"
+    },
+    "RodarCrawler": { "Type": "Task", "Resource": "...", "Next": "Sucesso" },
+    "Sucesso": { "Type": "Succeed" }
+  }
+}
+```
+
+> Repare no `.sync`: o Step Functions **espera o Glue Job terminar** antes de
+> seguir. É a dependência "B depois de A" declarada de forma explícita.
+
+---
+
+## Tipos de estado (o vocabulário)
+
+| Estado | Para quê |
+|---|---|
+| **Task** | faz o trabalho (chama Glue, Lambda, EMR, Athena…) |
+| **Choice** | ramifica conforme uma condição (if/else) |
+| **Parallel** | roda vários ramos **ao mesmo tempo** |
+| **Map** | repete um fluxo para **cada item** de uma lista |
+| **Wait** | espera um tempo / até um horário |
+| **Succeed / Fail** | encerra com sucesso ou erro |
+
+Com esses blocos você monta qualquer pipeline — sem escrever o "cola" entre os
+serviços.
+
+---
+
+## O coração da aula: Retry e Catch
+
+Orquestração séria é **sobre o que fazer quando falha**. No Step Functions isso
+é declarativo, por estado:
+
+```json
+"TransformarGlue": {
+  "Type": "Task",
+  "Resource": "arn:aws:states:::glue:startJobRun.sync",
+  "Parameters": { "JobName": "lab05-transforma-premier" },
+  "Retry": [
+    { "ErrorEquals": ["States.ALL"], "MaxAttempts": 2, "BackoffRate": 2.0, "IntervalSeconds": 10 }
+  ],
+  "Catch": [
+    { "ErrorEquals": ["States.ALL"], "Next": "NotificarFalha" }
+  ],
+  "Next": "RodarCrawler"
+}
+```
+
+- **Retry**: tenta de novo (com *backoff*) antes de desistir — resolve falha transitória.
+- **Catch**: se esgotar, **desvia** para tratar o erro (ex.: notificar via SNS).
+
+### É isto que, no Airflow, você teria que codar na mão.
+
+---
+
+## Standard vs Express
+
+Dois tipos de workflow — a escolha é de **duração e volume**:
+
+| | **Standard** | **Express** |
+|---|---|---|
+| Duração | até **1 ano** | até **5 min** |
+| Cobrança | por **transição de estado** | por nº de execuções + duração |
+| Garantia | exactly-once | at-least-once |
+| Bom para | pipelines de ETL/dados (nosso caso) | alto volume, eventos curtos |
+
+Para orquestrar um ETL diário (Glue → Crawler → Athena), use **Standard**.
+
+---
+layout: section
+---
+
+# Atividade guiada (em classe)
+
+Desenhar a máquina de estados do nosso pipeline
+
+---
+
+## Mão na massa — sem custo
+
+Vamos **modelar juntos**, no Workflow Studio (console) ou no papel, a state
+machine do pipeline que já construímos nas aulas anteriores:
+
+1. **Task** `TransformarGlue` (`glue:startJobRun.sync`) — com **Retry** (2x).
+2. **Task** `RodarCrawler` — **Catch** → `NotificarFalha` (SNS).
+3. **Choice**: achou tabela nova? → segue; senão → `Wait` e reavalia.
+4. **Task** `ConsultarAthena` → **Succeed**.
+
+> Desafio em duplas: escreva o **ASL** dos estados 1 e 2 com `Retry`/`Catch`.
+> Depois comparamos as soluções.
+
+<!--
+Esta atividade preenche ~30 min de forma ativa, sem criar recurso pago. Peça que
+desenhem no Workflow Studio (não precisa executar) ou no quadro. Discuta erros
+comuns: esquecer o .sync, não tratar Catch, Retry sem backoff.
+-->
 
 ---
 layout: center
@@ -195,18 +321,21 @@ layout: center
 | | MWAA (Airflow) | Step Functions |
 |---|---|---|
 | Modelo | Ambiente gerenciado (por hora) | Serverless (pay as you go) |
+| Define o fluxo | Python (DAG) | ASL (JSON) / Workflow Studio |
 | Portabilidade | Airflow padrão (menos lock-in) | Específico da AWS |
-| Melhor para | Migrar Airflow existente; DAGs complexos | Nascer na AWS; integração nativa |
+| Melhor para | Migrar Airflow; DAGs complexos em Python | Nascer na AWS; integração nativa |
 | Operação | Menos que self-hosted, mas há ambiente | Praticamente zero |
 
 ---
 
 ## O que você leva da Aula 4
 
-- **Open source → AWS:** Apache Airflow → **MWAA** (o mesmo Airflow gerenciado)
-  ou **Step Functions** (serverless, nativo da AWS).
-- Pipeline como **DAG**: dependências explícitas, ordem garantida, falhas tratadas.
-- Escolha pelo contexto: migração de Airflow → MWAA; nascer na AWS → Step Functions.
+- **Orquestração é sobre dependências e falhas**, não só "rodar na ordem".
+- **DAG** (Airflow) e **máquina de estados** (Step Functions) resolvem o mesmo
+  problema com modelos diferentes.
+- No Step Functions, **Retry/Catch** tornam o tratamento de erro **declarativo**.
+- Escolha: migrar Airflow → **MWAA**; nascer na AWS → **Step Functions**
+  (**Standard** para ETL).
 
 ### Próxima aula (quinta): **Amazon EMR** — o motor pesado (Hadoop/Spark
 ### gerenciado). Atenção: lab com custo (~US$ 1) e dry-run reforçado.
