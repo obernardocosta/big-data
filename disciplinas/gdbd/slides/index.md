@@ -35,3 +35,7 @@ src: ./aula-01-catalogo.md
 ---
 src: ./aula-02-athena.md
 ---
+
+---
+src: ./aula-03-processamento.md
+---

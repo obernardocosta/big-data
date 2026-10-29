@@ -81,10 +81,11 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 
 ### Migração das aulas (em andamento)
 - [x] **Aula 2** — Athena/Presto + particionamento (Labs 03 e 04).
-- [ ] **Aulas 3–7** (slides 92–179): Glue Job/Spark, orquestração
-  (Airflow/Step Functions), EMR, Data Lake.
-  - Criar os demais labs: Spark serverless (Glue Job), EMR workshop
-    (lab caro ~US$1 — candidato nº1 a dry-run reforçado), Data Lake.
+- [x] **Aula 3** — Processamento: AWS Glue Job / Spark serverless (Lab 05).
+- [ ] **Aulas 4–7** (slides 106–179): orquestração (Airflow/Step Functions),
+  EMR, Data Lake.
+  - Criar os demais labs: EMR workshop (lab caro ~US$1 — candidato nº1 a
+    dry-run reforçado), Data Lake.
   - Lembrar: o lab de EMR/GPU foi o que falhou na turma passada. Avaliar troca.
 
 ### Depois de validar com você
@@ -113,6 +114,11 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
   sozinho quando `disciplinas/pdn/slides/index.md` existir.
 - Avisos não-bloqueantes do Actions: deprecação do Node 20 nas actions e
   migração futura do runner `ubuntu-latest`. Nada quebra hoje.
+- **2026-10-29**: o `node_modules/` foi perdido numa cópia de pasta (ele é
+  gitignored e não acompanha cópia). Restaurado com `npm ci`. Para buildar
+  localmente use `npx slidev build ...` **com as dependências instaladas**; se
+  o npx tentar baixar `slidev@*` do registry e der 404, é sinal de que o
+  `node_modules` sumiu — rode `npm ci` de novo.
 
 ## Como retomar pelo Kiro CLI
 
