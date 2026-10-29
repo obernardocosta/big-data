@@ -103,17 +103,24 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 - `agenda/plano-de-aula.md` e `avaliacao/` ajustados.
 - `slidev build` da PDN passa; `npm run build:all` gera `dist/gdbd` e `dist/pdn`.
 
-### Grade horária real aplicada ✅ (2026-10-29)
-- **GDBD**: 6 aulas = 4× 18h–22h (ter/qui, teoria+prática) + 2× sábado 8h–13h
-  (labs pesados: EMR e Data Lake). Refletido no plano-de-aula da GDBD.
-- **PDN**: 3 aulas = 2× 18h–22h (ter/qui) + 1× sábado 8h–13h (dia de labs).
-  Refletido no plano-de-aula da PDN.
+### Grade horária real aplicada ✅ (2026-10-29, corrigida)
+- As aulas seguem a **sequência da semana**: **terça → quinta → sábado**,
+  intercaladas (NÃO agrupadas por tipo). Noturnas começam **18h30** (não 18h):
+  **18h30–22h** (~3h30); sábado **8h–13h** (~5h).
+- **GDBD** (6 aulas, 2 semanas): S1 ter(A1)/qui(A2)/sáb(A3) · S2 ter(A4)/qui(A5)/sáb(A6).
+  Sábados = Aulas 3 e 6. Obs.: o Lab 06 (EMR) cai numa **quinta (3h30)** — dry-run
+  reforçado + parada segura rígida.
+- **PDN** (3 aulas, 1 semana): ter(A1)/qui(A2)/sáb(A3). Sábado (A3) = dia de labs.
+- Timeboxes dos planos recalculados para 18h30–22h e para a cadência correta.
 
-### Página inicial estilo "sumário de livro" ✅ (2026-10-29)
-- `site/index.html` reescrita: lista as duas disciplinas com cada aula linkando
-  **direto ao capítulo** (`/gdbd/aula-N`, `/pdn/aula-N`), sem passar por todos
-  os slides. Habilitado por `routeAlias: aula-N` no slide de abertura de cada
-  aula (deep link resolvido via SPA + `404.html` do Slidev no Pages).
+### Deep links por aula no Pages ✅ (2026-10-29)
+- `routeAlias: aula-N` em cada slide de abertura; página inicial (`site/index.html`)
+  é um **sumário** com link direto por aula.
+- O Pages não faz fallback de SPA em subpasta — por isso o workflow agora **gera
+  um arquivo físico por alias** (`<deck>/aula-N/index.html`, cópia do `404.html`
+  do deck = a SPA). Os aliases são lidos dos `.md` no build.
+- Verificado AO VIVO: `/big-data/{gdbd,pdn}/aula-N/` → HTTP 200 servindo a SPA
+  correta. Sumário em https://obernardocosta.github.io/big-data/.
 
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
