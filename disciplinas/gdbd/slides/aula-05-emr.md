@@ -210,6 +210,10 @@ Lab 06 — EMR workshop (cluster + Spark)
 
 ---
 
+---
+routeAlias: lab-6
+---
+
 ## Prática: Amazon EMR
 
 **Problema:** subir um cluster EMR, rodar um ETL em Spark e (extra) orquestrar os

@@ -194,6 +194,10 @@ Lab B — streaming de ponta a ponta
 
 ---
 
+---
+routeAlias: lab-b
+---
+
 ## Lab B — começamos agora
 
 Pipeline: **produtor (jogos reais) → Kinesis → Firehose → S3**. Hoje montamos

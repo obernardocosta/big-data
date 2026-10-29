@@ -227,6 +227,10 @@ Lab 05 — Spark serverless com AWS Glue Job
 
 ---
 
+---
+routeAlias: lab-5
+---
+
 ## Prática: Spark serverless
 
 **Problema:** transformar os dados da Premier League (18/19):

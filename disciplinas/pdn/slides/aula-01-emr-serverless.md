@@ -156,6 +156,10 @@ Lab 01 — primeiro job PySpark (início hoje)
 
 ---
 
+---
+routeAlias: lab-a
+---
+
 ## Lab 01 — começamos agora, terminamos no sábado
 
 Hoje: **pré-requisitos + primeiro job**. O aprofundamento (dependências Python,

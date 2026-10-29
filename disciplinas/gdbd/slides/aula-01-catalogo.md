@@ -326,6 +326,8 @@ layout: section
 Lab 01 — AWS Glue Data Catalog
 
 ---
+routeAlias: lab-1
+---
 
 ## Prática: AWS Glue Data Catalog
 
@@ -373,6 +375,10 @@ layout: center
 Tabela de preços: https://aws.amazon.com/glue/pricing/
 </div>
 
+---
+
+---
+routeAlias: lab-2
 ---
 
 ## Prática: AWS Glue Crawler

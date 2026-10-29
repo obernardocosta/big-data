@@ -81,6 +81,23 @@
       }
       .titulo { flex: 1; }
       .meta { flex: 0 0 auto; font-size: 0.78rem; opacity: 0.55; white-space: nowrap; }
+      .labs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.6rem;
+        padding: 0.1rem 0.5rem 0.6rem 2.1rem;
+        margin-top: -0.4rem;
+      }
+      .labs a {
+        font-size: 0.76rem;
+        color: #94a3b8;
+        text-decoration: none;
+        border: 1px solid #334155;
+        border-radius: 999px;
+        padding: 0.1rem 0.6rem;
+        transition: color 0.12s ease, border-color 0.12s ease;
+      }
+      .labs a:hover { color: #38bdf8; border-color: #38bdf8; }
       footer { text-align: center; padding: 0 1.5rem 3rem; font-size: 0.85rem; opacity: 0.55; }
       .hint { text-align: center; font-size: 0.85rem; opacity: 0.6; margin: 0 1.5rem 1rem; }
     </style>
@@ -107,33 +124,50 @@
           <li><a href="./gdbd/aula-1">
             <span class="num">1</span>
             <span class="titulo">Catálogo de Dados (Glue Data Catalog)</span>
-            <span class="meta">S1 · terça · labs 01–02</span>
-          </a></li>
+            <span class="meta">S1 · terça</span>
+          </a>
+          <div class="labs">
+            <a href="./gdbd/lab-1">Lab 01 · Glue Data Catalog</a>
+            <a href="./gdbd/lab-2">Lab 02 · Glue Crawler</a>
+          </div></li>
           <li><a href="./gdbd/aula-2">
             <span class="num">2</span>
             <span class="titulo">Consultando com SQL (Athena) + particionamento</span>
-            <span class="meta">S1 · quinta · labs 03–04</span>
-          </a></li>
+            <span class="meta">S1 · quinta</span>
+          </a>
+          <div class="labs">
+            <a href="./gdbd/lab-3">Lab 03 · Queries no Athena</a>
+            <a href="./gdbd/lab-4">Lab 04 · Particionamento</a>
+          </div></li>
           <li><a href="./gdbd/aula-3">
             <span class="num">3</span>
             <span class="titulo">Processamento — Glue Job / Spark serverless</span>
-            <span class="meta">S1 · sábado · lab 05</span>
-          </a></li>
+            <span class="meta">S1 · sábado</span>
+          </a>
+          <div class="labs">
+            <a href="./gdbd/lab-5">Lab 05 · Spark serverless (Glue Job)</a>
+          </div></li>
           <li><a href="./gdbd/aula-4">
             <span class="num">4</span>
             <span class="titulo">Orquestração — Airflow → MWAA / Step Functions</span>
-            <span class="meta">S2 · terça</span>
+            <span class="meta">S2 · terça · conceitual</span>
           </a></li>
           <li><a href="./gdbd/aula-5">
             <span class="num">5</span>
             <span class="titulo">Amazon EMR — Hadoop/Spark gerenciado</span>
-            <span class="meta">S2 · quinta · lab 06</span>
-          </a></li>
+            <span class="meta">S2 · quinta</span>
+          </a>
+          <div class="labs">
+            <a href="./gdbd/lab-6">Lab 06 · EMR workshop (~US$ 1)</a>
+          </div></li>
           <li><a href="./gdbd/aula-6">
             <span class="num">6</span>
             <span class="titulo">Data Lake — 3 camadas (fechamento)</span>
-            <span class="meta">S2 · sábado · lab 07</span>
-          </a></li>
+            <span class="meta">S2 · sábado</span>
+          </a>
+          <div class="labs">
+            <a href="./gdbd/lab-7">Lab 07 · Data Lake 3 camadas (final)</a>
+          </div></li>
         </ol>
       </section>
 
@@ -148,18 +182,27 @@
           <li><a href="./pdn/aula-1">
             <span class="num">1</span>
             <span class="titulo">Processamento serverless — EMR Serverless</span>
-            <span class="meta">terça · lab A</span>
-          </a></li>
+            <span class="meta">terça</span>
+          </a>
+          <div class="labs">
+            <a href="./pdn/lab-a">Lab A · EMR Serverless (PySpark)</a>
+          </div></li>
           <li><a href="./pdn/aula-2">
             <span class="num">2</span>
             <span class="titulo">Streaming na AWS — Kinesis + Firehose + Spark</span>
-            <span class="meta">quinta · lab B</span>
-          </a></li>
+            <span class="meta">quinta</span>
+          </a>
+          <div class="labs">
+            <a href="./pdn/lab-b">Lab B · Kinesis + Firehose + Spark</a>
+          </div></li>
           <li><a href="./pdn/aula-3">
             <span class="num">3</span>
             <span class="titulo">Machine Learning (SageMaker) + dia de labs</span>
-            <span class="meta">sábado · lab C + A/B</span>
-          </a></li>
+            <span class="meta">sábado</span>
+          </a>
+          <div class="labs">
+            <a href="./pdn/lab-c">Lab C · SageMaker (treino + deploy)</a>
+          </div></li>
         </ol>
       </section>
     </main>

@@ -142,6 +142,10 @@ Todos usam dados **públicos e atuais** (openfootball, sem API key). Rode o
 
 ---
 
+---
+routeAlias: lab-c
+---
+
 ## Lab C — SageMaker (agora)
 
 - Preparar execution role + dados; disparar um **Training Job**.

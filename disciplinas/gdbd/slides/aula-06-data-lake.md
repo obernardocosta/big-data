@@ -148,6 +148,10 @@ Lab Final — Data Lake de 3 camadas
 
 ---
 
+---
+routeAlias: lab-7
+---
+
 ## Prática: Data Lake de 3 camadas
 
 **Problema:** construir um Data Lake para os dados da Premier League, com as três

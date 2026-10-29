@@ -246,6 +246,10 @@ Lab 03 — Rodando queries no Amazon Athena
 
 ---
 
+---
+routeAlias: lab-3
+---
+
 ## Prática: queries no Athena
 
 **Problema:** responder as perguntas de negócio sobre os dados catalogados no
@@ -344,6 +348,10 @@ flowchart TB
 partições. O "porquê" é o custo por TB escaneado.
 -->
 
+---
+
+---
+routeAlias: lab-4
 ---
 
 ## Prática: particionando
