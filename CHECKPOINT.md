@@ -92,13 +92,27 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
    - Fonte: exportar o PDF do PDN para `_fonte/` como foi feito com o GDBD.
 7. [ ] Skill `criar-avaliacao` (opcional, formaliza o fluxo de notas).
 
-### Autorizado por você (2026-10-29) — em andamento
-8. [ ] `git init` + primeiro commit + criar repositório remoto (via `gh`).
-9. [ ] Workflow de GitHub Actions para publicar no Pages (`/gdbd`, `/pdn`).
+### Publicação (GitHub + Pages) — CONCLUÍDO ✅ (2026-10-29)
+8. [x] `git init` + commit inicial + repo remoto `obernardocosta/big-data`
+   (público) criado via `gh` e push de `main`.
+9. [x] Workflow de GitHub Actions publicando no Pages. **Site no ar:**
+   - Raiz: https://obernardocosta.github.io/big-data/ (HTTP 200)
+   - GDBD: https://obernardocosta.github.io/big-data/gdbd/ (HTTP 200)
+   - PDN:  https://obernardocosta.github.io/big-data/pdn/ (build automático quando a disciplina existir)
 
 ### Só com você presente (NÃO fazer sozinho)
 10. [ ] Rodar os `dry-run.sh` com credencial AWS real e executar um lab ponta a
     ponta para validar (custo real envolvido).
+
+## Notas de publicação
+
+- O repo é **público** (Pages em repo privado exigiria plano pago).
+- O token do `gh` precisou do escopo **`workflow`** (`gh auth refresh -s workflow`)
+  e do credential helper (`gh auth setup-git`) para o push HTTPS funcionar.
+- O deploy roda a cada push em `main`. O build do PDN é condicional: ativa
+  sozinho quando `disciplinas/pdn/slides/index.md` existir.
+- Avisos não-bloqueantes do Actions: deprecação do Node 20 nas actions e
+  migração futura do runner `ubuntu-latest`. Nada quebra hoje.
 
 ## Como retomar pelo Kiro CLI
 
