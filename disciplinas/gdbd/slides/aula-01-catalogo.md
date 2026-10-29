@@ -1,5 +1,6 @@
 ---
 layout: section
+routeAlias: aula-1
 ---
 
 # Aula 1 — Catálogo de Dados

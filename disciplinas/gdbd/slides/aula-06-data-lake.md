@@ -1,5 +1,6 @@
 ---
 layout: section
+routeAlias: aula-6
 ---
 
 # Aula 6 — Data Lake

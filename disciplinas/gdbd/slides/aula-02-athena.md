@@ -1,5 +1,6 @@
 ---
 layout: section
+routeAlias: aula-2
 ---
 
 # Aula 2 — Consultando o catálogo com SQL

@@ -1,0 +1,66 @@
+
+===== SLIDE 1 =====
+Processamento
+Big Data na Nuvem - Aula 01
+Bernardo 
+Costa 
+
+===== SLIDE 2 =====
+● Opção Serverless do Amazon EMR (lançado em 2022)
+● Principal vantagem é ser serverless
+● Abstração passa a ser por recursos (vCPU e RAM)
+● Não é necessário ter uma VPC
+● Roles por job e não por cluster
+O que é o Amazon EMR Serverless
+===== SLIDE 3 =====
+● Deﬁnição dos Jobs
+○ job 1: lê a tabela A e escreve na B;
+○ job 2: lê as tabelas B e C e escreve na D.
+● No EMR Tradicional (2 perguntas)
+○ Que permissão deveríamos criar?
+○ Quem usaria (assume role) essas permissões?
+● No EMR Serverless (RuntimeRole)
+○ runtime-role-job 1: permissão de leitura da tabela A e escrita na tabela B;
+○ runtime-role-job 2: permissão de leitura das tabelas B e C e escrita na tabela D.
+Roles por job
+===== SLIDE 4 =====
+Application → Cluster
+
+===== SLIDE 5 =====
+Submissão de Jobs Spark
+
+===== SLIDE 6 =====
+Comparativo de Preço
+
+===== SLIDE 7 =====
+Comparativo de TCO
+
+===== SLIDE 8 =====
+● Artigo medium
+○ https://medium.com/@bernardo.costa/emr-serverless-review-51b659f2ca54
+● Exemplo GitHub
+○ https://github.com/aws-samples/emr-serverless-samples
+Referências para estudos posteriores
+===== SLIDE 9 =====
+● Primeiro, execute os "Pre-Requisites"
+● Obrigatório: Lab EMR Serverless PySpark job
+● Obrigatório 2: Lab Python Dependencies
+● Ponto Extra 2: Lab EMR Serverless Hive query 
+● Tempo reservado: 2h30 hora
+●  Instruções
+○ https://github.com/aws-samples/emr-serverless-samples
+Lab - EMR Serverless
+===== SLIDE 10 =====
+● Dividam-se em grupos
+● Cada grupo receberá por sorteio 1 serviço disponível 
+no Amazon EMR
+● Cada grupo fará uma apresentação
+○ Crie slides
+○ Explique para que serve o serviço
+○ Explique a arquitetura do serviço
+○ Concorrentes ou alternativas do serviço
+○ extra: implemente um exemplo no serviço
+○ 10-15 minutos sobre o serviço sorteado 
+■ (ﬁque dentro desse intervalo!)
+● Nota irá compor com as provas
+Trabalho - Seminário

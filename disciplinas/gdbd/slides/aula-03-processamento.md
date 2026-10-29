@@ -1,5 +1,6 @@
 ---
 layout: section
+routeAlias: aula-3
 ---
 
 # Aula 3 — Processamento de dados

@@ -87,15 +87,33 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 - [x] **Aula 6** — Data Lake 3 camadas (Lab 07, lab final).
 - GDBD: 6 aulas, 7 labs. `slidev build` passa (exit 0).
 
-### Disciplina PDN — fatia vertical inicial ✅
-- [x] `disciplinas/pdn/` criada com a estrutura da GDBD:
-  - Slides: `index.md` + `aula-01-streaming.md` (Kafka → Kinesis/Firehose).
-  - Lab: `lab-01-kinesis-firehose/` (4 arquivos; dry-run read-only validado).
-  - `agenda/plano-de-aula.md` e `avaliacao/` (README + CSV de exemplo).
+### Disciplina PDN — REESCRITA com material real ✅ (2026-10-29)
+- Material real extraído dos PDFs das turmas 2024.02/2025.01 para
+  `_fonte/pdn_*.txt`. Tema real = **EMR Serverless + Machine Learning (SageMaker)
+  + custos**, NÃO streaming (a 1ª versão com Kinesis foi substituída).
+- Slides (`disciplinas/pdn/slides/`):
+  - `aula-01-emr-serverless.md` — EMR Serverless (RuntimeRole por job, preço/TCO)
+    + Trabalho/Seminário.
+  - `aula-02-sagemaker.md` — ML na AWS, SageMaker, pipeline (Batch vs real time),
+    extra de custos (DynamoDB vs S3 vs Firehose).
+  - `aula-03-labs.md` — dia de labs (sábado).
+- Labs: `lab-01-emr-serverless/` e `lab-02-sagemaker/` (4 arquivos cada; dry-runs
+  read-only validados; destacam custo e limpeza — Endpoint do SageMaker é o
+  maior risco). O lab de streaming (Kinesis) foi removido.
+- `agenda/plano-de-aula.md` e `avaliacao/` ajustados.
 - `slidev build` da PDN passa; `npm run build:all` gera `dist/gdbd` e `dist/pdn`.
-- **Pendente de material real**: a PDN não tem PDF original em `_fonte/`. A
-  Aula 1 foi estruturada pelo domínio + padrão da GDBD, para o instrutor refinar
-  e então migrar as demais aulas (esqueleto no plano-de-aula da PDN).
+
+### Grade horária real aplicada ✅ (2026-10-29)
+- **GDBD**: 6 aulas = 4× 18h–22h (ter/qui, teoria+prática) + 2× sábado 8h–13h
+  (labs pesados: EMR e Data Lake). Refletido no plano-de-aula da GDBD.
+- **PDN**: 3 aulas = 2× 18h–22h (ter/qui) + 1× sábado 8h–13h (dia de labs).
+  Refletido no plano-de-aula da PDN.
+
+### Página inicial estilo "sumário de livro" ✅ (2026-10-29)
+- `site/index.html` reescrita: lista as duas disciplinas com cada aula linkando
+  **direto ao capítulo** (`/gdbd/aula-N`, `/pdn/aula-N`), sem passar por todos
+  os slides. Habilitado por `routeAlias: aula-N` no slide de abertura de cada
+  aula (deep link resolvido via SPA + `404.html` do Slidev no Pages).
 
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.

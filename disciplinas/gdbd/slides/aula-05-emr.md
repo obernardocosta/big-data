@@ -1,5 +1,6 @@
 ---
 layout: section
+routeAlias: aula-5
 ---
 
 # Aula 5 — Amazon EMR

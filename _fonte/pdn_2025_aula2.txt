@@ -1,0 +1,152 @@
+
+===== SLIDE 1 =====
+Processamento de 
+Big Data na Nuvem 
+Bernardo 
+Costa 
+
+===== SLIDE 2 =====
+e-core .com
+Introdução ao Amazon SageMaker
+===== SLIDE 3 =====
+ML na AWS
+
+===== SLIDE 4 =====
+ML na AWS
+Developer
+===== SLIDE 5 =====
+ML na AWS
+Developer
+Data Scientist
+===== SLIDE 6 =====
+ML na AWS
+Developer
+Data Scientist
+Researcher
+===== SLIDE 7 =====
+1. Data Wrangling
+● Set up e gerência do ambiente dos 
+Notebooks
+● Enviar dados para os Notebooks de 
+modo seguro
+Etapas do processo de ML 1/3
+
+===== SLIDE 8 =====
+2. Experimentation
+● Set up e gerência de clusters
+● Escalar/Distribuir Algoritmos de ML
+Etapas do processo de ML 2/3
+
+===== SLIDE 9 =====
+3. Deployment
+● Set up e gerência de clusters
+● Criar e gerenciar escala de APIs de 
+inferência
+● Testar, versionar e monitorar
+Etapas do processo de ML 3/3
+
+===== SLIDE 10 =====
+3. Deployment
+● Set up e gerência de clusters
+● Criar e gerenciar escala de APIs de 
+inferência
+● Testar, versionar e monitorar
+Etapas do processo de ML 3/3
+
+===== SLIDE 11 =====
+e-core .com
+Amazon SageMaker é o serviço da AWS que provê 
+ferramentas mais rápidas e fáceis para o dia a dia do 
+trabalho de Data Science para colocar os modelos de 
+Machine Learning idealizados em produção
+
+===== SLIDE 12 =====
+● Ferramenta de Machine Learning de ponta a ponta
+● Fácil de aprender
+● Flexível em frameworks
+● Pagamento por segundo (Pay as you go)
+Amazon Sagemaker
+===== SLIDE 13 =====
+● Algoritmos otimizados pela Amazon
+● Apache Spark
+● Deep Learning
+○ Gluon, Tensorﬂow, mxnet
+● Customização
+○ Traga seu container Docker para AWS
+Facilitador de treinamento distribuído
+===== SLIDE 14 =====
+● Baseado em Jupyter Notebook
+● Arquitetura Modular
+● Framework para gerencia de hardware
+● Registrador de Treinamento
+● Registrador de Modelos
+● Exportação automática do modelo para produção
+Como funciona?
+===== SLIDE 15 =====
+Como funciona na prática - Notebooks
+
+===== SLIDE 16 =====
+Manipulação dos dados
+
+===== SLIDE 17 =====
+Treinamento do modelo
+
+===== SLIDE 18 =====
+Deploy do Modelo
+
+===== SLIDE 19 =====
+Resumo do Amazon SageMaker
+
+===== SLIDE 20 =====
+Resumo do Amazon SageMaker
+
+===== SLIDE 21 =====
+● Tempo reservado: 1h30min
+●  Instruções
+○ https://docs.google.com/document/d/1MUzwtfhrXPcsWEhgV-s7OPq_iXPKYGrbOrpbnp26FB0
+/edit?usp=sharing
+● Notebook
+○ https://drive.google.com/file/d/1gKDQbBQJ9HzaaHwcJEhJCyyDyhcLf8HI/view
+Lab - Amazon SageMaker
+===== SLIDE 22 =====
+e-core .com
+Implementação de pipeline de Machine 
+Learning
+===== SLIDE 23 =====
+O Fluxo com Amazon SageMaker
+
+===== SLIDE 24 =====
+● Real time ou Batch, qual é o mais desaﬁador?
+● Batch Transform
+O Deploy de modelos de ML na AWS
+===== SLIDE 25 =====
+● Real time ou Batch, qual é o mais desaﬁador?
+● Batch Transform
+O Deploy de modelos de ML na AWS
+
+===== SLIDE 26 =====
+E o real time?
+
+===== SLIDE 27 =====
+E o real time?
+
+===== SLIDE 28 =====
+Fluxo básico de produção
+
+===== SLIDE 29 =====
+Fluxo básico de produção
+
+===== SLIDE 30 =====
+Fluxo básico de produção
+
+===== SLIDE 31 =====
+Exemplo de arquitetura
+App (EC2)
+===== SLIDE 32 =====
+● https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-batch.html
+● https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipelines.html
+● https://aws.amazon.com/pt/sagemaker/pipelines/
+● https://github.com/aws/amazon-sagemaker-examples
+● https://docs.aws.amazon.com/pt_br/emr/latest/ReleaseGuide/emr-spark-sagemaker.
+html
+Referências para leituras futuras

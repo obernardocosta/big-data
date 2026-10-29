@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 #
-# dry-run do Lab 01 (PDN) - Kinesis + Firehose -> S3
+# dry-run do Lab 02 (PDN) - Amazon SageMaker
 #
-# Valida que o ambiente esta pronto SEM criar o stream (o shard e o que gera
-# custo). Somente chamadas read-only (sts/list/describe/get).
+# Valida que o ambiente esta pronto SEM treinar modelo nem criar endpoint
+# (o que gera custo, especialmente o ENDPOINT). Somente chamadas read-only.
 # Rode isto ANTES da aula.
 #
 # Uso:
 #   ./dry-run.sh
-#   REGION=us-east-2 ./dry-run.sh
+#   REGION=us-east-2 SM_ROLE=SageMakerExecutionRole ./dry-run.sh
 #
 set -uo pipefail
 
 REGION="${REGION:-us-east-1}"
+SM_ROLE="${SM_ROLE:-SageMakerExecutionRole}"
 ok=0
 fail=0
 
@@ -20,8 +21,8 @@ pass() { printf '  \033[32m✅ %s\033[0m\n' "$1"; ok=$((ok+1)); }
 bad()  { printf '  \033[31m❌ %s\033[0m\n' "$1"; fail=$((fail+1)); }
 info() { printf '  \033[36mℹ️  %s\033[0m\n' "$1"; }
 
-echo "== Dry-run Lab 01 PDN (Kinesis + Firehose) | regiao alvo: $REGION =="
-echo "   (NAO cria stream; criar o stream/shard gera custo)"
+echo "== Dry-run Lab 02 PDN (SageMaker) | regiao alvo: $REGION =="
+echo "   (NAO treina nem cria endpoint; o ENDPOINT cobra enquanto existir)"
 
 # 1. AWS CLI
 echo "[1/6] AWS CLI"
@@ -54,33 +55,31 @@ else
   info "Pulado (sem credencial)."
 fi
 
-# 4. Permissoes Kinesis (read-only)
-echo "[4/6] Permissoes Kinesis (read-only)"
-if aws kinesis list-streams --region "$REGION" >/dev/null 2>&1; then
-  pass "kinesis:ListStreams permitido."
+# 4. Permissao SageMaker (read-only)
+echo "[4/6] Permissao SageMaker (read-only)"
+if aws sagemaker list-endpoints --region "$REGION" >/dev/null 2>&1; then
+  pass "sagemaker:ListEndpoints permitido."
 else
-  bad "Sem permissao para Kinesis (ListStreams)."
+  bad "Sem permissao para SageMaker (ListEndpoints)."
 fi
 
-# 5. Permissoes Firehose (read-only) e S3
-echo "[5/6] Permissoes Firehose / S3 (read-only)"
-if aws firehose list-delivery-streams --region "$REGION" >/dev/null 2>&1; then
-  pass "firehose:ListDeliveryStreams permitido."
+# 5. Execution role do SageMaker
+echo "[5/6] Execution role do SageMaker ('$SM_ROLE')"
+if aws iam get-role --role-name "$SM_ROLE" >/dev/null 2>&1; then
+  pass "Execution role '$SM_ROLE' existe."
+  info "Garanta acesso ao bucket do lab (dados de treino + artefatos do modelo)."
+elif aws iam list-roles --max-items 1 >/dev/null 2>&1; then
+  info "Role nao existe, mas voce tem iam:ListRoles (provavel poder cria-la)."
 else
-  bad "Sem permissao para Firehose (ListDeliveryStreams)."
+  bad "Sem a execution role e sem permissao de IAM para cria-la."
 fi
+
+# 6. S3
+echo "[6/6] Permissoes S3"
 if aws s3 ls >/dev/null 2>&1; then
   pass "s3:ListAllMyBuckets permitido."
 else
   bad "Sem permissao para listar buckets S3."
-fi
-
-# 6. Permissao de IAM (o lab cria uma role para o Firehose)
-echo "[6/6] Permissao IAM (o lab cria uma role para o Firehose assumir)"
-if aws iam list-roles --max-items 1 >/dev/null 2>&1; then
-  pass "iam:ListRoles permitido (provavel poder criar a role do Firehose)."
-else
-  bad "Sem permissao de IAM. Voce precisa poder criar/vincular a role do Firehose."
 fi
 
 echo
@@ -89,4 +88,4 @@ if [ "$fail" -gt 0 ]; then
   echo "Resolva os itens marcados com ❌ antes da aula. Veja troubleshooting.md."
   exit 1
 fi
-echo "Ambiente pronto para o Lab 01 (PDN). Lembre-se: o shard gera custo; limpe ao final."
+echo "Ambiente pronto para o Lab 02 (PDN). LEMBRE-SE: apague o ENDPOINT ao terminar."

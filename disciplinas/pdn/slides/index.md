@@ -15,7 +15,7 @@ mdc: true
 
 # Processamento de Big Data na Nuvem
 
-Processamento em lote e em streaming na AWS
+EMR Serverless, Machine Learning na AWS (SageMaker) e arquitetura de custos
 
 <div class="pt-12">
   <span class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -25,13 +25,20 @@ Processamento em lote e em streaming na AWS
 
 <!--
 Deck principal da PDN. Cada aula é um arquivo importado via `src` abaixo.
-Para adicionar uma aula nova, use a skill criar-aula.
+Origem: PDFs das turmas 2024.02 e 2025.01 (extraídos em _fonte/pdn_*.txt).
 
-NOTA: esta disciplina ainda não tem o PDF original extraído em _fonte/. A
-Aula 1 foi estruturada a partir do domínio e do padrão da GDBD, para servir de
-fatia vertical inicial — o instrutor refina o conteúdo com o material real.
+Grade: 3 aulas — 2 de 18h-22h (terça/quinta, teoria+prática mesclada) e
+1 de 8h-13h (sábado, foco em labs). Ver agenda/plano-de-aula.md.
 -->
 
 ---
-src: ./aula-01-streaming.md
+src: ./aula-01-emr-serverless.md
+---
+
+---
+src: ./aula-02-sagemaker.md
+---
+
+---
+src: ./aula-03-labs.md
 ---

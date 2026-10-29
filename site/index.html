@@ -6,51 +6,164 @@
     <title>Material de Big Data — GDBD &amp; PDN</title>
     <style>
       :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
       body {
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
         margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
         background: #0f172a;
         color: #e2e8f0;
+        line-height: 1.5;
       }
-      main { max-width: 42rem; padding: 2rem; text-align: center; }
-      h1 { font-size: 1.9rem; margin-bottom: 0.25rem; }
-      p.sub { opacity: 0.7; margin-top: 0; }
-      .cards { display: grid; gap: 1rem; margin-top: 2.5rem; grid-template-columns: 1fr 1fr; }
-      @media (max-width: 36rem) { .cards { grid-template-columns: 1fr; } }
-      a.card {
-        display: block;
-        padding: 1.5rem;
-        border-radius: 0.75rem;
+      header {
+        text-align: center;
+        padding: 3rem 1.5rem 1rem;
+      }
+      header h1 { font-size: 2rem; margin: 0 0 0.25rem; }
+      header p { opacity: 0.7; margin: 0; }
+      main {
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 1.5rem 1.5rem 4rem;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 48rem) { main { grid-template-columns: 1fr; } }
+      section {
         background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 0.9rem;
+        padding: 1.5rem;
+      }
+      .disc-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+      .disc-head h2 { margin: 0; font-size: 1.35rem; }
+      .disc-head a.deck {
+        font-size: 0.85rem;
+        color: #38bdf8;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .disc-head a.deck:hover { text-decoration: underline; }
+      .disc-sub { opacity: 0.7; font-size: 0.92rem; margin: 0 0 1rem; }
+      ol.sumario {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: aula;
+      }
+      ol.sumario li { margin: 0; }
+      ol.sumario a {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        padding: 0.6rem 0.5rem;
+        border-radius: 0.5rem;
         color: inherit;
         text-decoration: none;
-        border: 1px solid #334155;
-        transition: transform 0.15s ease, border-color 0.15s ease;
+        border-bottom: 1px solid #293548;
+        transition: background 0.12s ease;
       }
-      a.card:hover { transform: translateY(-3px); border-color: #38bdf8; }
-      a.card strong { display: block; font-size: 1.2rem; margin-bottom: 0.35rem; }
-      a.card span { opacity: 0.75; font-size: 0.95rem; }
-      footer { margin-top: 2.5rem; font-size: 0.85rem; opacity: 0.6; }
+      ol.sumario li:last-child a { border-bottom: none; }
+      ol.sumario a:hover { background: #273449; }
+      ol.sumario a:hover .titulo { color: #38bdf8; }
+      .num {
+        flex: 0 0 auto;
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+        color: #38bdf8;
+        min-width: 1.5rem;
+      }
+      .titulo { flex: 1; }
+      .meta { flex: 0 0 auto; font-size: 0.78rem; opacity: 0.55; white-space: nowrap; }
+      footer { text-align: center; padding: 0 1.5rem 3rem; font-size: 0.85rem; opacity: 0.55; }
+      .hint { text-align: center; font-size: 0.85rem; opacity: 0.6; margin: 0 1.5rem 1rem; }
     </style>
   </head>
   <body>
-    <main>
+    <header>
       <h1>Material de Big Data</h1>
-      <p class="sub">Disciplinas ministradas por Bernardo Costa</p>
-      <div class="cards">
-        <a class="card" href="./gdbd/">
-          <strong>GDBD</strong>
-          <span>Gerenciamento de Dados para Big Data</span>
-        </a>
-        <a class="card" href="./pdn/">
-          <strong>PDN</strong>
-          <span>Processamento de Big Data na Nuvem</span>
-        </a>
-      </div>
-      <footer>Slides em Slidev · publicado via GitHub Pages</footer>
+      <p>Disciplinas ministradas por Bernardo Costa</p>
+    </header>
+
+    <p class="hint">
+      Clique numa aula para abrir direto no capítulo — sem passar por todos os slides.
+    </p>
+
+    <main>
+      <!-- GDBD -->
+      <section>
+        <div class="disc-head">
+          <h2>GDBD</h2>
+          <a class="deck" href="./gdbd/">abrir deck completo →</a>
+        </div>
+        <p class="disc-sub">Gerenciamento de Dados para Big Data · 6 aulas</p>
+        <ol class="sumario">
+          <li><a href="./gdbd/aula-1">
+            <span class="num">1</span>
+            <span class="titulo">Catálogo de Dados (Glue Data Catalog)</span>
+            <span class="meta">ter/qui · labs 01–02</span>
+          </a></li>
+          <li><a href="./gdbd/aula-2">
+            <span class="num">2</span>
+            <span class="titulo">Consultando com SQL (Athena) + particionamento</span>
+            <span class="meta">ter/qui · labs 03–04</span>
+          </a></li>
+          <li><a href="./gdbd/aula-3">
+            <span class="num">3</span>
+            <span class="titulo">Processamento — Glue Job / Spark serverless</span>
+            <span class="meta">ter/qui · lab 05</span>
+          </a></li>
+          <li><a href="./gdbd/aula-4">
+            <span class="num">4</span>
+            <span class="titulo">Orquestração — Airflow → MWAA / Step Functions</span>
+            <span class="meta">ter/qui</span>
+          </a></li>
+          <li><a href="./gdbd/aula-5">
+            <span class="num">5</span>
+            <span class="titulo">Amazon EMR — Hadoop/Spark gerenciado</span>
+            <span class="meta">sábado · lab 06</span>
+          </a></li>
+          <li><a href="./gdbd/aula-6">
+            <span class="num">6</span>
+            <span class="titulo">Data Lake — 3 camadas (fechamento)</span>
+            <span class="meta">sábado · lab 07</span>
+          </a></li>
+        </ol>
+      </section>
+
+      <!-- PDN -->
+      <section>
+        <div class="disc-head">
+          <h2>PDN</h2>
+          <a class="deck" href="./pdn/">abrir deck completo →</a>
+        </div>
+        <p class="disc-sub">Processamento de Big Data na Nuvem · 3 aulas</p>
+        <ol class="sumario">
+          <li><a href="./pdn/aula-1">
+            <span class="num">1</span>
+            <span class="titulo">Amazon EMR Serverless + Seminário</span>
+            <span class="meta">ter/qui · lab 01</span>
+          </a></li>
+          <li><a href="./pdn/aula-2">
+            <span class="num">2</span>
+            <span class="titulo">Machine Learning na AWS (SageMaker) + custos</span>
+            <span class="meta">ter/qui · lab 02</span>
+          </a></li>
+          <li><a href="./pdn/aula-3">
+            <span class="num">3</span>
+            <span class="titulo">Dia de laboratórios — EMR Serverless e SageMaker</span>
+            <span class="meta">sábado · labs 01–02</span>
+          </a></li>
+        </ol>
+      </section>
     </main>
+
+    <footer>Slides em Slidev · publicado via GitHub Pages</footer>
   </body>
 </html>

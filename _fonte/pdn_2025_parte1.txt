@@ -1,0 +1,427 @@
+
+===== SLIDE 1 =====
+Processamento
+Big Data na Nuvem - Parte 1
+Bernardo 
+Costa 
+
+===== SLIDE 2 =====
+● Opção Serverless do Amazon EMR (lançado em 2022)
+● Principal vantagem é ser serverless
+● Abstração passa a ser por recursos (vCPU e RAM)
+● Não é necessário ter uma VPC
+● Roles por job e não por cluster
+O que é o Amazon EMR Serverless
+===== SLIDE 3 =====
+● Deﬁnição dos Jobs
+○ job 1: lê a tabela A e escreve na B;
+○ job 2: lê as tabelas B e C e escreve na D.
+● No EMR Tradicional (2 perguntas)
+○ Que permissão deveríamos criar?
+○ Quem usaria (assume role) essas permissões?
+● No EMR Serverless (RuntimeRole)
+○ runtime-role-job 1: permissão de leitura da tabela A e escrita na tabela B;
+○ runtime-role-job 2: permissão de leitura das tabelas B e C e escrita na tabela D.
+Roles por job
+===== SLIDE 4 =====
+Application → Cluster
+
+===== SLIDE 5 =====
+Submissão de Jobs Spark
+
+===== SLIDE 6 =====
+Comparativo de Preço
+
+===== SLIDE 7 =====
+Comparativo de TCO
+
+===== SLIDE 8 =====
+● Artigo medium
+○ https://medium.com/@bernardo.costa/emr-serverless-review-51b659f2ca54
+● Exemplo GitHub
+○ https://github.com/aws-samples/emr-serverless-samples
+Referências para estudos posteriores
+===== SLIDE 9 =====
+● Primeiro, execute os "Pre-Requisites"
+● Obrigatório: Lab EMR Serverless PySpark job
+● Obrigatório 2: Lab Python Dependencies
+● Ponto Extra 2: Lab EMR Serverless Hive query 
+● Tempo reservado: 2h30 hora
+●  Instruções
+○ https://github.com/aws-samples/emr-serverless-samples
+Lab - EMR Serverless
+===== SLIDE 10 =====
+● Dividam-se em grupos
+● Cada grupo receberá por sorteio 1 serviço disponível 
+no Amazon EMR
+● Cada grupo fará uma apresentação
+○ Crie slides
+○ Explique para que serve o serviço
+○ Explique a arquitetura do serviço
+○ Concorrentes ou alternativas do serviço
+○ extra: implemente um exemplo no serviço
+○ 10-15 minutos sobre o serviço sorteado 
+■ (ﬁque dentro desse intervalo!)
+● Nota irá compor com as provas
+Trabalho - Seminário
+
+===== SLIDE 11 =====
+e-core .com
+Amazon SageMaker
+===== SLIDE 12 =====
+e-core .com
+Como colocar Modelos ML em Produção?
+===== SLIDE 13 =====
+● Precisamos pensar em como gerenciar:
+○ Servidor
+○ Python
+○ Bibliotecas
+○ GPU
+○ Treinamento
+○ API
+○ Escala
+○ Monitoramento
+Como colocar Modelos ML em Produção?
+
+===== SLIDE 14 =====
+e-core .com
+Introdução ao Amazon SageMaker
+===== SLIDE 15 =====
+ML na AWS
+
+===== SLIDE 16 =====
+ML na AWS
+Developer
+===== SLIDE 17 =====
+ML na AWS
+Developer
+Data Scientist
+===== SLIDE 18 =====
+ML na AWS
+Developer
+Data Scientist
+Researcher
+===== SLIDE 19 =====
+1. Data Wrangling
+● Set up e gerência do ambiente dos 
+Notebooks
+● Enviar dados para os Notebooks de 
+modo seguro
+Etapas do processo de ML 1/3
+
+===== SLIDE 20 =====
+2. Experimentation
+● Set up e gerência de clusters
+● Escalar/Distribuir Algoritmos de ML
+Etapas do processo de ML 2/3
+
+===== SLIDE 21 =====
+3. Deployment
+● Set up e gerência de clusters
+● Criar e gerenciar escala de APIs de 
+inferência
+● Testar, versionar e monitorar
+Etapas do processo de ML 3/3
+
+===== SLIDE 22 =====
+3. Deployment
+● Set up e gerência de clusters
+● Criar e gerenciar escala de APIs de 
+inferência
+● Testar, versionar e monitorar
+Etapas do processo de ML 3/3
+
+===== SLIDE 23 =====
+e-core .com
+Amazon SageMaker é o serviço da AWS que provê 
+ferramentas mais rápidas e fáceis para o dia a dia do 
+trabalho de Data Science para colocar os modelos de 
+Machine Learning idealizados em produção
+
+===== SLIDE 24 =====
+● Ferramenta de Machine Learning de ponta a ponta
+● Fácil de aprender
+● Flexível em frameworks
+● Pagamento por segundo (Pay as you go)
+Amazon Sagemaker
+===== SLIDE 25 =====
+● Algoritmos otimizados pela Amazon
+● Apache Spark
+● Deep Learning
+○ Gluon, Tensorﬂow, mxnet
+● Customização
+○ Traga seu container Docker para AWS
+Facilitador de treinamento distribuído
+===== SLIDE 26 =====
+● Baseado em Jupyter Notebook
+● Arquitetura Modular
+● Framework para gerencia de hardware
+● Registrador de Treinamento
+● Registrador de Modelos
+● Exportação automática do modelo para produção
+Como funciona?
+===== SLIDE 27 =====
+Como funciona na prática - Notebooks
+
+===== SLIDE 28 =====
+Manipulação dos dados
+
+===== SLIDE 29 =====
+Treinamento do modelo
+
+===== SLIDE 30 =====
+Deploy do Modelo
+
+===== SLIDE 31 =====
+Resumo do Amazon SageMaker
+
+===== SLIDE 32 =====
+Resumo do Amazon SageMaker
+
+===== SLIDE 33 =====
+● ANTES                         AMAZON SAGEMAKER
+○ Servidor              →   Notebook
+○ Python                →   Ambiente gerenciado
+○ Bibliotecas         →   Frameworks integrados
+○ GPU                     →   Infraestrutura sob demanda
+○ Treinamento      →   Training Job
+○ Modelo               →   Model Registry
+○ API                      →   Endpoint
+○ Monitoramento → Monitoring
+Como colocar Modelos ML em Produção?
+→
+===== SLIDE 34 =====
+● Tempo reservado: 1h30min
+●  Instruções
+○ https://docs.google.com/document/d/1MUzwtfhrXPcsWEhgV-s7OPq_iXPKYGrbOrpbnp26FB0
+/edit?usp=sharing
+● Notebook
+○ https://drive.google.com/file/d/1Zilctmz6i_8s-kDalU2jQ7sYy_vrqq0d/view?usp=sharing
+Lab - Amazon SageMaker
+===== SLIDE 35 =====
+e-core .com
+Implementação de pipeline de Machine 
+Learning
+===== SLIDE 36 =====
+O Fluxo com Amazon SageMaker
+
+===== SLIDE 37 =====
+● Real time ou Batch, qual é o mais desaﬁador?
+● Batch Transform
+O Deploy de modelos de ML na AWS
+===== SLIDE 38 =====
+● Real time ou Batch, qual é o mais desaﬁador?
+● Batch Transform
+O Deploy de modelos de ML na AWS
+
+===== SLIDE 39 =====
+E o real time?
+
+===== SLIDE 40 =====
+E o real time?
+
+===== SLIDE 41 =====
+Fluxo básico de produção
+
+===== SLIDE 42 =====
+Fluxo básico de produção
+
+===== SLIDE 43 =====
+Fluxo básico de produção
+
+===== SLIDE 44 =====
+Exemplo de arquitetura
+App (EC2)
+===== SLIDE 45 =====
+● https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-batch.html
+● https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipelines.html
+● https://aws.amazon.com/pt/sagemaker/pipelines/
+● https://github.com/aws/amazon-sagemaker-examples
+● https://docs.aws.amazon.com/pt_br/emr/latest/ReleaseGuide/emr-spark-sagemaker.
+html
+Referências para leituras futuras
+===== SLIDE 46 =====
+e-core .com
+Extra (Dynamo vs S3, Kinesis Data 
+Firehose) -> Qual Arquitetura mais barata?
+===== SLIDE 47 =====
+300 
+escritas/seg
+2.048 bytes 
+Tamanho do objeto
+1.483 
+GB/Mês
+777.600.000 
+Objetos/Mês
+Escolhendo o Data Store: Considerando Custos
+Cenário 1
+DynamoDB S3
+OU
+===== SLIDE 48 =====
+Storage: $??
+PUT/LIST Requests: $??
+Total por mês: $??
+Capacidade de 
+Throughput: $??
+Indexed Data Stored:: $??
+Total por mês: $??
+300 
+escritas/seg
+2.048 bytes 
+Tamanho do objeto
+1.483 
+GB/Mês
+777.600.000 
+Objetos/Mês
+Escolhendo o Data Store: Considerando Custos
+Cenário 1
+DynamoDB
+S3
+===== SLIDE 49 =====
+Storage: $34.11
+PUT/LIST Requests: $3.888,00
+Total por mês: $3.922,11
+Capacidade de 
+Throughput: $??
+Indexed Data Stored:: $??
+Total por mês: $??
+300 
+escritas/seg
+2.048 bytes 
+Tamanho do objeto
+1.483 
+GB/Mês
+777.600.000 
+Objetos/Mês
+Escolhendo o Data Store: Considerando Custos
+Cenário 1
+DynamoDB
+S3
+===== SLIDE 50 =====
+Storage: $34.11
+PUT/LIST Requests: $3.888,00
+Total por mês: $3.922,11
+Capacidade de 
+Throughput: $284,70
+Indexed Data Stored:: $364,50
+Total por mês: $649,20
+300 
+escritas/seg
+2.048 bytes 
+Tamanho do objeto
+1.483 
+GB/Mês
+777.600.000 
+Objetos/Mês
+Escolhendo o Data Store: Considerando Custos
+Cenário 1
+DynamoDB
+S3
+===== SLIDE 51 =====
+300 
+escritas/seg
+2.048 bytes 
+Tamanho do objeto
+1.483 
+GB/Mês
+777.600.000 
+Objetos/Mês
+Escolhendo o Data Store: Considerando custos
+300 
+escritas/seg
+32.768 bytes
+Tamanho do objeto
+23.730
+GB/Mês
+777.600.000 
+Objetos/Mês
+Cenário 1
+Cenário 2
+DynamoDB S3
+OU
+===== SLIDE 52 =====
+Storage: $??
+PUT/LIST Requests: $3.888,00
+Total por mês: $??
+Capacidade de 
+Throughput: $??
+Indexed Data Stored: $??
+Total por mês: $??
+Escolhendo o Data Store: Considerando Custos
+DynamoDB
+S3
+300 
+escritas/seg
+32.768 bytes
+Tamanho do objeto
+23.730
+GB/Mês
+777.600.000 
+Objetos/MêsCenário 2
+===== SLIDE 53 =====
+Storage: $545,79
+PUT/LIST Requests: $3.888,00
+Total por mês: $4.433,79
+Capacidade de 
+Throughput: $??
+Indexed Data Stored: $??
+Total por mês: $??
+Escolhendo o Data Store: Considerando Custos
+DynamoDB
+S3
+300 
+escritas/seg
+32.768 bytes
+Tamanho do objeto
+23.730
+GB/Mês
+777.600.000 
+Objetos/MêsCenário 2
+===== SLIDE 54 =====
+Storage: $545,79
+PUT/LIST Requests: $3.888,00
+Total por mês: $4.433,79
+Capacidade de 
+Throughput: $4.555,20 
+Indexed Data Stored: $5.926,25
+Total por mês: $10.481,45
+Escolhendo o Data Store: Considerando Custos
+DynamoDB
+S3
+300 
+escritas/seg
+32.768 bytes
+Tamanho do objeto
+23.730
+GB/Mês
+777.600.000 
+Objetos/MêsCenário 2
+===== SLIDE 55 =====
+Escolhendo o Data Store: Considerando Custos
+E se inserirmos o Kinesis Data Firehose na arquitetura?
+===== SLIDE 56 =====
+Escolhendo o Data Store: Considerando Custos
+E se inserirmos o Kinesis Data Firehose na arquitetura?
+S3Amazon Kinesis Data Firehose
+Streams 
+de dados
+===== SLIDE 57 =====
+Escolhendo o Data Store: Considerando Custos
+E se inserirmos o Kinesis Data Firehose na arquitetura?
+Kinesis Data Consumed $752,68
+Storage: $545,79
+PUT/LIST Requests: $0,05
+Total por mês: $1.298,52
+300 
+escritas/seg
+32.768 bytes
+Tamanho do 
+objeto
+23.730
+GB/Mês
+777.600.000 
+Objetos/Mês
+Cenário 2
+S3Amazon Kinesis Data Firehose
+Streams 
+de dados
