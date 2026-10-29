@@ -149,9 +149,14 @@ Material real dos PDFs em `_fonte/pdn_*.txt`. **Seminário removido** a pedido.
   18h30–22h ~3h30; sábado 8h–13h ~5h), e fecha com **"o que você leva"** +
   gancho para a próxima aula. Conteúdo técnico preservado; `slidev build` passa.
 
+### Navegação "voltar ao sumário" nos slides ✅ (2026-10-29)
+- `global-bottom.vue` em cada deck (gdbd e pdn): botão fixo discreto "⌂ Início"
+  no canto inferior, em todos os slides, linkando para o sumário. O destino é
+  derivado de `import.meta.env.BASE_URL` (ex.: `/big-data/gdbd/` → `/big-data/`),
+  então funciona em produção e em dev local. Oculto na impressão/export PDF.
+
 ### Ideias registradas para depois (na ordem combinada)
-- [ ] (2) No sumário: sob cada aula, links menores para os labs/práticas.
-- [ ] (3) Nos slides: um jeito de **voltar para a página inicial** (sumário).
+- Todas concluídas ✅ (sublinks de labs e botão voltar-ao-início implementados).
 
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
