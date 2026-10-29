@@ -57,6 +57,12 @@ Aula final, janela longa: teoria + **lab de fechamento** com calma.
 | 4:15–4:45 | Limpeza + revisão do mapa do curso |
 | 4:45–5:00 | Encerramento e próximos passos |
 
+> **Usando a folga do sábado (5h):** se o **Lab 06 (EMR)** ficou pela metade na
+> quinta (lab caro, janela curta), os 30 min de chegada e o início do dia servem
+> para fechá-lo aqui. O **Lab 07** tem 2h de janela — tempo para construir as 3
+> camadas com calma e revisar, no fim, o **mapa completo do curso**
+> (catálogo → consulta → processamento → orquestração → EMR → Data Lake).
+
 ---
 
 ## O que é um Data Lake

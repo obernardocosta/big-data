@@ -63,13 +63,19 @@ Ao final de hoje, você será capaz de:
 |---|---|
 | 0:00–0:15 | Abertura, combinados e **pontualidade** |
 | 0:15–0:45 | Estudo de caso: o problema de "arquivos soltos" |
-| 0:45–1:20 | Catálogo de dados; Hive Metastore → Glue Data Catalog |
-| 1:20–1:45 | O serviço gerenciado: integrações e preço |
-| 1:45–2:00 | **Intervalo** |
-| 2:00–2:25 | **Lab 01** — tabela catalogada (schema evolution) |
-| 2:25–2:40 | "Catalogar à mão não escala" → Crawler |
-| 2:40–3:15 | **Lab 02** — Glue Crawler |
+| 0:45–1:15 | Catálogo de dados; Hive Metastore → Glue Data Catalog |
+| 1:15–1:35 | O serviço gerenciado: integrações e preço |
+| 1:35–1:50 | **Intervalo** |
+| 1:50–2:20 | **Lab 01** — tabela catalogada |
+| 2:20–2:35 | "Catalogar à mão não escala" → Crawler |
+| 2:35–3:15 | **Lab 02** — Glue Crawler |
 | 3:15–3:30 | Fechamento + o que vem na Aula 2 |
+
+> **Gestão de tempo (aula cheia, 3h30 com 2 labs):** a **introdução do curso**
+> (objetivos, avaliação, referências) é rápida — não gaste mais de 15 min nela.
+> Se o tempo apertar, o **schema evolution** do Lab 01 (passo 5) e a 2ª rodada do
+> Lab 02 viram **demonstração**; o essencial é cada aluno ter **uma tabela
+> catalogada** (manual e via Crawler). Esta é a aula mais densa do curso.
 
 <!-- Esta é a 1ª aula: avise que começa 18h30 em ponto (tolerância 10 min). -->
 

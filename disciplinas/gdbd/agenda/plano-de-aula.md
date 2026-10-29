@@ -28,10 +28,19 @@ longo de **2 semanas**:
 
 ## Dinâmica por tipo de aula
 
-- **Terça/quinta (3h30):** blocos curtos de teoria + prática intercalados; os labs
-  dessas aulas (01–02, 03–04, 06) cabem na janela, com ponto de parada seguro.
-- **Sábado (5h):** janela longa para conduzir com calma — Aula 3 (Glue/Spark) e
-  Aula 6 (Data Lake), com espaço para troubleshooting ao vivo.
+- **Terça/quinta (3h30):** blocos curtos de teoria + prática. São as janelas
+  **mais apertadas** — Aulas 1 e 2 (2 labs cada) e Aula 5 (EMR, caro) são as mais
+  densas. Regra: teoria enxuta, **parada segura cedo**, e o que exceder vira
+  demonstração ou é retomado no sábado seguinte.
+- **Sábado (5h):** janela longa. Além do lab da própria aula (Aula 3 Glue/Spark,
+  Aula 6 Data Lake), ela **absorve o que transbordou** da aula anterior e dá
+  espaço para **aprofundar**, não para encher tempo.
+
+> **Balanceamento (refactor de tempo):** a carga é desigual por desenho da grade
+> — as aulas mais densas caem em terça/quinta (3h30) e os sábados (5h) ficaram
+> com as mais leves. A estratégia é **drenar o excesso das noturnas para os
+> sábados**: nas 3h30 priorize o essencial com parada segura; nos sábados,
+> consolide e aprofunde. Cada roteiro traz sua nota de gestão de tempo.
 
 > **Atenção — Lab 06 (EMR) cai numa quinta (3h30), não no sábado.** Como é o lab
 > mais pesado e historicamente problemático (~US$ 1, instâncias que podem não

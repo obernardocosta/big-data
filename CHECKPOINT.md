@@ -158,6 +158,20 @@ Material real dos PDFs em `_fonte/pdn_*.txt`. **Seminário removido** a pedido.
 ### Ideias registradas para depois (na ordem combinada)
 - Todas concluídas ✅ (sublinks de labs e botão voltar-ao-início implementados).
 
+### Refactor de distribuição de tempo da GDBD — Opção 1 ✅ (2026-10-29)
+Diagnóstico: as aulas mais densas (1, 2 com 2 labs; 5 com o lab caro de EMR) caem
+em **terça/quinta (3h30)**, e os **sábados (5h)** ficaram com as mais leves (3, 6)
+— carga invertida vs tempo disponível.
+Refactor (mantendo a ordem didática): roteiros recalibrados para **drenar o
+excesso das noturnas para os sábados**:
+- Aula 1 e 2: intro enxuta, parada segura cedo; excedente vira demo/casa.
+- Aula 2 → Aula 3: a comparação de "Data scanned" do Lab 04 é retomada/consolidada
+  no sábado (Aula 3), que também compara CSV×Parquet.
+- Aula 5 (EMR, quinta): lab com parada segura rígida + plano B; o que faltar é
+  fechado no sábado (Aula 6).
+- Cada aula tem uma **nota de gestão de tempo** específica; plano-de-aula atualizado.
+`slidev build` passa.
+
 ### Próximos passos sugeridos
 - [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
 - [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.

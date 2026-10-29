@@ -68,9 +68,15 @@ Aula longa, mais voltada a **prática**. Janela boa para conduzir o lab com calm
 | 1:55–2:10 | **Intervalo** |
 | 2:10–3:40 | **Lab 05** — Spark serverless (Glue Job) com calma |
 | 3:40–4:10 | Quando **não** usar Spark (Lambda); discussão |
-| 4:10–5:00 | Exploração guiada / dúvidas / fechamento |
+| 4:10–5:00 | Aprofundamento guiado (ver abaixo) + fechamento |
 
-<!-- Sábado tem 5h: aproveite para aprofundar o lab e discutir trade-offs. -->
+> **Usando a folga do sábado (5h):** esta janela absorve o que transbordou da
+> Aula 2 — comece conferindo a **comparação de "Data scanned"** do Lab 04 (com/
+> sem partição). No aprofundamento (4:10–5:00), compare **CSV vs Parquet** no
+> Athena medindo o scan do arquivo que o Lab 05 gerou — amarra particionamento
+> (Aula 2) + formato colunar (Aula 3). É aprofundar, não encher tempo.
+
+<!-- Sábado tem 5h: use para consolidar Athena+Parquet e discutir trade-offs. -->
 
 ---
 

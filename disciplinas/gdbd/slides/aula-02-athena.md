@@ -65,11 +65,17 @@ Ao final, você será capaz de:
 | 0:00–0:30 | Chegada: dúvidas da Aula 1 / terminar Labs 01–02 |
 | 0:30–1:00 | Estudo de caso + PrestoDB (open source) |
 | 1:00–1:30 | Amazon Athena: serverless, catálogo, preço por TB |
-| 1:30–1:55 | **Lab 03** — queries no Athena (início) |
-| 1:55–2:10 | **Intervalo** |
-| 2:10–2:45 | Particionamento: por que corta custo e tempo |
+| 1:30–2:00 | **Lab 03** — queries no Athena |
+| 2:00–2:15 | **Intervalo** |
+| 2:15–2:45 | Particionamento: por que corta custo e tempo |
 | 2:45–3:20 | **Lab 04** — particionamento |
 | 3:20–3:30 | Fechamento + o que vem na Aula 3 |
+
+> **Gestão de tempo (2 labs em 3h30):** priorize o **Lab 03** completo (é o que
+> prova "SQL serverless sobre o catálogo"). No **Lab 04**, o essencial é criar a
+> tabela particionada e rodar **uma** consulta com filtro; a **comparação de
+> "Data scanned" com/sem partição** pode ser demonstração sua se o tempo apertar.
+> Os 30 min de chegada são reais — comece a teoria só às 0:30.
 
 ---
 
