@@ -10,6 +10,10 @@ Os slides são escritos em Markdown com [Slidev](https://sli.dev) e os labs são
 texto + scripts. Tudo fica versionado no Git e é publicado como site, de modo
 que **o aluno sempre tem a versão mais atual** do material.
 
+## Dados dos labs
+
+Os datasets usados nos labs ficam em [obernardocosta/dados-big-data](https://github.com/obernardocosta/dados-big-data) (cópia raw, licença CC0), para os labs não dependerem de fontes de terceiros.
+
 ## Para o aluno
 
 - Os slides de cada disciplina são publicados como um site (um por disciplina).

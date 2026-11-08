@@ -17,7 +17,7 @@ novas por dia. O **Glue Crawler** resolve isso: ele varre os arquivos no S3,
 ## Dados do lab
 
 Dados **reais e atuais** da Premier League 2024/25 do projeto público
-**openfootball** (domínio público, sem API key). O passo a passo gera o CSV a
+**openfootball** (domínio público), copiado no repo **[dados-big-data](https://github.com/obernardocosta/dados-big-data)**. O passo a passo gera o CSV a
 partir do JSON — o Crawler infere o esquema desses jogos reais.
 
 ## Pré-requisitos

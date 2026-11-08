@@ -43,3 +43,17 @@ em destaque (ex.: "Custo aproximado: US$ 1").
 
 Todo lab indica onde parar se o tempo acabar e como limpar os recursos criados
 (seção "Limpeza") para evitar cobrança depois da aula.
+
+## Dados dos labs: sempre do nosso repositório
+
+Nenhum lab baixa dado de fonte de terceiros. Todo dataset fica versionado, em
+formato raw, no repositório
+[obernardocosta/dados-big-data](https://github.com/obernardocosta/dados-big-data),
+e os labs e dry-runs apontam para a URL
+`https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/<caminho>`.
+
+- Dataset novo: copiar para o repo de dados (`tema/dataset/versao/`), com
+  `README.md` (origem, licença, SHA-256, data) e só então usar no lab.
+- O `dry-run.sh` testa essa URL (HTTP 200).
+- Ao mudar um dataset ou lab, retestar todo bloco que consome o dado
+  (download + geração do CSV) antes de commitar.

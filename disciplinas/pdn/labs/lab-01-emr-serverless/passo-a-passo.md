@@ -19,15 +19,14 @@ export RUNTIME_ROLE="EMRServerlessJobRole"
 ## 1. Pré-requisitos: bucket, dados reais e script
 
 **Porquê:** o EMR Serverless lê entrada e script do S3 e grava a saída no S3 — o
-armazenamento é desacoplado da computação. Os dados vêm de uma **fonte pública e
-atual** (openfootball, sem API key), não de um CSV estático.
+armazenamento é desacoplado da computação. Os dados vêm de uma **fonte pública (openfootball)**, copiada no nosso repositório de dados **dados-big-data** para o lab não depender de terceiros.
 
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
 # baixa jogos reais da Premier League 2024/25 (dominio publico, sem chave)
 curl -s -o jogos.json \
-  https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json
+  https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json
 aws s3 cp jogos.json "s3://$BUCKET/raw/jogos.json"
 
 cat > job.py <<'PY'
@@ -36,7 +35,7 @@ from pyspark.sql import SparkSession, functions as F
 
 spark = SparkSession.builder.appName("pdn-emrs-futebol").getOrCreate()
 
-# o JSON do openfootball tem {"name":..., "matches":[...]}; multiLine=True
+# o JSON (openfootball) tem {"name":..., "matches":[...]}; multiLine=True
 df = spark.read.option("multiLine", True).json(sys.argv[1]).selectExpr("explode(matches) as m")
 jogos = df.select(
     F.col("m.team1").alias("mandante"),

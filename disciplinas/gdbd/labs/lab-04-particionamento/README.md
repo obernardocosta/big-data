@@ -18,7 +18,7 @@ filtro de partição.
 
 ## Dados do lab
 
-Dados **reais e atuais** da Premier League 2024/25 (openfootball, sem API key),
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, cópia no repo dados-big-data),
 **particionados por `year`/`month`** a partir da data real de cada jogo. O passo
 a passo gera a árvore de partições a partir do JSON.
 

@@ -22,8 +22,8 @@ S3. Separamos entrada (`raw/`), saída (`parquet/`) e código (`scripts/`).
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
-# CSV cru REAL: jogos da Premier League 2024/25 (openfootball, sem API key)
-curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
+# CSV cru REAL: jogos da Premier League 2024/25 (openfootball, cópia no repo dados-big-data)
+curl -s https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv
 dados=json.load(sys.stdin); w=csv.writer(sys.stdout)

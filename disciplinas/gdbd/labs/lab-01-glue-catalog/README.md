@@ -18,10 +18,10 @@ suas mudanças. Neste lab você cria, à mão, uma tabela catalogada e observa o
 ## Dados do lab
 
 Dados **reais e atuais** da Premier League 2024/25 do projeto público
-**openfootball** (domínio público, sem API key):
+**openfootball** (domínio público), copiado no repo **[dados-big-data](https://github.com/obernardocosta/dados-big-data)**:
 
 ```
-https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json
+https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json
 ```
 
 O passo a passo gera um **CSV** a partir desse JSON (jogos reais) — nada de dados

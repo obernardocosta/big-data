@@ -77,15 +77,15 @@ else
 fi
 
 # 6. Fonte de dados publica + python3 (para gerar o CSV real)
-echo "[6/6] Dados reais (openfootball) + python3"
+echo "[6/6] Dados reais (repo dados-big-data) + python3"
 if command -v python3 >/dev/null 2>&1; then
   pass "python3 encontrado ($(python3 --version 2>&1))."
 else
   bad "python3 nao encontrado (usado para gerar o CSV a partir do JSON)."
 fi
-URL="https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json"
+URL="https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json"
 if curl -fs -o /dev/null "$URL" 2>/dev/null; then
-  pass "Fonte de dados acessivel (openfootball)."
+  pass "Fonte de dados acessivel (repo dados-big-data)."
 else
   info "Nao consegui acessar a fonte agora (rede?). Tenha um JSON local de backup."
 fi

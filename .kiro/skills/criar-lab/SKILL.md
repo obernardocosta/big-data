@@ -60,3 +60,9 @@ Seções, nesta ordem:
 Rode o **checklist de consistência** de `.kiro/steering/didatica.md`: o lab usa
 os mesmos nomes de serviços dos slides, o slide da prática aponta para ele e o
 `dry-run.sh` passa.
+
+## Dados do lab
+
+Use sempre dados do repositório `obernardocosta/dados-big-data` (regra em
+`.kiro/steering/labs.md`). Se o lab precisa de dataset novo, adicione-o lá
+primeiro e use a URL raw de `main` no passo a passo e no `dry-run.sh`.

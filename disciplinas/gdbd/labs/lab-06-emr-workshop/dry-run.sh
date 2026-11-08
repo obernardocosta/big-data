@@ -126,15 +126,15 @@ else
   warnf "Par de chaves '$KEYNAME' nao encontrado em $REGION (so afeta o SSH)."
 fi
 
-# Dados reais (openfootball) + python3 para gerar o CSV
-echo "[extra] Dados reais (openfootball) + python3"
+# Dados reais (repo dados-big-data) + python3 para gerar o CSV
+echo "[extra] Dados reais (repo dados-big-data) + python3"
 if command -v python3 >/dev/null 2>&1; then
   pass "python3 encontrado."
 else
   bad "python3 nao encontrado (usado para gerar o CSV a partir do JSON)."
 fi
-if curl -fs -o /dev/null "https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json" 2>/dev/null; then
-  pass "Fonte de dados acessivel (openfootball)."
+if curl -fs -o /dev/null "https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json" 2>/dev/null; then
+  pass "Fonte de dados acessivel (repo dados-big-data)."
 else
   info "Fonte nao acessivel agora (rede?). Tenha um JSON/CSV local de backup."
 fi

@@ -20,7 +20,7 @@ prática: o cluster processa, os dados ficam no S3.
 
 ## Dados do lab
 
-Dados **reais e atuais** da Premier League 2024/25 (openfootball, sem API key).
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, cópia no repo dados-big-data).
 O passo a passo gera o CSV cru a partir do JSON; o cluster EMR roda o ETL Spark
 sobre ele.
 

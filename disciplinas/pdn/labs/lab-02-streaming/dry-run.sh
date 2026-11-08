@@ -67,8 +67,8 @@ else
 fi
 
 # 5. Fonte de dados publica acessivel
-echo "[5/8] Fonte de dados (openfootball, sem API key)"
-URL="https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json"
+echo "[5/8] Fonte de dados (repo dados-big-data)"
+URL="https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json"
 if curl -fsI "$URL" >/dev/null 2>&1 || curl -fs -o /dev/null "$URL" 2>/dev/null; then
   pass "Dados de jogos acessiveis."
 else
