@@ -48,10 +48,3 @@ O script valida o CSV (colunas obrigatórias, faixas dos valores), imprime a
 tabela com a nota final e a situação (Aprovado/Reprovado) de cada aluno, e um
 resumo da turma ao final. Se algum valor estiver fora da faixa ou faltar coluna,
 ele aponta a linha com o problema e sai com código diferente de zero.
-
-## Por que assim
-
-A decisão de abandonar o quiz (o acesso ao Kahoot foi perdido) está registrada
-no steering do projeto. Lançar notas em CSV versionado deixa o critério
-transparente, reproduzível e auditável: a nota de qualquer aluno pode ser
-recalculada a partir do mesmo arquivo, e o histórico de alterações fica no Git.
