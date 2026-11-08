@@ -82,7 +82,7 @@ Aula longa, mais voltada a **prática**. Janela boa para conduzir o lab com calm
 
 ## Estudo de caso
 
-Temos os jogos da Premier League (18/19) em CSV, com dezenas de colunas. O
+Temos os jogos da Premier League (2024/25) em CSV, com várias colunas. O
 negócio quer um dataset **enxuto e rápido de consultar**:
 
 - Manter só `Date, HomeTeam, AwayTeam, FTHG, FTAG`.
@@ -239,7 +239,7 @@ routeAlias: lab-5
 
 ## Prática: Spark serverless
 
-**Problema:** transformar os dados da Premier League (18/19):
+**Problema:** transformar os dados da Premier League (2024/25):
 
 - Manter só `Date, HomeTeam, AwayTeam, FTHG, FTAG`.
 - Salvar em **Parquet + gzip**.
@@ -249,6 +249,8 @@ routeAlias: lab-5
 transformado** (Parquet), mais rápido e barato que sobre o CSV cru.
 
 **Tempo:** 45 min
+
+Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
 Instruções versionadas: [`labs/lab-05-glue-spark/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-05-glue-spark)
 

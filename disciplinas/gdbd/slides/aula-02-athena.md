@@ -269,6 +269,8 @@ Lab 01/02 (jogos reais 2024/25), usando SQL no Athena:
 
 **Tempo:** 45 min
 
+Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
+
 Instruções versionadas: [`labs/lab-03-athena-queries/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-03-athena-queries)
 
 <!--
@@ -369,6 +371,8 @@ consultas filtrando a partição **escaneiam menos dados**.
 dados (compare o "Data scanned" no Athena, com e sem filtro).
 
 **Tempo:** 45 min
+
+Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
 Instruções versionadas: [`labs/lab-04-particionamento/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-04-particionamento)
 

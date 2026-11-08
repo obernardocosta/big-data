@@ -357,6 +357,8 @@ observar o esquema **versionar** quando a fonte ganha uma coluna nova.
 
 **Tempo:** 15 min
 
+Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
+
 Instruções versionadas: [`labs/lab-01-glue-catalog/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-01-glue-catalog)
 
 <!--

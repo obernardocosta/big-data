@@ -173,6 +173,8 @@ deixar o sábado leve.
 **Timebox hoje:** ~1h20. **Ponto de parada seguro:** job PySpark em `SUCCESS`
 (o de dependências pode virar casa, mas tente fechar hoje).
 
+Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
+
 Instruções versionadas: [`labs/lab-01-emr-serverless/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-01-emr-serverless) · rode o `dry-run.sh` antes.
 
 <!--
