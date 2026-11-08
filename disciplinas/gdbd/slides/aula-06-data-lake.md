@@ -153,8 +153,6 @@ layout: section
 Lab Final — Data Lake de 3 camadas
 
 ---
-
----
 routeAlias: lab-7
 ---
 

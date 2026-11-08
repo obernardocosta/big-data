@@ -209,8 +209,6 @@ layout: section
 Lab 06 — EMR workshop (cluster + Spark)
 
 ---
-
----
 routeAlias: lab-6
 ---
 

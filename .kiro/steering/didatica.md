@@ -57,13 +57,15 @@ ser pedida:
    link oficial em cada ferramenta/serviço, para o aluno pesquisar e escrever.
 4. **Links**: todos respondem (HTTP 200) e apontam para a página oficial.
 5. **Build**: `npx slidev build` do deck afetado passa sem erro.
-6. **Referências a labs nos slides**: sempre como link clicável para a pasta no
+6. **Slides em branco**: nunca dois `---` seguidos antes de `routeAlias`/layout (o
+   primeiro já é o separador); o parser do Slidev não pode achar slide vazio.
+7. **Referências a labs nos slides**: sempre como link clicável para a pasta no
    GitHub (`https://github.com/obernardocosta/big-data/tree/main/disciplinas/<disciplina>/labs/lab-NN-nome`),
    nunca só o caminho em texto. O site do Pages publica só os slides.
-7. **Dados**: todo dado usado em lab vem de `obernardocosta/data`
+8. **Dados**: todo dado usado em lab vem de `obernardocosta/data`
    (ver `labs.md`); `grep` por URLs de terceiros (`raw.githubusercontent.com`
    de outros donos) deve voltar vazio.
-8. **Steering e skills**: se a mudança altera uma convenção, atualizar
+9. **Steering e skills**: se a mudança altera uma convenção, atualizar
    `.kiro/steering/` e `.kiro/skills/` no mesmo commit.
 
 ## Regra de ouro: tudo que o aluno vai usar tem link

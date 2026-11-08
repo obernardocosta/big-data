@@ -251,8 +251,6 @@ layout: section
 Lab 03 — Rodando queries no Amazon Athena
 
 ---
-
----
 routeAlias: lab-3
 ---
 
@@ -355,8 +353,6 @@ flowchart TB
 É a mesma mecânica do Lab 02 (Crawler), agora com a pasta estruturada em
 partições. O "porquê" é o custo por TB escaneado.
 -->
-
----
 
 ---
 routeAlias: lab-4

@@ -193,8 +193,6 @@ layout: section
 Lab B — streaming de ponta a ponta
 
 ---
-
----
 routeAlias: lab-b
 ---
 

@@ -232,8 +232,6 @@ layout: section
 Lab 05 — Spark serverless com AWS Glue Job
 
 ---
-
----
 routeAlias: lab-5
 ---
 

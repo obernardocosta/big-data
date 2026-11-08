@@ -395,8 +395,6 @@ Tabela de preços: [AWS Glue Pricing](https://aws.amazon.com/glue/pricing/)
 </div>
 
 ---
-
----
 routeAlias: lab-2
 ---
 

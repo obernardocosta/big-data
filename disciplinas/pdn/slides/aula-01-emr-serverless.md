@@ -156,8 +156,6 @@ layout: section
 Lab A — EMR Serverless (concluímos hoje)
 
 ---
-
----
 routeAlias: lab-a
 ---
 

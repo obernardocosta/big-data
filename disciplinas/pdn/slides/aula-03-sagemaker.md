@@ -141,8 +141,6 @@ Todos usam dados **públicos e atuais** ([openfootball](https://github.com/openf
 `dry-run.sh` de cada um antes.
 
 ---
-
----
 routeAlias: lab-c
 ---
 
