@@ -1,6 +1,7 @@
 # Trabalho final — PDN: Pipeline e custo do meu clube
 
-Vale **50% da nota** (veja o [`README` da avaliação](README.md)). Pode ser feito
+Vale **100% da nota** (veja o [`README` da avaliação](README.md)); os labs não valem
+nota, são o treino para este trabalho (o Lab A é a Parte 1 e o Lab B, a Parte 2). Pode ser feito
 **individualmente ou em grupo de até 3 pessoas**; a nota do trabalho é a mesma
 para todos do grupo.
 
@@ -119,7 +120,7 @@ README.md       # o que foi feito, conexão com o conteúdo, limpeza
 python3 tools/trabalho/trabalho.py validar minha-entrega --disciplina pdn
 ```
 
-## Como será corrigido (10,0 pontos)
+## Como será corrigido (10,0 pontos = 100% da nota)
 
 | Parte | Pontos | Como |
 |---|---|---|

@@ -1,23 +1,20 @@
 # Avaliação — GDBD
 
-A avaliação desta disciplina é **sem quiz**. A nota final é a média ponderada de
-três componentes, lançados num CSV e calculados por um script. Planilhas, notas
-e correção ficam no repositório **privado** (veja o fim deste arquivo).
+A nota final desta disciplina é **100% o trabalho final**. Não há quiz, e
+presença e participação nos labs **não entram no cálculo**. A **média para
+aprovação é 6,0**.
 
-## Componentes e pesos
+| Componente | Peso |
+|---|---|
+| **Trabalho final** (Data Lake do meu clube) | **100%** |
 
-| Componente | O que é | Escala no CSV | Peso |
-|---|---|---|---|
-| **Presença** | % de presença nas aulas | 0 a 100 | 20% |
-| **Participação** | engajamento e entrega nos labs | 0 a 10 | 30% |
-| **Trabalho** | trabalho / entrega final | 0 a 10 | 50% |
-
-A presença (em %) é normalizada para a escala 0–10 antes de ponderar. A **média
-para aprovação é 6,0**.
+Os labs não valem nota, mas são o treino do trabalho: cada um entrega uma peça
+que você vai montar sozinho no final. Quem faz os labs com atenção chega ao
+trabalho com boa parte do caminho andado.
 
 ## O trabalho final
 
-O componente **Trabalho** (50%) é o **Data Lake do meu clube**: individual ou em
+O **trabalho final** (100% da nota) é o **Data Lake do meu clube**: individual ou em
 grupo de até 3, na conta AWS do próprio aluno, corrigido em boa parte por script
 (6,0 automáticos + 4,0 por rubrica).
 
@@ -34,8 +31,8 @@ corrigir o trabalho.
 
 ## Por que assim
 
-A decisão de abandonar o quiz (o acesso ao Kahoot foi perdido) está registrada
-no steering do projeto. Lançar notas em CSV versionado deixa o critério
-transparente, reproduzível e auditável: a nota de qualquer aluno pode ser
-recalculada a partir do mesmo arquivo, e o histórico fica no Git (no repositório
-privado, porque tem dado pessoal).
+Concentrar a nota num trabalho único, com critério público e correção parcialmente
+automática, deixa a avaliação transparente e reproduzível: você sabe desde a
+Aula 1 o que será cobrado, e a nota pode ser recalculada a partir da mesma
+entrega. A decisão de abandonar o quiz (o acesso ao Kahoot foi perdido) está
+registrada no steering do projeto.

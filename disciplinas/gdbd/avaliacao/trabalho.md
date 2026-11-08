@@ -1,6 +1,7 @@
 # Trabalho final — GDBD: Data Lake do meu clube
 
-Vale **50% da nota** (veja o [`README` da avaliação](README.md)). Pode ser feito
+Vale **100% da nota** (veja o [`README` da avaliação](README.md)); os labs não valem
+nota, são o treino para este trabalho. Pode ser feito
 **individualmente ou em grupo de até 3 pessoas**; a nota do trabalho é a mesma
 para todos do grupo.
 
@@ -112,7 +113,7 @@ consultas.sql   # todas as consultas/DDLs, comentadas (Parquet, partitioned_by, 
 python3 tools/trabalho/trabalho.py validar minha-entrega --disciplina gdbd
 ```
 
-## Como será corrigido (10,0 pontos)
+## Como será corrigido (10,0 pontos = 100% da nota)
 
 | Parte | Pontos | Como |
 |---|---|---|

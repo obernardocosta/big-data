@@ -12,8 +12,9 @@ conceito, atrasos, material disponibilizado tarde).
 
 Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 - Monorepo, publicação em GitHub Pages por subpasta (`/gdbd`, `/pdn`).
-- Avaliação **sem quiz**: nota = presença + participação em labs + trabalho,
-  calculada de um CSV versionado por `npm run notas`.
+- Avaliação **sem quiz**: nota final = **100% trabalho final** (desde 2026-11;
+  antes era presença + participação + trabalho), calculada de um CSV por
+  `npm run notas` (repo privado).
 - Todo lab tem `dry-run.sh` read-only que valida o ambiente sem gastar.
 
 ## Ambiente (já validado)
@@ -50,10 +51,10 @@ Decisões já tomadas (ver `.kiro/steering/projeto.md`):
 - `disciplinas/gdbd/labs/lab-02-glue-crawler/troubleshooting.md`: erros comuns
   (role/PassRole, Crawler sem tabela, schema update, região) + plano B.
 - Sistema de notas (sem quiz):
-  - `tools/notas/calcular-notas.mjs`: lê o CSV, valida colunas/faixas e calcula
-    a nota final (presença 20% + participação 30% + trabalho 50%, aprovação 6,0).
+  - (movido em 2026-11-08 para o repo privado `big-data-privado`) `calcular-notas.mjs` (hoje `notas/fechamento.mjs`): lê o CSV, valida colunas/faixas e calcula
+    a nota final (hoje 100% trabalho; na época: presença 20% + participação 30% + trabalho 50%; aprovação 6,0).
     **Executado com a planilha de exemplo (exit 0).**
-  - `disciplinas/gdbd/avaliacao/notas/turma-exemplo.csv`: modelo de planilha.
+  - `turmas/gdbd/turma-exemplo.csv` (repo privado): modelo de planilha (presença por aula + nota).
   - `disciplinas/gdbd/avaliacao/README.md`: fluxo de lançamento e cálculo.
 - `disciplinas/gdbd/agenda/plano-de-aula.md`: timeboxes da Aula 1, regra de
   pontualidade e bloco de 30 min de dúvidas a partir da Aula 2.
@@ -307,14 +308,14 @@ prefixo, pasta própria num bucket da turma. A política expira sozinha em
 Quota atual da conta: 20 treinos e 8 batch simultâneos (o `criar` avisa).
 
 ### Trabalho final definido ✅ (2026-11-08)
-O componente "Trabalho" (50%) estava só no CSV, sem enunciado. Agora existe:
+O componente "Trabalho" estava só no CSV, sem enunciado. Agora existe (vale **100% da nota**, ver abaixo):
 - Individual ou grupo de até 3 (aluno escolhe), **conta AWS do aluno**, prazo de
   10 dias após a última aula (a confirmar com a turma). **SageMaker opcional** (+1,0).
 - Cada grupo recebe um clube da Premier League pela matrícula do 1º integrante
   (`mod 20`); respostas por clube permitem correção por script.
 - `tools/trabalho/trabalho.py` (**público**): `clube` e `validar` (aluno, só
   formato). O **corretor com o gabarito é privado**: repo
-  `obernardocosta/big-data-correcao` (clonar lado a lado com este). Faz 6,0 automáticos + 4,0 manuais (via
+  privado `obernardocosta/big-data-privado` (clonar lado a lado com este). Faz 6,0 automáticos + 4,0 manuais (via
   `--manual` ou `correcao.json`) e `--csv`. Testado com entregas fictícias.
 - GDBD: "Data Lake do meu clube" (Raw→Clean→Curated, 8 perguntas no Athena,
   comparação CSV × Parquet em bytes). PDN: "Pipeline e custo do meu clube"
@@ -324,6 +325,31 @@ O componente "Trabalho" (50%) estava só no CSV, sem enunciado. Agora existe:
   atualizados.
 - Pendências: [ ] rodar uma entrega real ponta a ponta na AWS (o enunciado ainda
   não foi executado por um aluno); [ ] definir a data de entrega.
+
+### Repositório privado das disciplinas ✅ (2026-11-08)
+Criado `obernardocosta/big-data-privado` (PRIVATE) e movidos para lá: cálculo de
+notas, planilhas das turmas e o corretor do trabalho. O público perdeu
+`tools/notas/` e `avaliacao/notas/`; o `npm run notas` agora roda lá. Layout:
+`notas/`, `correcao/`, `turmas/<disciplina>/<semestre>/{notas.csv,entregas/}`.
+`tools/turma/` (acesso temporário dos alunos ao SageMaker) continua público: não
+guarda dado de aluno (as credenciais vão para `~` e são ignoradas pelo Git).
+
+### Nota = 100% trabalho ✅ (2026-11-08)
+Presença e participação saíram do cálculo; a nota final é a nota do trabalho
+(aprovação >= 6,0); labs não valem nota. Varredura feita em: enunciados e
+READMEs de avaliação (GDBD/PDN), agendas, slides da Aula 1 de cada deck (slide
+"Avaliação" e slide do trabalho), README da raiz, steering e neste checkpoint. No
+repo privado: `calcular-notas.mjs` (CSV agora `matricula,nome,trabalho`; colunas
+extras ignoradas), CSVs de exemplo e README.
+
+### Planilha de turma com presença ✅ (2026-11-08)
+No repo privado: `turmas/<disc>/<semestre>/turma.csv` (uma linha por aluno, uma
+coluna por aula com P/F/-, mais `trabalho`), `npm run nova-turma` para criar e
+`npm run notas` para o fechamento (faltas, frequência, nota e um bloco
+matrícula | nome | nota | faltas para digitar na plataforma da faculdade). Linha
+`#peso` opcional converte aula em quantidade de faltas (horas-aula). Regras no
+topo do script: nota >= 6,0 e frequência >= 75% (a confirmar no regimento).
+
 
 ## Notas de publicação
 
@@ -358,8 +384,8 @@ npx slidev build disciplinas/gdbd/slides/index.md --out /tmp/check && rm -rf /tm
 # validar o ambiente de um lab (read-only, sem custo)
 bash disciplinas/gdbd/labs/lab-01-glue-catalog/dry-run.sh
 
-# (quando existir) calcular notas
-npm run notas
+# calcular notas: no repo privado (~/big-data-privado)
+# npm run notas
 ```
 
 ## Notas de estado

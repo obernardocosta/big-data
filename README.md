@@ -19,8 +19,8 @@ Os datasets usados nos labs ficam em [obernardocosta/data](https://github.com/ob
 - Os slides de cada disciplina são publicados como um site (um por disciplina).
 - Cada aula tem **labs práticos** com passo a passo detalhado e explicação do
   *porquê* de cada etapa — não é só "clique aqui".
-- A avaliação é **sem quiz**: a nota vem de presença + participação nos labs +
-  trabalho. O critério está em [`disciplinas/gdbd/avaliacao/`](disciplinas/gdbd/avaliacao/).
+- A avaliação é **sem quiz**: a nota final é **100% o trabalho final**; os labs
+  são o treino. O critério está em [`disciplinas/gdbd/avaliacao/`](disciplinas/gdbd/avaliacao/).
 
 ## Para o instrutor
 
@@ -77,24 +77,20 @@ tools/turma/turma.sh limpar --turma pdn-2026-2
 
 Guia completo em [`tools/turma/README.md`](tools/turma/README.md).
 
-### Notas
+### Notas, turmas e correção (repositório privado)
 
-Lance as notas num CSV versionado e calcule a nota final:
-
-```bash
-npm run notas                                              # planilha de exemplo
-npm run notas -- disciplinas/gdbd/avaliacao/notas/2026-2.csv
-```
-
-Detalhes do fluxo e dos pesos em
+Dados de aluno e o gabarito do trabalho **não ficam aqui**: este repositório é
+público. Eles vivem no repositório privado `obernardocosta/big-data-privado` (privado)
+(notas e CSVs das turmas, `npm run notas`, entregas e corretor do trabalho final).
+Clone os dois lado a lado. Os critérios estão em
 [`disciplinas/gdbd/avaliacao/README.md`](disciplinas/gdbd/avaliacao/README.md).
 
 ### Trabalho final
 
-Cada disciplina tem um trabalho final (50% da nota), individual ou em grupo de
+Cada disciplina tem um trabalho final (100% da nota), individual ou em grupo de
 até 3, feito na conta AWS do aluno. Cada grupo recebe um clube da Premier League
 pela matrícula, então as respostas mudam de grupo para grupo e a parte objetiva
-é corrigida por um script privado do instrutor (fora do Git):
+é corrigida por script (no repositório privado).
 
 ```bash
 npm run trabalho -- clube 2024001                                  # clube do grupo
@@ -103,8 +99,7 @@ npm run trabalho -- validar minha-entrega --disciplina gdbd        # autoconfer�
 
 Enunciados: [GDBD](disciplinas/gdbd/avaliacao/trabalho.md) ·
 [PDN](disciplinas/pdn/avaliacao/trabalho.md). Guia em
-[`tools/trabalho/README.md`](tools/trabalho/README.md). O corretor com o gabarito
-fica no repositório **privado** `obernardocosta/big-data-correcao`.
+[`tools/trabalho/README.md`](tools/trabalho/README.md).
 
 ## Estrutura do repositório
 
@@ -113,12 +108,11 @@ disciplinas/
   gdbd/
     slides/      # decks Slidev (index.md importa cada aula)
     labs/        # labs práticos (README, passo a passo, dry-run, troubleshooting)
-    avaliacao/   # critério de notas + planilhas CSV
+    avaliacao/   # critérios de nota, enunciado e modelo do trabalho final
     agenda/      # plano de aula com timeboxes
     export/      # PDFs exportados (gerados)
   pdn/           # mesma estrutura (a criar)
 tools/
-  notas/         # script de cálculo de notas a partir do CSV
   trabalho/      # clube do grupo e autoconferência do trabalho final (público)
 .kiro/
   steering/      # memória e convenções do projeto (carregadas sempre)

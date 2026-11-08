@@ -30,4 +30,4 @@ python3 tools/trabalho/trabalho.py validar minha-entrega --disciplina gdbd
 ## Correção
 
 A correção (gabarito e nota) **não fica neste repositório**: vive no repositório
-privado `big-data-correcao`, que reaproveita as checagens deste arquivo.
+privado `big-data-privado`, que reaproveita as checagens deste arquivo.

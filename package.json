@@ -12,7 +12,6 @@
     "pdn:build": "slidev build disciplinas/pdn/slides/index.md --base /pdn/ --out ../../../dist/pdn",
     "pdn:export": "slidev export disciplinas/pdn/slides/index.md --output disciplinas/pdn/export/pdn.pdf",
     "build:all": "npm run gdbd:build && npm run pdn:build",
-    "notas": "node tools/notas/calcular-notas.mjs",
     "trabalho": "python3 tools/trabalho/trabalho.py"
   },
   "devDependencies": {

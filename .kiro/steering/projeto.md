@@ -42,16 +42,20 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
 - **2026-10**: Migração de Google Slides -> Slidev. Monorepo em vez de dois
   repositórios, para compartilhar skills, steering e templates de lab.
 - **2026-10**: Avaliação **sem quiz** (o acesso ao Kahoot foi perdido). A nota
-  é composta por presença + participação nos labs + trabalho/entrega, calculada
-  a partir de um CSV por um script (`npm run notas`, no repo privado).
+  era composta por presença + participação + trabalho; **a partir de 2026-11 a
+  nota final é 100% o trabalho** (ver decisão abaixo), calculada de um CSV por um
+  script (`npm run notas`, no repo privado).
 - **2026-11**: Tudo que tem **dado de aluno ou gabarito** vive no repositório
   **privado** `obernardocosta/big-data-privado` (clonado ao lado deste):
   notas e CSVs das turmas, `npm run notas`, entregas e o corretor do trabalho
   final. Este repo é público: **nunca** commitar CSV de turma, nota, entrega de
-  aluno nem gabarito aqui. O público guarda critérios, pesos, enunciados e modelos.
+  aluno nem gabarito aqui. O público guarda critérios, enunciados e modelos.
 - **2026-10**: Todo lab precisa de um `dry-run.sh` que valida o ambiente
   **sem gastar** (credenciais, região, quota, permissões) antes da aula.
-- **2026-11**: Trabalho final (50% da nota) definido nas duas disciplinas:
+- **2026-11**: **Nota = 100% trabalho final** (presença e participação não entram
+  no cálculo; labs são o treino, não valem nota; aprovação com nota >= 6,0).
+  Isso deve estar explícito nos slides da turma, nos enunciados e nas agendas.
+- **2026-11**: Trabalho final (100% da nota) definido nas duas disciplinas:
   individual ou grupo de até 3 (aluno escolhe), na **conta AWS do próprio
   aluno**. Cada grupo recebe um clube da Premier League pela matrícula do 1º
   integrante; respostas diferentes por clube permitem correção por script

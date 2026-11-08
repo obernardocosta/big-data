@@ -51,18 +51,19 @@ Leia os objetivos em voz alta: ancoram a aula. No fim, retomamos cada um.
 
 ## Trabalho final: Pipeline e custo do meu clube
 
-Vale **50% da nota**. **Individual ou em grupo de até 3**, você escolhe.
+Vale **100% da nota**. **Individual ou em grupo de até 3**, você escolhe.
 
 - Cada grupo recebe **um clube** da Premier League (pela matrícula).
 - **Batch** no EMR Serverless + **streaming** com Kinesis e Firehose, na **sua conta AWS**.
 - Defende uma **decisão de arquitetura com custo** (ADR + Pricing Calculator).
 - **SageMaker é opcional** (+1,0 de bônus).
+- Presença e participação **não entram na nota**; os **labs são o treino** (Lab A = Parte 1, Lab B = Parte 2). Aprovação com nota **≥ 6,0**.
 - Prazo: **10 dias após a última aula**. Custo: US$ 1 a 2 se limpar no mesmo dia.
 
 Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/avaliacao/trabalho.md)
 
 <!--
-Apresente em 3 minutos. A Parte 1 do trabalho é o Lab A; a Parte 2 é o Lab B.
+Apresente em 3 minutos e deixe claro que a nota é 100% o trabalho. A Parte 1 do trabalho é o Lab A; a Parte 2 é o Lab B.
 Quem fizer os labs com atenção já adianta o trabalho. Avise sobre a quota do
 SageMaker em contas novas (quem quiser o bônus deve pedir cedo).
 -->

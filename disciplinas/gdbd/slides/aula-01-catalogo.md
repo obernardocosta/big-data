@@ -48,18 +48,20 @@ layout: center
 
 ## Trabalho final: Data Lake do meu clube
 
-Vale **50% da nota**. **Individual ou em grupo de até 3**, você escolhe.
+Vale **100% da nota**. **Individual ou em grupo de até 3**, você escolhe.
 
 - Cada grupo recebe **um clube** da Premier League (pela matrícula).
 - Monta **Raw → Clean → Curated** na **sua conta AWS** e responde 8 perguntas com Athena.
 - Prova com **bytes lidos** por que Parquet + partição reduzem custo.
 - Prazo: **10 dias após a última aula**. Custo: de centavos a ~US$ 1.
+- Os **labs não valem nota**, mas cada um é uma peça do trabalho.
 
 Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/trabalho.md)
 
 <!--
 Apresente o trabalho já na Aula 1, em 3 minutos, para a turma ler o enunciado
-cedo e conectar cada lab ao trabalho. Reforce: individual OU grupo, e que cada
+cedo e conectar cada lab ao trabalho. Deixe claro: a nota é 100% o trabalho
+(presença e participação não entram na conta; aprovação com nota >= 6,0). Reforce: individual OU grupo, e que cada
 um roda na PRÓPRIA conta AWS. Avise que contas novas podem ter o Glue
 bloqueado e que CTAS no Athena é uma rota aceita.
 -->
@@ -103,13 +105,17 @@ Ao final de hoje, você será capaz de:
 
 ## Avaliação
 
-- Presença em sala
-- Participação durante os laboratórios práticos
-- Trabalho / entrega
+- **100% da nota é o trabalho final** (Data Lake do meu clube).
+- Individual ou em grupo de até 3, na sua conta AWS. Aprovação com nota **≥ 6,0**.
+- Presença e participação **não entram no cálculo**, e não há quiz.
+- Os labs não valem nota, mas são o treino do trabalho.
+
+Critérios: [`avaliacao/README.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/README.md)
 
 <!--
-A avaliação (presença, participação e trabalho) é lançada em CSV no repositório
-privado e a nota final é calculada por script. Não há quiz nesta edição.
+A avaliação é 100% o trabalho final, corrigido em parte por script e em parte
+por rubrica (repositório privado). Não há quiz nesta edição. Reforce: os labs
+não valem nota, mas quem os faz com atenção chega ao trabalho com o caminho andado.
 -->
 
 ---
