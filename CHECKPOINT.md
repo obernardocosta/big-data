@@ -352,6 +352,13 @@ matrícula | nome | nota | faltas para digitar na plataforma da faculdade). Linh
 topo do script: nota >= 6,0 e frequência >= 75% (a confirmar no regimento).
 
 
+### Histórico reescrito ⚠️ (2026-11-08, autorizado pelo instrutor)
+Os commits do fim do dia foram reescritos (force push) para tirar do repo
+público uma versão antiga do corretor. O conteúdo atual não mudou. **Toda
+sessão ou clone feito antes disso** precisa se realinhar antes de commitar:
+`git fetch && git reset --hard origin/main` (salve antes qualquer mudança local
+não enviada). Exceção única à regra "nunca force push".
+
 ## Notas de publicação
 
 - O repo é **público** (Pages em repo privado exigiria plano pago).
