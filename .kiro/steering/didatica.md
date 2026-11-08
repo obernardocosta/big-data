@@ -30,6 +30,12 @@ Todo serviço/tópico segue a mesma espinha, que já é a usada nos slides origi
   o "clique aqui".
 - Ao fim do lab, uma seção **O que isso prova** amarra de volta ao conceito.
 
+## Demo ao vivo -> aluno no console -> script
+
+A sequência de aprendizagem de cada lab é: o instrutor faz **ao vivo** (o slide de
+demo lista exatamente o que ele fará), o aluno repete lendo o passo a passo e
+clicando no **console**, e o **script** recolhido fica de reforço.
+
 ## Equilíbrio prática x teoria
 
 - Marque o tempo de cada lab (timebox) e respeite-o. Se estourar, o lab tem um

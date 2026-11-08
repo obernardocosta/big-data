@@ -205,3 +205,10 @@ aws s3 ls "s3://$BUCKET/agregados/" --recursive
 
 Veja a seção "Limpeza" do `README.md`. **O shard cobra enquanto o stream
 existir** — não esqueça de apagar stream e Firehose.
+
+## Encontrou um problema neste lab?
+
+Um passo não bate com o que você vê no console, um menu mudou de nome ou algo
+deu erro? **Abra uma issue** e ajude a melhorar a disciplina:
+[abrir issue sobre o PDN Lab 02](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+02%5D+&labels=lab).
+Diga o passo, o que esperava e o que aconteceu (um print ajuda).

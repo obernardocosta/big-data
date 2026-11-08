@@ -66,3 +66,10 @@ os mesmos nomes de serviços dos slides, o slide da prática aponta para ele e o
 Use sempre dados do repositório `obernardocosta/data` (regra em
 `.kiro/steering/labs.md`). Se o lab precisa de dataset novo, adicione-o lá
 primeiro e use a URL raw de `main` no passo a passo e no `dry-run.sh`.
+
+## Formato do passo a passo
+
+Siga "Formato do passo a passo: console primeiro, script recolhido" em
+`.kiro/steering/labs.md`: instruções de console visíveis, script AWS CLI em
+`<details>`, slide de demo ao vivo descrevendo o que o instrutor fará, e seção
+final com link para abrir issue.

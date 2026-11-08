@@ -15,6 +15,13 @@ suas mudanças. Neste lab você cria, à mão, uma tabela catalogada e observa o
 - Como o catálogo **versiona** o esquema quando ele muda (Schema Evolution).
 - Por que a catalogação manual não escala (gancho para o Lab 02, o Crawler).
 
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md).
+3. Cada passo tem o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+01%5D+&labels=lab).
+
 ## Dados do lab
 
 Dados **reais e atuais** da Premier League 2024/25 do projeto público
@@ -46,7 +53,8 @@ ao final.
 
 ## Tempo estimado
 
-**15 minutos.**
+**20 minutos**: ~5 min de demo ao vivo do instrutor + ~15 min de prática no console.
+Os scripts AWS CLI (recolhidos em cada passo) servem para acelerar se o tempo apertar.
 
 ## Resultado esperado
 

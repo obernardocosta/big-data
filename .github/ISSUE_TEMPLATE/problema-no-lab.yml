@@ -1,0 +1,42 @@
+name: Problema ou sugestão em lab/slide
+description: Encontrou um erro, um passo confuso ou quer sugerir uma melhoria no material?
+title: "[Lab ??] "
+labels: ["lab"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a melhorar a disciplina! Quanto mais específico, mais rápido a gente corrige.
+  - type: dropdown
+    id: disciplina
+    attributes:
+      label: Disciplina
+      options:
+        - GDBD (Gerenciamento de Dados para Big Data)
+        - PDN (Processamento de Big Data na Nuvem)
+    validations:
+      required: true
+  - type: input
+    id: onde
+    attributes:
+      label: Qual lab ou aula, e qual passo?
+      placeholder: "Ex.: Lab 01, passo 4 (criar a tabela)"
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: O que você esperava que acontecesse?
+    validations:
+      required: true
+  - type: textarea
+    id: aconteceu
+    attributes:
+      label: O que aconteceu de fato?
+      description: Cole a mensagem de erro e, se puder, anexe um print do console.
+    validations:
+      required: true
+  - type: textarea
+    id: sugestao
+    attributes:
+      label: Sugestão de melhoria (opcional)

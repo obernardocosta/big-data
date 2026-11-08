@@ -128,3 +128,10 @@ aws glue start-crawler --name crawler-jogos
 ## Limpeza
 
 Veja a seção "Limpeza" do `README.md`.
+
+## Encontrou um problema neste lab?
+
+Um passo não bate com o que você vê no console, um menu mudou de nome ou algo
+deu erro? **Abra uma issue** e ajude a melhorar a disciplina:
+[abrir issue sobre o GDBD Lab 02](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+02%5D+&labels=lab).
+Diga o passo, o que esperava e o que aconteceu (um print ajuda).

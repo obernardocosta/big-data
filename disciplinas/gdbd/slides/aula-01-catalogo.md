@@ -355,15 +355,37 @@ observar o esquema **versionar** quando a fonte ganha uma coluna nova.
 
 **Resultado esperado:** uma tabela catalogada e com versões no Glue Data Catalog.
 
-**Tempo:** 15 min
+**Tempo:** 20 min (5 min de demo + 15 min de prática)
 
 Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
-Instruções versionadas: [`labs/lab-01-glue-catalog/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-01-glue-catalog)
+Instruções versionadas: [`labs/lab-01-glue-catalog/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-01-glue-catalog) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+01%5D+&labels=lab)
 
 <!--
 Conduza o lab ligando cada passo ao conceito (Virtualization, Schema Evolution).
 Rode o dry-run.sh do lab ANTES da aula. Ver .kiro/steering/labs.md.
+-->
+
+---
+
+## Demo ao vivo — Lab 01 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** abrir o bucket já preparado e mostrar `jogos/jogos.csv` (5 colunas, dados reais).
+2. **Glue > Data Catalog > Databases:** criar o database `futebol`.
+3. **Glue > Tables > Add table:** criar `jogos` apontando para a **pasta** do S3, formato CSV, com **4 colunas** (de propósito).
+4. **Conferir a tabela:** schema, location e a propriedade `skip.header.line.count`.
+5. **Pergunta para a turma:** o arquivo tem 5 colunas e a tabela tem 4. Qual é a "verdade" para o SQL?
+6. **Edit schema:** adicionar `gols_visitante` e abrir **Schema versions** para comparar as versões.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 01](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-01-glue-catalog/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 01; deixar pronto um bucket com
+jogos/jogos.csv (passos 1 e 2 do passo a passo, por script) para a demo não gastar
+tempo com preparação. Ao fim da demo, apagar a tabela e o database da demo para
+os alunos começarem do zero (ou usar nomes diferentes na demo).
 -->
 
 ---

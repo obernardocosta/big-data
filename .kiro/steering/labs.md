@@ -57,3 +57,28 @@ e os labs e dry-runs apontam para a URL
 - O `dry-run.sh` testa essa URL (HTTP 200).
 - Ao mudar um dataset ou lab, retestar todo bloco que consome o dado
   (download + geração do CSV) antes de commitar.
+
+## Formato do passo a passo: console primeiro, script recolhido
+
+Todo `passo-a-passo.md` segue este formato (piloto: GDBD Lab 01):
+
+1. **Demo ao vivo antes do lab**: o slide da prática é seguido de um slide
+   "Demo ao vivo" que descreve, em passos, o que o instrutor vai fazer no console.
+2. **Cada passo** tem: **Porquê**, **No console** (objetivo, caminho de menu,
+   valores a preencher), **Como saber que deu certo** e, recolhido, o script:
+
+   ```html
+   <details>
+   <summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
+
+   (bloco bash)
+
+   </details>
+   ```
+3. **Exceção**: passos de preparação sem equivalente simples no console (gerar
+   CSV, política IAM longa, esperar cluster) mantêm o **script como caminho
+   principal**, dizendo por quê.
+4. **Fim do passo a passo**: seção "Encontrou um problema neste lab?" com link
+   para abrir issue (template `problema-no-lab.yml`, label `lab`).
+5. As instruções de console vêm da documentação oficial da AWS e **precisam ser
+   revisadas pelo instrutor no console** antes da aula (nomes de menu mudam).
