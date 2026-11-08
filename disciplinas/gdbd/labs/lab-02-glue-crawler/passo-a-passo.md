@@ -17,8 +17,8 @@ arquivos que encontra. Precisamos de dados para ele descobrir.
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
-# jogos reais da Premier League 2024/25 (openfootball, cópia no repo dados-big-data) -> CSV
-curl -s https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json \
+# jogos reais da Premier League 2024/25 (openfootball, cópia no repo data) -> CSV
+curl -s https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv
 dados=json.load(sys.stdin); w=csv.writer(sys.stdout)
@@ -109,7 +109,7 @@ arquivo com uma coluna nova e rode de novo.
 
 ```bash
 # novo arquivo na MESMA pasta, com uma coluna a mais (rodada)
-curl -s https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json \
+curl -s https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv
 dados=json.load(sys.stdin); w=csv.writer(sys.stdout)

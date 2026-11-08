@@ -60,7 +60,7 @@ ser pedida:
 6. **Referências a labs nos slides**: sempre como link clicável para a pasta no
    GitHub (`https://github.com/obernardocosta/big-data/tree/main/disciplinas/<disciplina>/labs/lab-NN-nome`),
    nunca só o caminho em texto. O site do Pages publica só os slides.
-7. **Dados**: todo dado usado em lab vem de `obernardocosta/dados-big-data`
+7. **Dados**: todo dado usado em lab vem de `obernardocosta/data`
    (ver `labs.md`); `grep` por URLs de terceiros (`raw.githubusercontent.com`
    de outros donos) deve voltar vazio.
 8. **Steering e skills**: se a mudança altera uma convenção, atualizar

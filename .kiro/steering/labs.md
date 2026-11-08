@@ -48,9 +48,9 @@ Todo lab indica onde parar se o tempo acabar e como limpar os recursos criados
 
 Nenhum lab baixa dado de fonte de terceiros. Todo dataset fica versionado, em
 formato raw, no repositório
-[obernardocosta/dados-big-data](https://github.com/obernardocosta/dados-big-data),
+[obernardocosta/data](https://github.com/obernardocosta/data),
 e os labs e dry-runs apontam para a URL
-`https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/<caminho>`.
+`https://raw.githubusercontent.com/obernardocosta/data/main/<caminho>`.
 
 - Dataset novo: copiar para o repo de dados (`tema/dataset/versao/`), com
   `README.md` (origem, licença, SHA-256, data) e só então usar no lab.

@@ -18,14 +18,14 @@ natural depois do EMR tradicional da GDBD.
 ## Dados do lab
 
 Usamos dados **públicos e atuais** da Premier League (temporada 2024/25) do
-projeto open source **openfootball** (domínio público), copiado no repo **[dados-big-data](https://github.com/obernardocosta/dados-big-data)**:
+projeto open source **openfootball** (domínio público), copiado no repo **[data](https://github.com/obernardocosta/data)**:
 
 ```
-https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json
+https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json
 ```
 
 O job PySpark lê esse JSON de jogos reais e calcula agregados (ex.: gols por
-time). O dado é baixado do nosso repo de dados (**dados-big-data**), uma cópia exata da fonte aberta.
+time). O dado é baixado do nosso repo de dados (**data**), uma cópia exata da fonte aberta.
 
 ## Pré-requisitos
 

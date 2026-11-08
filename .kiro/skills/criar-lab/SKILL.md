@@ -63,6 +63,6 @@ os mesmos nomes de serviços dos slides, o slide da prática aponta para ele e o
 
 ## Dados do lab
 
-Use sempre dados do repositório `obernardocosta/dados-big-data` (regra em
+Use sempre dados do repositório `obernardocosta/data` (regra em
 `.kiro/steering/labs.md`). Se o lab precisa de dataset novo, adicione-o lá
 primeiro e use a URL raw de `main` no passo a passo e no `dry-run.sh`.

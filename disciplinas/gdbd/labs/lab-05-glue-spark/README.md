@@ -17,7 +17,7 @@ Athena fica mais rápida e mais barata (menos "Data scanned").
 
 ## Dados do lab
 
-Dados **reais e atuais** da Premier League 2024/25 (openfootball, cópia no repo dados-big-data). O passo a passo baixa o JSON e gera o CSV cru que o Glue
+Dados **reais e atuais** da Premier League 2024/25 (openfootball, cópia no repo data). O passo a passo baixa o JSON e gera o CSV cru que o Glue
 Job transforma em Parquet.
 
 ## Pré-requisitos

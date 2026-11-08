@@ -90,7 +90,7 @@ else
   bad "Sem permissao de IAM. Voce precisa poder criar/vincular uma role de servico do Glue."
 fi
 
-# Dados reais (repo dados-big-data) + python3 para gerar o CSV
+# Dados reais (repo data) + python3 para gerar o CSV
 # [conta] Glue liberado para criar Crawler/Job? Contas novas podem vir com um
 # bloqueio de conta ("Account <id> is denied access") que NENHUMA permissao IAM
 # resolve, e que as checagens read-only acima nao enxergam. A sonda tenta criar
@@ -119,14 +119,14 @@ else
   info "Bloqueio de conta no Glue NAO verificado. Na 1a vez numa conta, rode: ./dry-run.sh --check-account"
 fi
 
-echo "[extra] Dados reais (repo dados-big-data) + python3"
+echo "[extra] Dados reais (repo data) + python3"
 if command -v python3 >/dev/null 2>&1; then
   pass "python3 encontrado."
 else
   bad "python3 nao encontrado (usado para gerar o CSV a partir do JSON)."
 fi
-if curl -fs -o /dev/null "https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json" 2>/dev/null; then
-  pass "Fonte de dados acessivel (repo dados-big-data)."
+if curl -fs -o /dev/null "https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json" 2>/dev/null; then
+  pass "Fonte de dados acessivel (repo data)."
 else
   info "Fonte nao acessivel agora (rede?). Tenha um JSON/CSV local de backup."
 fi

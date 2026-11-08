@@ -79,7 +79,7 @@ eventos, como um app faria. Cada gol/partida vira um evento no stream.
 cat > produtor.py <<'PY'
 import json, time, urllib.request, boto3, sys
 
-URL = "https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json"
+URL = "https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json"
 stream = sys.argv[1]
 kinesis = boto3.client("kinesis")
 

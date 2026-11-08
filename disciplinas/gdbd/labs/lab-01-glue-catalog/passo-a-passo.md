@@ -23,12 +23,12 @@ aws s3 mb "s3://$BUCKET" --region "$REGION"
 
 **Porquê:** a tabela do catálogo vai apontar para um "prefixo" (pasta) no S3.
 Em vez de inventar dados, usamos jogos **reais e atuais** da Premier League
-2024/25 do projeto público **openfootball** (JSON), copiado no repo **dados-big-data**, e geramos um CSV.
+2024/25 do projeto público **openfootball** (JSON), copiado no repo **data**, e geramos um CSV.
 
 ```bash
 # baixa os jogos reais e gera um CSV com 5 colunas. No passo 4 catalogamos so
 # as 4 primeiras; no passo 5 (Schema Evolution) o catalogo passa a enxergar a 5a.
-curl -s https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json \
+curl -s https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv
 dados=json.load(sys.stdin); w=csv.writer(sys.stdout)

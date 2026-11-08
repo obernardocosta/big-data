@@ -47,7 +47,7 @@ Rode o `dry-run.sh` primeiro — ele valida o ambiente sem criar o stream (o sha
 - Instale: `python3 -m pip install boto3`. Confirme credencial com
   `aws sts get-caller-identity` (o boto3 usa a mesma credencial da CLI).
 
-## A fonte de dados (repo dados-big-data) não respondeu
+## A fonte de dados (repo data) não respondeu
 
 - Pode ser rede/proxy. Tenha um JSON de backup local e aponte o produtor para o
   arquivo (troque a leitura da URL por `open('jogos.json')`). O dry-run avisa se

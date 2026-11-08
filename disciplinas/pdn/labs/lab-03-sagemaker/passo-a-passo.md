@@ -94,8 +94,8 @@ quiser refazer em casa. Custo medido: centavos (treino de ~2 min em
 
 ```bash
 # dataset: o mandante venceu (1/0)? features = media de gols pro/contra de
-# cada time nos jogos ANTERIORES (dados reais 2024/25, openfootball via repo dados-big-data)
-curl -s https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json \
+# cada time nos jogos ANTERIORES (dados reais 2024/25, openfootball via repo data)
+curl -s https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv,collections
 ms=sorted(json.load(sys.stdin)['matches'],key=lambda m:m['date'])

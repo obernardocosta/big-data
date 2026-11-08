@@ -19,14 +19,14 @@ export RUNTIME_ROLE="EMRServerlessJobRole"
 ## 1. Pré-requisitos: bucket, dados reais e script
 
 **Porquê:** o EMR Serverless lê entrada e script do S3 e grava a saída no S3 — o
-armazenamento é desacoplado da computação. Os dados vêm de uma **fonte pública (openfootball)**, copiada no nosso repositório de dados **dados-big-data** para o lab não depender de terceiros.
+armazenamento é desacoplado da computação. Os dados vêm de uma **fonte pública (openfootball)**, copiada no nosso repositório de dados **data** para o lab não depender de terceiros.
 
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
 # baixa jogos reais da Premier League 2024/25 (dominio publico, sem chave)
 curl -s -o jogos.json \
-  https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json
+  https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json
 aws s3 cp jogos.json "s3://$BUCKET/raw/jogos.json"
 
 cat > job.py <<'PY'

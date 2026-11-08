@@ -20,9 +20,9 @@ dos dados nas partições é feita por nós (manual neste lab).
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 
-# Jogos reais (openfootball 2024/25, cópia no repo dados-big-data) particionados por ano/mês a partir da DATA
+# Jogos reais (openfootball 2024/25, cópia no repo data) particionados por ano/mês a partir da DATA
 # real de cada partida. Um Python curto lê o JSON e grava um CSV por partição.
-curl -s https://raw.githubusercontent.com/obernardocosta/dados-big-data/main/futebol/premier-league/2024-25/en.1.json \
+curl -s https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv,os,collections
 dados=json.load(sys.stdin)

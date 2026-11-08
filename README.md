@@ -12,7 +12,7 @@ que **o aluno sempre tem a versão mais atual** do material.
 
 ## Dados dos labs
 
-Os datasets usados nos labs ficam em [obernardocosta/dados-big-data](https://github.com/obernardocosta/dados-big-data) (cópia raw, licença CC0), para os labs não dependerem de fontes de terceiros.
+Os datasets usados nos labs ficam em [obernardocosta/data](https://github.com/obernardocosta/data) (cópia raw, licença CC0), para os labs não dependerem de fontes de terceiros.
 
 ## Para o aluno
 

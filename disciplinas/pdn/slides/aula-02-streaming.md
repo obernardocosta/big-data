@@ -205,7 +205,7 @@ essa parte; a parte **Spark Structured Streaming** fecha no sábado (reusando o
 EMR Serverless do Lab A).
 
 - Criar Data Stream (1 shard) e Firehose → S3.
-- Rodar o **produtor** que lê jogos reais (openfootball, via repo dados-big-data) e emite como stream.
+- Rodar o **produtor** que lê jogos reais (openfootball, via repo data) e emite como stream.
 - Ver os eventos **aterrissarem no S3**.
 
 **Timebox hoje:** ~1h. **Parada segura:** eventos no S3.
@@ -213,7 +213,7 @@ EMR Serverless do Lab A).
 Instruções: [`labs/lab-02-streaming/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-02-streaming) · rode o `dry-run.sh` antes.
 
 <!--
-Dados reais e atuais (Premier League 2024/25, openfootball, cópia no repo dados-big-data). O
+Dados reais e atuais (Premier League 2024/25, openfootball, cópia no repo data). O
 produtor "reproduz" os jogos como um fluxo. Amarre com o custo: por que Firehose.
 -->
 
