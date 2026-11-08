@@ -20,7 +20,7 @@ instâncias pequenas e expira sozinho no fim do curso.
 
 1. Entre no link de login que você recebeu, com seu usuário e senha.
 2. Depois do login, abra o **CloudShell** já na região certa:
-   https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1
+   [AWS CloudShell (us-east-1)](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1)
    (o console abre em Ohio, `us-east-2`, por padrão; o lab é em N. Virginia,
    `us-east-1`). É um terminal no navegador, com a AWS CLI e o Python prontos:
    não precisa instalar nada. Na primeira vez ele leva ~1 min para iniciar.

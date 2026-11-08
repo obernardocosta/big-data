@@ -18,7 +18,7 @@ arquivos no S3, usando o catálogo que já temos. Neste lab você finalmente
 ## Dados do lab
 
 Consulta a tabela `jogos` catalogada nos Labs 01/02 — dados **reais** da Premier
-League 2024/25 (openfootball, cópia no repo data). Sem dados inventados.
+League 2024/25 ([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)). Sem dados inventados.
 
 ## Pré-requisitos
 

@@ -136,7 +136,7 @@ times que não querem manter cluster.
 **Prefira cluster quando:** uso contínuo e intenso, com reaproveitamento constante.
 
 <div class="text-sm opacity-70 mt-4">
-Leitura: EMR Serverless Review — medium.com/@bernardo.costa/emr-serverless-review-51b659f2ca54
+Leitura: EMR Serverless Review — [medium.com/@bernardo.costa/emr-serverless-review](https://medium.com/@bernardo.costa/emr-serverless-review-51b659f2ca54)
 </div>
 
 ---

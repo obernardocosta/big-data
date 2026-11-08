@@ -37,7 +37,7 @@ time). O dado é baixado do nosso repo de dados (**data**), uma cópia exata da 
 | Serviços | Amazon EMR Serverless, Amazon S3, IAM |
 | Pré-requisito | uma **RuntimeRole** (job role) com acesso ao S3 do lab |
 | Ferramentas | AWS CLI v2 configurada |
-| Base oficial | https://github.com/aws-samples/emr-serverless-samples |
+| Base oficial | [aws-samples/emr-serverless-samples](https://github.com/aws-samples/emr-serverless-samples) |
 
 ## Custo estimado
 

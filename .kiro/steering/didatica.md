@@ -66,6 +66,16 @@ ser pedida:
 8. **Steering e skills**: se a mudança altera uma convenção, atualizar
    `.kiro/steering/` e `.kiro/skills/` no mesmo commit.
 
+## Regra de ouro: tudo que o aluno vai usar tem link
+
+Todo dado, repositório, ferramenta, console, documentação, preço ou leitura
+citado em slide ou lab é um **link clicável** (`[texto](url)`), nunca URL solta
+nem só o nome. Isso vale para: dataset (link para o `obernardocosta/data`),
+fonte original (ex.: openfootball), repositório de exemplos, página de preços e
+console da AWS. Em blocos de código, o comando já usa a URL completa. Dentro do
+checklist de consistência: `grep` por `https?://` fora de `](` deve voltar só
+comandos em blocos de código.
+
 ## Idioma
 
 Todo material voltado ao aluno é em português do Brasil.

@@ -137,7 +137,7 @@ Mão na massa (tema futebol, dados reais e atuais)
 | **B** — Streaming | Kinesis + Firehose + **Spark** | ingestão feita → **fechar a parte Spark** |
 | **C** — SageMaker | treino + deploy de modelo | **fazer hoje** |
 
-Todos usam dados **públicos e atuais** (openfootball, cópia no repo data). Rode o
+Todos usam dados **públicos e atuais** ([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)). Rode o
 `dry-run.sh` de cada um antes.
 
 ---

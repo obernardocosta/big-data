@@ -24,7 +24,7 @@ produtor (eventos de jogos reais) → Kinesis Data Stream
 ## Dados do lab
 
 Eventos derivados de **jogos reais e atuais** da Premier League 2024/25
-(openfootball, cópia no repo data):
+([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)):
 
 ```
 https://raw.githubusercontent.com/obernardocosta/data/main/football/premier-league/2024-25/en.1.json

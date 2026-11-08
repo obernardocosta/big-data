@@ -142,7 +142,7 @@ with DAG("pipeline_premier", schedule="@daily", start_date=...) as dag:
 ```
 
 <div class="text-sm opacity-70 mt-4">
-Referência: https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html
+Referência: [Tutorial do Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html)
 </div>
 
 ---
@@ -165,7 +165,7 @@ Duas opções
 - Cobrança **por hora** (modelo parecido com o RDS — há ambiente ligado).
 
 <div class="text-sm opacity-70 mt-4">
-Preço: https://aws.amazon.com/managed-workflows-for-apache-airflow/pricing/
+Preço: [Amazon MWAA Pricing](https://aws.amazon.com/managed-workflows-for-apache-airflow/pricing/)
 </div>
 
 ---

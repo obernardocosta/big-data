@@ -23,7 +23,7 @@ aws s3 mb "s3://$BUCKET" --region "$REGION"
 
 **Porquê:** a tabela do catálogo vai apontar para um "prefixo" (pasta) no S3.
 Em vez de inventar dados, usamos jogos **reais e atuais** da Premier League
-2024/25 do projeto público **openfootball** (JSON), copiado no repo **data**, e geramos um CSV.
+2024/25 do projeto público [openfootball](https://github.com/openfootball/football.json) (JSON), copiado no [repo data](https://github.com/obernardocosta/data/tree/main/football), e geramos um CSV.
 
 ```bash
 # baixa os jogos reais e gera um CSV com 5 colunas. No passo 4 catalogamos so

@@ -17,7 +17,7 @@ catálogo, transformação, particionamento e consulta.
 
 ## Dados do lab
 
-Dados **reais e atuais** da Premier League 2024/25 (openfootball, cópia no repo data)
+Dados **reais e atuais** da Premier League 2024/25 ([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football))
 alimentam a camada **Raw**; as camadas Clean e Specialized são derivadas delas no
 próprio lab.
 
