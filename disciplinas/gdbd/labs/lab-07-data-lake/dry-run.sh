@@ -92,6 +92,30 @@ else
 fi
 
 # Dados reais (openfootball) + python3 para gerar o CSV
+# [conta] Glue liberado para criar Crawler/Job? Contas novas podem vir com um
+# bloqueio de conta ("Account <id> is denied access") que NENHUMA permissao IAM
+# resolve, e que as checagens read-only acima nao enxergam. A sonda tenta criar
+# um crawler com uma role inexistente: a AWS checa a conta ANTES da role, entao
+# nada e criado em nenhum dos casos (e, por garantia, apagamos se existir).
+echo "[conta] Glue liberado para criar Crawler/Job (sonda, nao cria nada)"
+PROBE_ACC="$(aws sts get-caller-identity --query Account --output text 2>/dev/null)"
+if [ -n "$PROBE_ACC" ]; then
+  PROBE_OUT="$(aws glue create-crawler --name dryrun-probe-glue \
+    --role "arn:aws:iam::${PROBE_ACC}:role/dryrun-probe-inexistente" \
+    --database-name default --region "$REGION" \
+    --targets '{"S3Targets":[{"Path":"s3://dryrun-probe-inexistente/x/"}]}' 2>&1)"
+  aws glue delete-crawler --name dryrun-probe-glue --region "$REGION" >/dev/null 2>&1
+  if printf '%s' "$PROBE_OUT" | grep -q "is denied access"; then
+    bad "Conta BLOQUEADA no Glue ('Account is denied access'). Crawler e Glue Job nao vao funcionar."
+    info "Nao e IAM: abra um caso no AWS Support > 'Account and billing' (gratis, sem plano pago)"
+    info "pedindo a liberacao do AWS Glue em $REGION. Leva de horas a dias: faca com antecedencia."
+  else
+    pass "Conta liberada para criar recursos no Glue."
+  fi
+else
+  info "Pulado (sem credencial)."
+fi
+
 echo "[extra] Dados reais (openfootball) + python3"
 if command -v python3 >/dev/null 2>&1; then
   pass "python3 encontrado."

@@ -57,13 +57,17 @@ aws iam attach-role-policy --role-name FirehoseLabRole \
 STREAM_ARN=$(aws kinesis describe-stream-summary --stream-name "$STREAM" \
   --query 'StreamDescriptionSummary.StreamARN' --output text)
 
+# Role recem-criada leva alguns segundos para propagar no IAM. Sem esta pausa
+# o Firehose responde "Firehose is unable to assume role" (visto no teste real).
+sleep 15
+
 aws firehose create-delivery-stream \
   --delivery-stream-name "$FIREHOSE" \
   --delivery-stream-type KinesisStreamAsSource \
   --kinesis-stream-source-configuration \
-    "KinesisStreamARN=$STREAM_ARN,RoleARN=arn:aws:iam::$ACCOUNT_ID:role/FirehoseLabRole" \
+    "KinesisStreamARN=$STREAM_ARN,RoleARN=arn:aws:iam::${ACCOUNT_ID}:role/FirehoseLabRole" \
   --extended-s3-destination-configuration \
-    "RoleARN=arn:aws:iam::$ACCOUNT_ID:role/FirehoseLabRole,BucketARN=arn:aws:s3:::$BUCKET,Prefix=eventos/,BufferingHints={SizeInMBs=1,IntervalInSeconds=60}"
+    "RoleARN=arn:aws:iam::${ACCOUNT_ID}:role/FirehoseLabRole,BucketARN=arn:aws:s3:::$BUCKET,Prefix=eventos/,BufferingHints={SizeInMBs=1,IntervalInSeconds=60}"
 ```
 
 ## 4. Produtor: ler jogos reais e emitir como stream
@@ -142,29 +146,49 @@ schema = (StructType()
     .add("gols_mandante", LongType()).add("gols_visitante", LongType())
     .add("ts", DoubleType()))
 
-# file source = Structured Streaming lendo o diretorio do Firehose em micro-batches
+# file source = Structured Streaming lendo o diretorio do Firehose em micro-batches.
+# O Firehose grava em eventos/AAAA/MM/DD/HH/arquivo e o file source NAO desce em
+# subpastas sozinho: o glob */*/*/*/ aponta para as pastas de hora.
 stream = (spark.readStream.schema(schema)
-          .option("maxFilesPerTrigger", 1)
-          .json(entrada))
+          .option("maxFilesPerTrigger", 1)        # 1 arquivo por micro-batch
+          .json(entrada.rstrip("/") + "/*/*/*/*/"))
 
 agg = stream.groupBy("mandante").agg(F.sum("gols_mandante").alias("gols_em_casa"))
 
+# O sink de arquivo (parquet) so aceita modo append, e agregacao sem watermark
+# precisa de modo complete (a tabela inteira atualizada a cada batch). O
+# foreachBatch resolve: a cada micro-batch, regrava o placar completo.
+def grava_placar(batch_df, batch_id):
+    print(f"micro-batch {batch_id}: {batch_df.count()} times")
+    batch_df.write.mode("overwrite").parquet(saida)
+
 query = (agg.writeStream
          .outputMode("complete")
-         .format("parquet")        # saida incremental
-         .option("path", saida)
+         .foreachBatch(grava_placar)
          .option("checkpointLocation", chk)
          .trigger(processingTime="30 seconds")
          .start())
 query.awaitTermination(180)        # roda ~3 min para o lab e encerra
+query.stop()
 PY
 aws s3 cp stream_job.py "s3://$BUCKET/scripts/stream_job.py"
 
 # reutilize a Application EMR Serverless e a RuntimeRole do Lab A
-aws emr-serverless start-job-run \
+# (se abriu um terminal novo, recupere o APP_ID pelo nome da Application)
+export APP_ID=$(aws emr-serverless list-applications \
+  --query "applications[?name=='lab-pdn-emrs' && state!='TERMINATED'].id | [0]" \
+  --output text)
+echo "Application: $APP_ID"
+
+RUN_ID=$(aws emr-serverless start-job-run \
   --application-id "$APP_ID" \
-  --execution-role-arn "arn:aws:iam::$ACCOUNT_ID:role/EMRServerlessJobRole" \
-  --job-driver "{\"sparkSubmit\":{\"entryPoint\":\"s3://$BUCKET/scripts/stream_job.py\",\"entryPointArguments\":[\"s3://$BUCKET/eventos/\",\"s3://$BUCKET/agregados/\",\"s3://$BUCKET/checkpoint/\"]}}"
+  --execution-role-arn "arn:aws:iam::${ACCOUNT_ID}:role/EMRServerlessJobRole" \
+  --job-driver "{\"sparkSubmit\":{\"entryPoint\":\"s3://$BUCKET/scripts/stream_job.py\",\"entryPointArguments\":[\"s3://$BUCKET/eventos/\",\"s3://$BUCKET/agregados/\",\"s3://$BUCKET/checkpoint/\"]}}" \
+  --query 'jobRunId' --output text)
+
+# PENDING -> SCHEDULED -> RUNNING (~3 min processando) -> SUCCESS
+aws emr-serverless get-job-run --application-id "$APP_ID" --job-run-id "$RUN_ID" \
+  --query 'jobRun.state'
 ```
 
 Confira os agregados:

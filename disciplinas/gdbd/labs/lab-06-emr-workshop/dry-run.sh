@@ -112,7 +112,14 @@ fi
 # 8. Par de chaves EC2 (para SSH, opcional mas recomendado)
 echo "[8/8] Par de chaves EC2 (para SSH)"
 if [ -z "$KEYNAME" ]; then
-  info "KEYNAME nao informado. SSH e opcional; defina KEYNAME=... para checar."
+  info "KEYNAME nao informado. O par de chaves e criado no passo 5b do lab."
+  # --dry-run so valida a permissao: nao cria a chave. "DryRunOperation" = permitido.
+  KP_PROBE="$(aws ec2 create-key-pair --key-name dryrun-probe --dry-run --region "$REGION" 2>&1)"
+  if printf '%s' "$KP_PROBE" | grep -q DryRunOperation; then
+    pass "ec2:CreateKeyPair permitido (o passo 5b vai conseguir criar a chave)."
+  else
+    warnf "Sem ec2:CreateKeyPair: o SSH do passo 5b nao vai funcionar."
+  fi
 elif aws ec2 describe-key-pairs --key-names "$KEYNAME" --region "$REGION" >/dev/null 2>&1; then
   pass "Par de chaves '$KEYNAME' existe em $REGION."
 else

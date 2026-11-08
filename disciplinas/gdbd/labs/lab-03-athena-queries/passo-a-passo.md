@@ -79,9 +79,12 @@ partição.
 `--query-string` das consultas acima por:
 
 ```sql
--- Total de gols por rodada (precisa da coluna 'rodada' do Lab 02)
+-- Total de gols por rodada. So existe na tabela do Lab 02 (database
+-- futebol_auto), onde o Crawler descobriu a coluna 'rodada'. Na tabela do
+-- Lab 01 (futebol.jogos) essa coluna nao existe e a query falha.
 SELECT rodada, SUM(gols_mandante + gols_visitante) AS gols
-FROM futebol.jogos
+FROM futebol_auto.jogos
+WHERE rodada IS NOT NULL
 GROUP BY rodada ORDER BY gols DESC;
 
 -- Maior goleada da temporada (diferença de gols)

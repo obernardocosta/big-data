@@ -76,7 +76,7 @@ Note que apontamos para a **pasta** `jogos/`, não para o arquivo.
 ```bash
 aws glue create-crawler \
   --name crawler-jogos \
-  --role "arn:aws:iam::$ACCOUNT_ID:role/GlueCrawlerLabRole" \
+  --role "arn:aws:iam::${ACCOUNT_ID}:role/GlueCrawlerLabRole" \
   --database-name futebol_auto \
   --targets '{"S3Targets":[{"Path":"s3://'"$BUCKET"'/jogos/"}]}'
 ```

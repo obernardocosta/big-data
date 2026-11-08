@@ -26,15 +26,16 @@ Em vez de inventar dados, usamos jogos **reais e atuais** da Premier League
 2024/25 do projeto público **openfootball** (JSON, sem API key) e geramos um CSV.
 
 ```bash
-# baixa os jogos reais e gera um CSV com 4 colunas (sem cabecalho de pais ainda)
+# baixa os jogos reais e gera um CSV com 5 colunas. No passo 4 catalogamos so
+# as 4 primeiras; no passo 5 (Schema Evolution) o catalogo passa a enxergar a 5a.
 curl -s https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/en.1.json \
   | python3 -c "
 import json,sys,csv
 dados=json.load(sys.stdin); w=csv.writer(sys.stdout)
-w.writerow(['data','mandante','visitante','gols_mandante'])
+w.writerow(['data','mandante','visitante','gols_mandante','gols_visitante'])
 for m in dados['matches']:
     ft=(m.get('score') or {}).get('ft') or [None,None]
-    w.writerow([m.get('date'),m.get('team1'),m.get('team2'),ft[0]])
+    w.writerow([m.get('date'),m.get('team1'),m.get('team2'),ft[0],ft[1]])
 " > jogos.csv
 
 head -3 jogos.csv          # confira o conteudo real
@@ -91,7 +92,10 @@ aws glue get-table --database-name futebol --name jogos \
 registrar também os gols do visitante), o esquema muda — e o catálogo
 **versiona** isso.
 
-Adicione a coluna `gols_visitante` atualizando a tabela:
+O arquivo no S3 já tem a coluna `gols_visitante`, mas a tabela ainda não a
+enxerga (rode um `SELECT *` no Athena e confira: só 4 colunas). Repare que o
+dado não muda — muda só a **visão de tabela**. Adicione a coluna atualizando a
+tabela:
 
 ```bash
 aws glue update-table --database-name futebol --table-input '{

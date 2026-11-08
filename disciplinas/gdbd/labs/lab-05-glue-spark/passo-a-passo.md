@@ -71,7 +71,7 @@ quando o job **roda** (passo 4). Fixamos 2 DPU para manter barato.
 ```bash
 aws glue create-job \
   --name lab05-transforma-premier \
-  --role "arn:aws:iam::$ACCOUNT_ID:role/$ROLE" \
+  --role "arn:aws:iam::${ACCOUNT_ID}:role/$ROLE" \
   --glue-version "4.0" \
   --number-of-workers 2 --worker-type G.1X \
   --command "Name=glueetl,ScriptLocation=s3://$BUCKET/scripts/transforma.py,PythonVersion=3"

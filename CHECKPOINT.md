@@ -209,8 +209,58 @@ League 2024/25, JSON sem API key) em vez de CSVs inventados inline:
    - PDN:  https://obernardocosta.github.io/big-data/pdn/ (build automático quando a disciplina existir)
 
 ### Só com você presente (NÃO fazer sozinho)
-10. [ ] Rodar os `dry-run.sh` com credencial AWS real e executar um lab ponta a
-    ponta para validar (custo real envolvido).
+10. [x] Rodar os `dry-run.sh` com credencial AWS real e executar os labs ponta a
+    ponta (2026-11-08, autorizado pelo instrutor). Ver seção abaixo.
+
+### Teste ponta a ponta na AWS real ✅ (2026-11-08)
+Conta do instrutor (SSO AdministratorAccess, `us-east-1`). Cada lab foi rodado
+copiando os comandos do `passo-a-passo.md`, conferindo o resultado e limpando.
+Varredura final: **nenhum recurso de lab ligado** (custo estimado US$ 1–2,
+quase todo de EMR).
+
+| Lab | Resultado |
+|---|---|
+| GDBD 01 Glue Catalog | ✅ |
+| GDBD 02 Glue Crawler | ⛔ conta bloqueada no Glue (ver abaixo) |
+| GDBD 03 Athena | ✅ após correções |
+| GDBD 04 Particionamento | ✅ via **Plano B** (Athena DDL + `MSCK REPAIR`): 1,4 KB vs 19,6 KB |
+| GDBD 05 Glue Spark / 07 Data Lake | ⛔ não testados (mesmo bloqueio) |
+| GDBD 06 EMR | ✅ transient (~5 min) + interativo com SSH e `spark-sql` |
+| PDN A EMR Serverless | ✅ |
+| PDN B Kinesis + Firehose + Spark | ✅ após correções |
+| PDN C SageMaker | ✅ treino XGBoost, endpoint serverless, Batch Transform |
+
+Bugs corrigidos:
+- `$ACCOUNT_ID:role` vira modificador do zsh (`:r`) e quebrava o ARN em 9
+  lugares de 6 labs → `${ACCOUNT_ID}:`.
+- Lab 01 gerava só 4 colunas; o schema evolution "criava" `gols_visitante` sem
+  dado e as queries do Lab 03 voltavam NULL. A query de `rodada` do Lab 03
+  apontava para a tabela errada (só existe em `futebol_auto`).
+- Lab 06: `KeyName` fictício derrubava o cluster (`VALIDATION_ERROR`). Novo
+  passo 5b: cria a chave, libera SSH só para o IP do aluno, explora com
+  `spark-sql`, limpa. Dry-run checa `ec2:CreateKeyPair` (`--dry-run`).
+- PDN B: Firehose precisa de `sleep 15` após criar a role; o `stream_job.py`
+  falhava (sink Parquet não aceita `complete`) → `foreachBatch`; glob para as
+  subpastas do Firehose; `APP_ID` recuperado pelo nome.
+- PDN C: dry-run checa quotas de ML; passo 5b com caminho CLI testado (o lab
+  dependia de um notebook que não está no repo).
+- Dry-runs 02/04/05/07: sonda `[conta]` que detecta o bloqueio do Glue sem
+  criar nada.
+
+**Bloqueio do Glue:** `CreateCrawler`/`CreateJob` → `Account <id> is denied
+access`, em todas as regiões. Não é IAM nem SCP (a Organization só tem
+`FullAWSAccess`; o CloudTrail registra a recusa antes da avaliação de IAM).
+Restrição de conta da AWS: precisa de caso no **AWS Support → Account and
+billing** (a API de Support exige plano pago; abrir pelo console).
+
+**Quotas:** SageMaker vem com 0 para treino/transform em conta nova. Pedidos
+abertos às 12:34; ~1 h depois a conta já tinha treino 20 / transform 8. vCPU
+On-Demand do EC2 subiu de 8 para 256 no mesmo dia.
+
+**Pendências:**
+- [ ] Caso no AWS Support para liberar o Glue → então testar Labs 02, 05, 07.
+- [ ] Decidir estratégia de contas AWS dos alunos:
+  https://github.com/obernardocosta/big-data/issues/1
 
 ## Notas de publicação
 
@@ -259,6 +309,7 @@ npm run notas
   classifica corretamente (exit 0).
 - O `dry-run.sh` do lab-01 foi executado nesta máquina: sem credencial AWS, ele
   reporta corretamente o que falta e sai com código 1 (comportamento esperado).
-  Os dry-runs NÃO foram rodados contra uma conta AWS real (ver item 10).
-- Nada foi versionado em git ainda e nada foi publicado. Nenhum recurso AWS foi
-  criado. Nenhuma credencial foi usada.
+  Em 2026-11-08 todos os dry-runs e 7 dos 10 labs foram rodados contra a conta
+  AWS real (ver "Teste ponta a ponta na AWS real").
+- Versionado em `obernardocosta/big-data` e publicado no Pages. Recursos AWS
+  criados nos testes foram todos removidos; nenhuma credencial fica no repo.

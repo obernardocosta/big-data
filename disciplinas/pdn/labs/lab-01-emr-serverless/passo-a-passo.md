@@ -94,7 +94,7 @@ echo "Application: $APP_ID"
 ```bash
 RUN_ID=$(aws emr-serverless start-job-run \
   --application-id "$APP_ID" \
-  --execution-role-arn "arn:aws:iam::$ACCOUNT_ID:role/$RUNTIME_ROLE" \
+  --execution-role-arn "arn:aws:iam::${ACCOUNT_ID}:role/$RUNTIME_ROLE" \
   --job-driver "{\"sparkSubmit\":{\"entryPoint\":\"s3://$BUCKET/scripts/job.py\",\"entryPointArguments\":[\"s3://$BUCKET/raw/jogos.json\",\"s3://$BUCKET/out/\"]}}" \
   --region "$REGION" --query 'jobRunId' --output text)
 

@@ -13,8 +13,8 @@ export DB="futebol_part"
 
 ## 1. Criar o bucket e subir dados JÁ PARTICIONADOS
 
-**Porquê:** a partição é o **nome da pasta**. O Athena vai tratar `year`, `month`
-e `day` como colunas só porque os arquivos estão organizados assim. A separação
+**Porquê:** a partição é o **nome da pasta**. O Athena vai tratar `year` e
+`month` como colunas só porque os arquivos estão organizados assim. A separação
 dos dados nas partições é feita por nós (manual neste lab).
 
 ```bash
@@ -64,12 +64,16 @@ aws iam get-role --role-name GlueCrawlerLabRole >/dev/null 2>&1 \
 específica. É assim que o Crawler enxerga a estrutura `year/month/day` e a
 registra como colunas de partição.
 
+> Se o `create-crawler` falhar com `Account ... is denied access` (restrição de
+> conta nova no Glue), pule os passos 3 e 4 e use o **Plano B** no fim desta
+> página: a mesma tabela particionada criada por SQL no Athena.
+
 ```bash
 aws glue create-database --database-input "{\"Name\":\"$DB\"}"
 
 aws glue create-crawler \
   --name crawler-particionado \
-  --role "arn:aws:iam::$ACCOUNT_ID:role/GlueCrawlerLabRole" \
+  --role "arn:aws:iam::${ACCOUNT_ID}:role/GlueCrawlerLabRole" \
   --database-name "$DB" \
   --targets "{\"S3Targets\":[{\"Path\":\"s3://$BUCKET/tabela/\"}]}"
 ```
@@ -105,8 +109,9 @@ QID=$(aws athena start-query-execution \
   --result-configuration "OutputLocation=$OUTPUT" \
   --region "$REGION" --query 'QueryExecutionId' --output text)
 
+# confirme SUCCEEDED antes de ler o scan (se ainda estiver RUNNING, repita)
 aws athena get-query-execution --query-execution-id "$QID" \
-  --query 'QueryExecution.Statistics.DataScannedInBytes'
+  --query 'QueryExecution.[Status.State,Statistics.DataScannedInBytes]'
 ```
 
 ## 6. Comparar SEM filtro
@@ -127,6 +132,36 @@ aws athena get-query-execution --query-execution-id "$QID2" \
 
 > Dica: no console do Athena o "Data scanned" aparece embaixo de cada resultado,
 > o que torna a comparação visual e boa para demonstrar ao vivo.
+
+## Plano B — tabela particionada sem Crawler (Athena DDL)
+
+**Quando usar:** se a conta não pode criar Crawler (`Account ... is denied
+access`). O conceito é o mesmo: a tabela aponta para a **raiz** e as pastas
+`year=/month=` viram colunas. A diferença é que você declara o esquema e pede ao
+Athena para descobrir as partições (`MSCK REPAIR TABLE`), em vez do Crawler.
+
+Rode no editor do Athena (ou via `start-query-execution`, como no passo 5),
+trocando `SEU-BUCKET`:
+
+```sql
+CREATE DATABASE IF NOT EXISTS futebol_part;
+
+CREATE EXTERNAL TABLE futebol_part.tabela (
+  data string, mandante string, visitante string,
+  gols_mandante int, gols_visitante int
+)
+PARTITIONED BY (year string, month string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION 's3://SEU-BUCKET/tabela/'
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+-- descobre as pastas year=/month= e registra as particoes no catalogo
+MSCK REPAIR TABLE futebol_part.tabela;
+```
+
+Depois siga os passos 5 e 6 normalmente (`TABELA=tabela`). Resultado medido na
+fonte real: **~1,4 KB** com filtro `year='2024' AND month='08'` contra **~19,6 KB**
+sem filtro.
 
 ## Limpeza
 

@@ -22,9 +22,15 @@ ambiente sem treinar nem criar endpoint (o que gera custo).
 
 ## "ResourceLimitExceeded" ao treinar ou criar endpoint
 
-- A conta pode não ter quota para o tipo de instância de ML (ex.:
-  `ml.m5.xlarge`). Peça aumento em **Service Quotas** (SageMaker) com
-  antecedência, ou use um tipo menor disponível.
+- Contas novas vêm com quota **0** para Training Job e Batch Transform em quase
+  todos os tipos (On-Demand e Spot). O `dry-run.sh` mostra isso na checagem
+  `[7/7]` e imprime o comando de pedido.
+- Peça em **Service Quotas → SageMaker** (`ml.m5.large for training job usage`
+  e `... for transform job usage`, valor 2 basta). No teste de 2026-11-08,
+  ~1 h depois do pedido as quotas de ML da conta já apareciam elevadas (treino
+  20, transform 8), embora o pedido ainda constasse como pendente. Não conte com
+  essa rapidez: **peça na primeira semana de aula**, não na véspera.
+- Sem quota a tempo: siga o plano B abaixo.
 
 ## O notebook não abre / kernel não conecta
 

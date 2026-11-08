@@ -33,7 +33,7 @@ sobre ele.
 | Região | `us-east-1` (tenha uma região alternativa pronta — ver plano B) |
 | Serviços | Amazon EMR, Amazon S3, Amazon EC2, IAM (e Step Functions no extra) |
 | Pré-requisito | roles de serviço do EMR (`EMR_DefaultRole`, `EMR_EC2_DefaultRole`) |
-| Ferramentas | AWS CLI v2 configurada; par de chaves EC2 para SSH (opcional) |
+| Ferramentas | AWS CLI v2 configurada; cliente `ssh` (o par de chaves é criado no passo 5b) |
 
 ## Custo estimado
 
@@ -47,8 +47,9 @@ sobre ele.
 
 ## Resultado esperado
 
-Um cluster EMR que executa um ETL em Spark com sucesso e grava a saída no S3
-(e, no extra, uma Step Function orquestrando os steps).
+Um cluster EMR transient que executa um ETL em Spark e grava Parquet no S3; e um
+cluster long running em que você entra por SSH e consulta esse Parquet com
+`spark-sql`/`pyspark` (e, no extra, uma Step Function orquestrando os steps).
 
 ## Ponto de parada seguro
 
@@ -67,7 +68,16 @@ aws emr terminate-clusters --cluster-ids <CLUSTER_ID>
 aws emr describe-cluster --cluster-id <CLUSTER_ID> \
   --query 'Cluster.Status.State'
 
-aws s3 rm s3://SEU-BUCKET/ --recursive
+# cluster interativo do passo 5b + acesso SSH
+aws emr terminate-clusters --cluster-ids <CLUSTER_ID2>
+aws ec2 revoke-security-group-ingress --group-id <MASTER_SG> \
+  --protocol tcp --port 22 --cidr <SEU_IP>/32
+aws ec2 delete-key-pair --key-name <KEYNAME> && rm -f <KEYNAME>.pem
+
+# confira que nada ficou ligado
+aws emr list-clusters --active --query 'Clusters[].Id'
+
+aws s3 rb s3://SEU-BUCKET/ --force
 # remova a Step Function do extra, se criou
 ```
 

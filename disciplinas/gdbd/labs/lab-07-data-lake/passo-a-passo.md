@@ -62,7 +62,7 @@ PY
 aws s3 cp raw_to_clean.py "s3://$BUCKET/scripts/raw_to_clean.py"
 
 aws glue create-job --name lab07-raw-to-clean \
-  --role "arn:aws:iam::$ACCOUNT_ID:role/$ROLE" \
+  --role "arn:aws:iam::${ACCOUNT_ID}:role/$ROLE" \
   --glue-version "4.0" --number-of-workers 2 --worker-type G.1X \
   --command "Name=glueetl,ScriptLocation=s3://$BUCKET/scripts/raw_to_clean.py,PythonVersion=3"
 
@@ -77,7 +77,7 @@ catalogamos (boa prática nº 3) para consultar no Athena.
 
 ```bash
 aws glue create-crawler --name crawler-datalake \
-  --role "arn:aws:iam::$ACCOUNT_ID:role/$ROLE" \
+  --role "arn:aws:iam::${ACCOUNT_ID}:role/$ROLE" \
   --database-name "$DB" \
   --targets "{\"S3Targets\":[{\"Path\":\"s3://$BUCKET/clean/premier/\"}]}"
 

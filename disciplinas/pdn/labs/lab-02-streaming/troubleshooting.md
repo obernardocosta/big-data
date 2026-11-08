@@ -3,6 +3,20 @@
 Rode o `dry-run.sh` primeiro — ele valida o ambiente sem criar o stream (o shard
 é o que gera custo).
 
+## "Firehose is unable to assume role" ao criar o Firehose
+
+- A role acabou de ser criada e ainda não propagou no IAM (leva alguns
+  segundos). Espere ~15 s e rode o `create-delivery-stream` de novo. O
+  `passo-a-passo.md` já tem um `sleep 15` antes dele.
+
+## O Spark Streaming (passo 6) falha com "does not support Complete output mode"
+
+- O sink de arquivo (Parquet) só aceita `append`, e agregação sem watermark exige
+  `complete`. O `stream_job.py` do passo a passo usa `foreachBatch` para regravar
+  o placar a cada micro-batch. Se você copiou uma versão antiga, atualize.
+- Se o job termina sem ler nada: o Firehose grava em `eventos/AAAA/MM/DD/HH/`, e
+  o file source não desce em subpastas. O script usa o glob `*/*/*/*/`.
+
 ## Os eventos não aparecem no S3
 
 - **É buffering, não erro.** O Firehose entrega por tamanho (~1 MB) ou tempo

@@ -3,6 +3,18 @@
 Erros comuns e como resolver. Rode o `dry-run.sh` deste lab primeiro: ele aponta
 a maioria destes problemas antes da aula.
 
+## "Account <id> is denied access" ao criar Crawler ou Glue Job
+
+- **Não é permissão IAM.** É um bloqueio no nível da conta, comum em contas
+  novas: acontece mesmo com `AdministratorAccess`, e o Glue Data Catalog
+  (`create-database`, `create-table`) continua funcionando. Visto no teste real
+  de 2026-11-08 em `us-east-1`.
+- O `dry-run.sh` detecta isso na checagem `[conta]` (sonda que não cria nada).
+- **Como resolver:** abra um caso no **AWS Support → Account and billing**
+  (gratuito, sem plano pago), pedindo a liberação do AWS Glue (Crawler e Jobs)
+  na região do lab. Pode levar de horas a dias: peça na primeira semana de aula.
+- **Enquanto isso:** faça o Lab 01 (catálogo manual, não depende de Crawler) e mostre o Crawler como demonstração na conta do instrutor.
+
 ## "Unable to locate credentials" / credencial inválida
 
 - Rode `aws configure` e informe Access Key, Secret e região.
