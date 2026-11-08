@@ -171,7 +171,7 @@ amarra todas as aulas.
 
 **Tempo:** 60 min
 
-Instruções versionadas: `labs/lab-07-data-lake/`
+Instruções versionadas: [`labs/lab-07-data-lake/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-07-data-lake)
 
 ---
 

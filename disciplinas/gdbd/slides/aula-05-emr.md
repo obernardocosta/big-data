@@ -226,7 +226,7 @@ steps com **AWS Step Functions**.
 
 **Tempo:** 60 min
 
-Instruções versionadas: `labs/lab-06-emr-workshop/`
+Instruções versionadas: [`labs/lab-06-emr-workshop/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-06-emr-workshop)
 
 <!--
 Este é o lab historicamente problemático (instâncias indisponíveis na região).

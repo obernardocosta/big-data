@@ -34,7 +34,10 @@ src: ./aula-01-catalogo.md
    prós/contras -> prática -> fechamento.
 3. Cada slide é separado por `---`. Use `##` para o título do slide.
 4. Para o slide da prática, não cole link do Google Docs: aponte para o lab
-   versionado em `labs/lab-NN-nome/` (link relativo) e cite o tempo (timebox).
+   versionado com **link clicável** para a pasta no GitHub, no formato
+   ``[`labs/lab-NN-nome/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/<disciplina>/labs/lab-NN-nome)``
+   (o Pages publica só os slides, então caminho relativo não abre), e cite o
+   tempo (timebox).
 5. Adicione o `src` do novo arquivo no `index.md`, na ordem das aulas.
 6. Valide com `npx slidev build disciplinas/<disciplina>/slides/index.md`.
 7. Rode o **checklist de consistência** de `.kiro/steering/didatica.md`

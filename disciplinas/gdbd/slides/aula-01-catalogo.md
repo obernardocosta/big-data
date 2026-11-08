@@ -357,7 +357,7 @@ observar o esquema **versionar** quando a fonte ganha uma coluna nova.
 
 **Tempo:** 15 min
 
-Instruções versionadas: `labs/lab-01-glue-catalog/`
+Instruções versionadas: [`labs/lab-01-glue-catalog/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-01-glue-catalog)
 
 <!--
 Conduza o lab ligando cada passo ao conceito (Virtualization, Schema Evolution).
@@ -406,7 +406,7 @@ routeAlias: lab-2
 
 **Tempo:** 30 min
 
-Instruções versionadas: `labs/lab-02-glue-crawler/`
+Instruções versionadas: [`labs/lab-02-glue-crawler/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-02-glue-crawler)
 
 ---
 

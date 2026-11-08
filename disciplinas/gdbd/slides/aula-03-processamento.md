@@ -250,7 +250,7 @@ transformado** (Parquet), mais rápido e barato que sobre o CSV cru.
 
 **Tempo:** 45 min
 
-Instruções versionadas: `labs/lab-05-glue-spark/`
+Instruções versionadas: [`labs/lab-05-glue-spark/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-05-glue-spark)
 
 <!--
 Ligue ao conceito: Parquet (colunar) + partição reduz o "Data scanned" da

@@ -269,7 +269,7 @@ Lab 01/02 (jogos reais 2024/25), usando SQL no Athena:
 
 **Tempo:** 45 min
 
-Instruções versionadas: `labs/lab-03-athena-queries/`
+Instruções versionadas: [`labs/lab-03-athena-queries/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-03-athena-queries)
 
 <!--
 Ligue cada query ao conceito: o Athena usa o Glue Data Catalog (Aula 1) para
@@ -370,7 +370,7 @@ dados (compare o "Data scanned" no Athena, com e sem filtro).
 
 **Tempo:** 45 min
 
-Instruções versionadas: `labs/lab-04-particionamento/`
+Instruções versionadas: [`labs/lab-04-particionamento/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-04-particionamento)
 
 ---
 

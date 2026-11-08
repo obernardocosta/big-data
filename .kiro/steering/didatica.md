@@ -57,7 +57,10 @@ ser pedida:
    link oficial em cada ferramenta/serviço, para o aluno pesquisar e escrever.
 4. **Links**: todos respondem (HTTP 200) e apontam para a página oficial.
 5. **Build**: `npx slidev build` do deck afetado passa sem erro.
-6. **Steering e skills**: se a mudança altera uma convenção, atualizar
+6. **Referências a labs nos slides**: sempre como link clicável para a pasta no
+   GitHub (`https://github.com/obernardocosta/big-data/tree/main/disciplinas/<disciplina>/labs/lab-NN-nome`),
+   nunca só o caminho em texto. O site do Pages publica só os slides.
+7. **Steering e skills**: se a mudança altera uma convenção, atualizar
    `.kiro/steering/` e `.kiro/skills/` no mesmo commit.
 
 ## Idioma

@@ -173,7 +173,7 @@ deixar o sábado leve.
 **Timebox hoje:** ~1h20. **Ponto de parada seguro:** job PySpark em `SUCCESS`
 (o de dependências pode virar casa, mas tente fechar hoje).
 
-Instruções versionadas: `labs/lab-01-emr-serverless/` · rode o `dry-run.sh` antes.
+Instruções versionadas: [`labs/lab-01-emr-serverless/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-01-emr-serverless) · rode o `dry-run.sh` antes.
 
 <!--
 A Application criada aqui é reaproveitada no sábado para o Spark do Lab B. Por

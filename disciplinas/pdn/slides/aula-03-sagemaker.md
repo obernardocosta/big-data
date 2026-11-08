@@ -152,7 +152,7 @@ routeAlias: lab-c
 - Fazer o **deploy**: **Batch Transform** (recomendado no lab) ou **Endpoint**.
 - **Parada segura:** Training Job concluído e modelo registrado.
 
-Instruções: `labs/lab-03-sagemaker/`.
+Instruções: [`labs/lab-03-sagemaker/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-03-sagemaker).
 
 ---
 
@@ -168,7 +168,7 @@ Aulas 1 e 2. Falta **uma** frente — a parte Spark do Lab B:
 > Quem tiver pendência do Lab A (ex.: dependências Python) usa os 30 min de
 > chegada para fechar — não é bloco planejado concorrente.
 
-Instruções: `labs/lab-02-streaming/` (passo 6).
+Instruções: [`labs/lab-02-streaming/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-02-streaming) (passo 6).
 
 ---
 layout: center

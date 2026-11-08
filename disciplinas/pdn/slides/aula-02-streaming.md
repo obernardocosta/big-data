@@ -210,7 +210,7 @@ EMR Serverless do Lab A).
 
 **Timebox hoje:** ~1h. **Parada segura:** eventos no S3.
 
-Instruções: `labs/lab-02-streaming/` · rode o `dry-run.sh` antes.
+Instruções: [`labs/lab-02-streaming/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-02-streaming) · rode o `dry-run.sh` antes.
 
 <!--
 Dados reais e atuais (Premier League 2024/25, openfootball, sem API key). O
