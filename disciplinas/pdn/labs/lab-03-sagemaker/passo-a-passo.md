@@ -11,6 +11,41 @@
 O lab segue o notebook disponibilizado pela turma. Os comandos abaixo mostram o
 fluxo conceitual (via SDK/CLI) para quem quiser reproduzir fora do notebook.
 
+## Modo turma (conta do instrutor) — use este se recebeu usuário e senha
+
+**Porquê:** conta AWS nova vem com quota **0** para treinar no SageMaker, e o
+pedido de aumento leva dias. Por isso o instrutor libera um acesso temporário
+na conta dele, já com quota. Seu usuário só enxerga os **seus** recursos, só usa
+instâncias pequenas e expira sozinho no fim do curso.
+
+1. Entre no link de login que você recebeu, com seu usuário e senha.
+2. Depois do login, abra o **CloudShell** já na região certa:
+   https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1
+   (o console abre em Ohio, `us-east-2`, por padrão; o lab é em N. Virginia,
+   `us-east-1`). É um terminal no navegador, com a AWS CLI e o Python prontos:
+   não precisa instalar nada. Na primeira vez ele leva ~1 min para iniciar.
+3. Cole as duas linhas que o instrutor passou (`TURMA_BUCKET` e `SM_ROLE`) e,
+   em seguida:
+
+```bash
+# seu nome de usuario vira o prefixo de tudo que voce criar
+export ALUNO="$(aws sts get-caller-identity --query Arn --output text | cut -d/ -f2)"
+export REGION="us-east-1"
+export ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
+export BUCKET="$TURMA_BUCKET/$ALUNO"     # sua pasta no bucket da turma
+echo "Aluno: $ALUNO | dados em s3://$BUCKET"
+```
+
+4. **Pule** o bloco de variáveis abaixo e o passo 1 (o bucket e a role já
+   existem) e vá direto ao **passo 5b**. Use os nomes como estão: o `JOB`
+   começa com o seu usuário, e é isso que a sua permissão exige.
+
+> Se aparecer `AccessDenied` / `not authorized`: confira se o nome do recurso
+> começa com `$ALUNO-`, se o tipo de instância é `ml.m5.large` e se o endpoint
+> é serverless. São as travas que mantêm o lab barato.
+
+**Fora do modo turma** (na sua própria conta), siga a partir daqui:
+
 ```bash
 export BUCKET="pdn-lab03-$(whoami)-$RANDOM"
 export REGION="us-east-1"
@@ -116,7 +151,7 @@ aws s3 cp test.csv  "s3://$BUCKET/input/test/test.csv"
 
 # Training Job com o XGBoost nativo do SageMaker
 export IMAGE="683313688378.dkr.ecr.us-east-1.amazonaws.com/sagemaker-xgboost:1.7-1"
-export JOB="pdn-labc-$(date +%H%M%S)"
+export JOB="${ALUNO:-pdn}-labc-$(date +%H%M%S)"   # no modo turma: <seu-usuario>-labc-...
 aws sagemaker create-training-job --training-job-name "$JOB" \
   --algorithm-specification TrainingImage=$IMAGE,TrainingInputMode=File \
   --role-arn "arn:aws:iam::${ACCOUNT_ID}:role/$SM_ROLE" \

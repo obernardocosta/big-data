@@ -65,6 +65,18 @@ o ambiente (credencial, região, usuário IAM, permissões) com chamadas
 bash disciplinas/gdbd/labs/lab-01-glue-catalog/dry-run.sh
 ```
 
+### Acesso da turma ao SageMaker (Lab C da PDN)
+
+Conta AWS nova vem com quota 0 de treino no SageMaker. Para a turma usar a sua
+conta com acesso temporário, isolado e barato:
+
+```bash
+tools/turma/turma.sh criar --turma pdn-2026-2 --alunos 30 --expira 2026-12-15 --email voce@exemplo.com
+tools/turma/turma.sh limpar --turma pdn-2026-2
+```
+
+Guia completo em [`tools/turma/README.md`](tools/turma/README.md).
+
 ### Notas
 
 Lance as notas num CSV versionado e calcule a nota final:

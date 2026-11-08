@@ -12,3 +12,6 @@ _fonte/*.pdf
 
 # Sistema
 .DS_Store
+
+# Credenciais de turma (o turma.sh grava em ~, mas por garantia)
+turma-*-credenciais.csv

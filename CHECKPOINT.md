@@ -292,8 +292,19 @@ padrão do EMR (sem custo).
 
 **Pendências:**
 - [ ] (Opcional) Caso no AWS Support para liberar o Glue na conta `sandbox`.
-- [ ] Decidir estratégia de contas AWS dos alunos:
-  https://github.com/obernardocosta/big-data/issues/1
+- [x] Estratégia de contas AWS dos alunos decidida (issue #1, fechada):
+  labs na **conta principal**; para o SageMaker, acesso temporário da turma
+  via `tools/turma/turma.sh` (ver abaixo).
+
+### Acesso da turma ao SageMaker ✅ (2026-11-08)
+`tools/turma/turma.sh criar|status|limpar` cria usuários IAM temporários
+(`<turma>-aNN`) que só usam CloudShell + SageMaker: treino/batch em
+`ml.m5.large` até 15 min, endpoint só serverless, só recursos com o próprio
+prefixo, pasta própria num bucket da turma. A política expira sozinha em
+`--expira`. Guia do instrutor: `tools/turma/README.md`. Lab C ganhou a seção
+"Modo turma". Testado: aluno pela CLI (lab completo), aluno no navegador (login
++ CloudShell + treino), 15 abusos negados, expiração (simulador IAM), `limpar`.
+Quota atual da conta: 20 treinos e 8 batch simultâneos (o `criar` avisa).
 
 ## Notas de publicação
 
