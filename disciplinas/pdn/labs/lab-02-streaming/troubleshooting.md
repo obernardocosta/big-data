@@ -23,11 +23,12 @@ com o passo, o erro e um print.
   (~60s, como configurado). Com poucos eventos, o gatilho é o **tempo** — espere
   ~1 min e liste de novo.
 - Confirme que o Firehose tem a fonte apontando para o **ARN do stream** certo e
-  que a `FirehoseLabRole` tem acesso ao bucket.
+  que a **role do Firehose** (a que o console criou, ou a `FirehoseLabRole` se você usou o script) tem acesso ao bucket.
 
 ## "AccessDenied" / o Firehose não grava no S3
 
-- Quem grava é a **role do Firehose**, não o seu usuário. A `FirehoseLabRole`
+- Quem grava é a **role do Firehose**, não o seu usuário. Essa role (criada pelo
+  console em **Create or update IAM role**, ou a `FirehoseLabRole` do script)
   precisa de escrita no bucket (`AmazonS3FullAccess` no lab) e leitura do Kinesis
   (`AmazonKinesisReadOnlyAccess`). Para criá-la, seu usuário precisa de
   `iam:PassRole`.

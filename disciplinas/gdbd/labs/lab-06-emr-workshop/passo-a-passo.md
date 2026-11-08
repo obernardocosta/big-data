@@ -9,6 +9,10 @@
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir. A
 >    preparação (passo 1) e a conexão **SSH** (passo 5b.4) usam o script como
 >    caminho principal, e o texto explica por quê.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 > **Custo:** o passo 3 **sobe o cluster** e aí começa a cobrança (~US$ 1 total).
 > O cluster é criado com encerramento automático (transient): some sozinho ao

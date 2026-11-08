@@ -23,7 +23,6 @@ disciplinas/
   gdbd/   -> slides/ labs/ avaliacao/ agenda/ export/
   pdn/    -> mesma estrutura
 tools/
-  notas/  -> script de cálculo de notas (CSV)
   trabalho/ -> clube do grupo e autoconferência do trabalho final (público)
 .kiro/
   steering/ -> este diretório (memória + convenções, carregado sempre)
@@ -44,7 +43,12 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
   repositórios, para compartilhar skills, steering e templates de lab.
 - **2026-10**: Avaliação **sem quiz** (o acesso ao Kahoot foi perdido). A nota
   é composta por presença + participação nos labs + trabalho/entrega, calculada
-  a partir de um CSV versionado por um script (`npm run notas`).
+  a partir de um CSV por um script (`npm run notas`, no repo privado).
+- **2026-11**: Tudo que tem **dado de aluno ou gabarito** vive no repositório
+  **privado** `obernardocosta/big-data-privado` (clonado ao lado deste):
+  notas e CSVs das turmas, `npm run notas`, entregas e o corretor do trabalho
+  final. Este repo é público: **nunca** commitar CSV de turma, nota, entrega de
+  aluno nem gabarito aqui. O público guarda critérios, pesos, enunciados e modelos.
 - **2026-10**: Todo lab precisa de um `dry-run.sh` que valida o ambiente
   **sem gastar** (credenciais, região, quota, permissões) antes da aula.
 - **2026-11**: Trabalho final (50% da nota) definido nas duas disciplinas:
@@ -52,11 +56,27 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
   aluno**. Cada grupo recebe um clube da Premier League pela matrícula do 1º
   integrante; respostas diferentes por clube permitem correção por script
   (6,0 automáticos + 4,0 por rubrica manual). O **corretor com o gabarito é
-  privado**: repo `obernardocosta/big-data-correcao` (este repo é público);
+  privado** (repo privado, ver decisão abaixo; este repo é público);
   `tools/trabalho` expõe só `clube` e `validar` para o aluno. GDBD = Data Lake
   do meu clube; PDN = Pipeline e custo do meu clube (EMR Serverless + Kinesis/
   Firehose + ADR). **SageMaker é opcional** (bônus +1,0). Prazo: 10 dias após a
   última aula. Contas novas podem ter o Glue bloqueado: CTAS no Athena é rota aceita.
+
+## Boas práticas de Git (várias sessões ao mesmo tempo)
+
+Várias sessões (e pessoas) podem editar este repositório ao mesmo tempo, cada uma
+em arquivos diferentes. Por isso:
+
+- Antes de dar `git push` em `main`, rode `git fetch` e, se houver commits novos,
+  `git pull --rebase origin main`; só então faça o push. Nunca force push.
+- Se o push for rejeitado ("fetch first" / "non-fast-forward"), faça o
+  `pull --rebase` e tente de novo; não descarte nem sobrescreva commits dos outros.
+- Faça commits pequenos e por assunto, e adicione arquivos específicos (evite
+  `git add -A` quando houver mudança de outra sessão no working tree).
+- Antes de editar, confira `git status` e `git log origin/main` para ver o que
+  mudou; não reverta alterações que você não fez.
+- Se houver conflito de rebase, resolva preservando as duas mudanças e registre
+  no commit o que foi combinado.
 
 ## Contexto do instrutor (feedback a tratar)
 

@@ -8,6 +8,10 @@
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir. Os passos de
 >    preparação (1 e a primeira parte do 3) usam o script como caminho principal,
 >    e o texto explica por quê.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 **Console da AWS:** <https://console.aws.amazon.com/> · região **N. Virginia
 (`us-east-1`)**, confira no canto superior direito.

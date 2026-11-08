@@ -66,7 +66,7 @@ Aula longa, mais voltada a **prática**. Janela boa para conduzir o lab com calm
 | 0:30–1:15 | O problema do ETL + opções de processamento na AWS |
 | 1:15–1:55 | Apache Spark → AWS Glue Job; DPU e preço |
 | 1:55–2:10 | **Intervalo** |
-| 2:10–3:40 | **Lab 05** — Spark serverless (Glue Job) com calma |
+| 2:10–3:40 | **Lab 05** — Spark serverless (Glue Job): 5 min de demo + 45 de prática, com folga |
 | 3:40–4:10 | Quando **não** usar Spark (Lambda); discussão |
 | 4:10–5:00 | Aprofundamento guiado (ver abaixo) + fechamento |
 

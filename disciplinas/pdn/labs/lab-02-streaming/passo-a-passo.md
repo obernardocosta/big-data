@@ -7,6 +7,10 @@
 > 3. Travou ou está sem tempo? Cada passo tem um bloco **"Prefere o terminal?"**
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir. Os passos de
 >    preparação (produtor, job Spark) têm o **script como caminho principal**.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 > **Custo:** o passo 2 **cria o stream** (shard-hora). Mantenha 1 shard e limpe
 > ao final.

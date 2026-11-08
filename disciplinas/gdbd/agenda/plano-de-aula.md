@@ -61,6 +61,12 @@ na conta AWS do aluno, entrega **10 dias após a Aula 6**.
 - **Contas novas:** o Glue pode estar bloqueado (`Account is denied access`);
   avise que CTAS no Athena é rota aceita.
 
+## Formato dos labs
+
+Cada lab começa com uma **demo ao vivo do instrutor (~5 min)**, depois o aluno
+repete **no console** pelo passo a passo, e o **script AWS CLI** (recolhido em cada
+passo) fica como atalho. Os timeboxes desta agenda já incluem os 5 min de demo.
+
 ## Regras de condução (valem para todas as aulas)
 
 - **Pontualidade.** A aula começa no horário, com tolerância máxima de 10 min.
@@ -98,9 +104,9 @@ Primeira aula: sem o bloco de 30 min. Janela de ~3h30, teoria + prática.
 | 0:45–1:20 | Open source: Hive Metastore → AWS: Glue Data Catalog |
 | 1:20–1:45 | O serviço: bancos, tabelas, esquema, cobrança; prós e contras |
 | 1:45–2:00 | Intervalo |
-| 2:00–2:25 | **Lab 01 — Glue Data Catalog** (timebox 15 min + apoio) |
+| 2:00–2:25 | **Lab 01 — Glue Data Catalog** (timebox 20 min: 5 de demo + 15 de prática) |
 | 2:25–2:40 | Gancho: "catalogar à mão não escala" → Crawler |
-| 2:40–3:15 | **Lab 02 — Glue Crawler** (timebox 30 min + apoio) |
+| 2:40–3:15 | **Lab 02 — Glue Crawler** (timebox 35 min: 5 de demo + 30 de prática) |
 | 3:15–3:30 | Fechamento: open source → AWS; dúvidas; o que vem na Aula 2 |
 
 Pontos de parada seguro: Lab 01 após criar e ver a tabela (passo 4); Lab 02
@@ -111,13 +117,18 @@ assim que o Crawler criar a tabela (passo 5). O resto vira demonstração.
 A partir da Aula 2, **reserve os primeiros 30 min** para dúvidas / término da
 atividade anterior, enquanto os alunos chegam.
 
-| Aula | Dia · horário | Tópico | Labs |
+| Aula | Dia · horário | Tópico | Labs (timebox, incluindo 5 min de demo ao vivo) |
 |---|---|---|---|
-| 2 | Sem. 1 · quinta 18h30–22h | Athena/Presto + particionamento | 03, 04 |
-| 3 | Sem. 1 · **sábado 8–13h** | Processamento — Glue Job / Spark serverless | 05 (custo) |
+| 2 | Sem. 1 · quinta 18h30–22h | Athena/Presto + particionamento | 03 (50 min), 04 (50 min) |
+| 3 | Sem. 1 · **sábado 8–13h** | Processamento — Glue Job / Spark serverless | 05 (50 min, custo) |
 | 4 | Sem. 2 · terça 18h30–22h | Orquestração — Airflow → MWAA / Step Functions | — (conceitual) |
-| 5 | Sem. 2 · quinta 18h30–22h | Amazon EMR — Hadoop/Spark gerenciado | 06 (custo ~US$ 1) |
-| 6 | Sem. 2 · **sábado 8–13h** | Data Lake — amarrando tudo (3 camadas) | 07 (lab final) |
+| 5 | Sem. 2 · quinta 18h30–22h | Amazon EMR — Hadoop/Spark gerenciado | 06 (65 min, custo ~US$ 1) |
+| 6 | Sem. 2 · **sábado 8–13h** | Data Lake — amarrando tudo (3 camadas) | 07 (65 min, lab final) |
+
+> **Aula 2 (a mais apertada):** com os labs em formato console + demo (50 + 50
+> min), a teoria foi enxugada para caber nas 3h30 (ver tabela do slide da aula:
+> 0:30–1:15 teoria, Lab 03 1:15–2:05, Lab 04 2:35–3:25). Se um lab estourar, use o
+> ponto de parada seguro e termine nos primeiros 30 min da Aula 3.
 
 Nas aulas de **terça/quinta** (3h30), intercale teoria e os labs. Nas de
 **sábado** (5h, Aulas 3 e 6), use a janela longa para conduzir o lab por inteiro.

@@ -63,13 +63,13 @@ Ao final, você será capaz de:
 | Tempo | Bloco |
 |---|---|
 | 0:00–0:30 | Chegada: dúvidas da Aula 1 / terminar Labs 01–02 |
-| 0:30–1:00 | Estudo de caso + PrestoDB (open source) |
-| 1:00–1:30 | Amazon Athena: serverless, catálogo, preço por TB |
-| 1:30–2:00 | **Lab 03** — queries no Athena |
-| 2:00–2:15 | **Intervalo** |
-| 2:15–2:45 | Particionamento: por que corta custo e tempo |
-| 2:45–3:20 | **Lab 04** — particionamento |
-| 3:20–3:30 | Fechamento + o que vem na Aula 3 |
+| 0:30–0:50 | Estudo de caso + PrestoDB (open source) |
+| 0:50–1:15 | Amazon Athena: serverless, catálogo, preço por TB |
+| 1:15–2:05 | **Lab 03** — queries no Athena (5 min de demo + 45 de prática) |
+| 2:05–2:15 | **Intervalo** |
+| 2:15–2:35 | Particionamento: por que corta custo e tempo |
+| 2:35–3:25 | **Lab 04** — particionamento (5 min de demo + 45 de prática) |
+| 3:25–3:30 | Fechamento + o que vem na Aula 3 |
 
 > **Gestão de tempo (2 labs em 3h30):** priorize o **Lab 03** completo (é o que
 > prova "SQL serverless sobre o catálogo"). No **Lab 04**, o essencial é criar a

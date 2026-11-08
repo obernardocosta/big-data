@@ -73,6 +73,9 @@ ser pedida:
    de outros donos) deve voltar vazio.
 9. **Steering e skills**: se a mudança altera uma convenção, atualizar
    `.kiro/steering/` e `.kiro/skills/` no mesmo commit.
+10. **Privacidade**: nenhum CSV de turma, nota, entrega de aluno ou gabarito
+   no repositório público. Isso vive em `obernardocosta/big-data-privado`.
+   `git status` antes de commitar para conferir.
 
 ## Regra de ouro: tudo que o aluno vai usar tem link
 

@@ -74,6 +74,11 @@ ocioso).
    em **Empty** e depois em **Delete**. No modo turma, apague só a sua pasta
    (`$ALUNO/`) dentro do bucket da turma.
 
+> ⚠️ **Aviso (modo turma):** o bucket da turma é compartilhado. Antes de apagar
+> qualquer coisa nele, confirme com o instrutor a regra de limpeza da sua turma e
+> **nunca apague pastas de outros alunos**. Os Endpoints, modelos e jobs que **você**
+> criou (prefixo com o seu usuário) são sempre seus para apagar.
+
 <details>
 <summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
 

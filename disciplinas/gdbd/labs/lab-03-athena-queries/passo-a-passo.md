@@ -6,6 +6,10 @@
 > 2. Repita você mesmo **no console da AWS**, seguindo as instruções de cada passo.
 > 3. Travou ou está sem tempo? Cada passo tem um bloco **"Prefere o terminal?"**
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 **Console da AWS:** <https://console.aws.amazon.com/> · região **N. Virginia
 (`us-east-1`)**, confira no canto superior direito.

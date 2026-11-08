@@ -42,7 +42,7 @@ Leia os objetivos em voz alta: ancoram a aula. No fim, retomamos cada um.
 | 0:35–1:15 | EMR Serverless: Application, Job, RuntimeRole |
 | 1:15–1:35 | Preço e TCO — quando vale |
 | 1:35–1:50 | **Intervalo** |
-| 1:50–3:20 | **Lab A** — EMR Serverless completo (job + dependências) |
+| 1:50–3:20 | **Lab A** — EMR Serverless completo (5 min de demo + ~1h20 de prática) |
 | 3:20–3:30 | Fechamento + o que vem (streaming na quinta) |
 
 <!-- Teoria curta de propósito: dá para fechar o Lab A hoje e aliviar o sábado. -->

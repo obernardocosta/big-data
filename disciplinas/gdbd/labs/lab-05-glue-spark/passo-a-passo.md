@@ -8,6 +8,10 @@
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir. Os passos de
 >    preparação (1, 2 e 2b) usam o script como caminho principal, e o texto
 >    explica por quê.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 > **Lembrete de custo:** o passo 4 **executa** o Glue Job e é cobrado por
 > DPU-hora. Mantenha 2 DPU e um job curto. Faça a Limpeza ao final.

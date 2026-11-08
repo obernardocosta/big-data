@@ -1,8 +1,9 @@
 # Avaliação — PDN
 
 A avaliação segue o **mesmo modelo da GDBD**: sem quiz, nota final como média
-ponderada de **presença + participação + trabalho**, lançada em CSV versionado e
-calculada pelo script `tools/notas/calcular-notas.mjs`.
+ponderada de **presença + participação + trabalho**, lançada em CSV e calculada
+por script. Notas, CSVs das turmas e correção ficam no repositório privado
+(veja o fim deste arquivo).
 
 ## Componentes e pesos
 
@@ -12,8 +13,7 @@ calculada pelo script `tools/notas/calcular-notas.mjs`.
 | **Participação** (labs) | 0 a 10 | 30% |
 | **Trabalho** (entrega final) | 0 a 10 | 50% |
 
-Média para aprovação: **6,0**. Os pesos ficam no topo do script e valem para as
-duas disciplinas; ajuste lá se a turma usar outra combinação.
+Média para aprovação: **6,0**. Os pesos valem para as duas disciplinas.
 
 ## O trabalho final
 
@@ -25,17 +25,10 @@ Individual ou em grupo de até 3, na conta AWS do próprio aluno. SageMaker é
 
 - Enunciado para o aluno: [`trabalho.md`](trabalho.md)
 - Modelo de entrega: [`trabalho-modelo/`](trabalho-modelo/)
-- Correção (instrutor): repositório privado `obernardocosta/big-data-correcao`
+- Correção (instrutor): repositório privado, veja o fim deste arquivo
 
-## Como lançar e calcular
+## Onde ficam as notas e a correção (privado)
 
-Crie um CSV em `notas/` (cabeçalho fixo: `matricula,nome,presenca,participacao,trabalho`),
-um arquivo por turma/semestre, e rode da raiz do repositório:
-
-```bash
-npm run notas -- disciplinas/pdn/avaliacao/notas/turma-exemplo.csv
-```
-
-Use `notas/turma-exemplo.csv` como modelo. Os detalhes do fluxo (validações,
-decimal com vírgula, linhas ignoradas) estão em
-[`../../gdbd/avaliacao/README.md`](../../gdbd/avaliacao/README.md).
+Notas, CSVs das turmas, entregas dos alunos e o corretor do trabalho (com
+gabarito) ficam no repositório privado `obernardocosta/big-data-privado` (privado). O fluxo é o mesmo da
+[GDBD](../../gdbd/avaliacao/README.md).

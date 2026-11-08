@@ -37,7 +37,7 @@ Ao final, você será capaz de:
 | 1:00–1:40 | Kinesis Data Streams + Firehose |
 | 1:40–2:00 | Custo é arquitetura (DynamoDB vs S3 vs Firehose) |
 | 2:00–2:15 | **Intervalo** |
-| 2:15–3:20 | **Lab B** — produtor → Kinesis → Firehose → S3 (início) |
+| 2:15–3:20 | **Lab B** — produtor → Kinesis → Firehose → S3 (início; 5 min de demo + ~1h de prática) |
 | 3:20–3:30 | Fechamento + o que vem (SageMaker no sábado) |
 
 ---

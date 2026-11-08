@@ -32,10 +32,10 @@ CONDUÇÃO: primeiros 30 min para dúvidas / terminar Labs A e B.
 | Tempo | Bloco |
 |---|---|
 | 0:00–0:30 | Chegada: dúvidas / pendências das Aulas 1–2 |
-| 0:30–2:00 | SageMaker: do notebook ao endpoint |
-| 2:00–2:15 | **Intervalo** |
-| 2:15–3:30 | **Lab C** — SageMaker (treino + deploy) com calma |
-| 3:30–4:15 | **Spark Structured Streaming** do Lab B (fecha o streaming) |
+| 0:30–1:45 | SageMaker: do notebook ao endpoint |
+| 1:45–2:00 | **Intervalo** |
+| 2:00–3:35 | **Lab C** — SageMaker (5 min de demo + ~1h30 de prática) |
+| 3:35–4:15 | **Spark Structured Streaming** do Lab B (fecha o streaming) |
 | 4:15–4:40 | **Limpeza** (apagar Endpoint!) + conferir custo |
 | 4:40–5:00 | Revisão do mapa do curso + fechamento |
 

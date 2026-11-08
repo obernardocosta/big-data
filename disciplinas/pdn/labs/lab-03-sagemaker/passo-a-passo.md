@@ -9,6 +9,10 @@
 > 3. Travou ou está sem tempo? Os passos com console têm um bloco **"Prefere o
 >    terminal?"** (recolhido) com o mesmo passo em **AWS CLI**, e o **passo 5b**
 >    refaz o ciclo inteiro por script.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 > **Custo:** Training Job cobra por segundo de instância; **o Endpoint cobra
 > enquanto estiver no ar**. Use instâncias pequenas e **apague o Endpoint** ao
@@ -320,6 +324,10 @@ Siga a seção
 [**Limpeza** do README deste lab](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/labs/lab-03-sagemaker/README.md#limpeza),
 que traz o passo a passo no console (e o script recolhido). Apague **primeiro o
 Endpoint**, depois a configuração do endpoint, o modelo e os arquivos do bucket.
+
+> ⚠️ **Modo turma:** o bucket é compartilhado. Confirme com o instrutor a regra de
+> limpeza da sua turma e **nunca apague pastas de outros alunos**; apague só o que
+> você criou.
 
 <details>
 <summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>

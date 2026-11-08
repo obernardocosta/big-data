@@ -6,6 +6,10 @@
 > 2. Repita você mesmo **no console da AWS**, seguindo as instruções de cada passo.
 > 3. Travou ou está sem tempo? Cada passo tem um bloco **"Prefere o terminal?"**
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir.
+>
+> ⚠️ **Aviso:** a AWS muda nomes de menus e botões com frequência. Se algo não
+> estiver exatamente como descrito, procure pelo **objetivo** do passo, use o
+> script recolhido ou abra uma issue (link no fim). Isso também ajuda os próximos alunos.
 
 > **Custo:** o passo 4 **submete o job** e aí há cobrança por vCPU/GB-hora.
 > Jobs pequenos custam centavos. Faça a limpeza ao final.

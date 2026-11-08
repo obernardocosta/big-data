@@ -59,6 +59,11 @@ na conta AWS do aluno, entrega **10 dias após a Aula 3**. Parte 1 = Lab A, Part
 - **Aula 3:** quem quiser o bônus precisa de **quota de treino no SageMaker**
   (contas novas vêm com 0); avise para pedir cedo. Slide "como entregar" no fim.
 
+## Formato dos labs
+
+Mesmo formato da GDBD: demo ao vivo do instrutor (~5 min), aluno repete no console
+e script AWS CLI recolhido como atalho. Os tempos desta agenda já incluem a demo.
+
 ## Regras de condução (todas as aulas)
 
 - **Pontualidade.** Começa no horário (18h30/8h), tolerância 10 min. Avise na Aula 1.
@@ -87,7 +92,7 @@ tudo", a estratégia é **avançar os labs nas noturnas**, que têm folga:
 | 0:35–1:15 | EMR Serverless: Application → Job, **RuntimeRole por job** |
 | 1:15–1:35 | Preço e TCO — quando vale |
 | 1:35–1:50 | **Intervalo** |
-| 1:50–3:20 | **Lab A** — EMR Serverless (completo: job PySpark + dependências) |
+| 1:50–3:20 | **Lab A** — EMR Serverless (5 min de demo + ~1h20 de prática; job PySpark + dependências) |
 | 3:20–3:30 | Fechamento + o que vem (streaming na quinta) |
 
 Ponto de parada seguro do Lab A: job PySpark em `SUCCESS`.
@@ -105,7 +110,7 @@ Ponto de parada seguro do Lab A: job PySpark em `SUCCESS`.
 | 1:00–1:40 | **Kinesis Data Streams** (shards) e **Firehose** (buffering → S3) |
 | 1:40–2:00 | **Custo é arquitetura**: DynamoDB vs S3 vs Firehose |
 | 2:00–2:15 | **Intervalo** |
-| 2:15–3:20 | **Lab B** — produtor → Kinesis → Firehose → S3 (início) |
+| 2:15–3:20 | **Lab B** — produtor → Kinesis → Firehose → S3 (início; 5 min de demo + ~1h de prática) |
 | 3:20–3:30 | Fechamento + o que vem (SageMaker no sábado) |
 
 Ponto de parada seguro do Lab B: eventos chegando no S3 via Firehose.
@@ -119,10 +124,10 @@ Ponto de parada seguro do Lab B: eventos chegando no S3 via Firehose.
 | Tempo | Bloco |
 |---|---|
 | 0:00–0:30 | Chegada: dúvidas / terminar pendências das Aulas 1–2 |
-| 0:30–2:00 | **SageMaker**: notebook → Training Job → deploy (Batch vs Endpoint) |
-| 2:00–2:15 | **Intervalo** |
-| 2:15–3:30 | **Lab C** — SageMaker (treino + deploy) com calma |
-| 3:30–4:15 | **Spark Structured Streaming** do Lab B (fecha o streaming) |
+| 0:30–1:45 | **SageMaker**: notebook → Training Job → deploy (Batch vs Endpoint) |
+| 1:45–2:00 | **Intervalo** |
+| 2:00–3:35 | **Lab C** — SageMaker (5 min de demo + ~1h30 de prática) |
+| 3:35–4:15 | **Spark Structured Streaming** do Lab B (fecha o streaming) |
 | 4:15–4:40 | **Limpeza** (apagar Endpoint!) e verificação de custo |
 | 4:40–5:00 | Revisão do mapa do curso + fechamento |
 

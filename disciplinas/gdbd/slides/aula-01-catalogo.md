@@ -86,9 +86,9 @@ Ao final de hoje, você será capaz de:
 | 0:45–1:15 | Catálogo de dados; Hive Metastore → Glue Data Catalog |
 | 1:15–1:35 | O serviço gerenciado: integrações e preço |
 | 1:35–1:50 | **Intervalo** |
-| 1:50–2:20 | **Lab 01** — tabela catalogada |
+| 1:50–2:20 | **Lab 01** — tabela catalogada (5 min de demo + 15 de prática) |
 | 2:20–2:35 | "Catalogar à mão não escala" → Crawler |
-| 2:35–3:15 | **Lab 02** — Glue Crawler |
+| 2:35–3:15 | **Lab 02** — Glue Crawler (5 min de demo + 30 de prática) |
 | 3:15–3:30 | Fechamento + o que vem na Aula 2 |
 
 > **Gestão de tempo (aula cheia, 3h30 com 2 labs):** a **introdução do curso**
@@ -108,8 +108,8 @@ Ao final de hoje, você será capaz de:
 - Trabalho / entrega
 
 <!--
-A avaliação é lançada em disciplinas/gdbd/avaliacao/notas/ (CSV versionado)
-e a nota final é calculada por `npm run notas`. Não há quiz nesta edição.
+A avaliação (presença, participação e trabalho) é lançada em CSV no repositório
+privado e a nota final é calculada por script. Não há quiz nesta edição.
 -->
 
 ---
