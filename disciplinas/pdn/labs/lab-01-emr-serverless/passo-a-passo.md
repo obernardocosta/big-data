@@ -1,4 +1,4 @@
-# Lab 01 (PDN) — Passo a passo
+# Lab A (PDN) — Passo a passo
 
 > Rode o `dry-run.sh` deste lab antes da aula. Ele checa credencial, região,
 > usuário IAM, a RuntimeRole e as permissões de EMR Serverless/S3 — read-only,

@@ -125,9 +125,11 @@ QID2=$(aws athena start-query-execution \
   --result-configuration "OutputLocation=$OUTPUT" \
   --region "$REGION" --query 'QueryExecutionId' --output text)
 
+# confirme SUCCEEDED antes de ler o scan (null = ainda rodando; repita)
 aws athena get-query-execution --query-execution-id "$QID2" \
-  --query 'QueryExecution.Statistics.DataScannedInBytes'
+  --query 'QueryExecution.[Status.State,Statistics.DataScannedInBytes]'
 # compare os dois DataScannedInBytes: o COM filtro deve ser menor
+# (medido na fonte real: ~1,4 KB com filtro x ~19,6 KB sem)
 ```
 
 > Dica: no console do Athena o "Data scanned" aparece embaixo de cada resultado,

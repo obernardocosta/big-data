@@ -221,10 +221,10 @@ quase todo de EMR).
 | Lab | Resultado |
 |---|---|
 | GDBD 01 Glue Catalog | ✅ |
-| GDBD 02 Glue Crawler | ⛔ conta bloqueada no Glue (ver abaixo) |
+| GDBD 02 Glue Crawler | ⛔ conta bloqueada no Glue (ver abaixo; ✅ depois na conta principal) |
 | GDBD 03 Athena | ✅ após correções |
 | GDBD 04 Particionamento | ✅ via **Plano B** (Athena DDL + `MSCK REPAIR`): 1,4 KB vs 19,6 KB |
-| GDBD 05 Glue Spark / 07 Data Lake | ⛔ não testados (mesmo bloqueio) |
+| GDBD 05 Glue Spark / 07 Data Lake | ⛔ não testados (mesmo bloqueio; ✅ depois na conta principal) |
 | GDBD 06 EMR | ✅ transient (~5 min) + interativo com SSH e `spark-sql` |
 | PDN A EMR Serverless | ✅ |
 | PDN B Kinesis + Firehose + Spark | ✅ após correções |
@@ -257,8 +257,41 @@ billing** (a API de Support exige plano pago; abrir pelo console).
 abertos às 12:34; ~1 h depois a conta já tinha treino 20 / transform 8. vCPU
 On-Demand do EC2 subiu de 8 para 256 no mesmo dia.
 
+### Rodada limpa na conta principal ✅ (2026-11-08)
+A conta `sandbox` (membro da Organization, criada em 2026-07) segue bloqueada no
+Glue. A **conta principal** (management) tem o Glue liberado e virou a conta de
+validação. Investigação: SCPs **não estão habilitadas** na raiz, não há RCP nem
+políticas declarativas; a mesma sonda passa na principal e é barrada na sandbox
+→ bloqueio da AWS na conta-membro, não permissão.
+
+Os 10 labs rodaram de ponta a ponta executando **literalmente** os blocos `bash`
+de cada `passo-a-passo.md` em zsh (o shell do aluno no Mac). Todos ✅, inclusive
+02 (Crawler, refeito do zero para validar a ordem), 05 (Glue Job: 61 s, 122
+DPU-s) e 07 (Raw → Glue Job → Crawler → CTAS). Correções desta rodada:
+- **Propagação do IAM** (role recém-criada): `sleep` após criar a role no Lab 02
+  (Crawler), Lab 06 (`create-default-roles` → "Invalid InstanceProfile") e Lab C
+  (SageMaker → "Access Key Id does not exist").
+- Labs 05 e 07: `--arguments "--INPUT=..."` era lido pela CLI como flag → JSON.
+- Labs 05 e 07: a `GlueCrawlerLabRole` só lia o S3 → passo com política inline
+  de escrita restrita aos buckets `gdbd-lab*`.
+- Lab 05 passo 6: datas no formato errado (`dd/mm/aaaa`) e tabela indefinida →
+  DDL concreto CSV × Parquet (medido: 846 B × 19 KB para a mesma resposta).
+- Lab 07: esperar o job antes do Crawler (senão `clean/` está vazia).
+- Lab 03: resultado esperado da query de `rodada` explicado (só 20 jogos têm).
+- Lab 04 passo 6: lia o scan antes da query terminar (`null`).
+- Lab 06: aviso sobre os `WARN` do `spark-sql`.
+- Lab B: `pip install` no Python do sistema falha no 3.12+ (PEP 668) → venv.
+- Lab C: bucket `pdn-lab02` → `pdn-lab03`; passo 5b dividido com as esperas.
+- PDN: títulos padronizados como **Lab A/B/C** (iguais aos slides e ao site).
+- Dry-runs 02/04/05/07: a sonda do Glue fica atrás de `--check-account`
+  (regra de `labs.md`: nada de `create` sem flag explícita).
+
+Varredura final na principal: só os recursos que já existiam (`carros`,
+`concat_parquet`, 2 jobs, 16 buckets, notebook `Test` parado) + as roles
+padrão do EMR (sem custo).
+
 **Pendências:**
-- [ ] Caso no AWS Support para liberar o Glue → então testar Labs 02, 05, 07.
+- [ ] (Opcional) Caso no AWS Support para liberar o Glue na conta `sandbox`.
 - [ ] Decidir estratégia de contas AWS dos alunos:
   https://github.com/obernardocosta/big-data/issues/1
 

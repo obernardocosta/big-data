@@ -1,4 +1,4 @@
-# Lab 02 (PDN) — Amazon SageMaker (treino + deploy)
+# Lab C (PDN) — Amazon SageMaker (treino + deploy)
 
 ## Por que estamos fazendo isso
 

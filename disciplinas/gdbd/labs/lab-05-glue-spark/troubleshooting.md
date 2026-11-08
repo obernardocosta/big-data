@@ -9,7 +9,7 @@ o ambiente **sem executar o Job** (o Job é o que gera custo).
   novas: acontece mesmo com `AdministratorAccess`, e o Glue Data Catalog
   (`create-database`, `create-table`) continua funcionando. Visto no teste real
   de 2026-11-08 em `us-east-1`.
-- O `dry-run.sh` detecta isso na checagem `[conta]` (sonda que não cria nada).
+- O `dry-run.sh --check-account` detecta isso na checagem `[conta]` (sonda que não cria nada). Rode com essa flag na primeira vez em cada conta.
 - **Como resolver:** abra um caso no **AWS Support → Account and billing**
   (gratuito, sem plano pago), pedindo a liberação do AWS Glue (Crawler e Jobs)
   na região do lab. Pode levar de horas a dias: peça na primeira semana de aula.

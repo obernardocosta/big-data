@@ -1,4 +1,4 @@
-# Lab 02 (PDN) — Passo a passo
+# Lab B (PDN) — Passo a passo
 
 > Rode o `dry-run.sh` antes da aula: checa credencial, região, usuário IAM,
 > permissões de Kinesis/Firehose/S3/IAM e a Application EMR Serverless do Lab A —
@@ -108,8 +108,12 @@ for m in dados["matches"]:
 print(f"Total: {enviados} eventos.")
 PY
 
-python3 -m pip install boto3 --quiet
-python3 produtor.py "$STREAM"
+# ambiente virtual: evita o erro "externally-managed-environment" do Python
+# 3.12+ (Homebrew/Linux recentes) e nao mexe no Python do sistema
+python3 -m venv .venv
+source .venv/bin/activate
+pip install boto3 --quiet
+python produtor.py "$STREAM"   # ~2 min: 380 eventos, 1 a cada 0,2 s
 ```
 
 ## 5. Ver os eventos chegarem no S3 (via Firehose)

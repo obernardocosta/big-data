@@ -1,4 +1,4 @@
-# Lab 02 (PDN) — Troubleshooting
+# Lab B (PDN) — Troubleshooting
 
 Rode o `dry-run.sh` primeiro — ele valida o ambiente sem criar o stream (o shard
 é o que gera custo).

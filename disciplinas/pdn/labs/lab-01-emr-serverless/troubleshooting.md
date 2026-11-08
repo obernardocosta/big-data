@@ -1,4 +1,4 @@
-# Lab 01 (PDN) — Troubleshooting
+# Lab A (PDN) — Troubleshooting
 
 Erros comuns e como resolver. Rode o `dry-run.sh` primeiro — ele valida o
 ambiente sem criar Application nem submeter job (o job é o que gera custo).

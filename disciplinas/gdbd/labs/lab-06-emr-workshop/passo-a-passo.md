@@ -56,6 +56,11 @@ custo.
 
 ```bash
 aws emr create-default-roles
+
+# Na 1a vez, as roles e o instance profile acabaram de nascer e levam alguns
+# segundos para propagar no IAM. Sem esta pausa o create-cluster do passo 3
+# falha com "Invalid InstanceProfile: EMR_EC2_DefaultRole" (visto no teste real).
+sleep 20
 ```
 
 ## 3. Subir um cluster TRANSIENT com um step de ETL (AQUI começa o custo)
@@ -186,6 +191,11 @@ spark-sql -S -e "
 Resultado esperado (dados reais 2024/25): Manchester City FC 43, Liverpool FC
 42, Newcastle United FC 40, Brentford FC 40… O mesmo número que o Athena deu no
 Lab 03: o dado mora no S3 e **qualquer motor** lê.
+
+> Antes do resultado, o `spark-sql` imprime várias linhas `WARN` (HiveConf,
+> ObjectStore, `spark.yarn.jars`...). São normais num cluster novo: ignore e
+> procure o ranking no fim da saída. A primeira consulta leva ~30 s porque o
+> Spark sobe os executores no YARN.
 
 ### 5b.5 Encerrar e limpar (não pule)
 

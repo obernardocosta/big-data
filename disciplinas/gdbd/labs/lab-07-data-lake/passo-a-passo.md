@@ -61,13 +61,32 @@ df.write.mode("overwrite").option("compression", "gzip").parquet(args["OUTPUT"])
 PY
 aws s3 cp raw_to_clean.py "s3://$BUCKET/scripts/raw_to_clean.py"
 
+# a role precisa GRAVAR na camada Clean (mesmo passo 2b do Lab 05; se ja fez
+# o Lab 05, este comando so reaplica a mesma politica, sem efeito colateral)
+cat > s3-write-lab.json <<'JSON'
+{ "Version": "2012-10-17",
+  "Statement": [{ "Effect": "Allow",
+    "Action": ["s3:GetObject","s3:PutObject","s3:DeleteObject","s3:ListBucket"],
+    "Resource": ["arn:aws:s3:::gdbd-lab*", "arn:aws:s3:::gdbd-lab*/*"] }] }
+JSON
+aws iam put-role-policy --role-name "$ROLE" \
+  --policy-name GlueLabS3Write --policy-document file://s3-write-lab.json
+sleep 15   # propagacao do IAM
+
 aws glue create-job --name lab07-raw-to-clean \
   --role "arn:aws:iam::${ACCOUNT_ID}:role/$ROLE" \
   --glue-version "4.0" --number-of-workers 2 --worker-type G.1X \
   --command "Name=glueetl,ScriptLocation=s3://$BUCKET/scripts/raw_to_clean.py,PythonVersion=3"
 
-aws glue start-job-run --job-name lab07-raw-to-clean \
-  --arguments "--INPUT=s3://$BUCKET/raw/premier/,--OUTPUT=s3://$BUCKET/clean/premier/"
+RUN_ID=$(aws glue start-job-run --job-name lab07-raw-to-clean \
+  --arguments "{\"--INPUT\":\"s3://$BUCKET/raw/premier/\",\"--OUTPUT\":\"s3://$BUCKET/clean/premier/\"}" \
+  --query 'JobRunId' --output text)
+
+# ESPERE o SUCCEEDED (~1-2 min) antes do passo 4: o Crawler precisa do Parquet
+# ja gravado em clean/, senao ele nao encontra nada para catalogar
+aws glue get-job-run --job-name lab07-raw-to-clean --run-id "$RUN_ID" \
+  --query 'JobRun.JobRunState'
+aws s3 ls "s3://$BUCKET/clean/premier/"
 ```
 
 ## 4. Catalogar a camada Clean com um Crawler
@@ -82,7 +101,10 @@ aws glue create-crawler --name crawler-datalake \
   --targets "{\"S3Targets\":[{\"Path\":\"s3://$BUCKET/clean/premier/\"}]}"
 
 aws glue start-crawler --name crawler-datalake
+# RUNNING -> STOPPING -> READY (~1-2 min). Quando READY, a tabela 'premier'
+# (nome da pasta) aparece no database:
 aws glue get-crawler --name crawler-datalake --query 'Crawler.State'
+aws glue get-tables --database-name "$DB" --query 'TableList[].Name'
 ```
 
 ## 5. Gerar a camada Specialized (consumo)

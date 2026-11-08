@@ -1,4 +1,4 @@
-# Lab 02 (PDN) — Troubleshooting
+# Lab C (PDN) — Troubleshooting
 
 Erros comuns e como resolver. Rode o `dry-run.sh` primeiro — ele valida o
 ambiente sem treinar nem criar endpoint (o que gera custo).

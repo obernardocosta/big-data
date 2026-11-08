@@ -63,6 +63,25 @@ PY
 aws s3 cp transforma.py "s3://$BUCKET/scripts/transforma.py"
 ```
 
+## 2b. Dar à role permissão de GRAVAR no bucket do lab
+
+**Porquê:** a `GlueCrawlerLabRole` do Lab 02 só **lê** o S3 (o Crawler não grava
+dados). Este job grava o Parquet, então a role precisa de escrita. Damos o
+mínimo: só nos buckets `gdbd-lab*`, não no S3 inteiro. Sem isso o job falha
+com `not authorized to perform: s3:PutObject`.
+
+```bash
+cat > s3-write-lab.json <<'JSON'
+{ "Version": "2012-10-17",
+  "Statement": [{ "Effect": "Allow",
+    "Action": ["s3:GetObject","s3:PutObject","s3:DeleteObject","s3:ListBucket"],
+    "Resource": ["arn:aws:s3:::gdbd-lab*", "arn:aws:s3:::gdbd-lab*/*"] }] }
+JSON
+aws iam put-role-policy --role-name "$ROLE" \
+  --policy-name GlueLabS3Write --policy-document file://s3-write-lab.json
+sleep 15   # propagacao do IAM
+```
+
 ## 3. Criar o Glue Job (ainda NÃO executa nada)
 
 **Porquê:** criar o job é só registrar metadados — não gera custo. O custo vem
@@ -84,7 +103,7 @@ entrada e a saída como parâmetros do script.
 
 ```bash
 RUN_ID=$(aws glue start-job-run --job-name lab05-transforma-premier \
-  --arguments "--INPUT=s3://$BUCKET/raw/,--OUTPUT=s3://$BUCKET/parquet/" \
+  --arguments "{\"--INPUT\":\"s3://$BUCKET/raw/\",\"--OUTPUT\":\"s3://$BUCKET/parquet/\"}" \
   --query 'JobRunId' --output text)
 
 # acompanhe o estado (RUNNING -> SUCCEEDED)
@@ -103,22 +122,44 @@ aws s3 ls "s3://$BUCKET/parquet/" --recursive
 ## 6. Consultar no Athena e comparar o scan
 
 **Porquê:** fechar o ciclo com a Aula 2 — o Parquet colunar escaneia menos que o
-CSV. Catalogue a saída (um Crawler apontando para `s3://$BUCKET/parquet/`, como
-no Lab 02) e rode:
+CSV. Catalogamos as **duas** versões do mesmo dado (CSV cru e Parquet) e rodamos
+a mesma pergunta nas duas.
+
+Rode no editor do Athena (Console), trocando `SEU-BUCKET` pelo valor de
+`$BUCKET` (lembre de configurar o local de resultados, como no Lab 03):
 
 ```sql
--- jogos por ano
-SELECT substr(Date, 7, 4) AS ano, COUNT(*) AS jogos
-FROM <DB>.premier_parquet
-GROUP BY substr(Date, 7, 4) ORDER BY ano;
+CREATE DATABASE IF NOT EXISTS lab05;
 
--- mes com mais / menos jogos
-SELECT substr(Date, 4, 2) AS mes, COUNT(*) AS jogos
-FROM <DB>.premier_parquet
-GROUP BY substr(Date, 4, 2) ORDER BY jogos DESC;
+-- o mesmo dado, em CSV (entrada do job)
+CREATE EXTERNAL TABLE lab05.premier_csv (
+  Date string, HomeTeam string, AwayTeam string, FTHG string, FTAG string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION 's3://SEU-BUCKET/raw/'
+TBLPROPERTIES ('skip.header.line.count'='1');
+
+-- e em Parquet (saida do job)
+CREATE EXTERNAL TABLE lab05.premier_parquet (
+  Date string, HomeTeam string, AwayTeam string, FTHG string, FTAG string)
+STORED AS PARQUET
+LOCATION 's3://SEU-BUCKET/parquet/';
+
+-- jogos por mes (Date vem como AAAA-MM-DD)
+SELECT substr(Date, 1, 7) AS mes, COUNT(*) AS jogos
+FROM lab05.premier_parquet
+GROUP BY substr(Date, 1, 7) ORDER BY mes;
+
+-- quem mais marcou em casa: rode nas DUAS tabelas e compare o "Data scanned"
+SELECT HomeTeam, SUM(CAST(FTHG AS integer)) AS gols_casa
+FROM lab05.premier_parquet
+GROUP BY HomeTeam ORDER BY gols_casa DESC LIMIT 5;
 ```
 
-Compare o "Data scanned" com o do mesmo dado em CSV — deve ser menor.
+Resultado esperado: 10 meses (2024-08 a 2025-05), 380 jogos no total, e no
+ranking Manchester City FC 43, Liverpool FC 42. O "Data scanned" do Parquet é
+**bem menor** que o do CSV para a mesma pergunta: o Parquet lê só as colunas
+usadas (medido: **~0,8 KB** no Parquet contra **~19 KB** no CSV, cerca de 20x
+menos, para a mesma resposta).
 
 ## Limpeza
 

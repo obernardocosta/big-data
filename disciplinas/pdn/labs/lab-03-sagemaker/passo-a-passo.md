@@ -1,4 +1,4 @@
-# Lab 02 (PDN) — Passo a passo
+# Lab C (PDN) — Passo a passo
 
 > Rode o `dry-run.sh` deste lab antes da aula. Ele checa credencial, região,
 > usuário IAM, a execution role do SageMaker e as permissões de SageMaker/S3 —
@@ -12,7 +12,7 @@ O lab segue o notebook disponibilizado pela turma. Os comandos abaixo mostram o
 fluxo conceitual (via SDK/CLI) para quem quiser reproduzir fora do notebook.
 
 ```bash
-export BUCKET="pdn-lab02-$(whoami)-$RANDOM"
+export BUCKET="pdn-lab03-$(whoami)-$RANDOM"
 export REGION="us-east-1"
 export ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
 export SM_ROLE="SageMakerExecutionRole"
@@ -38,6 +38,11 @@ aws iam attach-role-policy --role-name "$SM_ROLE" \
   --policy-arn arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
 aws iam attach-role-policy --role-name "$SM_ROLE" \
   --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
+
+# role recem-criada leva alguns segundos para propagar no IAM; sem esta pausa
+# o primeiro Training Job falha com "The AWS Access Key Id you provided does
+# not exist in our records" (visto no teste real)
+sleep 15
 ```
 
 ## 2. Manipulação dos dados (Notebook)
@@ -120,11 +125,19 @@ aws sagemaker create-training-job --training-job-name "$JOB" \
   --resource-config InstanceType=ml.m5.large,InstanceCount=1,VolumeSizeInGB=5 \
   --stopping-condition MaxRuntimeInSeconds=900 \
   --hyper-parameters objective=binary:logistic,num_round=50,max_depth=3
+```
 
-# ~3 min: Starting -> Downloading -> Training -> Uploading -> Completed
+**Espere o treino terminar** (~3 min: `Starting → Downloading → Training →
+Uploading → Completed`). Repita até ver `Completed`:
+
+```bash
 aws sagemaker describe-training-job --training-job-name "$JOB" \
   --query '[TrainingJobStatus,SecondaryStatus]'
+```
 
+Com o treino concluído, registre o modelo e suba o endpoint:
+
+```bash
 # Modelo + endpoint SERVERLESS (cobra por requisicao, nao por hora)
 ART=$(aws sagemaker describe-training-job --training-job-name "$JOB" \
   --query ModelArtifacts.S3ModelArtifacts --output text)
@@ -134,9 +147,15 @@ aws sagemaker create-model --model-name "$JOB-model" \
 aws sagemaker create-endpoint-config --endpoint-config-name "$JOB-cfg" \
   --production-variants "VariantName=v1,ModelName=$JOB-model,ServerlessConfig={MemorySizeInMB=2048,MaxConcurrency=1}"
 aws sagemaker create-endpoint --endpoint-name "$JOB-ep" --endpoint-config-name "$JOB-cfg"
-# ~3 min ate InService
-aws sagemaker describe-endpoint --endpoint-name "$JOB-ep" --query EndpointStatus
+```
 
+**Espere o endpoint** ficar `InService` (~3 min; repita):
+
+```bash
+aws sagemaker describe-endpoint --endpoint-name "$JOB-ep" --query EndpointStatus
+```
+
+```bash
 # Predicao em tempo real: probabilidade de vitoria do mandante
 head -1 test.csv > amostra.csv
 aws sagemaker-runtime invoke-endpoint --endpoint-name "$JOB-ep" \

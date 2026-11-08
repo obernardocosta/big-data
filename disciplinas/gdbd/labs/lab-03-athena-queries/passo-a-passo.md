@@ -82,6 +82,10 @@ partição.
 -- Total de gols por rodada. So existe na tabela do Lab 02 (database
 -- futebol_auto), onde o Crawler descobriu a coluna 'rodada'. Na tabela do
 -- Lab 01 (futebol.jogos) essa coluna nao existe e a query falha.
+-- Resultado esperado: so 'Matchday 1' e 'Matchday 2'. Apenas os 20 jogos do
+-- arquivo novo (jogos_v2.csv) trazem a rodada; nos 380 do arquivo antigo ela
+-- vem NULL. E o Schema Evolution na pratica: o esquema mudou, os dados
+-- antigos nao.
 SELECT rodada, SUM(gols_mandante + gols_visitante) AS gols
 FROM futebol_auto.jogos
 WHERE rodada IS NOT NULL

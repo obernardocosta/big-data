@@ -1,4 +1,4 @@
-# Lab 02 (PDN) — Streaming: Kinesis + Firehose + Spark
+# Lab B (PDN) — Streaming: Kinesis + Firehose + Spark
 
 ## Por que estamos fazendo isso
 

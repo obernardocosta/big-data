@@ -8,11 +8,17 @@
 #
 # Uso:
 #   ./dry-run.sh
+#   ./dry-run.sh --check-account   # 1a vez numa conta: detecta bloqueio do Glue
 #   REGION=us-east-2 ROLE=GlueCrawlerLabRole ./dry-run.sh
 #
 set -uo pipefail
 
 REGION="${REGION:-us-east-1}"
+# --check-account: liga a sonda de bloqueio de conta no Glue (secao [conta]).
+# Ela chama glue:CreateCrawler com uma role inexistente: a chamada sempre
+# falha e nada e criado, mas por ser um "create" fica desligada por padrao.
+CHECK_ACCOUNT=0
+for arg in "$@"; do [ "$arg" = "--check-account" ] && CHECK_ACCOUNT=1; done
 ROLE="${ROLE:-GlueCrawlerLabRole}"
 ok=0
 fail=0
@@ -98,6 +104,7 @@ fi
 # um crawler com uma role inexistente: a AWS checa a conta ANTES da role, entao
 # nada e criado em nenhum dos casos (e, por garantia, apagamos se existir).
 echo "[conta] Glue liberado para criar Crawler/Job (sonda, nao cria nada)"
+if [ "$CHECK_ACCOUNT" = 1 ]; then
 PROBE_ACC="$(aws sts get-caller-identity --query Account --output text 2>/dev/null)"
 if [ -n "$PROBE_ACC" ]; then
   PROBE_OUT="$(aws glue create-crawler --name dryrun-probe-glue \
@@ -114,6 +121,9 @@ if [ -n "$PROBE_ACC" ]; then
   fi
 else
   info "Pulado (sem credencial)."
+fi
+else
+  info "Bloqueio de conta no Glue NAO verificado. Na 1a vez numa conta, rode: ./dry-run.sh --check-account"
 fi
 
 echo "[extra] Dados reais (openfootball) + python3"

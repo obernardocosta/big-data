@@ -57,6 +57,11 @@ aws iam attach-role-policy --role-name GlueCrawlerLabRole \
 # permissão de leitura no bucket do lab
 aws iam attach-role-policy --role-name GlueCrawlerLabRole \
   --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+# Role recem-criada leva alguns segundos para propagar no IAM. Sem esta pausa o
+# create-crawler responde "Service is unable to assume provided role" (visto no
+# teste real). E o mesmo comportamento que voce vai ver em todo servico da AWS.
+sleep 15
 ```
 
 ## 3. Criar o banco de dados de destino

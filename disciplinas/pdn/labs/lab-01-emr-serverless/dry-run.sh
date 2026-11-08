@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# dry-run do Lab 01 (PDN) - EMR Serverless (PySpark)
+# dry-run do Lab A (PDN) - EMR Serverless (PySpark)
 #
 # Valida que o ambiente esta pronto SEM criar Application nem submeter job
 # (o job e o que gera custo). Somente chamadas read-only (sts/list/get).
@@ -21,7 +21,7 @@ pass() { printf '  \033[32m✅ %s\033[0m\n' "$1"; ok=$((ok+1)); }
 bad()  { printf '  \033[31m❌ %s\033[0m\n' "$1"; fail=$((fail+1)); }
 info() { printf '  \033[36mℹ️  %s\033[0m\n' "$1"; }
 
-echo "== Dry-run Lab 01 PDN (EMR Serverless) | regiao alvo: $REGION =="
+echo "== Dry-run Lab A PDN (EMR Serverless) | regiao alvo: $REGION =="
 echo "   (NAO cria Application nem submete job; submeter job gera custo)"
 
 # 1. AWS CLI
@@ -88,4 +88,4 @@ if [ "$fail" -gt 0 ]; then
   echo "Resolva os itens marcados com ❌ antes da aula. Veja troubleshooting.md."
   exit 1
 fi
-echo "Ambiente pronto para o Lab 01 (PDN). Lembre-se: submeter o job gera custo."
+echo "Ambiente pronto para o Lab A (PDN). Lembre-se: submeter o job gera custo."

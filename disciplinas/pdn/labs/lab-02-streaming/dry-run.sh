@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# dry-run do Lab 02 (PDN) - Streaming: Kinesis + Firehose + Spark
+# dry-run do Lab B (PDN) - Streaming: Kinesis + Firehose + Spark
 #
 # Valida que o ambiente esta pronto SEM criar o stream (o shard gera custo).
 # Somente chamadas read-only (sts/list/describe/get). Rode ANTES da aula.
@@ -19,7 +19,7 @@ pass() { printf '  \033[32m✅ %s\033[0m\n' "$1"; ok=$((ok+1)); }
 bad()  { printf '  \033[31m❌ %s\033[0m\n' "$1"; fail=$((fail+1)); }
 info() { printf '  \033[36mℹ️  %s\033[0m\n' "$1"; }
 
-echo "== Dry-run Lab 02 PDN (Kinesis + Firehose + Spark) | regiao: $REGION =="
+echo "== Dry-run Lab B PDN (Kinesis + Firehose + Spark) | regiao: $REGION =="
 echo "   (NAO cria stream; criar o stream/shard gera custo)"
 
 # 1. AWS CLI
@@ -117,4 +117,4 @@ if [ "$fail" -gt 0 ]; then
   echo "Resolva os itens ❌ antes da aula. Veja troubleshooting.md."
   exit 1
 fi
-echo "Ambiente pronto para o Lab 02 (PDN). Lembre-se: o shard gera custo; limpe ao final."
+echo "Ambiente pronto para o Lab B (PDN). Lembre-se: o shard gera custo; limpe ao final."

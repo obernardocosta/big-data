@@ -1,4 +1,4 @@
-# Lab 01 (PDN) — EMR Serverless (PySpark)
+# Lab A (PDN) — EMR Serverless (PySpark)
 
 ## Por que estamos fazendo isso
 
