@@ -338,6 +338,6 @@ layout: center
   (**Standard** para ETL).
 
 ### Próxima aula (quinta): **Amazon EMR** — o motor pesado (Hadoop/Spark
-### gerenciado). Atenção: lab com custo (~US$ 1) e dry-run reforçado.
+### gerenciado). Atenção: lab com custo (~US$ 1); confira a quota de vCPUs da sua conta antes.
 
 <!-- Retome os objetivos do início. Fim da Aula 4. -->

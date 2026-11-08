@@ -28,7 +28,9 @@ Enquanto a turma chega:
 
 - Dúvidas da Aula 4 (orquestração, DAG, MWAA vs Step Functions)?
 - Hoje o lab **tem custo (~US$ 1)** e exige **usuário IAM** (root não conecta
-  no EMR Notebooks). Confirme que todos rodaram o `dry-run.sh` reforçado.
+  no EMR Notebooks). Confira a **quota de vCPUs** (mínimo de 8) em
+  [Service Quotas](https://console.aws.amazon.com/servicequotas/home/services/ec2/quotas)
+  e se a região tem instâncias disponíveis.
 
 <!-- Não avance antes dos 30 min. -->
 
@@ -52,11 +54,11 @@ Janela noturna + lab com custo: **gestão de tempo é crítica** aqui.
 
 | Tempo | Bloco |
 |---|---|
-| 0:00–0:30 | Chegada: dúvidas da Aula 4 + conferir dry-run reforçado |
+| 0:00–0:30 | Chegada: dúvidas da Aula 4 + conferir a quota de vCPUs e a disponibilidade da região |
 | 0:30–1:05 | EMR: o que é, S3 vs EBS, tipos de cluster |
 | 1:05–1:35 | Tipos de nó, acesso (SSH/Notebooks), boas práticas |
 | 1:35–1:50 | **Intervalo** |
-| 1:50–3:10 | **Lab 06** — EMR (atenção ao custo e ao plano B) |
+| 1:50–3:10 | **Lab 06** — EMR: 5 min de demo + prática (atenção ao custo e ao plano B) |
 | 3:10–3:30 | Fechamento + o que vem na Aula 6 (Data Lake) |
 
 > **Se o cluster não subir rápido, vá para o plano B (demonstração).** A janela
@@ -222,13 +224,39 @@ steps com **AWS Step Functions**.
 
 **Custo aproximado: US$ 1.** Exige **usuário IAM** (root não conecta no Notebook).
 
-**Tempo:** 60 min
+**Tempo:** 65 min (5 min de demo + 60 min de prática)
 
-Instruções versionadas: [`labs/lab-06-emr-workshop/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-06-emr-workshop)
+Instruções versionadas: [`labs/lab-06-emr-workshop/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-06-emr-workshop) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+06%5D+&labels=lab)
 
 <!--
 Este é o lab historicamente problemático (instâncias indisponíveis na região).
-Rode o dry-run REFORÇADO na véspera e tenha plano B (trocar região / demonstrar).
+Instrutor: rode o dry-run REFORÇADO na véspera e tenha plano B (trocar região /
+demonstrar).
+-->
+
+---
+
+## Demo ao vivo — Lab 06 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** mostrar o bucket já preparado com `raw/premier.csv` e `scripts/etl.py`.
+2. **EMR > Create cluster:** nomear `lab06-emr-transient`, release `emr-7.1.0`, aplicação **Spark**.
+3. **Instance groups:** 1 × Primary + 1 × Core, ambos `m5.xlarge` (sem Task), e explicar os papéis Master/Core/Task.
+4. **Termination:** marcar terminar **após o último step** (transient) e apontar os logs para `s3://BUCKET/logs/`.
+5. **Add step:** tipo **Spark application**, `etl.py` com entrada `raw/` e saída `parquet/`.
+6. **Create cluster** e acompanhar `Starting` → `Running` → `Terminated` na aba **Steps** (explicar S3 vs EBS enquanto sobe).
+7. **S3:** abrir `parquet/` e ver o resultado do ETL.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 06](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-06-emr-workshop/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido (a conexão SSH é por script). Se o cluster não subir, o instrutor conduz o plano B como demonstração.
+
+<!--
+Antes da aula: rodar o dry-run.sh REFORÇADO do Lab 06 na véspera (capacidade,
+quota de vCPUs, roles do EMR). Deixar pronto um bucket com raw/premier.csv e
+scripts/etl.py (passo 1, por script) e, se possível, um cluster/execução
+anterior com logs capturados para o plano B. Cuidado com a quota de 8 vCPUs: o
+cluster da demo e o dos alunos não podem estar ligados juntos na mesma conta.
+Encerrar o cluster da demo ao final.
 -->
 
 ---

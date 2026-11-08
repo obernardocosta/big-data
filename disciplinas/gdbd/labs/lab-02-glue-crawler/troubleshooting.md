@@ -1,7 +1,7 @@
 # Lab 02 — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` deste lab primeiro: ele aponta
-a maioria destes problemas antes da aula.
+Erros comuns e como resolver. Não achou o seu erro aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+02%5D+&labels=lab)
+com o passo, a mensagem de erro e um print.
 
 ## "Account <id> is denied access" ao criar Crawler ou Glue Job
 
@@ -9,7 +9,7 @@ a maioria destes problemas antes da aula.
   novas: acontece mesmo com `AdministratorAccess`, e o Glue Data Catalog
   (`create-database`, `create-table`) continua funcionando. Visto no teste real
   de 2026-11-08 em `us-east-1`.
-- O `dry-run.sh --check-account` detecta isso na checagem `[conta]` (sonda que não cria nada). Rode com essa flag na primeira vez em cada conta.
+- O instrutor verifica isso antes da aula; se aparecer para você, avise-o e siga o caminho abaixo.
 - **Como resolver:** abra um caso no **AWS Support → Account and billing**
   (gratuito, sem plano pago), pedindo a liberação do AWS Glue (Crawler e Jobs)
   na região do lab. Pode levar de horas a dias: peça na primeira semana de aula.
@@ -44,20 +44,20 @@ a maioria destes problemas antes da aula.
 ## O Crawler roda mas NÃO cria tabela
 
 - Causa mais comum: o alvo aponta para o **arquivo** em vez da **pasta**. Use o
-  prefixo `s3://SEU-BUCKET/jogadores/` (com a barra final), não o `.csv`.
-- Confirme que há objetos no caminho: `aws s3 ls s3://SEU-BUCKET/jogadores/`.
+  prefixo `s3://SEU-BUCKET/jogos/` (com a barra final), não o `.csv`.
+- Confirme que há objetos no caminho: `aws s3 ls s3://SEU-BUCKET/jogos/`.
 - A role precisa de leitura no bucket (`AmazonS3ReadOnlyAccess` ou equivalente).
 
 ## O Crawler fica "RUNNING" e não termina
 
 - Rodadas sobre poucos arquivos levam segundos a ~1-2 min. Acompanhe o estado
-  com `aws glue get-crawler --name crawler-jogadores --query 'Crawler.State'`
+  com `aws glue get-crawler --name crawler-jogos --query 'Crawler.State'`
   (RUNNING → STOPPING → READY). Se travar, pare com
-  `aws glue stop-crawler --name crawler-jogadores` e verifique permissões da role.
+  `aws glue stop-crawler --name crawler-jogos` e verifique permissões da role.
 
 ## A coluna nova não apareceu na segunda rodada
 
-- Confirme que o novo arquivo foi para a **mesma pasta** (`jogadores/`) e que o
+- Confirme que o novo arquivo foi para a **mesma pasta** (`jogos/`) e que o
   Crawler rodou de novo até `READY`. O Crawler só reflete o que está no S3 no
   momento da varredura.
 
@@ -76,8 +76,8 @@ a maioria destes problemas antes da aula.
 Se o Glue estiver instável ou indisponível na região da turma (já aconteceu com
 outros serviços, como a indisponibilidade de instâncias GPU numa turma de PDN):
 
-1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e rode o `dry-run.sh`
-   de novo para confirmar.
-2. Se persistir, conduza o lab como **demonstração** a partir de uma saída já
-   gerada e siga para o conteúdo. Não gaste tempo de aula tentando subir o
-   ambiente — essa é justamente a lição da preparação prévia com o `dry-run.sh`.
+1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e repita o passo que
+   falhou para confirmar.
+2. Se persistir, acompanhe o lab como **demonstração** do instrutor, a partir de
+   uma saída já gerada, e siga para o conteúdo. Não gaste tempo de aula tentando
+   subir o ambiente.

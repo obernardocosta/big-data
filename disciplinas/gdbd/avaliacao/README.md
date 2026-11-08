@@ -15,6 +15,16 @@ A presença (em %) é normalizada para a escala 0–10 antes de ponderar. A **m�
 para aprovação é 6,0**. Os pesos e a média ficam no topo de
 `tools/notas/calcular-notas.mjs` — altere ali se a turma usar outra combinação.
 
+## O trabalho final
+
+O componente **Trabalho** (50%) é o **Data Lake do meu clube**: individual ou em
+grupo de até 3, na conta AWS do próprio aluno, corrigido em boa parte por script
+(6,0 automáticos + 4,0 por rubrica).
+
+- Enunciado para o aluno: [`trabalho.md`](trabalho.md)
+- Modelo de entrega: [`trabalho-modelo/`](trabalho-modelo/)
+- Correção (instrutor): repositório privado `obernardocosta/big-data-correcao`
+
 ## Como lançar as notas
 
 Edite um CSV na pasta `notas/`. O cabeçalho é fixo:

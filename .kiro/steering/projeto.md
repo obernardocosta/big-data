@@ -24,6 +24,7 @@ disciplinas/
   pdn/    -> mesma estrutura
 tools/
   notas/  -> script de cálculo de notas (CSV)
+  trabalho/ -> clube do grupo e autoconferência do trabalho final (público)
 .kiro/
   steering/ -> este diretório (memória + convenções, carregado sempre)
   skills/   -> "como fazer" replicável (criar aula, criar lab)
@@ -46,6 +47,16 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
   a partir de um CSV versionado por um script (`npm run notas`).
 - **2026-10**: Todo lab precisa de um `dry-run.sh` que valida o ambiente
   **sem gastar** (credenciais, região, quota, permissões) antes da aula.
+- **2026-11**: Trabalho final (50% da nota) definido nas duas disciplinas:
+  individual ou grupo de até 3 (aluno escolhe), na **conta AWS do próprio
+  aluno**. Cada grupo recebe um clube da Premier League pela matrícula do 1º
+  integrante; respostas diferentes por clube permitem correção por script
+  (6,0 automáticos + 4,0 por rubrica manual). O **corretor com o gabarito é
+  privado**: repo `obernardocosta/big-data-correcao` (este repo é público);
+  `tools/trabalho` expõe só `clube` e `validar` para o aluno. GDBD = Data Lake
+  do meu clube; PDN = Pipeline e custo do meu clube (EMR Serverless + Kinesis/
+  Firehose + ADR). **SageMaker é opcional** (bônus +1,0). Prazo: 10 dias após a
+  última aula. Contas novas podem ter o Glue bloqueado: CTAS no Athena é rota aceita.
 
 ## Contexto do instrutor (feedback a tratar)
 

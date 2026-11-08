@@ -206,13 +206,40 @@ EMR Serverless do Lab A).
 - Rodar o **produtor** que lê jogos reais ([openfootball](https://github.com/openfootball/football.json), via [repo data](https://github.com/obernardocosta/data/tree/main/football)) e emite como stream.
 - Ver os eventos **aterrissarem no S3**.
 
-**Timebox hoje:** ~1h. **Parada segura:** eventos no S3.
+**Timebox hoje:** ~1h05 (5 min de demo + ~1h de prática). **Parada segura:**
+eventos no S3.
 
-Instruções: [`labs/lab-02-streaming/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-02-streaming) · rode o `dry-run.sh` antes.
+Instruções: [`labs/lab-02-streaming/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-02-streaming) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+02%5D+&labels=lab)
 
 <!--
 Dados reais e atuais (Premier League 2024/25, [openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)). O
 produtor "reproduz" os jogos como um fluxo. Amarre com o custo: por que Firehose.
+Instrutor: rode o dry-run.sh do lab ANTES da aula (credencial, região, usuário
+IAM, permissões de Kinesis/Firehose/S3/IAM e a Application do Lab A; read-only,
+não cria o stream). Ver .kiro/steering/labs.md.
+-->
+
+---
+
+## Demo ao vivo — Lab B (PDN Lab 02) (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** mostrar o bucket de destino já criado (vazio, ainda sem `eventos/`).
+2. **Kinesis > Data streams > Create data stream:** criar `lab-pdn-stream` com **1 shard** (provisionado) e explicar o shard como unidade de capacidade.
+3. **Amazon Data Firehose > Create Firehose stream:** fonte = Kinesis Data Streams (`lab-pdn-stream`), destino = S3, prefixo `eventos/`, buffer de 1 MiB / 60 s.
+4. **Terminal/CloudShell:** rodar o **produtor** (já preparado) e mostrar os eventos sendo enviados.
+5. **Kinesis > Monitoring:** ver os registros entrando no stream.
+6. **S3:** depois do buffer (~60 s), abrir `eventos/AAAA/MM/DD/HH/` e inspecionar um arquivo.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab B](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/labs/lab-02-streaming/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar (o produtor roda por script).
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 02; deixar pronto o bucket e o
+produtor.py (passo 4) no CloudShell para a demo não gastar tempo com preparação.
+Use nomes diferentes na demo (ex.: demo-stream, demo-firehose) ou apague-os ao
+fim, para os alunos começarem do zero e o shard da demo não ficar cobrando.
+O buffer do Firehose leva ~60 s: aproveite a espera para explicar buffering.
 -->
 
 ---

@@ -1,7 +1,7 @@
-# Lab B (PDN) — Troubleshooting
+# PDN Lab 02 (Lab B) — Troubleshooting
 
-Rode o `dry-run.sh` primeiro — ele valida o ambiente sem criar o stream (o shard
-é o que gera custo).
+Não achou seu erro aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+02%5D+&labels=lab)
+com o passo, o erro e um print.
 
 ## "Firehose is unable to assume role" ao criar o Firehose
 
@@ -50,8 +50,8 @@ Rode o `dry-run.sh` primeiro — ele valida o ambiente sem criar o stream (o sha
 ## A fonte de dados (repo data) não respondeu
 
 - Pode ser rede/proxy. Tenha um JSON de backup local e aponte o produtor para o
-  arquivo (troque a leitura da URL por `open('jogos.json')`). O dry-run avisa se
-  a fonte não estiver acessível na véspera.
+  arquivo (troque a leitura da URL por `open('jogos.json')`). Se a fonte
+  estiver fora do ar, avise o instrutor.
 
 ## (Spark) O job Structured Streaming não produz agregados
 
@@ -75,7 +75,8 @@ Rode o `dry-run.sh` primeiro — ele valida o ambiente sem criar o stream (o sha
 
 ## Plano B — sem orçamento / serviço indisponível
 
-1. Troque a região e rode o `dry-run.sh` de novo.
+1. Troque a região e confira as quotas em
+   [Service Quotas](https://console.aws.amazon.com/servicequotas/) (Kinesis, Firehose).
 2. Sem orçamento, conduza como **demonstração**: produza alguns eventos, mostre o
    S3 populado e rode o Spark sobre um `eventos/` já existente. O conceito
    (ingestão gerenciada + Spark em micro-batches) é aprendido sem manter o stream

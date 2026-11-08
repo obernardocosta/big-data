@@ -8,8 +8,9 @@ você sobe um cluster, roda um ETL em Spark e (extra) orquestra os passos com
 prática: o cluster processa, os dados ficam no S3.
 
 > **Este é o lab mais sensível do curso.** Em turma anterior ele falhou por
-> **indisponibilidade de instâncias** na região. Rode o `dry-run.sh` reforçado
-> na véspera e tenha o plano B pronto (ver `troubleshooting.md`).
+> **indisponibilidade de instâncias** na região. O instrutor valida o ambiente
+> na véspera e tem um plano B pronto (ver [troubleshooting](troubleshooting.md)).
+> Se o seu cluster não subir, avise na hora e não insista sozinho.
 
 ## O que você aprende aqui
 
@@ -17,6 +18,15 @@ prática: o cluster processa, os dados ficam no S3.
 - Papéis de **Master / Core / Task Node** e por que Task Node combina com Spot.
 - **EMRFS**: por que manter os dados no S3 e o cluster efêmero.
 - Boas práticas de particionamento, formato e escala vistas em aula.
+
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md).
+3. Cada passo tem o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+   A preparação (gerar o CSV e o `etl.py`) e a conexão **SSH** usam o script
+   como caminho principal.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+06%5D+&labels=lab).
 
 ## Dados do lab
 
@@ -43,7 +53,8 @@ sobre ele.
 
 ## Tempo estimado
 
-**60 minutos.**
+**65 minutos**: ~5 min de demo ao vivo do instrutor + ~60 min de prática no console.
+Os scripts AWS CLI (recolhidos em cada passo) servem para acelerar se o tempo apertar.
 
 ## Resultado esperado
 
@@ -59,6 +70,27 @@ opcional. Se o cluster não subir, **vá direto ao plano B** (demonstração) �
 queime tempo de aula tentando provisionar.
 
 ## Limpeza
+
+**Encerre os clusters primeiro: é o que gera custo.**
+
+**No console:**
+
+1. [Amazon EMR](https://console.aws.amazon.com/emr/) > **Clusters**: selecione
+   `lab06-emr-transient` e `lab06-emr-interativo` (se ainda estiverem ativos) e
+   clique em **Terminate**. Confirme que o status final é **Terminated** e que não
+   há nenhum cluster ativo (filtro **Active**).
+2. [EC2 > Security Groups](https://console.aws.amazon.com/ec2/home#SecurityGroups):
+   no security group do master, **Edit inbound rules** e apague a regra SSH
+   (porta 22) do seu IP.
+3. [EC2 > Key Pairs](https://console.aws.amazon.com/ec2/home#KeyPairs): apague a
+   chave `lab06-...` e remova o `.pem` local.
+4. [Amazon S3](https://console.aws.amazon.com/s3/): abra o seu bucket, **Empty** e
+   depois **Delete**.
+5. Se fez o extra: [AWS Step Functions](https://console.aws.amazon.com/states/),
+   apague a máquina de estados que criou.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
 
 ```bash
 # ENCERRE O CLUSTER (é o que gera custo)
@@ -80,6 +112,8 @@ aws emr list-clusters --active --query 'Clusters[].Id'
 aws s3 rb s3://SEU-BUCKET/ --force
 # remova a Step Function do extra, se criou
 ```
+
+</details>
 
 ## O que isso prova
 

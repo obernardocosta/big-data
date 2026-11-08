@@ -15,3 +15,10 @@ _fonte/*.pdf
 
 # Credenciais de turma (o turma.sh grava em ~, mas por garantia)
 turma-*-credenciais.csv
+
+# Entregas de alunos baixadas para correcao (dados pessoais)
+entregas/
+
+# Cache do Python
+__pycache__/
+*.pyc

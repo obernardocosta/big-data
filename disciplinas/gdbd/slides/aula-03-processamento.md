@@ -246,15 +246,38 @@ routeAlias: lab-5
 **Resultado esperado:** executar consultas no Athena sobre o **arquivo
 transformado** (Parquet), mais rápido e barato que sobre o CSV cru.
 
-**Tempo:** 45 min
+**Tempo:** 50 min (5 min de demo + 45 min de prática)
 
 Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
-Instruções versionadas: [`labs/lab-05-glue-spark/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-05-glue-spark)
+Instruções versionadas: [`labs/lab-05-glue-spark/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-05-glue-spark) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+05%5D+&labels=lab)
 
 <!--
 Ligue ao conceito: Parquet (colunar) + partição reduz o "Data scanned" da
-Aula 2. Rode o dry-run.sh do lab ANTES da aula.
+Aula 2. Instrutor: rode o dry-run.sh do lab ANTES da aula.
+-->
+
+---
+
+## Demo ao vivo — Lab 05 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** abrir o bucket já preparado e mostrar `raw/premier.csv` (CSV cru, jogos reais).
+2. **Glue > ETL jobs > Script editor (Spark):** mostrar o código PySpark: lê o CSV, mantém 5 colunas e grava **Parquet + gzip**.
+3. **Job details:** conferir `lab05-transforma-premier`, role `GlueCrawlerLabRole`, **Glue 4.0**, **G 1X** e **2 workers** (as 2 DPU).
+4. **Run:** executar o job com `--INPUT` (`raw/`) e `--OUTPUT` (`parquet/`) e acompanhar **Runs** até `Succeeded`.
+5. **S3:** abrir `parquet/` e comparar o tamanho com o CSV.
+6. **Athena:** rodar a mesma consulta em `premier_csv` e `premier_parquet` e comparar o **Data scanned**.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 05](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-05-glue-spark/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 05; deixar pronto um bucket com
+raw/premier.csv, scripts/transforma.py e a política GlueLabS3Write na role
+(passos 1, 2 e 2b, por script) e, de preferência, um job já criado e uma
+execução anterior concluída, para a demo não esperar o cold start. Ao fim da
+demo, apagar o job, as tabelas e o bucket da demo (ou usar nomes diferentes).
 -->
 
 ---

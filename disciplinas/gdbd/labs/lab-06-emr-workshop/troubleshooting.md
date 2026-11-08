@@ -1,7 +1,9 @@
 # Lab 06 — Troubleshooting
 
-Este é o lab mais sensível do curso. Rode o `dry-run.sh` **reforçado** na
-véspera — a maioria dos problemas abaixo é pega por ele.
+Este é o lab mais sensível do curso. O instrutor valida o ambiente na véspera,
+mas capacidade e quota variam na hora. Não achou o seu caso aqui?
+[Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+06%5D+&labels=lab)
+com o passo, o erro e um print.
 
 ## O cluster fica em "STARTING" e depois falha / instâncias não sobem
 
@@ -10,8 +12,8 @@ véspera — a maioria dos problemas abaixo é pega por ele.
 - **Capacidade insuficiente na região/AZ** (`Insufficient capacity`): a AWS não
   tem a instância naquele momento. Soluções:
   1. Troque o **tipo de instância** (ex.: `m5.xlarge` → `m4.xlarge` → `m5a.xlarge`).
-  2. Troque a **região** (`us-east-1` → `us-east-2` → `sa-east-1`) e rode o
-     `dry-run.sh` de novo.
+  2. Troque a **região** (`us-east-1` → `us-east-2` → `sa-east-1`) e tente de novo
+     (confira a quota na nova região em [Service Quotas](https://console.aws.amazon.com/servicequotas/home/services/ec2/quotas)).
   3. Não use Spot para o Master/Core neste lab (Spot some sob demanda); deixe
      Spot só para Task Node, se usar.
 - **Quota de vCPU estourada**: peça aumento em Service Quotas (código

@@ -46,6 +46,26 @@ layout: center
 
 ---
 
+## Trabalho final: Data Lake do meu clube
+
+Vale **50% da nota**. **Individual ou em grupo de até 3**, você escolhe.
+
+- Cada grupo recebe **um clube** da Premier League (pela matrícula).
+- Monta **Raw → Clean → Curated** na **sua conta AWS** e responde 8 perguntas com Athena.
+- Prova com **bytes lidos** por que Parquet + partição reduzem custo.
+- Prazo: **10 dias após a última aula**. Custo: de centavos a ~US$ 1.
+
+Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/trabalho.md)
+
+<!--
+Apresente o trabalho já na Aula 1, em 3 minutos, para a turma ler o enunciado
+cedo e conectar cada lab ao trabalho. Reforce: individual OU grupo, e que cada
+um roda na PRÓPRIA conta AWS. Avise que contas novas podem ter o Glue
+bloqueado e que CTAS no Athena é uma rota aceita.
+-->
+
+---
+
 ## O que você vai levar da Aula 1
 
 Ao final de hoje, você será capaz de:
@@ -426,9 +446,39 @@ routeAlias: lab-2
 
 **Resultado esperado:** uma tabela criada automaticamente pelo AWS Glue Crawler.
 
-**Tempo:** 30 min
+**Tempo:** 35 min (5 min de demo + 30 min de prática)
 
-Instruções versionadas: [`labs/lab-02-glue-crawler/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-02-glue-crawler)
+Instruções versionadas: [`labs/lab-02-glue-crawler/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-02-glue-crawler) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+02%5D+&labels=lab)
+
+<!--
+Instrutor: rode o dry-run.sh do lab ANTES da aula (use --check-account na
+primeira vez em cada conta). Ver .kiro/steering/labs.md.
+-->
+
+---
+
+## Demo ao vivo — Lab 02 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** abrir o bucket já preparado e mostrar a pasta `jogos/` com o `jogos.csv`.
+2. **IAM > Roles:** mostrar a role `GlueCrawlerLabRole` (trust em `glue.amazonaws.com` + `AWSGlueServiceRole` + `AmazonS3ReadOnlyAccess`).
+3. **Glue > Data Catalog > Databases:** criar o database `futebol_auto`.
+4. **Glue > Crawlers > Create crawler:** nome `crawler-jogos`, fonte S3 na **pasta** `jogos/`, role `GlueCrawlerLabRole`, destino `futebol_auto`, execução **On demand**.
+5. **Run:** rodar o Crawler e acompanhar o estado até **Ready**.
+6. **Tables > jogos:** mostrar o esquema **inferido** (você não digitou coluna nenhuma).
+7. **Schema evolution automático:** subir `jogos_v2.csv` na mesma pasta, rodar o Crawler de novo e mostrar a coluna `rodada` aparecendo.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 02](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-02-glue-crawler/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 02 (com --check-account); deixar pronto
+um bucket com jogos/jogos.csv e jogos_v2.csv (passos 1 e 6 do passo a passo, por
+script), a role GlueCrawlerLabRole criada (e propagada) e usar nomes diferentes
+dos alunos (ex.: crawler-demo, futebol_demo) ou apagar tudo ao fim da demo.
+Se a conta bloquear o Crawler ("Account ... is denied access"), mostre a demo
+na conta do instrutor e veja troubleshooting.md.
+-->
 
 ---
 

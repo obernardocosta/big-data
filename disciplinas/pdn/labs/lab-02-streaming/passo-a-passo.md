@@ -1,14 +1,25 @@
-# Lab B (PDN) — Passo a passo
+# PDN Lab 02 (Lab B) — Passo a passo
 
-> Rode o `dry-run.sh` antes da aula: checa credencial, região, usuário IAM,
-> permissões de Kinesis/Firehose/S3/IAM e a Application EMR Serverless do Lab A —
-> tudo read-only, sem criar o stream (o shard é o que gera custo).
+> **Como usar este roteiro**
+>
+> 1. Assista à **demo ao vivo** do instrutor (ele faz os passos 2, 3 e 5 uma vez).
+> 2. Repita você mesmo **no console da AWS**, seguindo as instruções de cada passo.
+> 3. Travou ou está sem tempo? Cada passo tem um bloco **"Prefere o terminal?"**
+>    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir. Os passos de
+>    preparação (produtor, job Spark) têm o **script como caminho principal**.
 
 > **Custo:** o passo 2 **cria o stream** (shard-hora). Mantenha 1 shard e limpe
 > ao final.
 
+**Console da AWS:** <https://console.aws.amazon.com/> · região **N. Virginia
+(`us-east-1`)**, confira no canto superior direito.
+
 Divisão: **passos 1–5 na Aula 2** (Kinesis + Firehose → S3); **passo 6 no sábado**
 (Spark Structured Streaming), reusando o EMR Serverless do Lab A.
+
+Se for usar o terminal ou o [AWS CloudShell](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1),
+defina antes as variáveis (anote o nome do bucket: ele é único na AWS e você vai
+usá-lo nos passos seguintes):
 
 ```bash
 export BUCKET="pdn-lab02-$(whoami)-$RANDOM"
@@ -23,13 +34,42 @@ export FIREHOSE="lab-pdn-firehose"
 **Porquê:** é onde o Firehose vai depositar o stream — a porta de entrada do
 Data Lake para dados em tempo real.
 
+**No console:**
+
+1. Abra o [Amazon S3](https://console.aws.amazon.com/s3/) e clique em **Create bucket**.
+2. Em **Bucket name**, use o nome que você anotou (ex.: `pdn-lab02-seunome-1234`).
+3. Em **AWS Region**, confirme `US East (N. Virginia) us-east-1`.
+4. Deixe o restante como padrão e clique em **Create bucket**.
+
+**Como saber que deu certo:** o bucket aparece na lista de buckets do S3.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
+
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
 ```
 
+</details>
+
 ## 2. Criar o Data Stream (1 shard) — custo começa aqui
 
 **Porquê:** o shard é a unidade de capacidade do Kinesis; 1 basta para o lab.
+
+**No console:**
+
+1. Abra o [Amazon Kinesis](https://console.aws.amazon.com/kinesis/) e, em
+   **Data streams** (ou **Kinesis Data Streams**), clique em **Create data stream**.
+2. **Data stream name:** `lab-pdn-stream`.
+3. **Capacity mode:** **Provisioned**, com **Provisioned shards** = `1`
+   (o modo *On-demand* também funciona, mas o custo é menos previsível no lab).
+4. Clique em **Create data stream**.
+
+**Como saber que deu certo:** o stream aparece com status **Active** (leva
+alguns segundos).
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
 aws kinesis create-stream --stream-name "$STREAM" --shard-count 1 --region "$REGION"
@@ -37,10 +77,34 @@ aws kinesis describe-stream-summary --stream-name "$STREAM" \
   --query 'StreamDescriptionSummary.StreamStatus'   # aguarde ACTIVE
 ```
 
+</details>
+
 ## 3. Criar a role e o Firehose (Kinesis → S3)
 
 **Porquê:** o Firehose assume uma role para **gravar no S3**, faz buffering (por
 tamanho/tempo) e entrega os eventos como arquivos. Zero código de consumo.
+
+**No console:**
+
+1. Abra o [Amazon Data Firehose](https://console.aws.amazon.com/firehose/)
+   (antigo Kinesis Data Firehose) e clique em **Create Firehose stream**.
+2. **Source:** **Amazon Kinesis Data Streams** · **Destination:** **Amazon S3**.
+3. Em **Source settings**, clique em **Browse** e escolha o stream `lab-pdn-stream`.
+4. **Firehose stream name:** `lab-pdn-firehose`.
+5. Em **Destination settings**, escolha o seu bucket (**Browse**) e, em **S3 bucket
+   prefix**, informe `eventos/`.
+6. Em **Buffer hints, compression and encryption** (ou **Buffer hints**), ajuste
+   **Buffer size** = `1` MiB e **Buffer interval** = `60` segundos.
+7. Em **Advanced settings > Service access**, deixe **Create or update IAM role**
+   (o console cria a role com permissão de ler o stream e gravar no S3). Isso
+   substitui a `FirehoseLabRole` do script.
+8. Clique em **Create Firehose stream**.
+
+**Como saber que deu certo:** o Firehose `lab-pdn-firehose` aparece com status
+**Active**, com a fonte apontando para `lab-pdn-stream`.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
 cat > trust-fh.json <<'JSON'
@@ -70,10 +134,19 @@ aws firehose create-delivery-stream \
     "RoleARN=arn:aws:iam::${ACCOUNT_ID}:role/FirehoseLabRole,BucketARN=arn:aws:s3:::$BUCKET,Prefix=eventos/,BufferingHints={SizeInMBs=1,IntervalInSeconds=60}"
 ```
 
+</details>
+
 ## 4. Produtor: ler jogos reais e emitir como stream
 
 **Porquê:** este é o coração do lab — transformar dados reais em um **fluxo** de
 eventos, como um app faria. Cada gol/partida vira um evento no stream.
+
+Este passo é **preparação**, não conceito do lab: o produtor é um programa
+Python (escrever o `produtor.py`, criar o ambiente virtual, instalar o `boto3`)
+e não tem equivalente no console. Por isso aqui o **script é o caminho
+principal**. Rode no terminal ou no
+[AWS CloudShell](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1)
+(terminal no navegador, já com a AWS CLI e o Python):
 
 ```bash
 cat > produtor.py <<'PY'
@@ -116,15 +189,37 @@ pip install boto3 --quiet
 python produtor.py "$STREAM"   # ~2 min: 380 eventos, 1 a cada 0,2 s
 ```
 
+**Como saber que deu certo:** o terminal imprime `20 eventos enviados...`,
+`40 eventos enviados...` e termina com `Total: 380 eventos.` No console do
+Kinesis, abra o stream > aba **Monitoring** para ver o gráfico de
+**Incoming data / Incoming records** subir (com alguns minutos de atraso).
+
 ## 5. Ver os eventos chegarem no S3 (via Firehose)
 
 **Porquê:** o Firehose entrega por tamanho/tempo (aqui, ~60s). Espere o buffer.
+
+**No console:**
+
+1. Aguarde ~1 a 2 minutos depois do fim do produtor.
+2. Abra o [Amazon S3](https://console.aws.amazon.com/s3/), entre no seu bucket e na
+   pasta `eventos/`. O Firehose cria subpastas por data/hora
+   (`AAAA/MM/DD/HH/`).
+3. Abra um arquivo e use **Download** (ou **Open**) para inspecionar: são os
+   eventos JSON que o produtor enviou, um por linha.
+
+**Como saber que deu certo:** há arquivos dentro de `eventos/AAAA/MM/DD/HH/`.
+Se ainda não aparecem, é *buffering*, não erro: espere mais um minuto e atualize.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
 sleep 90
 aws s3 ls "s3://$BUCKET/eventos/" --recursive
 # baixe um arquivo e inspecione: sao os eventos JSON que o produtor enviou
 ```
+
+</details>
 
 > **Fim da parte da Aula 2.** Ponto de parada seguro: eventos no S3.
 
@@ -134,6 +229,11 @@ aws s3 ls "s3://$BUCKET/eventos/" --recursive
 a **fonte é o diretório do S3** que o Firehose alimenta; o Spark processa em
 **micro-batches** e mantém agregados atualizados. Rodamos no **EMR Serverless do
 Lab A**.
+
+Este passo é **preparação com código**: escrever o `stream_job.py`, enviá-lo ao S3
+e recuperar a Application do Lab A não têm equivalente simples no console. Por
+isso o **script é o caminho principal** (terminal ou
+[AWS CloudShell](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1)).
 
 ```bash
 cat > stream_job.py <<'PY'
@@ -195,16 +295,35 @@ aws emr-serverless get-job-run --application-id "$APP_ID" --job-run-id "$RUN_ID"
   --query 'jobRun.state'
 ```
 
-Confira os agregados:
+**No console (acompanhar, ou submeter no lugar do `start-job-run`):** no
+[Amazon EMR](https://console.aws.amazon.com/emr/) > **EMR Serverless**, abra a
+Application `lab-pdn-emrs` > **Job runs**. Se preferir submeter pelo console
+(igual ao passo 4 do Lab A, depois de enviar o `stream_job.py` ao S3), use
+**Submit job run** com a role `EMRServerlessJobRole`, o script
+`s3://SEU-BUCKET/scripts/stream_job.py` e os argumentos
+`["s3://SEU-BUCKET/eventos/","s3://SEU-BUCKET/agregados/","s3://SEU-BUCKET/checkpoint/"]`.
+
+Confira os agregados no [Amazon S3](https://console.aws.amazon.com/s3/): pasta
+`agregados/` do seu bucket.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
 aws s3 ls "s3://$BUCKET/agregados/" --recursive
 ```
 
+</details>
+
+**Como saber que deu certo:** o job termina em **Success** (~3 min) e há arquivos
+Parquet em `agregados/` (gols em casa por time).
+
 ## Limpeza
 
-Veja a seção "Limpeza" do `README.md`. **O shard cobra enquanto o stream
-existir** — não esqueça de apagar stream e Firehose.
+Terminou? Apague o que criou para não gerar cobrança: siga a seção
+[**Limpeza** do README deste lab](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/labs/lab-02-streaming/README.md#limpeza).
+**O shard cobra enquanto o stream existir** — não esqueça de apagar stream e
+Firehose.
 
 ## Encontrou um problema neste lab?
 

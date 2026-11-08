@@ -137,8 +137,9 @@ Mão na massa (tema futebol, dados reais e atuais)
 | **B** — Streaming | Kinesis + Firehose + **Spark** | ingestão feita → **fechar a parte Spark** |
 | **C** — SageMaker | treino + deploy de modelo | **fazer hoje** |
 
-Todos usam dados **públicos e atuais** ([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)). Rode o
-`dry-run.sh` de cada um antes.
+Todos usam dados **públicos e atuais** ([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)).
+
+<!-- Instrutor: rode o dry-run.sh de cada lab antes da aula. -->
 
 ---
 routeAlias: lab-c
@@ -150,7 +151,37 @@ routeAlias: lab-c
 - Fazer o **deploy**: **Batch Transform** (recomendado no lab) ou **Endpoint**.
 - **Parada segura:** Training Job concluído e modelo registrado.
 
-Instruções: [`labs/lab-03-sagemaker/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-03-sagemaker).
+**Tempo:** ~1h35 (5 min de demo + ~1h30 de prática).
+
+Instruções: [`labs/lab-03-sagemaker/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/labs/lab-03-sagemaker) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+03%5D+&labels=lab)
+
+<!--
+Instrutor: rode o dry-run.sh do Lab 03 ANTES da aula (credencial, região,
+usuário IAM, execution role, permissões e quotas de SageMaker; read-only, não
+treina nem cria endpoint). Ver .kiro/steering/labs.md.
+-->
+
+---
+
+## Demo ao vivo — Lab C (PDN Lab 03) (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **IAM > Roles:** mostrar a **execution role** do SageMaker (trust em `sagemaker.amazonaws.com`, acesso ao S3).
+2. **Notebook da turma:** abrir e executar as células de preparação, que gravam o dataset em `input/` no S3.
+3. **Estimator `fit()`:** disparar o **Training Job** e acompanhá-lo em **SageMaker > Training jobs** (InProgress → Completed).
+4. **S3:** abrir `model/` e ver o artefato `model.tar.gz`.
+5. **Deploy:** mostrar **Batch Transform** (recomendado) e, se der tempo, um **Endpoint** em **Inference > Endpoints**.
+6. **Limpeza ao vivo:** apagar o Endpoint e reforçar que ele cobra enquanto existir.
+
+Depois da demo, **você repete** no console e no notebook seguindo o [passo a passo do Lab C](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/labs/lab-03-sagemaker/passo-a-passo.md). Há também um caminho todo por **script AWS CLI** (passo 5b) e scripts recolhidos nos demais passos.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 03; conferir as quotas de SageMaker
+(Service Quotas) e preparar os usuários do modo turma; deixar o notebook aberto
+com o dataset já em input/ para a demo não gastar tempo. Se mostrar Endpoint,
+use o serverless e apague-o ao fim da demo.
+-->
 
 ---
 
@@ -184,6 +215,18 @@ aws firehose delete-delivery-stream --delivery-stream-name lab-pdn-firehose
 ```
 
 <!-- Reserve 15-20 min reais para a limpeza. Confira o billing depois. -->
+
+---
+
+## Trabalho final: como entregar
+
+- Pasta (zip ou repositório) com `entrega.json`, `job.py`, `adr.md` e `README.md`,
+  a partir do [`trabalho-modelo/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/avaliacao/trabalho-modelo).
+- Rode a autoconferência antes: `python3 tools/trabalho/trabalho.py validar <pasta> --disciplina pdn`
+- Enunciado e critérios: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/avaliacao/trabalho.md)
+- **Limpe os recursos** da sua conta no mesmo dia (endpoint do SageMaker e shard do Kinesis cobram).
+
+<!-- Confirme a data de entrega (10 dias) e o canal (Classroom). -->
 
 ---
 

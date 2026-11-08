@@ -1,15 +1,27 @@
-# Lab C (PDN) — Passo a passo
+# PDN Lab 03 (Lab C) — Passo a passo
 
-> Rode o `dry-run.sh` deste lab antes da aula. Ele checa credencial, região,
-> usuário IAM, a execution role do SageMaker e as permissões de SageMaker/S3 —
-> read-only, sem treinar nem criar endpoint (o que gera custo).
+> **Como usar este roteiro**
+>
+> 1. Assista à **demo ao vivo** do instrutor (ele mostra o ciclo no console do
+>    SageMaker: Training Job e Endpoint/Batch Transform).
+> 2. Repita você mesmo **no console da AWS** e no **notebook da turma**,
+>    seguindo as instruções de cada passo.
+> 3. Travou ou está sem tempo? Os passos com console têm um bloco **"Prefere o
+>    terminal?"** (recolhido) com o mesmo passo em **AWS CLI**, e o **passo 5b**
+>    refaz o ciclo inteiro por script.
 
 > **Custo:** Training Job cobra por segundo de instância; **o Endpoint cobra
 > enquanto estiver no ar**. Use instâncias pequenas e **apague o Endpoint** ao
 > final.
 
-O lab segue o notebook disponibilizado pela turma. Os comandos abaixo mostram o
-fluxo conceitual (via SDK/CLI) para quem quiser reproduzir fora do notebook.
+**Console da AWS:** <https://console.aws.amazon.com/> · região **N. Virginia
+(`us-east-1`)**, confira no canto superior direito. Console do serviço:
+[Amazon SageMaker](https://console.aws.amazon.com/sagemaker/).
+
+O lab segue o **notebook disponibilizado pela turma** (passos 2 a 5). O que o
+notebook faz com o SDK, você acompanha no **console do SageMaker**. Os comandos
+em script mostram o fluxo conceitual (via SDK/CLI) para quem quiser reproduzir
+fora do notebook.
 
 ## Modo turma (conta do instrutor) — use este se recebeu usuário e senha
 
@@ -44,7 +56,8 @@ echo "Aluno: $ALUNO | dados em s3://$BUCKET"
 > começa com `$ALUNO-`, se o tipo de instância é `ml.m5.large` e se o endpoint
 > é serverless. São as travas que mantêm o lab barato.
 
-**Fora do modo turma** (na sua própria conta), siga a partir daqui:
+**Fora do modo turma** (na sua própria conta), siga a partir daqui. Se for usar o
+terminal ou o CloudShell, defina as variáveis:
 
 ```bash
 export BUCKET="pdn-lab03-$(whoami)-$RANDOM"
@@ -57,6 +70,27 @@ export SM_ROLE="SageMakerExecutionRole"
 
 **Porquê:** o SageMaker usa uma **execution role** para ler dados e gravar
 artefatos de modelo no S3. É ela que o Training Job e o Endpoint assumem.
+
+**No console:**
+
+1. Crie o bucket no [Amazon S3](https://console.aws.amazon.com/s3/) > **Create
+   bucket**, com o nome que você definiu em `BUCKET` (ex.:
+   `pdn-lab03-seunome-1234`), região `us-east-1`, restante padrão.
+2. Abra o [IAM](https://console.aws.amazon.com/iam/) > **Roles > Create role**.
+3. **Trusted entity type:** **AWS service**; em **Use case**, escolha
+   **SageMaker** (ou **SageMaker - Execution**, dependendo da versão do
+   console). Avance.
+4. Confirme/adicione as policies `AmazonSageMakerFullAccess` e
+   `AmazonS3FullAccess`. Avance.
+5. **Role name:** `SageMakerExecutionRole`. Clique em **Create role**.
+6. Aguarde ~15 segundos antes de usar a role: role recém-criada leva alguns
+   segundos para propagar no IAM.
+
+**Como saber que deu certo:** o bucket aparece no S3 e a role
+`SageMakerExecutionRole` aparece em **Roles**, com as duas policies anexadas.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
 aws s3 mb "s3://$BUCKET" --region "$REGION"
@@ -80,28 +114,52 @@ aws iam attach-role-policy --role-name "$SM_ROLE" \
 sleep 15
 ```
 
+</details>
+
 ## 2. Manipulação dos dados (Notebook)
 
 **Porquê:** primeira etapa do ML (Data Wrangling). No Notebook gerenciado, você
 prepara os dados e sobe o dataset de treino para o S3.
 
-- Abra o **notebook do lab** (link nas instruções da turma) e execute as células
-  de preparação, que gravam o dataset em `s3://$BUCKET/input/`.
+**No notebook (caminho principal deste passo):**
+
+- Abra o **notebook do lab** (link nas instruções da turma). Se precisar abrir o
+  ambiente de notebooks, use o [console do SageMaker](https://console.aws.amazon.com/sagemaker/)
+  (**Notebooks** ou **Studio**, dependendo da versão do console) e escolha a
+  execution role do passo 1.
+- Execute as células de preparação, que gravam o dataset em
+  `s3://$BUCKET/input/`.
+
+**Como saber que deu certo:** no [Amazon S3](https://console.aws.amazon.com/s3/),
+a pasta `input/` do seu bucket tem o dataset de treino.
 
 ## 3. Treinamento do modelo (Training Job)
 
 **Porquê:** o SageMaker provisiona a instância de treino **sob demanda**, roda o
 algoritmo e salva o artefato do modelo no S3 — sem você gerenciar servidor/GPU.
 
-- No notebook, use o Estimator do SDK (`sagemaker.estimator.Estimator` ou um
-  algoritmo built-in) apontando entrada para `s3://$BUCKET/input/` e saída para
+**No notebook (caminho principal deste passo):**
+
+- Use o Estimator do SDK (`sagemaker.estimator.Estimator` ou um algoritmo
+  built-in) apontando entrada para `s3://$BUCKET/input/` e saída para
   `s3://$BUCKET/model/`. O `fit()` dispara o Training Job.
-- Acompanhe o estado:
+
+**No console:** acompanhe o job no [console do SageMaker](https://console.aws.amazon.com/sagemaker/),
+em **Training > Training jobs** (ou **Jobs > Training**, dependendo da versão).
+O status vai de **InProgress** a **Completed**.
+
+**Como saber que deu certo:** o Training Job fica **Completed** e há um
+`model.tar.gz` em `s3://$BUCKET/model/`.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script de acompanhamento</summary>
 
 ```bash
 aws sagemaker list-training-jobs --max-results 5 \
   --query 'TrainingJobSummaries[].{Nome:TrainingJobName,Estado:TrainingJobStatus}'
 ```
+
+</details>
 
 ## 4. Deploy do modelo
 
@@ -112,7 +170,32 @@ aws sagemaker list-training-jobs --max-results 5 \
 - **Batch Transform** — inferência em lote sobre um dataset, sem endpoint
   permanente (melhor para custo quando não precisa de tempo real).
 
+**No notebook:** siga as células de deploy do notebook da turma, na opção que o
+instrutor indicar (o lab recomenda **Batch Transform**).
+
+**No console:** veja o resultado em **Inference > Endpoints** (para Endpoint) ou
+**Inference > Batch transform jobs** (para Batch Transform), no
+[console do SageMaker](https://console.aws.amazon.com/sagemaker/). O nome do menu
+pode variar um pouco dependendo da versão do console.
+
+**Como saber que deu certo:** o Endpoint fica **InService** (leva alguns
+minutos) ou o Batch Transform job fica **Completed**.
+
 ## 5. Testar a inferência
+
+**Porquê:** fechar o ciclo: dado novo entra, o modelo devolve uma predição.
+
+**No notebook:** execute a célula de predição (`predictor.predict(amostra)` no
+caso do Endpoint) ou leia a saída do Batch Transform no S3.
+
+**No console:** em **Inference > Endpoints**, confira que o Endpoint está
+**InService**.
+
+**Como saber que deu certo:** a predição volta com valores plausíveis (por
+exemplo, uma probabilidade entre 0 e 1).
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
 # exemplo conceitual (via SDK no notebook): predictor.predict(amostra)
@@ -120,12 +203,22 @@ aws sagemaker list-endpoints \
   --query 'Endpoints[].{Nome:EndpointName,Estado:EndpointStatus}'
 ```
 
+</details>
+
 ## 5b. Caminho reproduzível via CLI (testado em 2026-11-08)
 
 **Porquê:** o mesmo ciclo dados → Training Job → deploy, sem depender do
 notebook da turma. Útil para o instrutor validar a conta na véspera e para quem
 quiser refazer em casa. Custo medido: centavos (treino de ~2 min em
 `ml.m5.large`, endpoint **serverless**, que não cobra parado).
+
+Este caminho é **todo por script** (gerar o dataset com `curl` + Python e criar
+Training Job, modelo e endpoint por CLI não têm equivalente simples no console),
+então o **script é o caminho principal**. Rode no terminal ou no
+[AWS CloudShell](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1).
+Em paralelo, **acompanhe tudo no console do SageMaker**: **Training jobs**,
+**Models**, **Endpoints** e **Batch transform jobs** (menus em **Training** e
+**Inference**, dependendo da versão do console).
 
 ```bash
 # dataset: o mandante venceu (1/0)? features = media de gols pro/contra de
@@ -163,7 +256,8 @@ aws sagemaker create-training-job --training-job-name "$JOB" \
 ```
 
 **Espere o treino terminar** (~3 min: `Starting → Downloading → Training →
-Uploading → Completed`). Repita até ver `Completed`:
+Uploading → Completed`). No console, veja o status em **Training jobs**. Pelo
+terminal, repita até ver `Completed`:
 
 ```bash
 aws sagemaker describe-training-job --training-job-name "$JOB" \
@@ -184,7 +278,8 @@ aws sagemaker create-endpoint-config --endpoint-config-name "$JOB-cfg" \
 aws sagemaker create-endpoint --endpoint-name "$JOB-ep" --endpoint-config-name "$JOB-cfg"
 ```
 
-**Espere o endpoint** ficar `InService` (~3 min; repita):
+**Espere o endpoint** ficar `InService` (~3 min; repita). No console, veja em
+**Endpoints**:
 
 ```bash
 aws sagemaker describe-endpoint --endpoint-name "$JOB-ep" --query EndpointStatus
@@ -204,6 +299,10 @@ aws sagemaker create-transform-job --transform-job-name "$JOB-batch" \
   --transform-resources InstanceType=ml.m5.large,InstanceCount=1
 ```
 
+**Como saber que deu certo:** o `pred.json` traz a probabilidade de vitória do
+mandante; no console, o Endpoint aparece **InService** e o Batch Transform
+(opcional) **Completed**, com a saída em `batch-out/` no S3.
+
 > **Para discutir com a turma:** com só essas 4 features o modelo acerta ~57%,
 > o mesmo que "chutar sempre a classe mais comum". O lab prova a
 > **infraestrutura** (treinar, servir, escalar a zero); melhorar o modelo
@@ -217,6 +316,14 @@ Limpeza deste caminho: `delete-endpoint --endpoint-name "$JOB-ep"`,
 
 **Porquê:** o **Endpoint** é o maior risco de custo do curso — ele cobra parado.
 
+Siga a seção
+[**Limpeza** do README deste lab](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/labs/lab-03-sagemaker/README.md#limpeza),
+que traz o passo a passo no console (e o script recolhido). Apague **primeiro o
+Endpoint**, depois a configuração do endpoint, o modelo e os arquivos do bucket.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
+
 ```bash
 aws sagemaker delete-endpoint        --endpoint-name <ENDPOINT>
 aws sagemaker delete-endpoint-config --endpoint-config-name <CONFIG>
@@ -224,7 +331,7 @@ aws sagemaker delete-model           --model-name <MODELO>
 aws s3 rm "s3://$BUCKET/" --recursive
 ```
 
-Veja também a seção "Limpeza" do `README.md`.
+</details>
 
 ## Encontrou um problema neste lab?
 

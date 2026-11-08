@@ -167,11 +167,50 @@ camadas (Raw → Clean → Specialized), usando o que vimos no curso:
 **Resultado esperado:** uma arquitetura em camadas, catalogada e consultável, que
 amarra todas as aulas.
 
-**Tempo:** 60 min
+**Tempo:** 65 min (5 min de demo + 60 min de prática)
 
 Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
-Instruções versionadas: [`labs/lab-07-data-lake/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-07-data-lake)
+Instruções versionadas: [`labs/lab-07-data-lake/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-07-data-lake) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+07%5D+&labels=lab)
+
+<!--
+Instrutor: rode o dry-run.sh do Lab 07 ANTES da aula. Ver .kiro/steering/labs.md.
+-->
+
+---
+
+## Demo ao vivo — Lab 07 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** mostrar o bucket já preparado com a camada **Raw** (`raw/premier/premier.csv`).
+2. **Glue > Data Catalog > Databases:** criar o database `datalake_premier`.
+3. **Glue > ETL jobs:** abrir `lab07-raw-to-clean`, mostrar o PySpark e executar com `--INPUT` (`raw/premier/`) e `--OUTPUT` (`clean/premier/`), esperando `Succeeded`.
+4. **Glue > Crawlers:** criar e rodar `crawler-datalake` sobre `clean/premier/` e ver a tabela `premier` nascer.
+5. **Athena:** rodar o **CTAS** que gera a camada **Specialized** (`gols_por_time`).
+6. **Athena:** consultar `gols_por_time` e mostrar no S3 as três camadas (`raw/`, `clean/`, `specialized/`).
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 07](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-07-data-lake/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 07; deixar pronto um bucket com a
+camada Raw, o script raw_to_clean.py e a política GlueLabS3Write na role (passos
+1 e 3a, por script) e, de preferência, uma execução do job concluída para a demo
+não esperar o cold start. Ao fim da demo, apagar job, crawler, database e bucket
+da demo (ou usar nomes diferentes).
+-->
+
+---
+
+## Trabalho final: como entregar
+
+- Pasta (zip ou repositório) com `entrega.json`, `README.md` e `consultas.sql`,
+  a partir do [`trabalho-modelo/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/avaliacao/trabalho-modelo).
+- Rode a autoconferência antes: `python3 tools/trabalho/trabalho.py validar <pasta> --disciplina gdbd`
+- Enunciado e critérios: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/trabalho.md)
+- **Limpe os recursos** da sua conta no mesmo dia.
+
+<!-- Confirme a data de entrega (10 dias) e o canal (Classroom). -->
 
 ---
 

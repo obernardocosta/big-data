@@ -14,6 +14,13 @@ novas por dia. O **Glue Crawler** resolve isso: ele varre os arquivos no S3,
 - O modelo de cobrança serverless (paga só pela varredura).
 - Por que automação de catálogo é pré-requisito para um Data Lake saudável.
 
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md).
+3. Cada passo tem o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+02%5D+&labels=lab).
+
 ## Dados do lab
 
 Dados **reais e atuais** da Premier League 2024/25 do projeto público
@@ -38,7 +45,8 @@ custam frações de centavo. Faça a **Limpeza** ao final mesmo assim.
 
 ## Tempo estimado
 
-**30 minutos.**
+**35 minutos**: ~5 min de demo ao vivo do instrutor + ~30 min de prática no console.
+Os scripts AWS CLI (recolhidos em cada passo) servem para acelerar se o tempo apertar.
 
 ## Resultado esperado
 
@@ -53,6 +61,24 @@ passo 6) pode virar demonstração.
 
 ## Limpeza
 
+Para não deixar nada para trás, apague na ordem abaixo.
+
+**No console:**
+
+1. [AWS Glue](https://console.aws.amazon.com/glue/) > **Crawlers**: selecione
+   `crawler-jogos` e clique em **Delete** (em **Action**, se necessário).
+2. **Data Catalog > Tables**: selecione a tabela criada pelo Crawler (`jogos`)
+   e clique em **Delete**.
+3. **Data Catalog > Databases**: selecione `futebol_auto` e clique em **Delete**.
+4. [Amazon S3](https://console.aws.amazon.com/s3/): abra o seu bucket, apague a
+   pasta `jogos/` (**Delete**); depois apague o bucket (**Empty**, e em seguida
+   **Delete**).
+5. [IAM](https://console.aws.amazon.com/iam/) > **Roles**: apague a
+   `GlueCrawlerLabRole`, se não for reutilizá-la (o Lab 04 usa a mesma role).
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
+
 ```bash
 aws glue delete-crawler --name crawler-jogos
 aws glue delete-table    --database-name futebol_auto --name <NOME_DA_TABELA_CRIADA>
@@ -60,6 +86,8 @@ aws glue delete-database --name futebol_auto
 aws s3 rm s3://SEU-BUCKET/ --recursive
 # remova a role do lab se não for reutilizá-la
 ```
+
+</details>
 
 ## O que isso prova
 

@@ -1,7 +1,7 @@
 # Lab 04 — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` deste lab primeiro: ele aponta
-a maioria destes problemas antes da aula.
+Erros comuns e como resolver. Não achou o seu erro aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+04%5D+&labels=lab)
+com o passo, a mensagem de erro e um print.
 
 ## "Account <id> is denied access" ao criar Crawler ou Glue Job
 
@@ -9,7 +9,7 @@ a maioria destes problemas antes da aula.
   novas: acontece mesmo com `AdministratorAccess`, e o Glue Data Catalog
   (`create-database`, `create-table`) continua funcionando. Visto no teste real
   de 2026-11-08 em `us-east-1`.
-- O `dry-run.sh --check-account` detecta isso na checagem `[conta]` (sonda que não cria nada). Rode com essa flag na primeira vez em cada conta.
+- O instrutor verifica isso antes da aula; se aparecer para você, avise-o e siga o Plano B abaixo.
 - **Como resolver:** abra um caso no **AWS Support → Account and billing**
   (gratuito, sem plano pago), pedindo a liberação do AWS Glue (Crawler e Jobs)
   na região do lab. Pode levar de horas a dias: peça na primeira semana de aula.
@@ -66,8 +66,8 @@ a maioria destes problemas antes da aula.
 
 Se Glue ou Athena estiverem instáveis na região da turma:
 
-1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e rode o `dry-run.sh`
-   de novo.
-2. Se persistir, conduza o lab como **demonstração** a partir de uma saída já
-   capturada (inclusive a comparação de "Data scanned"). Não gaste tempo de aula
-   subindo ambiente — essa é a lição da preparação prévia.
+1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e repita o passo que
+   falhou.
+2. Se persistir, acompanhe o lab como **demonstração** do instrutor, a partir de
+   uma saída já capturada (inclusive a comparação de "Data scanned"). Não gaste
+   tempo de aula subindo ambiente.

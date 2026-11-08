@@ -1,7 +1,7 @@
-# Lab A (PDN) — Troubleshooting
+# PDN Lab 01 (Lab A) — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` primeiro — ele valida o
-ambiente sem criar Application nem submeter job (o job é o que gera custo).
+Erros comuns e como resolver. Não achou aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+01%5D+&labels=lab)
+com o passo, o erro e um print.
 
 ## "is not authorized to perform: iam:PassRole" ao submeter o job
 
@@ -51,7 +51,8 @@ ambiente sem criar Application nem submeter job (o job é o que gera custo).
 
 ## Plano B — EMR Serverless indisponível ou sem orçamento
 
-1. Troque a região e rode o `dry-run.sh` de novo.
+1. Troque a região e confira a quota em
+   [Service Quotas](https://console.aws.amazon.com/servicequotas/) (EMR Serverless).
 2. Sem orçamento, conduza como **demonstração** a partir de um job já executado
    (mostre `get-job-run` em `SUCCESS` e a saída no S3) e os exemplos do
    repositório oficial. O conceito (Spark sem cluster + RuntimeRole por job) é

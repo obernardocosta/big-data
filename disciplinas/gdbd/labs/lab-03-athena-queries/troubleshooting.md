@@ -1,7 +1,7 @@
 # Lab 03 — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` deste lab primeiro: ele aponta
-a maioria destes problemas antes da aula.
+Erros comuns e como resolver. Não achou o seu erro aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+03%5D+&labels=lab)
+com o passo, a mensagem de erro e um print.
 
 ## "No output location provided" / a primeira query falha
 
@@ -50,8 +50,8 @@ a maioria destes problemas antes da aula.
 
 Se o Athena estiver instável na região da turma:
 
-1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e rode o `dry-run.sh`
-   de novo (lembre que a **tabela também** precisa existir nessa região).
-2. Se persistir, conduza o lab como **demonstração** a partir de um resultado já
-   capturado e siga para particionamento. Não gaste tempo de aula subindo
-   ambiente — essa é a lição da preparação prévia.
+1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e repita o passo que
+   falhou (lembre que a **tabela também** precisa existir nessa região).
+2. Se persistir, acompanhe o lab como **demonstração** do instrutor, a partir de
+   um resultado já capturado, e siga para particionamento. Não gaste tempo de
+   aula subindo ambiente.

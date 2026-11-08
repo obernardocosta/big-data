@@ -15,6 +15,13 @@ arquivos no S3, usando o catálogo que já temos. Neste lab você finalmente
 - Como o modelo de cobrança (**US$ 5 por TB escaneado**) liga consulta a custo.
 - A ler o campo **"Data scanned"** — gancho direto para o Lab 04 (particionamento).
 
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md).
+3. Cada passo tem o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+03%5D+&labels=lab).
+
 ## Dados do lab
 
 Consulta a tabela `jogos` catalogada nos Labs 01/02 — dados **reais** da Premier
@@ -39,7 +46,8 @@ poucos KB, então cada consulta custa frações de centavo. Ainda assim, faça a
 
 ## Tempo estimado
 
-**45 minutos.**
+**50 minutos**: ~5 min de demo ao vivo do instrutor + ~45 min de prática no console.
+Os scripts AWS CLI (recolhidos em cada passo) servem para acelerar se o tempo apertar.
 
 ## Resultado esperado
 
@@ -54,12 +62,30 @@ retornar linhas (passo 4). As demais perguntas viram demonstração ou exercíci
 
 ## Limpeza
 
+O Athena em si não deixa recurso ligado: limpe só os resultados no S3.
+
+**No console:**
+
+1. [Amazon S3](https://console.aws.amazon.com/s3/): abra o bucket de results
+   (`gdbd-lab03-results-...`), clique em **Empty** e confirme; depois **Delete**
+   o bucket.
+2. Se criou um *workgroup* dedicado para o lab: [Amazon
+   Athena](https://console.aws.amazon.com/athena/) > **Workgroups**, selecione-o
+   e clique em **Delete** (marcando a opção de apagar também os query results).
+3. As tabelas e databases do Glue pertencem aos Labs 01/02: apague-os pela
+   Limpeza desses labs.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
+
 ```bash
 # o Athena em si não deixa recurso ligado; limpe só os resultados no S3
 aws s3 rm s3://SEU-BUCKET-RESULTS/ --recursive
 # se criou um workgroup dedicado para o lab:
 # aws athena delete-work-group --work-group lab03 --recursive-delete-option
 ```
+
+</details>
 
 ## O que isso prova
 

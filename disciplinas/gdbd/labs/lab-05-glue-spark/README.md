@@ -15,6 +15,15 @@ Athena fica mais rápida e mais barata (menos "Data scanned").
 - Por que converter para **Parquet colunar** reduz custo e tempo de consulta.
 - Quando **não** usar Spark (tarefas curtas → Lambda), discutido no slide.
 
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md).
+3. Cada passo tem o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+   Os passos de preparação (gerar o CSV, escrever o PySpark e a política IAM)
+   usam o script como caminho principal.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+05%5D+&labels=lab).
+
 ## Dados do lab
 
 Dados **reais e atuais** da Premier League 2024/25 ([openfootball](https://github.com/openfootball/football.json), cópia no [repo data](https://github.com/obernardocosta/data/tree/main/football)). O passo a passo baixa o JSON e gera o CSV cru que o Glue
@@ -40,7 +49,8 @@ Job transforma em Parquet.
 
 ## Tempo estimado
 
-**45 minutos.**
+**50 minutos**: ~5 min de demo ao vivo do instrutor + ~45 min de prática no console.
+Os scripts AWS CLI (recolhidos em cada passo) servem para acelerar se o tempo apertar.
 
 ## Resultado esperado
 
@@ -56,6 +66,24 @@ demonstração.
 
 ## Limpeza
 
+Apague na ordem abaixo e **não deixe o job agendado**.
+
+**No console:**
+
+1. [AWS Glue](https://console.aws.amazon.com/glue/) > **ETL jobs** (ou **Jobs**):
+   selecione `lab05-transforma-premier` e, em **Actions**, clique em **Delete job(s)**.
+   Confira também que não há *trigger* (agendamento) apontando para ele.
+2. **Data Catalog > Databases**: selecione `lab05` (criado no Athena no passo 6) e
+   clique em **Delete** (as tabelas `premier_csv` e `premier_parquet` somem junto).
+3. [Amazon S3](https://console.aws.amazon.com/s3/): abra o seu bucket, **Empty**
+   e depois **Delete**.
+4. Opcional, só se não for reutilizar: no [IAM](https://console.aws.amazon.com/iam/)
+   > **Roles** > `GlueCrawlerLabRole`, remova a política em linha `GlueLabS3Write`
+   (ou apague a role inteira).
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
+
 ```bash
 aws glue delete-job --job-name lab05-transforma-premier
 aws s3 rm s3://SEU-BUCKET/ --recursive
@@ -63,6 +91,8 @@ aws s3 rm s3://SEU-BUCKET/ --recursive
 # aws glue delete-table --database-name <DB> --name <TABELA>
 # remova a role do lab se não for reutilizá-la
 ```
+
+</details>
 
 ## O que isso prova
 

@@ -306,6 +306,25 @@ prefixo, pasta própria num bucket da turma. A política expira sozinha em
 + CloudShell + treino), 15 abusos negados, expiração (simulador IAM), `limpar`.
 Quota atual da conta: 20 treinos e 8 batch simultâneos (o `criar` avisa).
 
+### Trabalho final definido ✅ (2026-11-08)
+O componente "Trabalho" (50%) estava só no CSV, sem enunciado. Agora existe:
+- Individual ou grupo de até 3 (aluno escolhe), **conta AWS do aluno**, prazo de
+  10 dias após a última aula (a confirmar com a turma). **SageMaker opcional** (+1,0).
+- Cada grupo recebe um clube da Premier League pela matrícula do 1º integrante
+  (`mod 20`); respostas por clube permitem correção por script.
+- `tools/trabalho/trabalho.py` (**público**): `clube` e `validar` (aluno, só
+  formato). O **corretor com o gabarito é privado**: repo
+  `obernardocosta/big-data-correcao` (clonar lado a lado com este). Faz 6,0 automáticos + 4,0 manuais (via
+  `--manual` ou `correcao.json`) e `--csv`. Testado com entregas fictícias.
+- GDBD: "Data Lake do meu clube" (Raw→Clean→Curated, 8 perguntas no Athena,
+  comparação CSV × Parquet em bytes). PDN: "Pipeline e custo do meu clube"
+  (EMR Serverless + Kinesis/Firehose + ADR com Pricing Calculator).
+- Enunciados em `disciplinas/*/avaliacao/trabalho.md`, modelos em `trabalho-modelo/`,
+  slides de apresentação (Aula 1) e entrega (última aula), agendas e steering
+  atualizados.
+- Pendências: [ ] rodar uma entrega real ponta a ponta na AWS (o enunciado ainda
+  não foi executado por um aluno); [ ] definir a data de entrega.
+
 ## Notas de publicação
 
 - O repo é **público** (Pages em repo privado exigiria plano pago).

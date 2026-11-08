@@ -1,4 +1,4 @@
-# Lab A (PDN) — EMR Serverless (PySpark)
+# PDN Lab 01 (Lab A) — EMR Serverless (PySpark)
 
 ## Por que estamos fazendo isso
 
@@ -14,6 +14,13 @@ natural depois do EMR tradicional da GDBD.
 - Submeter um **job run** com uma **RuntimeRole** por job (menor privilégio).
 - Empacotar e enviar **dependências Python** para o job.
 - (Extra) Rodar uma **Hive query** no EMR Serverless.
+
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md).
+3. Cada passo tem o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+01%5D+&labels=lab).
 
 ## Dados do lab
 
@@ -47,7 +54,9 @@ time). O dado é baixado do nosso repo de dados (**data**), uma cópia exata da 
 
 ## Tempo estimado
 
-**2h30** (é o lab principal da aula de sábado; inclui pré-requisitos).
+**2h35**: ~5 min de demo ao vivo do instrutor + ~2h30 de prática no console (é o
+lab principal da Aula 1; inclui pré-requisitos). Os scripts AWS CLI (recolhidos
+em cada passo) servem para acelerar se o tempo apertar.
 
 ## Resultado esperado
 
@@ -61,6 +70,22 @@ Se o tempo acabar, pare com o **PySpark job obrigatório** concluído. O lab de
 
 ## Limpeza
 
+Não fica recurso ocioso cobrando, mas limpe mesmo assim. **Atenção:** a Application
+é reaproveitada no Lab B (Spark Streaming); só apague depois de fechar o Lab B.
+
+**No console:**
+
+1. [Amazon EMR](https://console.aws.amazon.com/emr/) > **EMR Serverless**: abra a
+   Application `lab-pdn-emrs`, cancele jobs em andamento (**Job runs**), clique em
+   **Actions > Stop** e, depois de parada, **Actions > Delete**.
+2. [Amazon S3](https://console.aws.amazon.com/s3/): selecione o seu bucket, clique
+   em **Empty** e depois em **Delete**.
+3. [IAM](https://console.aws.amazon.com/iam/) > **Roles**: apague a
+   `EMRServerlessJobRole`, se não for reutilizar (ela também serve ao Lab B).
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
+
 ```bash
 # pare/cancele jobs e remova a Application (nao fica recurso ocioso, mas limpe)
 aws emr-serverless list-applications \
@@ -69,6 +94,8 @@ aws emr-serverless delete-application --application-id <APP_ID>
 aws s3 rm s3://SEU-BUCKET/ --recursive
 # remova a RuntimeRole do lab se nao for reutilizar
 ```
+
+</details>
 
 ## O que isso prova
 

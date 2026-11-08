@@ -1,4 +1,4 @@
-# Lab C (PDN) — Amazon SageMaker (treino + deploy)
+# PDN Lab 03 (Lab C) — Amazon SageMaker (treino + deploy)
 
 ## Por que estamos fazendo isso
 
@@ -13,6 +13,15 @@ ponta: **manipular os dados → treinar o modelo → fazer o deploy**.
 - Rodar um **Training Job** (infra sob demanda) e registrar o modelo.
 - Fazer o **deploy** como **Endpoint** (tempo real) e/ou **Batch Transform**.
 - A diferença de custo entre manter um **Endpoint** vs rodar em lote.
+
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console do SageMaker.
+2. Você repete seguindo o [passo a passo](passo-a-passo.md): no **console** e no
+   **notebook da turma**. O [passo 5b](passo-a-passo.md) refaz o ciclo todo por
+   **script AWS CLI** (caminho principal dele).
+3. Os demais passos têm o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+03%5D+&labels=lab).
 
 ## Pré-requisitos
 
@@ -35,7 +44,7 @@ ponta: **manipular os dados → treinar o modelo → fazer o deploy**.
 
 ## Tempo estimado
 
-**1h30.**
+**1h35**: ~5 min de demo ao vivo do instrutor + ~1h30 de prática.
 
 ## Resultado esperado
 
@@ -50,6 +59,24 @@ ocioso).
 
 ## Limpeza
 
+**O Endpoint é o que mais cobra: apague primeiro.** Depois, o restante.
+
+**No console** ([Amazon SageMaker](https://console.aws.amazon.com/sagemaker/)):
+
+1. **Inference > Endpoints:** selecione o Endpoint e clique em **Actions > Delete**
+   (ou **Delete**). Confirme que a lista ficou vazia.
+2. **Inference > Endpoint configurations:** apague a configuração do endpoint.
+3. **Inference > Models:** apague o modelo.
+4. **Notebooks** (ou **Studio**): se criou uma Notebook Instance, selecione e use
+   **Actions > Stop** (e, se não for mais usar, **Delete**). Se usou Studio, pare
+   os apps/espaços em execução.
+5. [Amazon S3](https://console.aws.amazon.com/s3/): selecione o seu bucket, clique
+   em **Empty** e depois em **Delete**. No modo turma, apague só a sua pasta
+   (`$ALUNO/`) dentro do bucket da turma.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
+
 ```bash
 # O ENDPOINT é o que mais cobra — apague primeiro
 aws sagemaker delete-endpoint --endpoint-name <ENDPOINT>
@@ -59,6 +86,8 @@ aws sagemaker delete-model --model-name <MODELO>
 # aws sagemaker stop-notebook-instance --notebook-instance-name <NB>
 aws s3 rm s3://SEU-BUCKET/ --recursive
 ```
+
+</details>
 
 ## O que isso prova
 

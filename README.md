@@ -89,6 +89,23 @@ npm run notas -- disciplinas/gdbd/avaliacao/notas/2026-2.csv
 Detalhes do fluxo e dos pesos em
 [`disciplinas/gdbd/avaliacao/README.md`](disciplinas/gdbd/avaliacao/README.md).
 
+### Trabalho final
+
+Cada disciplina tem um trabalho final (50% da nota), individual ou em grupo de
+até 3, feito na conta AWS do aluno. Cada grupo recebe um clube da Premier League
+pela matrícula, então as respostas mudam de grupo para grupo e a parte objetiva
+é corrigida por um script privado do instrutor (fora do Git):
+
+```bash
+npm run trabalho -- clube 2024001                                  # clube do grupo
+npm run trabalho -- validar minha-entrega --disciplina gdbd        # autoconferência do aluno
+```
+
+Enunciados: [GDBD](disciplinas/gdbd/avaliacao/trabalho.md) ·
+[PDN](disciplinas/pdn/avaliacao/trabalho.md). Guia em
+[`tools/trabalho/README.md`](tools/trabalho/README.md). O corretor com o gabarito
+fica no repositório **privado** `obernardocosta/big-data-correcao`.
+
 ## Estrutura do repositório
 
 ```
@@ -102,6 +119,7 @@ disciplinas/
   pdn/           # mesma estrutura (a criar)
 tools/
   notas/         # script de cálculo de notas a partir do CSV
+  trabalho/      # clube do grupo e autoconferência do trabalho final (público)
 .kiro/
   steering/      # memória e convenções do projeto (carregadas sempre)
   skills/        # "como fazer" replicável (criar-aula, criar-lab)

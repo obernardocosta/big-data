@@ -48,6 +48,19 @@ longo de **2 semanas**:
 > de parada seguro; se o cluster não subir rápido, vá direto para o plano B
 > (demonstração), já que a janela de 3h30 é mais curta.
 
+## Trabalho final
+
+Vale 50% da nota; enunciado em
+[`avaliacao/trabalho.md`](../avaliacao/trabalho.md). Individual ou grupo de até 3,
+na conta AWS do aluno, entrega **10 dias após a Aula 6**.
+
+- **Aula 1:** apresente o trabalho (3 min, há um slide) e peça aos alunos que
+  decidam individual × grupo até a Aula 2.
+- **Aulas 3 e 6 (sábados):** reserve 10 min para dúvidas do trabalho.
+- **Aula 6:** slide "como entregar"; confirme a data e o canal (Classroom).
+- **Contas novas:** o Glue pode estar bloqueado (`Account is denied access`);
+  avise que CTAS no Athena é rota aceita.
+
 ## Regras de condução (valem para todas as aulas)
 
 - **Pontualidade.** A aula começa no horário, com tolerância máxima de 10 min.

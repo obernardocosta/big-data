@@ -1,7 +1,7 @@
-# Lab C (PDN) — Troubleshooting
+# PDN Lab 03 (Lab C) — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` primeiro — ele valida o
-ambiente sem treinar nem criar endpoint (o que gera custo).
+Erros comuns e como resolver. Não achou seu erro aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+03%5D+&labels=lab)
+com o passo, o erro e um print.
 
 ## ⚠️ O maior risco: Endpoint esquecido ligado
 
@@ -23,8 +23,8 @@ ambiente sem treinar nem criar endpoint (o que gera custo).
 ## "ResourceLimitExceeded" ao treinar ou criar endpoint
 
 - Contas novas vêm com quota **0** para Training Job e Batch Transform em quase
-  todos os tipos (On-Demand e Spot). O `dry-run.sh` mostra isso na checagem
-  `[7/7]` e imprime o comando de pedido.
+  todos os tipos (On-Demand e Spot). Confira a quota em
+  [Service Quotas](https://console.aws.amazon.com/servicequotas/) > SageMaker.
 - Peça em **Service Quotas → SageMaker** (`ml.m5.large for training job usage`
   e `... for transform job usage`, valor 2 basta). No teste de 2026-11-08,
   ~1 h depois do pedido as quotas de ML da conta já apareciam elevadas (treino
@@ -49,7 +49,7 @@ ambiente sem treinar nem criar endpoint (o que gera custo).
 
 ## Plano B — sem orçamento para treinar/servir
 
-1. Rode o `dry-run.sh` e, se faltar quota/orçamento, **não** crie o Endpoint.
+1. Se faltar quota/orçamento, **não** crie o Endpoint (e avise o instrutor).
 2. Conduza como **demonstração**: mostre o notebook, um Training Job já
    concluído e a predição via **Batch Transform** (sem endpoint permanente), ou
    use os exemplos oficiais (`amazon-sagemaker-examples`). O objetivo (ciclo

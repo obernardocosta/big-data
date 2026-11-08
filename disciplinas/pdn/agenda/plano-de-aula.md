@@ -48,6 +48,17 @@ Cada lab tem README, passo-a-passo, `dry-run.sh` (read-only, sem custo) e
 troubleshooting. Todos têm custo real → destaque e **Limpeza** (o **Endpoint** do
 SageMaker é o maior risco).
 
+## Trabalho final
+
+Vale 50% da nota; enunciado em
+[`avaliacao/trabalho.md`](../avaliacao/trabalho.md). Individual ou grupo de até 3,
+na conta AWS do aluno, entrega **10 dias após a Aula 3**. Parte 1 = Lab A, Parte 2
+= Lab B, Parte 3 = ADR de custo; **SageMaker é bônus opcional**.
+
+- **Aula 1:** apresente o trabalho (3 min, há um slide).
+- **Aula 3:** quem quiser o bônus precisa de **quota de treino no SageMaker**
+  (contas novas vêm com 0); avise para pedir cedo. Slide "como entregar" no fim.
+
 ## Regras de condução (todas as aulas)
 
 - **Pontualidade.** Começa no horário (18h30/8h), tolerância 10 min. Avise na Aula 1.

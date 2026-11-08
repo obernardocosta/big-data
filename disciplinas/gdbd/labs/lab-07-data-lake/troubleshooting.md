@@ -1,7 +1,7 @@
 # Lab 07 — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` deste lab primeiro — ele valida
-o ambiente sem rodar o Glue Job (o único passo com custo relevante).
+Erros comuns e como resolver. Não achou o seu caso aqui? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+07%5D+&labels=lab)
+com o passo, o erro e um print.
 
 ## "Account <id> is denied access" ao criar Crawler ou Glue Job
 
@@ -9,7 +9,6 @@ o ambiente sem rodar o Glue Job (o único passo com custo relevante).
   novas: acontece mesmo com `AdministratorAccess`, e o Glue Data Catalog
   (`create-database`, `create-table`) continua funcionando. Visto no teste real
   de 2026-11-08 em `us-east-1`.
-- O `dry-run.sh --check-account` detecta isso na checagem `[conta]` (sonda que não cria nada). Rode com essa flag na primeira vez em cada conta.
 - **Como resolver:** abra um caso no **AWS Support → Account and billing**
   (gratuito, sem plano pago), pedindo a liberação do AWS Glue (Crawler e Jobs)
   na região do lab. Pode levar de horas a dias: peça na primeira semana de aula.

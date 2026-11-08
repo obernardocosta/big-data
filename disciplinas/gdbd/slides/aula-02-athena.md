@@ -265,15 +265,37 @@ Lab 01/02 (jogos reais 2024/25), usando SQL no Athena:
 
 **Resultado esperado:** executar as consultas SQL sobre os arquivos do catálogo.
 
-**Tempo:** 45 min
+**Tempo:** 50 min (5 min de demo + 45 min de prática)
 
 Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
-Instruções versionadas: [`labs/lab-03-athena-queries/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-03-athena-queries)
+Instruções versionadas: [`labs/lab-03-athena-queries/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-03-athena-queries) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+03%5D+&labels=lab)
 
 <!--
 Ligue cada query ao conceito: o Athena usa o Glue Data Catalog (Aula 1) para
 saber onde estão os dados. Rode o dry-run.sh do lab ANTES da aula.
+-->
+
+---
+
+## Demo ao vivo — Lab 03 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **Glue > Data Catalog > Tables:** mostrar que a tabela `jogos` (Lab 01/02) está no catálogo.
+2. **Athena > Query editor > Settings > Manage:** configurar o **Location of query result** com o bucket de results.
+3. **Editor:** escolher o database `futebol` e rodar "times que mais marcam em casa".
+4. **Resultado:** mostrar as linhas, o **Run time** e o **Data scanned**.
+5. **Pergunta para a turma:** quanto isso custou? (US$ 5/TB escaneado, e este número vai cair no Lab 04).
+6. **Mais perguntas:** rodar a maior goleada e os jogos com mais gols.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 03](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-03-athena-queries/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 03; deixar pronto o bucket de results
+da demo (ou usar o workgroup primary já configurado) e a tabela futebol.jogos
+catalogada. Use nomes diferentes dos alunos ou limpe o local de resultados ao
+fim da demo para os alunos configurarem do zero.
 -->
 
 ---
@@ -366,11 +388,39 @@ consultas filtrando a partição **escaneiam menos dados**.
 **Resultado esperado:** consultas que usam a partição no `WHERE` escaneiam menos
 dados (compare o "Data scanned" no Athena, com e sem filtro).
 
-**Tempo:** 45 min
+**Tempo:** 50 min (5 min de demo + 45 min de prática)
 
 Dados: [repo `data`](https://github.com/obernardocosta/data/tree/main/football/premier-league/2024-25) (cópia do openfootball, Premier League 2024/25).
 
-Instruções versionadas: [`labs/lab-04-particionamento/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-04-particionamento)
+Instruções versionadas: [`labs/lab-04-particionamento/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/labs/lab-04-particionamento) · achou um problema? [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+04%5D+&labels=lab)
+
+<!--
+Instrutor: rode o dry-run.sh do lab ANTES da aula (use --check-account se o
+script tiver essa flag). Ver .kiro/steering/labs.md.
+-->
+
+---
+
+## Demo ao vivo — Lab 04 (instrutor)
+
+**O que o instrutor vai fazer, passo a passo, no console:**
+
+1. **S3:** abrir o bucket já preparado e mostrar a árvore `tabela/year=2024/month=08/...` (a partição é o **nome da pasta**).
+2. **Glue > Crawlers > Create crawler:** nome `crawler-particionado`, fonte S3 na **raiz** `tabela/`, role `GlueCrawlerLabRole`, destino `futebol_part`, **On demand**.
+3. **Run:** rodar o Crawler até **Ready**.
+4. **Tables > tabela:** mostrar `year` e `month` marcadas como **Partition** no esquema.
+5. **Athena:** rodar `WHERE year='2024' AND month='08'` e anotar o **Data scanned**.
+6. **Athena:** rodar a mesma consulta **sem** filtro e comparar os dois **Data scanned**.
+
+Depois da demo, **você repete no console** seguindo o [passo a passo do Lab 04](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-04-particionamento/passo-a-passo.md). Cada passo tem um script **AWS CLI** recolhido, para quem travar ou quiser acelerar.
+
+<!--
+Antes da aula: rodar o dry-run.sh do Lab 04; deixar pronto o bucket com a árvore
+particionada (passo 1 do passo a passo, por script) e a role GlueCrawlerLabRole.
+Se a conta bloquear o Crawler ("Account ... is denied access"), faça a demo pelo
+Plano B (CREATE EXTERNAL TABLE + MSCK REPAIR TABLE no Athena). Use nomes
+diferentes dos alunos ou apague tudo ao fim da demo.
+-->
 
 ---
 

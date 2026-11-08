@@ -1,4 +1,4 @@
-# Lab B (PDN) — Streaming: Kinesis + Firehose + Spark
+# PDN Lab 02 (Lab B) — Streaming: Kinesis + Firehose + Spark
 
 ## Por que estamos fazendo isso
 
@@ -20,6 +20,14 @@ produtor (eventos de jogos reais) → Kinesis Data Stream
 - Como o **Spark Structured Streaming** processa o que aterrissa no S3 em
   **micro-batches** — o mesmo Spark Streaming, agora sobre dados da nuvem.
 - Por que o padrão "Firehose aterrissa, Spark processa" é comum em produção.
+
+## Como este lab funciona
+
+1. O instrutor faz uma **demo ao vivo** no console.
+2. Você repete no **console**, seguindo o [passo a passo](passo-a-passo.md). Os
+   passos de código (produtor e job Spark) usam o **script como caminho principal**.
+3. Os demais passos têm o **script AWS CLI** recolhido, para travas ou para ganhar tempo.
+4. Encontrou algo errado? [Abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BPDN+Lab+02%5D+&labels=lab).
 
 ## Dados do lab
 
@@ -53,7 +61,8 @@ partida por vez), simulando tempo real a partir de dados abertos e recentes.
 ## Tempo estimado
 
 Início na **Aula 2** (Kinesis + Firehose → S3). A parte **Spark** fecha no
-**sábado** (Aula 3), reusando o EMR Serverless do Lab A. Total ~1h30.
+**sábado** (Aula 3), reusando o EMR Serverless do Lab A. Total ~1h35: ~5 min de
+demo ao vivo do instrutor + ~1h30 de prática.
 
 ## Resultado esperado
 
@@ -68,12 +77,33 @@ Início na **Aula 2** (Kinesis + Firehose → S3). A parte **Spark** fecha no
 
 ## Limpeza
 
+**O shard cobra enquanto o stream existir**, mesmo sem tráfego. Apague nesta ordem.
+
+**No console:**
+
+1. [Amazon Data Firehose](https://console.aws.amazon.com/firehose/): selecione
+   `lab-pdn-firehose` e clique em **Delete**.
+2. [Amazon Kinesis](https://console.aws.amazon.com/kinesis/) > **Data streams**:
+   selecione `lab-pdn-stream` e clique em **Actions > Delete** (ou **Delete**).
+3. [Amazon S3](https://console.aws.amazon.com/s3/): selecione o seu bucket, clique
+   em **Empty** e depois em **Delete**.
+4. A Application EMR Serverless é a do Lab A (apague lá, se não for reusar; veja a
+   [Limpeza do PDN Lab 01](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/labs/lab-01-emr-serverless/README.md#limpeza)).
+5. (Opcional) [IAM](https://console.aws.amazon.com/iam/) > **Roles**: apague a role
+   que o console criou para o Firehose (nome começa com `KinesisFirehoseServiceRole`)
+   ou a `FirehoseLabRole`, se usou o script.
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
+
 ```bash
 aws firehose delete-delivery-stream --delivery-stream-name lab-pdn-firehose
 aws kinesis delete-stream --stream-name lab-pdn-stream --enforce-consumer-deletion
 aws s3 rm s3://SEU-BUCKET/ --recursive
 # a Application EMR Serverless é a do Lab A (apague lá, se não for reusar)
 ```
+
+</details>
 
 ## O que isso prova
 

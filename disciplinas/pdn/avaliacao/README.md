@@ -15,6 +15,18 @@ calculada pelo script `tools/notas/calcular-notas.mjs`.
 Média para aprovação: **6,0**. Os pesos ficam no topo do script e valem para as
 duas disciplinas; ajuste lá se a turma usar outra combinação.
 
+## O trabalho final
+
+O componente **Trabalho** (50%) é o **Pipeline e custo do meu clube**: batch no
+EMR Serverless + streaming com Kinesis/Firehose + um ADR de arquitetura com custo.
+Individual ou em grupo de até 3, na conta AWS do próprio aluno. SageMaker é
+**bônus opcional** (+1,0). Corrigido em boa parte por script (6,0 automáticos +
+4,0 por rubrica).
+
+- Enunciado para o aluno: [`trabalho.md`](trabalho.md)
+- Modelo de entrega: [`trabalho-modelo/`](trabalho-modelo/)
+- Correção (instrutor): repositório privado `obernardocosta/big-data-correcao`
+
 ## Como lançar e calcular
 
 Crie um CSV em `notas/` (cabeçalho fixo: `matricula,nome,presenca,participacao,trabalho`),
