@@ -77,8 +77,10 @@ alguns segundos).
 
 ```bash
 aws kinesis create-stream --stream-name "$STREAM" --shard-count 1 --region "$REGION"
+# espera o stream ficar ACTIVE (~30 s); o Firehose do passo 4 exige isso
+aws kinesis wait stream-exists --stream-name "$STREAM" --region "$REGION"
 aws kinesis describe-stream-summary --stream-name "$STREAM" \
-  --query 'StreamDescriptionSummary.StreamStatus'   # aguarde ACTIVE
+  --query 'StreamDescriptionSummary.StreamStatus'   # deve mostrar "ACTIVE"
 ```
 
 </details>

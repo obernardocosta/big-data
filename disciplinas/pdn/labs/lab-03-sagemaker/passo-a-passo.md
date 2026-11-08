@@ -333,9 +333,11 @@ Endpoint**, depois a configuração do endpoint, o modelo e os arquivos do bucke
 <summary>⚡ Prefere o terminal (AWS CLI) ou está sem tempo? Clique para ver o script</summary>
 
 ```bash
-aws sagemaker delete-endpoint        --endpoint-name <ENDPOINT>
-aws sagemaker delete-endpoint-config --endpoint-config-name <CONFIG>
-aws sagemaker delete-model           --model-name <MODELO>
+# usa os nomes do passo 5b ($JOB). Se criou pelo console, troque pelos nomes que deu.
+aws sagemaker delete-endpoint        --endpoint-name "$JOB-ep"
+aws sagemaker delete-endpoint-config --endpoint-config-name "$JOB-cfg"
+aws sagemaker delete-model           --model-name "$JOB-model"
+aws sagemaker list-endpoints --query 'Endpoints[].EndpointName'   # deve voltar []
 aws s3 rm "s3://$BUCKET/" --recursive
 ```
 

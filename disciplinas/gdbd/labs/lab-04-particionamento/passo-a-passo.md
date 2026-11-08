@@ -215,7 +215,9 @@ QID=$(aws athena start-query-execution \
   --result-configuration "OutputLocation=$OUTPUT" \
   --region "$REGION" --query 'QueryExecutionId' --output text)
 
-# confirme SUCCEEDED antes de ler o scan (se ainda estiver RUNNING, repita)
+# espera a consulta terminar (alguns segundos) e mostra estado + bytes lidos
+while aws athena get-query-execution --query-execution-id "$QID" \
+  --query 'QueryExecution.Status.State' --output text | grep -qE 'QUEUED|RUNNING'; do sleep 2; done
 aws athena get-query-execution --query-execution-id "$QID" \
   --query 'QueryExecution.[Status.State,Statistics.DataScannedInBytes]'
 ```
@@ -252,7 +254,9 @@ QID2=$(aws athena start-query-execution \
   --result-configuration "OutputLocation=$OUTPUT" \
   --region "$REGION" --query 'QueryExecutionId' --output text)
 
-# confirme SUCCEEDED antes de ler o scan (null = ainda rodando; repita)
+# espera a consulta terminar (alguns segundos) e mostra estado + bytes lidos
+while aws athena get-query-execution --query-execution-id "$QID2" \
+  --query 'QueryExecution.Status.State' --output text | grep -qE 'QUEUED|RUNNING'; do sleep 2; done
 aws athena get-query-execution --query-execution-id "$QID2" \
   --query 'QueryExecution.[Status.State,Statistics.DataScannedInBytes]'
 # compare os dois DataScannedInBytes: o COM filtro deve ser menor
