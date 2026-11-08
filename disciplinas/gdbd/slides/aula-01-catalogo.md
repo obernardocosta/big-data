@@ -363,7 +363,7 @@ Instruções versionadas: [`labs/lab-01-glue-catalog/`](https://github.com/obern
 
 <!--
 Conduza o lab ligando cada passo ao conceito (Virtualization, Schema Evolution).
-Rode o dry-run.sh do lab ANTES da aula. Ver .kiro/steering/labs.md.
+Instrutor: rode o dry-run.sh do lab ANTES da aula. Ver .kiro/steering/labs.md.
 -->
 
 ---

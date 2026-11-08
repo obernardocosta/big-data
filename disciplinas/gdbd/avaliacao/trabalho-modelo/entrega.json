@@ -1,0 +1,24 @@
+{
+  "disciplina": "gdbd",
+  "integrantes": [
+    { "matricula": "2024001", "nome": "Nome do aluno" }
+  ],
+  "clube": "Rode: python3 tools/trabalho/trabalho.py clube <matricula do 1o integrante>",
+  "respostas": {
+    "jogos": 0,
+    "pontos": 0,
+    "saldo_gols": 0,
+    "pontos_casa": 0,
+    "pontos_fora": 0,
+    "maior_vitoria_saldo": 0,
+    "melhor_mes": "AAAA-MM",
+    "maior_sequencia_invicta": 0
+  },
+  "athena_query_ids": [
+    "00000000-0000-0000-0000-000000000000",
+    "00000000-0000-0000-0000-000000000000",
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "bytes_csv": 0,
+  "bytes_parquet_particionado": 0
+}

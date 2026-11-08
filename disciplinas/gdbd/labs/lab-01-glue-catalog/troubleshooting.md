@@ -1,7 +1,6 @@
 # Lab 01 — Troubleshooting
 
-Erros comuns e como resolver. Rode o `dry-run.sh` primeiro: ele aponta a maioria
-destes problemas antes da aula.
+Erros comuns e como resolver. Se nada aqui resolver, [abra uma issue](https://github.com/obernardocosta/big-data/issues/new?template=problema-no-lab.yml&title=%5BGDBD+Lab+01%5D+&labels=lab).
 
 ## "Unable to locate credentials" / credencial inválida
 
@@ -35,8 +34,7 @@ destes problemas antes da aula.
 Se o Glue estiver instável ou indisponível na região da turma (já aconteceu com
 outros serviços, como a indisponibilidade de instâncias GPU numa turma de PDN):
 
-1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e rode o `dry-run.sh`
-   de novo para confirmar.
+1. Troque a região (`us-east-1`, `us-east-2`, `sa-east-1`) e tente de novo.
 2. Se persistir, conduza este lab como **demonstração** a partir da saída já
    gerada e siga para o conteúdo. Não gaste tempo de aula tentando subir o
-   ambiente — essa é uma lição da preparação prévia.
+   ambiente.

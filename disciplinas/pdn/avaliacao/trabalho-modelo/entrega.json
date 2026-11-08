@@ -1,0 +1,27 @@
+{
+  "disciplina": "pdn",
+  "integrantes": [
+    { "matricula": "2024001", "nome": "Nome do aluno" }
+  ],
+  "clube": "Rode: python3 tools/trabalho/trabalho.py clube <matricula do 1o integrante>",
+  "respostas": {
+    "jogos": 0,
+    "vitorias": 0,
+    "gols_pro": 0,
+    "gols_contra": 0,
+    "media_gols_por_jogo": 0.0,
+    "adversario_mais_gols_marcados": "Nome FC"
+  },
+  "emr_application_id": "",
+  "emr_job_run_id": "",
+  "eventos_no_s3": 0,
+  "firehose_buffer_segundos": 0,
+  "custo": {
+    "alternativa_a_usd_mes": 0,
+    "alternativa_b_usd_mes": 0,
+    "escolhida": "a"
+  },
+  "bonus": {
+    "sagemaker": { "training_job": "", "endpoint_removido": false }
+  }
+}

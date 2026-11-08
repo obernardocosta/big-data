@@ -6,9 +6,6 @@
 > 2. Repita você mesmo **no console da AWS**, seguindo as instruções de cada passo.
 > 3. Travou ou está sem tempo? Cada passo tem um bloco **"Prefere o terminal?"**
 >    (recolhido) com o mesmo passo em **AWS CLI**. Clique para abrir.
->
-> Antes de começar, rode o `dry-run.sh` deste lab para garantir que o ambiente
-> está pronto (credencial, região, usuário IAM). Ele não cria nada que custe.
 
 **Console da AWS:** <https://console.aws.amazon.com/> · região **N. Virginia
 (`us-east-1`)**, confira no canto superior direito.
@@ -223,7 +220,8 @@ aws glue get-table-versions --database-name futebol --table-name jogos \
 
 ## Limpeza
 
-Veja a seção "Limpeza" do `README.md`.
+Terminou? Apague o que criou para não gerar cobrança: siga a seção
+[**Limpeza** do README deste lab](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/labs/lab-01-glue-catalog/README.md#limpeza).
 
 ## Encontrou um problema neste lab?
 

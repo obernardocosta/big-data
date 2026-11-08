@@ -69,13 +69,27 @@ como demonstração do instrutor.
 
 ## Limpeza
 
-Para não deixar nada para trás:
+Para não deixar nada para trás, apague na ordem abaixo.
+
+**No console:**
+
+1. [AWS Glue](https://console.aws.amazon.com/glue/) > **Data Catalog > Tables**:
+   selecione `jogos` e clique em **Delete**.
+2. **Data Catalog > Databases**: selecione `futebol` e clique em **Delete**.
+3. [Amazon S3](https://console.aws.amazon.com/s3/): abra o seu bucket, selecione a
+   pasta `jogos/` e clique em **Delete**; depois apague o bucket (**Empty**, e em
+   seguida **Delete**).
+
+<details>
+<summary>⚡ Prefere o terminal (AWS CLI)? Clique para ver o script</summary>
 
 ```bash
 aws glue delete-table    --database-name futebol --name jogos
 aws glue delete-database --name futebol
-aws s3 rm s3://SEU-BUCKET/jogos/ --recursive
+aws s3 rb "s3://$BUCKET" --force
 ```
+
+</details>
 
 ## O que isso prova
 

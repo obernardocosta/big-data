@@ -82,3 +82,14 @@ Todo `passo-a-passo.md` segue este formato (piloto: GDBD Lab 01):
    para abrir issue (template `problema-no-lab.yml`, label `lab`).
 5. As instruções de console vêm da documentação oficial da AWS e **precisam ser
    revisadas pelo instrutor no console** antes da aula (nomes de menu mudam).
+
+## Regras adicionais do formato (decididas pelo instrutor)
+
+- **O `dry-run.sh` é só do instrutor.** O aluno nunca roda dry-run. Nenhum texto
+  voltado ao aluno (passo-a-passo, README, troubleshooting, texto visível dos
+  slides) pede para rodar o dry-run. Ele só aparece nas notas do instrutor
+  (`<!-- ... -->`), na agenda e nos docs internos (`.kiro/`, README da raiz).
+- **Limpeza com link direto.** Onde o passo a passo manda limpar, use link
+  absoluto para a seção: `[**Limpeza** do README deste lab](https://github.com/obernardocosta/big-data/blob/main/disciplinas/<disciplina>/labs/<lab>/README.md#limpeza)`.
+- **A Limpeza do README também é console primeiro**, com o script recolhido em
+  `<details>`, igual aos passos.
