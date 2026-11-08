@@ -22,6 +22,10 @@ Dados **reais e atuais** da Premier League 2024/25 (openfootball, cópia no repo
 **particionados por `year`/`month`** a partir da data real de cada jogo. O passo
 a passo gera a árvore de partições a partir do JSON.
 
+> Quer outro dataset (como no exercício original)? O repo
+> [data](https://github.com/obernardocosta/data/tree/main/football) tem outras
+> temporadas e ligas (La Liga, Bundesliga, Serie A, Ligue 1), todas no mesmo formato.
+
 ## Pré-requisitos
 
 | Item | Valor |
