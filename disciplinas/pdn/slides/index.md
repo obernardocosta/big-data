@@ -43,3 +43,7 @@ src: ./aula-02-streaming.md
 ---
 src: ./aula-03-sagemaker.md
 ---
+
+---
+src: ./trabalho-final.md
+---

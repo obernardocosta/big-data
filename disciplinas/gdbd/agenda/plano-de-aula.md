@@ -52,12 +52,13 @@ longo de **2 semanas**:
 
 Vale **100% da nota** (os labs não valem nota, são o treino); enunciado em
 [`avaliacao/trabalho.md`](../avaliacao/trabalho.md). Individual ou grupo de até 3,
-na conta AWS do aluno, entrega **10 dias após a Aula 6**.
+na conta AWS do aluno, entrega em **15 dias corridos após a Aula 6**.
 
 - **Aula 1:** apresente o trabalho (3 min, há um slide) e deixe claro que ele é
   **100% da nota**. Peça aos alunos que decidam individual × grupo até a Aula 2.
 - **Aulas 3 e 6 (sábados):** reserve 10 min para dúvidas do trabalho.
-- **Aula 6:** slide "como entregar"; confirme a data e o canal (Classroom).
+- **Aula 6:** feche com o bloco **Trabalho final** (último slide do deck, link
+  direto no sumário do site); confirme a data e o canal (Classroom).
 - **Contas novas:** o Glue pode estar bloqueado (`Account is denied access`);
   avise que CTAS no Athena é rota aceita.
 

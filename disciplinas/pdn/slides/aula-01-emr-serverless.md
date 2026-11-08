@@ -58,9 +58,9 @@ Vale **100% da nota**. **Individual ou em grupo de até 3**, você escolhe.
 - Defende uma **decisão de arquitetura com custo** (ADR + Pricing Calculator).
 - **SageMaker é opcional** (+1,0 de bônus).
 - Presença e participação **não entram na nota**; os **labs são o treino** (Lab A = Parte 1, Lab B = Parte 2). Aprovação com nota **≥ 6,0**.
-- Prazo: **10 dias após a última aula**. Custo: US$ 1 a 2 se limpar no mesmo dia.
+- Prazo: **15 dias corridos após a última aula**. Custo: US$ 1 a 2 se limpar no mesmo dia.
 
-Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/avaliacao/trabalho.md)
+Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/avaliacao/trabalho.md) · resumo no [último slide do deck](https://obernardocosta.github.io/big-data/pdn/trabalho-final)
 
 <!--
 Apresente em 3 minutos e deixe claro que a nota é 100% o trabalho. A Parte 1 do trabalho é o Lab A; a Parte 2 é o Lab B.

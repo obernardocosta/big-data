@@ -52,13 +52,14 @@ SageMaker é o maior risco).
 
 Vale **100% da nota** (os labs não valem nota, são o treino); enunciado em
 [`avaliacao/trabalho.md`](../avaliacao/trabalho.md). Individual ou grupo de até 3,
-na conta AWS do aluno, entrega **10 dias após a Aula 3**. Parte 1 = Lab A, Parte 2
+na conta AWS do aluno, entrega em **15 dias corridos após a Aula 3**. Parte 1 = Lab A, Parte 2
 = Lab B, Parte 3 = ADR de custo; **SageMaker é bônus opcional**.
 
 - **Aula 1:** apresente o trabalho (3 min, há um slide) e deixe claro que ele é
   **100% da nota** e que os labs são o treino (Lab A = Parte 1, Lab B = Parte 2).
 - **Aula 3:** quem quiser o bônus precisa de **quota de treino no SageMaker**
-  (contas novas vêm com 0); avise para pedir cedo. Slide "como entregar" no fim.
+  (contas novas vêm com 0); avise para pedir cedo. Feche com o bloco **Trabalho final** (último slide do
+  deck, link direto no sumário do site).
 
 ## Formato dos labs
 

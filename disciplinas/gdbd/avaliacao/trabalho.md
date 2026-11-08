@@ -6,7 +6,7 @@ nota, são o treino para este trabalho. Pode ser feito
 para todos do grupo.
 
 - **Tempo estimado:** 4 a 6 horas.
-- **Prazo:** 10 dias corridos após a última aula (o instrutor confirma a data na Aula 1).
+- **Prazo:** **15 dias corridos** após a última aula (o instrutor confirma a data na Aula 1).
 - **Onde roda:** na **sua própria conta AWS**, região `us-east-1`.
 - **Custo aproximado:** de centavos a ~US$ 1 se você limpar tudo no mesmo dia
   (Athena cobra por dado lido; os dados são pequenos). Veja

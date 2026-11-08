@@ -218,18 +218,6 @@ aws firehose delete-delivery-stream --delivery-stream-name lab-pdn-firehose
 
 ---
 
-## Trabalho final: como entregar
-
-- Pasta (zip ou repositório) com `entrega.json`, `job.py`, `adr.md` e `README.md`,
-  a partir do [`trabalho-modelo/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/pdn/avaliacao/trabalho-modelo).
-- Rode a autoconferência antes: `python3 tools/trabalho/trabalho.py validar <pasta> --disciplina pdn`
-- Enunciado e critérios: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/pdn/avaliacao/trabalho.md)
-- **Limpe os recursos** da sua conta no mesmo dia (endpoint do SageMaker e shard do Kinesis cobram).
-
-<!-- Confirme a data de entrega (10 dias) e o canal (Classroom). -->
-
----
-
 ## Fechamento do curso
 
 A PDN pegou o Spark que vocês já sabiam e levou para a nuvem:
@@ -240,6 +228,6 @@ A PDN pegou o Spark que vocês já sabiam e levou para a nuvem:
 - **SageMaker** — do dado ao modelo em produção.
 - **Custo é arquitetura** — a decisão certa muda a conta em ordens de grandeza.
 
-### Obrigado! Dúvidas e entrega final.
+### Obrigado! Dúvidas e, a seguir, o trabalho final.
 
 <!-- Retome os objetivos do dia e do curso. -->

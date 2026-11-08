@@ -202,18 +202,6 @@ da demo (ou usar nomes diferentes).
 
 ---
 
-## Trabalho final: como entregar
-
-- Pasta (zip ou repositório) com `entrega.json`, `README.md` e `consultas.sql`,
-  a partir do [`trabalho-modelo/`](https://github.com/obernardocosta/big-data/tree/main/disciplinas/gdbd/avaliacao/trabalho-modelo).
-- Rode a autoconferência antes: `python3 tools/trabalho/trabalho.py validar <pasta> --disciplina gdbd`
-- Enunciado e critérios: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/trabalho.md)
-- **Limpe os recursos** da sua conta no mesmo dia.
-
-<!-- Confirme a data de entrega (10 dias) e o canal (Classroom). -->
-
----
-
 ## Fechamento do curso
 
 Percorremos o caminho completo **open source → AWS**:
@@ -227,4 +215,4 @@ Percorremos o caminho completo **open source → AWS**:
 
 ### Obrigado! Dúvidas e próximos passos.
 
-<!-- Fim da GDBD. -->
+<!-- Fim do conteúdo da GDBD. O próximo (e último) bloco é o Trabalho final. -->

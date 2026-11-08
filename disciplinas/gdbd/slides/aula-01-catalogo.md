@@ -53,10 +53,10 @@ Vale **100% da nota**. **Individual ou em grupo de até 3**, você escolhe.
 - Cada grupo recebe **um clube** da Premier League (pela matrícula).
 - Monta **Raw → Clean → Curated** na **sua conta AWS** e responde 8 perguntas com Athena.
 - Prova com **bytes lidos** por que Parquet + partição reduzem custo.
-- Prazo: **10 dias após a última aula**. Custo: de centavos a ~US$ 1.
+- Prazo: **15 dias corridos após a última aula**. Custo: de centavos a ~US$ 1.
 - Os **labs não valem nota**, mas cada um é uma peça do trabalho.
 
-Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/trabalho.md)
+Enunciado: [`avaliacao/trabalho.md`](https://github.com/obernardocosta/big-data/blob/main/disciplinas/gdbd/avaliacao/trabalho.md) · resumo no [último slide do deck](https://obernardocosta.github.io/big-data/gdbd/trabalho-final)
 
 <!--
 Apresente o trabalho já na Aula 1, em 3 minutos, para a turma ler o enunciado

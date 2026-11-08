@@ -6,7 +6,7 @@ nota, são o treino para este trabalho (o Lab A é a Parte 1 e o Lab B, a Parte 
 para todos do grupo.
 
 - **Tempo estimado:** 5 a 7 horas.
-- **Prazo:** 10 dias corridos após a última aula (o instrutor confirma a data na Aula 1).
+- **Prazo:** **15 dias corridos** após a última aula (o instrutor confirma a data na Aula 1).
 - **Onde roda:** na **sua própria conta AWS**, região `us-east-1`.
 - **Custo aproximado:** US$ 1 a US$ 2 se você **limpar tudo no mesmo dia**
   (EMR Serverless e Kinesis cobram por uso/hora). O bônus do SageMaker soma cerca

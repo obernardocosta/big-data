@@ -63,8 +63,9 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
   privado** (repo privado, ver decisão abaixo; este repo é público);
   `tools/trabalho` expõe só `clube` e `validar` para o aluno. GDBD = Data Lake
   do meu clube; PDN = Pipeline e custo do meu clube (EMR Serverless + Kinesis/
-  Firehose + ADR). **SageMaker é opcional** (bônus +1,0). Prazo: 10 dias após a
-  última aula. Contas novas podem ter o Glue bloqueado: CTAS no Athena é rota aceita.
+  Firehose + ADR). **SageMaker é opcional** (bônus +1,0). Prazo: **15 dias corridos** após a
+  última aula. O trabalho é o **último bloco de cada deck** (`trabalho-final.md`,
+  `routeAlias: trabalho-final`) e tem link no sumário do site. Contas novas podem ter o Glue bloqueado: CTAS no Athena é rota aceita.
 
 ## Boas práticas de Git (várias sessões ao mesmo tempo)
 

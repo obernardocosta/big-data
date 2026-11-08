@@ -310,7 +310,7 @@ Quota atual da conta: 20 treinos e 8 batch simultâneos (o `criar` avisa).
 ### Trabalho final definido ✅ (2026-11-08)
 O componente "Trabalho" estava só no CSV, sem enunciado. Agora existe (vale **100% da nota**, ver abaixo):
 - Individual ou grupo de até 3 (aluno escolhe), **conta AWS do aluno**, prazo de
-  10 dias após a última aula (a confirmar com a turma). **SageMaker opcional** (+1,0).
+  **15 dias corridos** após a última aula. **SageMaker opcional** (+1,0).
 - Cada grupo recebe um clube da Premier League pela matrícula do 1º integrante
   (`mod 20`); respostas por clube permitem correção por script.
 - `tools/trabalho/trabalho.py` (**público**): `clube` e `validar` (aluno, só
@@ -324,7 +324,8 @@ O componente "Trabalho" estava só no CSV, sem enunciado. Agora existe (vale **1
   slides de apresentação (Aula 1) e entrega (última aula), agendas e steering
   atualizados.
 - Pendências: [ ] rodar uma entrega real ponta a ponta na AWS (o enunciado ainda
-  não foi executado por um aluno); [ ] definir a data de entrega.
+  não foi executado por um aluno); [x] prazo: 15 dias corridos após a última aula; o trabalho é o último bloco
+  de cada deck (`trabalho-final.md`) com link no sumário do site.
 
 ### Repositório privado das disciplinas ✅ (2026-11-08)
 Criado `obernardocosta/big-data-privado` (PRIVATE) e movidos para lá: cálculo de

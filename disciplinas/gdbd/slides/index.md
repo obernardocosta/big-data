@@ -51,3 +51,7 @@ src: ./aula-05-emr.md
 ---
 src: ./aula-06-data-lake.md
 ---
+
+---
+src: ./trabalho-final.md
+---
