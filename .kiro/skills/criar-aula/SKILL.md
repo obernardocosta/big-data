@@ -37,6 +37,10 @@ src: ./aula-01-catalogo.md
    versionado em `labs/lab-NN-nome/` (link relativo) e cite o tempo (timebox).
 5. Adicione o `src` do novo arquivo no `index.md`, na ordem das aulas.
 6. Valide com `npx slidev build disciplinas/<disciplina>/slides/index.md`.
+7. Rode o **checklist de consistência** de `.kiro/steering/didatica.md`
+   (busca cruzada nas demais aulas/labs/agenda, terminologia, tabelas de
+   mapeamento sem células vazias e com links, links respondendo 200) antes de
+   commitar.
 
 ## Regras de estilo do slide
 

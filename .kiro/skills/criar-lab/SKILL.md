@@ -54,3 +54,9 @@ Seções, nesta ordem:
 - Erros comuns e correção: quota insuficiente, região errada, usuário root,
   permissão negada, serviço indisponível na região. Inclua o que fazer se o
   serviço estiver fora do ar (plano B), aprendizado do incidente da AWS/GPU.
+
+## Antes de commitar
+
+Rode o **checklist de consistência** de `.kiro/steering/didatica.md`: o lab usa
+os mesmos nomes de serviços dos slides, o slide da prática aponta para ele e o
+`dry-run.sh` passa.

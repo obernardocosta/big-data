@@ -266,16 +266,27 @@ layout: section
 
 ---
 
-## Mapeamento mental na AWS
+## Mapeamento Open Source → AWS
 
 | Necessidade | Open Source | AWS |
 |---|---|---|
-| Armazenamento de objetos | HDFS | **Amazon S3** |
-| Spark serverless | Spark | **AWS Glue** |
-| Processamento serverless | — | **AWS Lambda** |
-| Data Warehouse | — | **Amazon Redshift** |
-| Visualização de dados | — | **Amazon QuickSight** |
-| Catálogo de dados | Hive Metastore | **AWS Glue Data Catalog** |
+| Armazenamento de objetos | [Apache HDFS](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html) | [**Amazon S3**](https://aws.amazon.com/s3/) |
+| Spark serverless | [Apache Spark](https://spark.apache.org/) | [**AWS Glue**](https://aws.amazon.com/glue/) |
+| Processamento serverless | [Apache OpenWhisk](https://openwhisk.apache.org/) | [**AWS Lambda**](https://aws.amazon.com/lambda/) |
+| Data Warehouse | [ClickHouse](https://clickhouse.com/) | [**Amazon Redshift**](https://aws.amazon.com/redshift/) |
+| Visualização de dados | [Apache Superset](https://superset.apache.org/) | [**Amazon QuickSight**](https://aws.amazon.com/quicksight/) |
+| Catálogo de dados | [Hive Metastore](https://hive.apache.org/) | [**AWS Glue Data Catalog**](https://docs.aws.amazon.com/glue/latest/dg/catalog-and-crawler.html) |
+
+<div class="text-sm opacity-70 mt-4">
+Os links levam à página oficial de cada projeto/serviço, para você pesquisar e
+experimentar depois da aula.
+</div>
+
+<!--
+Não é mais "mental": é um mapeamento real, serviço a serviço. Escolhas open
+source: OpenWhisk (FaaS da Apache, equivalente ao Lambda), ClickHouse (DW/OLAP
+colunar, equivalente ao Redshift) e Superset (BI, equivalente ao QuickSight).
+-->
 
 ---
 layout: center

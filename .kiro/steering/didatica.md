@@ -15,7 +15,8 @@ Todo serviço/tópico segue a mesma espinha, que já é a usada nos slides origi
 1. **Estudo de caso / problema** — qual dor de negócio motiva isso.
 2. **Mundo open source** — como o problema é resolvido fora da nuvem
    (ex.: Hive Metastore, PrestoDB, Apache Airflow, Hadoop).
-3. **Trazendo para a AWS** — o mapeamento mental open source -> serviço gerenciado.
+3. **Trazendo para a AWS** — o mapeamento open source -> serviço gerenciado
+   (tabela real, com link oficial para cada projeto/serviço).
 4. **O serviço gerenciado** — o que é, como cobra, integrações.
 5. **Prós e contras / quando usar** — trade-offs explícitos.
 6. **Prática (lab)** — aplica o conceito.
@@ -41,6 +42,23 @@ Todo serviço/tópico segue a mesma espinha, que já é a usada nos slides origi
 - A partir da aula 2, os primeiros 30 minutos são para dúvidas / terminar a
   atividade anterior, enquanto os alunos vão chegando. Isso não atrasa conteúdo novo.
 - Avisar na aula 1 que as aulas começam pontualmente.
+
+## Checklist de consistência (antes de commitar qualquer mudança de conteúdo)
+
+Toda alteração em slide, lab ou agenda passa por esta validação, sem precisar
+ser pedida:
+
+1. **Busca cruzada**: `grep` pelos termos alterados (serviços, ferramentas,
+   títulos) em `disciplinas/**`, `README.md`, `agenda/` e `.kiro/` para achar
+   menções que ficaram desatualizadas ou contraditórias (ex.: outra aula citando
+   a ferramenta open source equivalente com outro nome).
+2. **Terminologia**: o mesmo conceito tem o mesmo nome em todas as aulas e labs.
+3. **Tabelas de mapeamento open source -> AWS**: sem células vazias ("—") e com
+   link oficial em cada ferramenta/serviço, para o aluno pesquisar e escrever.
+4. **Links**: todos respondem (HTTP 200) e apontam para a página oficial.
+5. **Build**: `npx slidev build` do deck afetado passa sem erro.
+6. **Steering e skills**: se a mudança altera uma convenção, atualizar
+   `.kiro/steering/` e `.kiro/skills/` no mesmo commit.
 
 ## Idioma
 
