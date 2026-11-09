@@ -194,12 +194,12 @@ League 2024/25, JSON sem API key) em vez de CSVs inventados inline:
   2024-08…2025-05). Slides de Aula 1 e 2 alinhados ao dataset real. `build` passa.
 
 ### Próximos passos sugeridos
-- [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+.
-- [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.
+- [x] PDN migrada dos PDFs (`_fonte/pdn_*.txt`): 3 aulas e 3 labs.
+- [x] Skill `avaliacao` criada no **repo privado** (`big-data-privado/.kiro/skills/avaliacao/`).
 
 ### Depois de validar com você
-6. [ ] (Opcional) Skill `criar-avaliacao` formalizando o fluxo de notas.
-7. [ ] Exportar o PDF original do PDN para `_fonte/` e migrar as Aulas 2+ da PDN.
+6. [x] Skill de avaliação: no repo privado (alunos não veem).
+7. [x] PDN migrada dos PDFs.
 
 ### Publicação (GitHub + Pages) — CONCLUÍDO ✅ (2026-10-29)
 8. [x] `git init` + commit inicial + repo remoto `obernardocosta/big-data`
@@ -323,8 +323,7 @@ O componente "Trabalho" estava só no CSV, sem enunciado. Agora existe (vale **1
 - Enunciados em `disciplinas/*/avaliacao/trabalho.md`, modelos em `trabalho-modelo/`,
   slides de apresentação (Aula 1) e entrega (última aula), agendas e steering
   atualizados.
-- Pendências: [ ] rodar uma entrega real ponta a ponta na AWS (o enunciado ainda
-  não foi executado por um aluno); [x] prazo: 15 dias corridos após a última aula; o trabalho é o último bloco
+- Pendências: [x] entrega real ponta a ponta na AWS (2026-11-08, ver abaixo); [x] prazo: 15 dias corridos após a última aula; o trabalho é o último bloco
   de cada deck (`trabalho-final.md`) com link no sumário do site.
 
 ### Repositório privado das disciplinas ✅ (2026-11-08)
@@ -358,6 +357,23 @@ público uma versão antiga do corretor. O conteúdo atual não mudou. **Toda
 sessão ou clone feito antes disso** precisa se realinhar antes de commitar:
 `git fetch && git reset --hard origin/main` (salve antes qualquer mudança local
 não enviada). Exceção única à regra "nunca force push".
+
+### Validação completa na AWS ✅ (2026-11-08, noite)
+Conta principal, `us-east-1`. Foto da conta antes e depois: **nada sobrou**
+(diff vazio contra a lista inicial de recursos).
+- **10 dry-runs:** todos ✅ (o do Lab 03 só passa depois do Lab 01, como esperado).
+- **10 labs** com os blocos literais do `passo-a-passo.md` (zsh) e os SQL do
+  console via Athena: todos ✅. Correções: Lab 04 espera a query terminar antes
+  de ler o scan (zsh e bash); Lab B espera o stream ACTIVE; Lab C limpa com
+  `$JOB-ep/-cfg/-model` em vez de placeholder.
+- **Trabalho final, feito como aluno:** GDBD (Manchester United, rota CTAS no
+  Athena; CSV 19.092 B × Parquet particionado 167 B) e PDN (Everton, EMR
+  Serverless + Kinesis/Firehose, 38/38 eventos no S3). Os dois: autoconferência
+  ✅ e **6,0/6,0** no corretor. Bônus SageMaker não refeito (mesmo fluxo do Lab C).
+- **Scripts:** `npm run teste` no repo privado, 41/41 ✅. Fechamento recusa
+  matrícula em duas entregas com notas diferentes.
+- **Regras (só no repo privado):** nota = 100% trabalho; aprovação nota ≥ 6,0 e
+  frequência ≥ 80%; 1 falta por aula.
 
 ## Notas de publicação
 
