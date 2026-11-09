@@ -32,6 +32,10 @@ src: ./aula-01-catalogo.md
 2. Crie `aula-NN-tema.md` seguindo a narrativa padrão de `.kiro/steering/didatica.md`:
    problema -> open source -> trazendo para AWS -> serviço gerenciado ->
    prós/contras -> prática -> fechamento.
+2a. O primeiro slide da aula (capa) usa o frontmatter
+   `layout: section`, `class: capa` e `routeAlias: aula-N`. Mudanças de assunto
+   dentro da aula usam só `layout: section`. Ambos ficam escuros via
+   `style.css` do deck; slides de conteúdo não usam `section`.
 3. Cada slide é separado por `---`. Use `##` para o título do slide.
 4. Para o slide da prática, não cole link do Google Docs: aponte para o lab
    versionado com **link clicável** para a pasta no GitHub, no formato

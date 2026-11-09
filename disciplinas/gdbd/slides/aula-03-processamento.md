@@ -1,5 +1,6 @@
 ---
 layout: section
+class: capa
 routeAlias: aula-3
 ---
 
