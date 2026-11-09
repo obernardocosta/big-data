@@ -82,7 +82,7 @@ ser pedida:
 Capas (aula, lab, trabalho final) e mudanças de assunto são escuras; o conteúdo
 segue claro. Capa: `layout: section` + `class: capa` (quase preto, filete ciano).
 Divisão interna: só `layout: section` (slate escuro). O estilo vive em
-`disciplinas/<disciplina>/slides/style.css` (manter os dois iguais). Nunca use
+`disciplinas/<disciplina>/slides/style.css` (mesma estrutura; cada disciplina tem seu azul: GDBD ardósia + ciano, PDN azul royal). Nunca use
 `section` para slide de conteúdo.
 
 ## Regra de ouro: tudo que o aluno vai usar tem link

@@ -2,7 +2,7 @@
  * Separação visual dos slides de mudança de assunto (issue #2).
  * - .section        -> divisão interna de seção (slate escuro)
  * - .section.capa   -> capa de aula, lab ou trabalho final (quase preto)
- * Os demais layouts não mudam. Manter igual em disciplinas/pdn/slides/style.css.
+ * Os demais layouts não mudam. Estrutura igual à do PDN; só as cores mudam (GDBD = azul-ardósia com ciano).
  */
 .slidev-layout.section {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
