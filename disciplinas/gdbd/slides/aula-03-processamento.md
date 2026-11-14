@@ -227,6 +227,24 @@ conecta de volta à tabela das "quatro formas de processar".
 -->
 
 ---
+
+## Caso real: Nielsen e os 55 TB por dia
+
+<Youtube id="Jkx6kVbDpL4" width="640" height="360" />
+
+<div class="text-sm opacity-70 mt-2">
+
+Vídeo: [Nielsen: Processing 55TB of Data Per Day with AWS Lambda](https://www.youtube.com/watch?v=Jkx6kVbDpL4) (This is My Architecture, AWS) · Artigo: [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/nielsen-processing-55tb-of-data-per-day-with-aws-lambda/)
+
+</div>
+
+<!--
+Vídeo de ~10 min: dá play aqui no slide (ou abra o link se a rede bloquear o
+embed). Pergunta para a turma: o que, na carga da Nielsen, justifica Lambda e
+não Spark? (eventos pequenos, paralelizáveis, escala de 1 a 6 TB/h).
+-->
+
+---
 layout: section
 ---
 
