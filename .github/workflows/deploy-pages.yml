@@ -87,6 +87,22 @@ jobs:
           make_alias_pages gdbd
           make_alias_pages pdn
 
+      # Mesmo problema para o link numérico (/<repo>/<deck>/86): ao recarregar a
+      # página, o Pages não acha /86 e devolve 404. Geramos uma cópia da SPA para
+      # cada número de slide (1..500, ~2 KB cada), assim F5 abre o slide certo.
+      - name: Gerar páginas por número de slide
+        run: |
+          set -e
+          for deck in gdbd pdn; do
+            outdir="$GITHUB_WORKSPACE/_site/$deck"
+            [ -f "$outdir/404.html" ] || continue
+            for n in $(seq 1 500); do
+              mkdir -p "$outdir/$n"
+              cp "$outdir/404.html" "$outdir/$n/index.html"
+            done
+            echo "  + $deck/1..500"
+          done
+
       - name: Configurar Pages
         uses: actions/configure-pages@v5
 
