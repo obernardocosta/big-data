@@ -221,6 +221,12 @@ toda carga precisa disso.
   - Transformação distribuída, joins grandes, muitos GB/TB por job → **Glue/Spark**.
   - Pedaços pequenos, por evento, sem estado pesado → **Lambda**.
 
+<div class="text-right text-lg mt-6 opacity-80">
+
+▶ Veja o vídeo da Nielsen na próxima página <carbon-arrow-right class="inline" />
+
+</div>
+
 <!--
 A lição é escolher a ferramenta pelo formato da carga, não por moda. Isso
 conecta de volta à tabela das "quatro formas de processar".
@@ -232,9 +238,11 @@ routeAlias: nielsen
 
 ## Caso real: Nielsen e os 55 TB por dia
 
-<Youtube id="Jkx6kVbDpL4" width="640" height="360" />
+<div class="flex justify-center">
+  <Youtube id="Jkx6kVbDpL4" width="640" height="360" />
+</div>
 
-<div class="text-sm opacity-70 mt-2">
+<div class="text-sm opacity-70 mt-2 text-center">
 
 Vídeo: [Nielsen: Processing 55TB of Data Per Day with AWS Lambda](https://www.youtube.com/watch?v=Jkx6kVbDpL4) (This is My Architecture, AWS) · Artigo: [AWS Architecture Blog](https://aws.amazon.com/blogs/architecture/nielsen-processing-55tb-of-data-per-day-with-aws-lambda/)
 
