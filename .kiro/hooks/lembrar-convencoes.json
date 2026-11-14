@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lembrar checklist e registro de convenções",
+      "trigger": "UserPromptSubmit",
+      "description": "A cada mensagem do instrutor, lembra o agente de aplicar o checklist de consistência e de registrar no steering/skills toda lição nova, sem esperar o pedido.",
+      "action": {
+        "type": "agent",
+        "prompt": "Lembrete automático do projeto (sem precisar ser pedido):\n1. Se nesta tarefa você alterar slide, lab, agenda ou o workflow de publicação, rode `npm run checar` e o checklist de consistência de .kiro/steering/didatica.md antes de commitar; para mudança visual, exporte os slides alterados como PNG e confira.\n2. Se o pedido do instrutor revelar um erro recorrente, uma preferência nova ou uma decisão (ex.: 'o link não renderizou', 'o diagrama vazou', 'prefiro o vídeo no slide'), registre a regra em .kiro/steering/ e .kiro/skills/ NO MESMO COMMIT da correção e cite isso na resposta. Não espere o instrutor pedir para registrar.\n3. Decisões de arquitetura/publicação vão no histórico 'Decisões tomadas' de .kiro/steering/projeto.md."
+      }
+    }
+  ]
+}

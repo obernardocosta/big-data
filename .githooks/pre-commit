@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Bloqueia o commit se o checklist mecânico falhar (tools/checar/checar.py).
+# Ativado por `npm install` (script "prepare": git config core.hooksPath .githooks).
+# Pular em emergência: git commit --no-verify
+python3 tools/checar/checar.py || exit 1
+
+# Lembrete (não bloqueia): mudou slide/lab/agenda e não tocou em .kiro/?
+staged="$(git diff --cached --name-only)"
+if printf '%s\n' "$staged" | grep -qE '^disciplinas/|^agenda/|^\.github/' \
+   && ! printf '%s\n' "$staged" | grep -q '^\.kiro/'; then
+  echo "ℹ️  Lembrete: se esta mudança criou ou mudou uma convenção, atualize"
+  echo "   .kiro/steering/ e .kiro/skills/ no mesmo commit (item 9 do checklist)."
+fi

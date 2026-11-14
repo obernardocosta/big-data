@@ -24,6 +24,8 @@ disciplinas/
   pdn/    -> mesma estrutura
 tools/
   trabalho/ -> clube do grupo e autoconferência do trabalho final (público)
+  checar/   -> checklist mecânico (npm run checar; roda no pre-commit)
+.githooks/  -> pre-commit versionado (ligado pelo npm install)
 .kiro/
   steering/ -> este diretório (memória + convenções, carregado sempre)
   skills/   -> "como fazer" replicável (criar aula, criar lab)

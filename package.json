@@ -12,7 +12,9 @@
     "pdn:build": "slidev build disciplinas/pdn/slides/index.md --base /pdn/ --out ../../../dist/pdn",
     "pdn:export": "slidev export disciplinas/pdn/slides/index.md --output disciplinas/pdn/export/pdn.pdf",
     "build:all": "npm run gdbd:build && npm run pdn:build",
-    "trabalho": "python3 tools/trabalho/trabalho.py"
+    "trabalho": "python3 tools/trabalho/trabalho.py",
+    "checar": "python3 tools/checar/checar.py",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "devDependencies": {
     "@slidev/cli": "^52.0.0",

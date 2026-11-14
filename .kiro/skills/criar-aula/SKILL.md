@@ -47,7 +47,9 @@ src: ./aula-01-catalogo.md
 7. Rode o **checklist de consistência** de `.kiro/steering/didatica.md`
    (busca cruzada nas demais aulas/labs/agenda, terminologia, tabelas de
    mapeamento sem células vazias e com links, links respondendo 200) antes de
-   commitar.
+   commitar. A parte mecânica é `npm run checar` (também roda no pre-commit).
+8. Se o pedido revelou uma regra nova, atualize este arquivo e o steering no
+   mesmo commit.
 
 ## Regras de estilo do slide
 

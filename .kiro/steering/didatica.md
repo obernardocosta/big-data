@@ -56,7 +56,15 @@ clicando no **console**, e o **script** recolhido fica de reforço.
 ## Checklist de consistência (antes de commitar qualquer mudança de conteúdo)
 
 Toda alteração em slide, lab ou agenda passa por esta validação, sem precisar
-ser pedida:
+ser pedida. **Parte é automática:**
+
+- `npm run checar` (`tools/checar/checar.py`) checa os itens 6, 7, 8, 10 e 11 e
+  roda sozinho no **pre-commit** (`.githooks/pre-commit`, ligado pelo
+  `npm install`); o commit é bloqueado se falhar. Emergência: `--no-verify`.
+- O hook do Kiro `.kiro/hooks/lembrar-convencoes.json` lembra o agente, a cada
+  mensagem, de rodar o checklist e de **registrar no steering/skills toda lição
+  nova no mesmo commit da correção**, sem esperar o instrutor pedir.
+- Regra nova que dê para checar por script entra também no `checar.py`.
 
 1. **Busca cruzada**: `grep` pelos termos alterados (serviços, ferramentas,
    títulos) em `disciplinas/**`, `README.md`, `agenda/` e `.kiro/` para achar
