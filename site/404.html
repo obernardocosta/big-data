@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carregando…</title>
+    <!--
+      Fallback de SPA para o GitHub Pages.
+
+      O Pages só usa o 404.html da RAIZ do site. Os decks (Slidev) são SPAs:
+      endereços como /<repo>/gdbd/86 ou /<repo>/gdbd/aula-3 não existem como
+      arquivo, então um F5 cairia aqui. Este arquivo descobre o deck pelo
+      endereço, carrega o index.html dele e o escreve no documento SEM mudar a
+      URL; a SPA lê o endereço e abre o slide certo.
+    -->
+    <script>
+      (function () {
+        var m = location.pathname.match(/^\/([^/]+)\/(gdbd|pdn)(\/|$)/);
+        if (!m) {
+          document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("msg").hidden = false;
+          });
+          return;
+        }
+        fetch("/" + m[1] + "/" + m[2] + "/index.html", { cache: "no-cache" })
+          .then(function (r) {
+            if (!r.ok) throw new Error(r.status);
+            return r.text();
+          })
+          .then(function (html) {
+            document.open();
+            document.write(html);
+            document.close();
+          })
+          .catch(function () {
+            document.getElementById("msg").hidden = false;
+          });
+      })();
+    </script>
+  </head>
+  <body>
+    <p id="msg" hidden>
+      Página não encontrada. <a href="/big-data/">Voltar ao início</a>.
+    </p>
+  </body>
+</html>
