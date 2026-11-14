@@ -130,14 +130,14 @@ Origem open source: Presto nasceu no Facebook. É o motor de consulta; o catálo
 
 ## Arquitetura do PrestoDB
 
-```mermaid {scale: 1}
+```mermaid {scale: 0.6}
 flowchart LR
   Client[Cliente SQL] -->|REST API| Coord[Presto Coordinator]
   Coord -.->|resultado| Client
   Coord -->|planeja e distribui| W1
   Coord --> W2
   Coord --> W3
-  subgraph Workers["Presto Workers (trocam dados entre si)"]
+  subgraph Workers["Workers (trocam dados)"]
     direction TB
     W1[Worker 1] <--> W2[Worker 2] <--> W3[Worker 3]
   end
