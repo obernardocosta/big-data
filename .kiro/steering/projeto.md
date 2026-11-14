@@ -36,6 +36,12 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
   - `/gdbd/` -> Gerenciamento de Dados para Big Data
   - `/pdn/`  -> Processamento de Big Data na Nuvem
 - `npm run build:all` gera `dist/gdbd` e `dist/pdn`.
+- **F5 / link direto em qualquer slide** (`/<repo>/gdbd/86`, `/gdbd/aula-3`,
+  `/gdbd/presenter/86`): o Pages só usa o `404.html` da **raiz** do site.
+  `site/404.html` é copiado para lá pelo workflow, descobre o deck pelo
+  endereço, carrega o `index.html` dele e o escreve no documento sem mudar a
+  URL. Não gere cópias da SPA por slide ou por alias (era a solução antiga).
+  O status HTTP dessas rotas é 404, mas a página abre normalmente.
 
 ## Decisões tomadas (histórico vivo)
 
@@ -66,6 +72,14 @@ _fonte/     -> PDFs originais exportados dos Slides (referência, fora do build)
   Firehose + ADR). **SageMaker é opcional** (bônus +1,0). Prazo: **15 dias corridos** após a
   última aula. O trabalho é o **último bloco de cada deck** (`trabalho-final.md`,
   `routeAlias: trabalho-final`) e tem link no sumário do site. Contas novas podem ter o Glue bloqueado: CTAS no Athena é rota aceita.
+- **2026-11**: **F5 em slide dava 404** no Pages. Solução: um único
+  `site/404.html` na raiz (fallback de SPA), no lugar de cópias da SPA por
+  número de slide/alias. Ver "Publicação".
+- **2026-11**: Revisão visual dos decks em aula: links markdown dentro de
+  `<div>` não renderizavam (faltava linha em branco), diagrama do PrestoDB
+  vazava do slide (agora `flowchart LR`), vídeo da Nielsen passou a tocar no
+  slide e o desafio de Step Functions ganhou nomes por estado. Viraram regras
+  (itens 11–12 do checklist e "Vídeos" em `didatica.md`).
 
 ## Boas práticas de Git (várias sessões ao mesmo tempo)
 

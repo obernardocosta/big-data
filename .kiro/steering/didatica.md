@@ -29,6 +29,10 @@ Todo serviço/tópico segue a mesma espinha, que já é a usada nos slides origi
 - Durante o passo a passo, cada etapa importante tem um **porquê** curto, não só
   o "clique aqui".
 - Ao fim do lab, uma seção **O que isso prova** amarra de volta ao conceito.
+- Atividade ou desafio em sala **nomeia cada item** que o aluno vai usar (ex.:
+  os estados `TransformarGlue`, `RodarCrawler`… numa tabela com # e nome) e diz
+  em uma frase **o que entregar** e **como saber que acertou**. Nunca "faça os
+  itens 1 e 2" sem dizer quais são. Gabarito vai nas notas do instrutor.
 
 ## Demo ao vivo -> aluno no console -> script
 
@@ -76,6 +80,13 @@ ser pedida:
 10. **Privacidade**: nenhum CSV de turma, nota, entrega de aluno ou gabarito
    no repositório público. Isso vive em `obernardocosta/big-data-privado`.
    `git status` antes de commitar para conferir.
+11. **Markdown dentro de HTML**: todo `<div>` com markdown dentro (link,
+   negrito) tem **linha em branco** depois da tag de abertura e antes do
+   `</div>`; sem isso o Slidev mostra o `[texto](url)` cru. `grep` por linhas
+   `[...](http...)` coladas num `<div ...>` deve voltar vazio.
+12. **Cabe no slide**: diagrama, tabela ou vídeo alterado é conferido no slide
+   renderizado (`npx slidev export <aula>.md --format png`), não só no build.
+   Nada pode vazar pela borda nem sobrar meia tela vazia.
 
 ## Separação visual dos slides
 
@@ -94,6 +105,13 @@ fonte original (ex.: openfootball), repositório de exemplos, página de preços
 console da AWS. Em blocos de código, o comando já usa a URL completa. Dentro do
 checklist de consistência: `grep` por `https?://` fora de `](` deve voltar só
 comandos em blocos de código.
+
+**Vídeos** que o instrutor vai mostrar tocam **no próprio slide**:
+`<Youtube id="..." width="640" height="360" />` dentro de
+`<div class="flex justify-center">`, com o link clicável do vídeo (e da fonte,
+ex.: AWS Architecture Blog) logo abaixo, como plano B se a rede bloquear o
+embed. O slide anterior avisa, alinhado à direita: "▶ Veja o vídeo … na próxima
+página →". Dê um `routeAlias` ao slide do vídeo (ex.: `nielsen`) para abrir direto.
 
 ## Idioma
 

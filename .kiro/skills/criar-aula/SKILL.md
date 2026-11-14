@@ -55,4 +55,15 @@ src: ./aula-01-catalogo.md
 - Um conceito por slide; títulos curtos.
 - Blocos de código com a linguagem marcada (```sql, ```bash, ```python).
 - Notas do apresentador em `<!-- ... -->` ao fim do slide quando útil.
-- Diagramas em Mermaid quando ajudar (arquitetura, DAG, fluxo).
+- Diagramas em Mermaid quando ajudar (arquitetura, DAG, fluxo). Diagrama com
+  muitos nós em sequência vai na **horizontal** (`flowchart LR`, agrupando
+  nós iguais num `subgraph`) para usar a largura do slide; ajuste
+  `{scale: ...}` (0.5–0.7 costuma caber) e confira no PNG exportado.
+- Markdown dentro de `<div>`: deixe uma **linha em branco** após `<div ...>` e
+  antes de `</div>`, senão links e negrito aparecem crus.
+- Vídeo: `<Youtube>` centralizado + link clicável abaixo + aviso no slide
+  anterior (regra em `.kiro/steering/didatica.md`).
+- Atividade em sala: nomeie cada item numa tabela e diga o que entregar e como
+  saber que acertou; gabarito nas notas do instrutor.
+- Valide o visual com `npx slidev export disciplinas/<disciplina>/slides/aula-NN-tema.md --format png --output /tmp/aula`
+  e olhe os slides alterados.
