@@ -340,7 +340,9 @@ layout: center
 - Se aumentarmos o uso, os recursos ficam disponíveis e pagamos por isso
 
 <div class="text-sm opacity-70 mt-8">
+
 Tabela de preços: [AWS Glue Pricing](https://aws.amazon.com/glue/pricing/)
+
 </div>
 
 ---
@@ -440,7 +442,9 @@ layout: center
 - Modelo serverless de cobrança — cobra apenas pelo uso
 
 <div class="text-sm opacity-70 mt-8">
+
 Tabela de preços: [AWS Glue Pricing](https://aws.amazon.com/glue/pricing/)
+
 </div>
 
 ---

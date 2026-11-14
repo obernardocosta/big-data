@@ -196,7 +196,9 @@ Pouco mais de **meio dólar** por uma transformação pesada e distribuída — 
 subir nem manter cluster nenhum.
 
 <div class="text-sm opacity-70 mt-6">
+
 Tabela de preços: [AWS Glue Pricing](https://aws.amazon.com/glue/pricing/)
+
 </div>
 
 ---
