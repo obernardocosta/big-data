@@ -130,16 +130,20 @@ Origem open source: Presto nasceu no Facebook. É o motor de consulta; o catálo
 
 ## Arquitetura do PrestoDB
 
-```mermaid {scale: 0.68}
-flowchart TB
+```mermaid {scale: 1}
+flowchart LR
   Client[Cliente SQL] -->|REST API| Coord[Presto Coordinator]
-  Coord -->|planeja e distribui| W1[Presto Worker]
-  Coord --> W2[Presto Worker]
-  Coord --> W3[Presto Worker]
-  W1 & W2 & W3 --> F[(Fontes de dados / S3 / HDFS)]
-  W1 <-->|troca de dados| W2
-  W2 <-->|troca de dados| W3
-  Coord -->|resultado| Client
+  Coord -.->|resultado| Client
+  Coord -->|planeja e distribui| W1
+  Coord --> W2
+  Coord --> W3
+  subgraph Workers["Presto Workers (trocam dados entre si)"]
+    direction TB
+    W1[Worker 1] <--> W2[Worker 2] <--> W3[Worker 3]
+  end
+  W1 --> F[(Fontes de dados<br/>S3 / HDFS)]
+  W2 --> F
+  W3 --> F
 ```
 
 - **Coordinator**: planeja a consulta e devolve o resultado ao cliente (1 por cluster).
