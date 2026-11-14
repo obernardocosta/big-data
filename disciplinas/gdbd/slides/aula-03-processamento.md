@@ -227,6 +227,8 @@ conecta de volta à tabela das "quatro formas de processar".
 -->
 
 ---
+routeAlias: nielsen
+---
 
 ## Caso real: Nielsen e os 55 TB por dia
 
