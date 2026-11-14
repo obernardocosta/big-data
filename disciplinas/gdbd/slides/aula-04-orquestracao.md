@@ -143,7 +143,9 @@ with DAG("pipeline_premier", schedule="@daily", start_date=...) as dag:
 ```
 
 <div class="text-sm opacity-70 mt-4">
+
 Referência: [Tutorial do Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html)
+
 </div>
 
 ---
@@ -166,7 +168,9 @@ Duas opções
 - Cobrança **por hora** (modelo parecido com o RDS — há ambiente ligado).
 
 <div class="text-sm opacity-70 mt-4">
+
 Preço: [Amazon MWAA Pricing](https://aws.amazon.com/managed-workflows-for-apache-airflow/pricing/)
+
 </div>
 
 ---
@@ -299,18 +303,56 @@ Desenhar a máquina de estados do nosso pipeline
 Vamos **modelar juntos**, no Workflow Studio (console) ou no papel, a state
 machine do pipeline que já construímos nas aulas anteriores:
 
-1. **Task** `TransformarGlue` (`glue:startJobRun.sync`) — com **Retry** (2x).
-2. **Task** `RodarCrawler` — **Catch** → `NotificarFalha` (SNS).
-3. **Choice**: achou tabela nova? → segue; senão → `Wait` e reavalia.
-4. **Task** `ConsultarAthena` → **Succeed**.
+```mermaid {scale: 0.6}
+flowchart LR
+  A[1 TransformarGlue<br/>Retry 2x] --> B[2 RodarCrawler<br/>Catch]
+  B --> C{3 TemTabelaNova?}
+  C -- sim --> D[4 ConsultarAthena] --> S([Succeed])
+  C -- não --> W[Wait] --> B
+  B -. erro .-> N[NotificarFalha<br/>SNS] --> F([Fail])
+```
 
-> Desafio em duplas: escreva o **ASL** dos estados 1 e 2 com `Retry`/`Catch`.
-> Depois comparamos as soluções.
+| # | Estado (nome) | Tipo | O que faz | O que você precisa tratar |
+|---|---|---|---|---|
+| 1 | `TransformarGlue` | Task | roda o Glue Job do Lab 05 | **Retry** 2x com *backoff* |
+| 2 | `RodarCrawler` | Task | roda o Crawler para atualizar o catálogo | **Catch** → `NotificarFalha` |
+| 3 | `TemTabelaNova` | Choice | achou tabela nova? segue; senão `Wait` e reavalia | só desenhar |
+| 4 | `ConsultarAthena` | Task | roda a consulta final | só desenhar → **Succeed** |
+
+---
+
+## O desafio, em uma frase
+
+**Escreva o JSON (ASL) só dos estados 1 e 2**, em duplas, no papel ou no
+Workflow Studio. **Não precisa executar nem criar nada na AWS.**
+
+- **Estado 1 `TransformarGlue`**: copie o modelo do slide "Retry e Catch" e
+  confira que tem `.sync`, `Retry` e `Next: RodarCrawler`.
+- **Estado 2 `RodarCrawler`**: o mesmo molde, com `Catch` desviando para
+  `NotificarFalha`. Dica: o recurso é
+  `arn:aws:states:::aws-sdk:glue:startCrawler`.
+- **Como saber que acertou:** o estado 1 tem `Retry`, o estado 2 tem `Catch`, e
+  um aponta para o outro por `Next`.
 
 <!--
 Esta atividade preenche ~30 min de forma ativa, sem criar recurso pago. Peça que
 desenhem no Workflow Studio (não precisa executar) ou no quadro. Discuta erros
 comuns: esquecer o .sync, não tratar Catch, Retry sem backoff.
+
+Gabarito (estados 1 e 2):
+"TransformarGlue": { "Type": "Task",
+  "Resource": "arn:aws:states:::glue:startJobRun.sync",
+  "Parameters": { "JobName": "lab05-transforma-premier" },
+  "Retry": [ { "ErrorEquals": ["States.ALL"], "MaxAttempts": 2,
+               "BackoffRate": 2.0, "IntervalSeconds": 10 } ],
+  "Next": "RodarCrawler" },
+"RodarCrawler": { "Type": "Task",
+  "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler",
+  "Parameters": { "Name": "crawler-jogos" },
+  "Catch": [ { "ErrorEquals": ["States.ALL"], "Next": "NotificarFalha" } ],
+  "Next": "TemTabelaNova" }
+Ajuste o nome do crawler ao usado no Lab 02. O startCrawler é assíncrono (não
+tem .sync); na prática, mencione que se espera o fim com Wait + GetCrawler.
 -->
 
 ---
